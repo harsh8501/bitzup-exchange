@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      var path = location.pathname.replace("/bitzup-exchange", "");
+      var repo = "/bitzup-exchange";
+      var path = location.pathname.replace(repo, "");
       location.replace(
-        "/bitzup-exchange/?redirect=" + encodeURIComponent(path)
+        repo + "/?redirect=" + encodeURIComponent(path)
       );
     </script>
   </head>
