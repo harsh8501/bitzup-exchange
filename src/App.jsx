@@ -34,18 +34,18 @@ function App() {
                 <div className="flex-grow-1 page-content">
                     <Routes>
                       <Route path="/" element={<IntegrationGuidance />} />
-                      <Route path="/docs/market/kline" element={<Kline />} />
+                      <Route path="docs/market/kline" element={<Kline />} />
                       <Route path="docs/market/orderbook" element={<OrderKook />} />
                       <Route path="docs/market/tickers" element={<Tickers />} />
                       <Route path="docs/market/recent-public-trades" element={<RecentPublicTrades />} />
-                      <Route path="/docs/market/market-info" element={<MarketData />} />
+                      <Route path="docs/market/market-info" element={<MarketData />} />
                       <Route path="docs/ws/connect" element={<Connect />} />
-                      <Route path="/docs/websocket/public/orderbook" element={<WsOrderBook />} />
-                      <Route path="/docs/websocket/public/trade" element={<WsTrade />} />
-                      <Route path="/docs/websocket/public/ticker" element={<WsTicker />} />
-                      <Route path="/docs/websocket/public/kline" element={<WsKline />} />
-                      <Route path="/docs/rate-limit/rate-limit-rules" element={<RateLimitRules />} />
-                      <Route path="/docs/Enums" element={<EnumsDefinitions />} />
+                      <Route path="docs/websocket/public/orderbook" element={<WsOrderBook />} />
+                      <Route path="docs/websocket/public/trade" element={<WsTrade />} />
+                      <Route path="docs/websocket/public/ticker" element={<WsTicker />} />
+                      <Route path="docs/websocket/public/kline" element={<WsKline />} />
+                      <Route path="docs/rate-limit/rate-limit-rules" element={<RateLimitRules />} />
+                      <Route path="docs/Enums" element={<EnumsDefinitions />} />
                     </Routes>
                 </div>
             </div>
