@@ -1,0 +1,635 @@
+import { useState, useEffect, useRef } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+import { FiCopy, FiCheck } from "react-icons/fi";
+
+export const Kline = () => {
+  const contentRef = useRef(null);
+
+  const [lang, setLang] = useState("HTTP");
+  const [copied, setCopied] = useState(false);
+  const [copiedRes, setCopiedRes] = useState(false);
+
+  const [activeSection, setActiveSection] = useState("http");
+
+  const HEADER_OFFSET = 120; // adjust to your layout
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(codeMap[lang]);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  const handleCopyRes = async () => {
+    navigator.clipboard.writeText(responseCode);
+    setCopiedRes(true);
+    setTimeout(() => setCopiedRes(false), 1500);
+  };
+
+
+  const sections = [
+    "http",
+    "request-params",
+    "response-params",
+    "request-example",
+    "response-example",
+  ];
+
+  const scrollToSection = (id) => {
+    const container = contentRef.current;
+    const el = document.getElementById(id);
+
+    if (!container || !el) return;
+
+    const top = el.offsetTop - container.offsetTop - HEADER_OFFSET;
+
+    container.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: contentRef.current,
+        rootMargin: "-30% 0px -60% 0px", // 🔥 top-biased
+        threshold: 0,
+      },
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const responseCode = `{
+        "status": "1",
+        "message": "SUCCESS",
+        "data": {
+          "symbol": "BTCUSDT",
+          "category": "linear",
+          "list": [
+            [
+              "1670608800000",
+              "17154",
+              "17154",
+              "17111",
+              "17136.5",
+              "2028.137",
+              "34736136.8065"
+            ],
+            [
+              "1670605200000",
+              "17143.5",
+              "17158",
+              "17137.5",
+              "17154",
+              "1095.661",
+              "18786245.062"
+            ],
+            [
+              "1670601600000",
+              "17168.5",
+              "17177.5",
+              "17135.5",
+              "17143.5",
+              "2038.195",
+              "34970006.194"
+            ]
+          ]
+        }
+      }`;
+
+  const codeMap = {
+    HTTP: `GET /v1/kline?category=inverse&symbol=BTCUSD&interval=60&start=1670601600000&end=1670608800000 HTTP/1.1
+  Host: api.bitzup.com/futures/api`,
+
+    Python: `import requests
+
+  url = "https://api.bitzup.com/futures/api/v1/kline"
+
+  params = {
+      "symbol": "BTCUSDT",
+      "interval": 60,
+      "start": 1670601600000,
+      "end": 1670608800000,
+  }
+
+  try:
+      resp = requests.get(url, params=params, timeout=10)
+      resp.raise_for_status()  # raises for 4xx/5xx
+      data = resp.json()
+      print(data)
+  except requests.exceptions.HTTPError as e:
+      print("API error:", resp.text)
+  except requests.exceptions.RequestException as e:
+      print("Network error:", str(e))`,
+
+    Go: `package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"time"
+)
+
+func main() {
+	baseURL := "https://api.bitzup.com/futures/api/v1/kline"
+
+	params := url.Values{}
+	params.Add("symbol", "BTCUSDT")
+	params.Add("interval", "60")
+	params.Add("start", "1670601600000")
+	params.Add("end", "1670608800000")
+
+	reqURL := baseURL + "?" + params.Encode()
+
+	client := &http.Client{
+		Timeout: 10 * time.Second,
+	}
+
+	req, err := http.NewRequest("GET", reqURL, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	body, _ := io.ReadAll(resp.Body)
+
+	if resp.StatusCode != http.StatusOK {
+		fmt.Println("API error:", string(body))
+		return
+	}
+
+	fmt.Println(string(body))
+}`,
+
+    Java: `import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+
+public class KlineExample {
+
+    public static void main(String[] args) throws Exception {
+        String baseUrl = "https://api.bitzup.com/futures/api/v1/kline";
+
+        String query = String.format(
+            "category=%s&symbol=%s&interval=%s&start=%s&end=%s",
+            encode("BTCUSDT"),
+            encode("60"),
+            encode("1670601600000"),
+            encode("1670608800000")
+        );
+
+        HttpClient client = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(10))
+            .build();
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(baseUrl + "?" + query))
+            .GET()
+            .timeout(Duration.ofSeconds(10))
+            .build();
+
+        HttpResponse<String> response =
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            System.out.println("API error: " + response.body());
+            return;
+        }
+
+        System.out.println(response.body());
+    }
+
+    private static String encode(String value) {
+        return URLEncoder.encode(value, StandardCharsets.UTF_8);
+    }
+}`,
+
+    Node: `const axios = require("axios");
+
+async function getKline() {
+  try {
+    const response = await axios.get(
+      "https://api.bitzup.com/futures/api/v1/kline",
+      {
+        params: {
+          symbol: "BTCUSDT",
+          interval: 60,
+          start: 1670601600000,
+          end: 1670608800000,
+        },
+      }
+    );
+
+    console.log(response.data);
+  } catch (error) {
+    // Axios-safe error handling
+    if (error.response) {
+      console.error("API Error:", error.response.data);
+    } else {
+      console.error("Network Error:", error.message);
+    }
+  }
+}
+
+getKline();`,
+  };
+
+  return (
+    <>
+      <div className="container-fluid p-0">
+        <div className="api-layout">
+          <div className="row">
+            {/* LEFT CONTENT */}
+            <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
+              <div className="breadcrumb mb-4">
+                <span className="kline-market">Market</span>
+                <span className="mx-2">
+                  <IoIosArrowForward className="kline-arrow" />
+                </span>
+                <span className="pill">Get Kline</span>
+              </div>
+
+              {/* Title */}
+              <h1 className="api-title">Get Kline</h1>
+              <p className="api-desc">
+                Query for historical klines (also known as
+                candles/candlesticks). Charts are returned in groups based on
+                the requested interval.
+              </p>
+
+              <div className="api-cover">USDT contract</div>
+
+              {/* HTTP REQUEST */}
+              <h3 className="top-req-text" id="http">
+                HTTP Request
+              </h3>
+              <div className="http-path">
+                <span className="method">GET</span>
+                <span className="path">/v1/kline</span>
+              </div>
+
+              {/* REQUEST PARAMETERS */}
+              <h3 className="top-req-text" id="request-params">
+                Request Parameters
+              </h3>
+              <div className="api-table-box">
+                <table className="table table-striped api-table mb-0">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Required</th>
+                      <th>Type</th>
+                      <th>Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="text-interval">symbol</td>
+                      <td>true</td>
+                      <td>string</td>
+                      <td>
+                        Symbol name, like
+                        <span className="pill">BTCUSDT</span>, uppercase only
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-interval">interval</td>
+                      <td>true</td>
+                      <td>string</td>
+                      <td>
+                        Kline interval:
+                        <ul
+                          style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: "6px",
+                            listStyle: "none",
+                            padding: 0,
+                          }}
+                        >
+                          <li>
+                            <span className="pill">1</span>
+                          </li>
+                          <li>
+                            <span className="pill">3</span>
+                          </li>
+                          <li>
+                            <span className="pill">5</span>
+                          </li>
+                          <li>
+                            <span className="pill">15</span>
+                          </li>
+                          <li>
+                            <span className="pill">60</span>
+                          </li>
+                          <li>
+                            <span className="pill">120</span>
+                          </li>
+                          <li>
+                            <span className="pill">240</span>
+                          </li>
+                          <li>
+                            <span className="pill">360</span>
+                          </li>
+                          <li>
+                            <span className="pill">720</span>
+                          </li>
+                          <li>
+                            <span className="pill">D</span>
+                          </li>
+                          <li>
+                            <span className="pill">W</span>
+                          </li>
+                          <li>
+                            <span className="pill">M</span>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>start</td>
+                      <td>false</td>
+                      <td>integer</td>
+                      <td>The start timestamp (ms) </td>
+                    </tr>
+                    <tr>
+                      <td>end</td>
+                      <td>false</td>
+                      <td>integer</td>
+                      <td>The end timestamp (ms) </td>
+                    </tr>
+                    <tr>
+                      <td>limit</td>
+                      <td>false</td>
+                      <td>integer</td>
+                      <td>
+                        Limit for data size per page. [
+                        <span className="pill">1</span>,
+                        <span className="pill">1000</span> ]. Default:{" "}
+                        <span className="pill"> 200 </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3 className="top-req-text" id="response-params">
+                Response Parameters
+              </h3>
+              <div className="api-table-box">
+                <table className="table table-striped api-table mb-0">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>category</td>
+                      <td>string</td>
+                      <td>Product type</td>
+                    </tr>
+                    <tr>
+                      <td>symbol</td>
+                      <td>string</td>
+                      <td>Symbol name</td>
+                    </tr>
+                    <tr>
+                      <td>list</td>
+                      <td>array</td>
+                      <td>
+                        <ul>
+                          <li>An string array of individual candle</li>
+                          <li>
+                            Sort in reverse by{" "}
+                            <span className="pill">startTime</span>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[0]: startTime
+                      </td>
+                      <td>string</td>
+                      <td>Start time of the candle (ms)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[1]: openPrice
+                      </td>
+                      <td>string</td>
+                      <td>Open price</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[2]: highPrice
+                      </td>
+                      <td>string</td>
+                      <td>Highest price</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[3]: lowPrice
+                      </td>
+                      <td>string</td>
+                      <td>Lowest price</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[4]: closePrice
+                      </td>
+                      <td>string</td>
+                      <td>
+                        Close price. Is the last traded price when the candle is
+                        not closed
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[5]: volume
+                      </td>
+                      <td>string</td>
+                      <td>
+                        Trade volume
+                        <ul>
+                          <li>USDT contract: unit is base coin (e.g., BTC)</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[6]: turnover
+                      </td>
+                      <td>string</td>
+                      <td>
+                        Turnover
+                        <ul>
+                          <li>
+                            USDT contract: unit is quote coin (e.g., USDT)
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* REQUEST EXAMPLE */}
+              <h3 className="top-req-text" id="request-example">
+                Request Example
+              </h3>
+              <div className="lang-tabs">
+                {["HTTP", "Python", "Go", "Java", "Node"].map((t) => (
+                  <button
+                    key={t}
+                    className={lang === t ? "active" : ""}
+                    onClick={() => setLang(t)}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+
+              <div className="api-code-box position-relative">
+                <button className="copy-btn" onClick={handleCopy}>
+                  {copied ? <FiCheck /> : <FiCopy />}
+                </button>
+
+                <pre>
+                  <code>{codeMap[lang]}</code>
+                </pre>
+              </div>
+
+              {/* RESPONSE EXAMPLE */}
+              <h3 className="top-req-text" id="response-example">
+                Response Example
+              </h3>
+              <div className="api-code-box position-relative">
+                <button className="copy-btn" onClick={handleCopyRes}>
+                  {copiedRes ? <FiCheck /> : <FiCopy />}
+                </button>
+                <pre>
+                  <code>
+  {"{"}
+  {"\n"}  "status": "1",
+  {"\n"}  "message": "SUCCESS",
+  {"\n"}  "data": {"{"}
+  {"\n"}    "symbol": "BTCUSDT",
+  {"\n"}    "category": "linear",
+  {"\n"}    "list": [
+  {"\n"}      [ 
+  {"\n"}        "1670608800000",
+  {"\n"}        "17154",
+  {"\n"}        "17154",
+  {"\n"}        "17111",
+  {"\n"}        "17136.5",
+  {"\n"}        "2028.137",
+  {"\n"}        "34736136.8065"
+  {"\n"}      ],
+  {"\n"}      [
+  {"\n"}        "1670605200000",
+  {"\n"}        "17143.5",
+  {"\n"}        "17158",
+  {"\n"}        "17137.5",
+  {"\n"}        "17154",
+  {"\n"}        "1095.661",
+  {"\n"}        "18786245.062"
+  {"\n"}      ],
+  {"\n"}      [
+  {"\n"}        "1670601600000",
+  {"\n"}        "17168.5",
+  {"\n"}        "17177.5",
+  {"\n"}        "17135.5",
+  {"\n"}        "17143.5",
+  {"\n"}        "2038.195",
+  {"\n"}        "34970006.194"
+  {"\n"}      ]
+  {"\n"}    ]
+  {"\n"}  {"}"}
+  {"\n"}{"}"}
+</code>
+
+                </pre>
+              </div>
+            </div>
+
+            {/* RIGHT SIDEBAR */}
+            <div className="col-lg-3 col-md-4 d-none d-md-block">
+              <div className="api-sidebar">
+                <ul>
+                  <li
+                    className={activeSection === "http" ? "active" : ""}
+                    onClick={() => scrollToSection("http")}
+                  >
+                    HTTP Request
+                  </li>
+                  <li
+                    className={
+                      activeSection === "request-params" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("request-params")}
+                  >
+                    Request Parameters
+                  </li>
+                  <li
+                    className={
+                      activeSection === "response-params" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("response-params")}
+                  >
+                    Response Parameters
+                  </li>
+                  <li
+                    className={
+                      activeSection === "request-example" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("request-example")}
+                  >
+                    Request Example
+                  </li>
+                  <li
+                    className={
+                      activeSection === "response-example" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("response-example")}
+                  >
+                    Response Example
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};

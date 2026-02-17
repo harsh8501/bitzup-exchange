@@ -1,0 +1,37 @@
+/* ===== DEFAULT (DARK) ===== */
+:root {
+  --bg-main: #000;
+  --bg-header: #000;
+  --bg-sidebar: #000;
+  --bg-card: #0b1f1a;
+  --bg-code: #1e293b;
+
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --text-accent: #2edbad;
+
+  --border-color: #373743;
+}
+
+/* ===== LIGHT MODE ===== */
+[data-theme="light"] {
+  --bg-main: #fff;
+  --bg-header: #fff;
+  --bg-sidebar: #Fff;
+  --bg-card: #ffffff;
+  --bg-code: #f1f5f9;
+
+  --text-main: #020617;
+  --text-muted: #64748b;
+  --text-accent: #0bdea6;
+
+  --border-color: #E5E5E5;
+}
+
+/* ===== GLOBAL ===== */
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition: background 0.25s, color 0.25s;
+}
+
