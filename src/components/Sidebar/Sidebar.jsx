@@ -193,6 +193,27 @@ const Sidebar = () => {
             <NavLink to="/docs/private/get-wallet-balance" className="sidebar-link">
               Get Wallet Balance
             </NavLink>
+            <NavLink to="/docs/private/get-leverage" className="sidebar-link">
+              Get Leverage
+            </NavLink>
+            <NavLink to="/docs/private/get-margin-mode" className="sidebar-link">
+              Get Margin Mode
+            </NavLink>
+            <NavLink to="/docs/private/set-leverage" className="sidebar-link">
+              Set Leverage
+            </NavLink>
+            <NavLink to="/docs/private/switch-margin-mode" className="sidebar-link">
+              Switch Margin Mode
+            </NavLink>
+            <NavLink to="/docs/private/add-isolated-margin" className="sidebar-link">
+              Add Isolated Margin
+            </NavLink>
+            <NavLink to="/docs/private/auto-isolated-margin" className="sidebar-link">
+              Auto Isolated Margin
+            </NavLink>
+            <NavLink to="/docs/private/set-trading-stop" className="sidebar-link">
+              Set Trading Stop
+            </NavLink>
           </div>
         )}
 

@@ -21,6 +21,13 @@ import { GetOrderHistory } from "./components/pages/GetOrderHistory";
 import { GetTradeHistory } from "./components/pages/GetTradeHistory";
 import { GetClosedPnl } from "./components/pages/GetClosedPnl";
 import { GetWalletBalance } from "./components/pages/GetWalletBalance";
+import { GetLeverage } from "./components/pages/GetLeverage";
+import { GetMarginMode } from "./components/pages/GetMarginMode";
+import { SetLeverage } from "./components/pages/SetLeverage";
+import { SwitchMarginMode } from "./components/pages/SwitchMarginMode";
+import { AddIsolatedMargin } from "./components/pages/AddIsolatedMargin";
+import { AutoIsolatedMargin } from "./components/pages/AutoIsolatedMargin";
+import { SetTradingStop } from "./components/pages/SetTradingStop";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -58,6 +65,13 @@ function App() {
             <Route path="docs/private/get-trade-history" element={<GetTradeHistory />} />
             <Route path="docs/private/get-closed-pnl" element={<GetClosedPnl />} />
             <Route path="docs/private/get-wallet-balance" element={<GetWalletBalance />} />
+            <Route path="docs/private/get-leverage" element={<GetLeverage />} />
+            <Route path="docs/private/get-margin-mode" element={<GetMarginMode />} />
+            <Route path="docs/private/set-leverage" element={<SetLeverage />} />
+            <Route path="docs/private/switch-margin-mode" element={<SwitchMarginMode />} />
+            <Route path="docs/private/add-isolated-margin" element={<AddIsolatedMargin />} />
+            <Route path="docs/private/auto-isolated-margin" element={<AutoIsolatedMargin />} />
+            <Route path="docs/private/set-trading-stop" element={<SetTradingStop />} />
           </Routes>
         </div>
       </div>
