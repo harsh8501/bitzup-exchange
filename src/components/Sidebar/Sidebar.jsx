@@ -7,30 +7,31 @@ import { RiArrowRightDoubleFill } from "react-icons/ri";
 
 const Sidebar = () => {
 
-    const [openSection, setOpenSection] = useState(null);
-    const [webStream, setWebStream] = useState(null);
-    const [publicOpen, setPublicOpen] = useState(null);
-    const [rateLimit, setRateLimit] = useState(null);
+  const [openSection, setOpenSection] = useState(null);
+  const [webStream, setWebStream] = useState(null);
+  const [publicOpen, setPublicOpen] = useState(null);
+  const [rateLimit, setRateLimit] = useState(null);
+  const [privateOpen, setPrivateOpen] = useState(null);
 
 
-    const [collapsed, setCollapsed] = useState(
+  const [collapsed, setCollapsed] = useState(
     localStorage.getItem("sidebar") === "collapsed"
-);
+  );
 
-useEffect(() => {
-  localStorage.setItem("sidebar", collapsed ? "collapsed" : "open");
-}, [collapsed]);
+  useEffect(() => {
+    localStorage.setItem("sidebar", collapsed ? "collapsed" : "open");
+  }, [collapsed]);
 
 
-    return (
-        <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
-            <div className="sidebar-scroll">
-          
-              <NavLink to="/" className="sidebar-link">
-                    Integration Guidance
-              </NavLink>
+  return (
+    <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+      <div className="sidebar-scroll">
 
-              {/* <NavLink to="/docs/announcement" className="sidebar-link">
+        <NavLink to="/" className="sidebar-link">
+          Integration Guidance
+        </NavLink>
+
+        {/* <NavLink to="/docs/announcement" className="sidebar-link">
                 Get Announcement
               </NavLink>
 
@@ -50,117 +51,152 @@ useEffect(() => {
                 Get System Status
               </NavLink> */}
 
-              <div
-                  className="sidebar-section collapsible sidebar-link"
-                  onClick={() =>
-                    setOpenSection(openSection === "market" ? null : "market")
-                  }
-                >
-                <span>Market</span>
-                <IoIosArrowForward
-                  className={openSection === "market" ? "rotate" : ""}
-                />
+        <div
+          className="sidebar-section collapsible sidebar-link"
+          onClick={() =>
+            setOpenSection(openSection === "market" ? null : "market")
+          }
+        >
+          <span>Market</span>
+          <IoIosArrowForward
+            className={openSection === "market" ? "rotate" : ""}
+          />
+        </div>
+
+        {openSection === "market" && (
+          <div className="sidebar-sub">
+            <NavLink to="/docs/market/kline" className="sidebar-link">
+              Get Kline
+            </NavLink>
+            <NavLink to="/docs/market/orderbook" className="sidebar-link">
+              Get Orderbook
+            </NavLink>
+            <NavLink to="/docs/market/tickers" className="sidebar-link">
+              Get Tickers
+            </NavLink>
+            <NavLink to="/docs/market/recent-public-trades" className="sidebar-link">
+              Get Recent Public Trades
+            </NavLink>
+            <NavLink to="/docs/market/market-info" className="sidebar-link">
+              Market Info
+            </NavLink>
+          </div>
+        )}
+
+        <div
+          className="sidebar-section collapsible sidebar-link"
+          onClick={() =>
+            setWebStream(webStream === "ws" ? null : "ws")
+          }
+        >
+          <span>WebSocket Stream</span>
+          <IoIosArrowForward
+            className={webStream === "ws" ? "rotate" : ""}
+          />
+        </div>
+
+        {webStream === "ws" && (
+          <div className="sidebar-sub">
+
+            <NavLink
+              to="/docs/ws/connect"
+              className="sidebar-link"
+            >
+              Connect
+            </NavLink>
+
+            {/* Public */}
+            <div
+              className="sidebar-section collapsible sidebar-link sub-header"
+              onClick={() =>
+                setPublicOpen(publicOpen === "public" ? null : "public")
+              }
+            >
+              <span>Public</span>
+              <IoIosArrowForward
+                className={publicOpen === "public" ? "rotate" : ""}
+              />
+            </div>
+
+            {publicOpen === "public" && (
+              <div className="sidebar-sub deep">
+                <NavLink to="/docs/websocket/public/orderbook" className="sidebar-link">
+                  Orderbook
+                </NavLink>
+                <NavLink to="/docs/websocket/public/trade" className="sidebar-link">
+                  Trade
+                </NavLink>
+                <NavLink to="/docs/websocket/public/ticker" className="sidebar-link">
+                  Ticker
+                </NavLink>
+                <NavLink to="/docs/websocket/public/kline" className="sidebar-link">
+                  Kline
+                </NavLink>
               </div>
+            )}
+          </div>
+        )}
 
-              {openSection === "market" && (
-                  <div className="sidebar-sub">
-                      <NavLink to="/docs/market/kline" className="sidebar-link">
-                          Get Kline
-                      </NavLink>
-                      <NavLink to="/docs/market/orderbook" className="sidebar-link">
-                          Get Orderbook
-                      </NavLink>
-                      <NavLink to="/docs/market/tickers" className="sidebar-link">
-                          Get Tickers
-                      </NavLink>
-                      <NavLink to="/docs/market/recent-public-trades" className="sidebar-link">
-                          Get Recent Public Trades
-                      </NavLink>
-                      <NavLink to="/docs/market/market-info" className="sidebar-link">
-                          Market Info
-                      </NavLink>
-                  </div>
-              )}
+        <div
+          className="sidebar-section collapsible sidebar-link"
+          onClick={() =>
+            setRateLimit(rateLimit === "market" ? null : "market")
+          }
+        >
+          <span>Rate Limit</span>
+          <IoIosArrowForward
+            className={rateLimit === "market" ? "rotate" : ""}
+          />
+        </div>
 
-              <div
-                  className="sidebar-section collapsible sidebar-link"
-                  onClick={() =>
-                    setWebStream(webStream === "ws" ? null : "ws")
-                  }
-                >
-                <span>WebSocket Stream</span>
-                <IoIosArrowForward
-                  className={webStream === "ws" ? "rotate" : ""}
-                />
-              </div>
+        {rateLimit === "market" && (
+          <div className="sidebar-sub">
+            <NavLink to="/docs/rate-limit/rate-limit-rules" className="sidebar-link">
+              Rate Limit Rules
+            </NavLink>
+          </div>
+        )}
 
-              {webStream === "ws" && (
-                <div className="sidebar-sub">
+        <NavLink to="/docs/enums" className="sidebar-link">
+          Enums Definitions
+        </NavLink>
 
-                  <NavLink
-                    to="/docs/ws/connect"
-                    className="sidebar-link"
-                  >
-                    Connect
-                  </NavLink>
+        <div
+          className="sidebar-section collapsible sidebar-link"
+          onClick={() =>
+            setPrivateOpen(privateOpen === "private" ? null : "private")
+          }
+        >
+          <span>Private</span>
+          <IoIosArrowForward
+            className={privateOpen === "private" ? "rotate" : ""}
+          />
+        </div>
 
-                  {/* Public */}
-                  <div
-                    className="sidebar-section collapsible sidebar-link sub-header"
-                    onClick={() =>
-                      setPublicOpen(publicOpen === "public" ? null : "public")
-                    }
-                  >
-                    <span>Public</span>
-                    <IoIosArrowForward
-                      className={publicOpen === "public" ? "rotate" : ""}
-                    />
-                  </div>
+        {privateOpen === "private" && (
+          <div className="sidebar-sub">
+            <NavLink to="/docs/private/get-positions" className="sidebar-link">
+              Get Positions
+            </NavLink>
+            <NavLink to="/docs/private/get-open-orders" className="sidebar-link">
+              Get Open Orders
+            </NavLink>
+            <NavLink to="/docs/private/get-order-history" className="sidebar-link">
+              Get Order History
+            </NavLink>
+            <NavLink to="/docs/private/get-trade-history" className="sidebar-link">
+              Get Trade History
+            </NavLink>
+            <NavLink to="/docs/private/get-closed-pnl" className="sidebar-link">
+              Get Closed PnL
+            </NavLink>
+            <NavLink to="/docs/private/get-wallet-balance" className="sidebar-link">
+              Get Wallet Balance
+            </NavLink>
+          </div>
+        )}
 
-                  {publicOpen === "public" && (
-                    <div className="sidebar-sub deep">
-                      <NavLink to="/docs/websocket/public/orderbook" className="sidebar-link">
-                        Orderbook
-                      </NavLink>
-                      <NavLink to="/docs/websocket/public/trade" className="sidebar-link">
-                        Trade
-                      </NavLink>
-                      <NavLink to="/docs/websocket/public/ticker" className="sidebar-link">
-                        Ticker
-                      </NavLink>
-                      <NavLink to="/docs/websocket/public/kline" className="sidebar-link">
-                        Kline
-                      </NavLink>
-                    </div>
-                  )}
-                </div>
-               )}
-
-               <div
-                  className="sidebar-section collapsible sidebar-link"
-                  onClick={() =>
-                    setRateLimit(rateLimit === "market" ? null : "market")
-                  }
-                >
-                <span>Rate Limit</span>
-                <IoIosArrowForward
-                  className={rateLimit === "market" ? "rotate" : ""}
-                />
-              </div>
-
-              {rateLimit === "market" && (
-                  <div className="sidebar-sub">
-                      <NavLink to="/docs/rate-limit/rate-limit-rules" className="sidebar-link">
-                          Rate Limit Rules
-                      </NavLink>
-                  </div>
-              )}
-
-              <NavLink to="/docs/enums" className="sidebar-link">
-                Enums Definitions
-              </NavLink>
-
-              {/* <NavLink to="/docs/system-status" className="sidebar-link">
+        {/* <NavLink to="/docs/system-status" className="sidebar-link">
                 Get System Status
               </NavLink>
 
@@ -171,18 +207,18 @@ useEffect(() => {
               <NavLink to="/docs/system-status" className="sidebar-link">
                 Get System Status
               </NavLink> */}
-            </div>
+      </div>
 
-            <div className="sidebar-footer">
-  <button
-    className="collapse-btn"
-    onClick={() => setCollapsed(!collapsed)}
-  >
-    {collapsed ? <RiArrowRightDoubleFill /> : <RiArrowLeftDoubleFill />}
-  </button>
-</div>
-        </aside>
-    );
+      <div className="sidebar-footer">
+        <button
+          className="collapse-btn"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          {collapsed ? <RiArrowRightDoubleFill /> : <RiArrowLeftDoubleFill />}
+        </button>
+      </div>
+    </aside>
+  );
 };
 
 export default Sidebar;
