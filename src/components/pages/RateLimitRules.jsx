@@ -168,19 +168,17 @@ export const RateLimitRules = () => {
                 <p>If you receive "Too many requests" in the JSON response, you have hit the API rate limit.</p>
               </div>
 
-              <h4 style={{ marginTop: "24px", marginBottom: "12px" }}>Public API Endpoints — 10 req/s</h4>
+              <h4 style={{ marginTop: "24px", marginBottom: "12px" }}>Market API Endpoints — 5 req / 5 sec</h4>
               <div className="api-table-box">
                 <table className="table table-striped api-table mb-0">
                   <thead><tr><th>Endpoint</th><th>Method</th><th>Rate Limit</th></tr></thead>
                   <tbody>
-                    <tr><td>/v1/get-kline</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/get-order-book</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/get-ticker</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/get-trades</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/get-curr-data</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/get-futures-currencies</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/market-settings</td><td>GET</td><td>10 req/s</td></tr>
-                    <tr><td>/v1/get-fee-rate</td><td>GET</td><td>10 req/s</td></tr>
+                    <tr><td>/v1/ticker</td><td>GET</td><td>5 req / 5 sec</td></tr>
+                    <tr><td>/v1/order-book</td><td>GET</td><td>5 req / 5 sec</td></tr>
+                    <tr><td>/v1/trades</td><td>GET</td><td>5 req / 5 sec</td></tr>
+                    <tr><td>/v1/market-summary</td><td>GET</td><td>5 req / 5 sec</td></tr>
+                    <tr><td>/v1/markets</td><td>GET</td><td>5 req / 5 sec</td></tr>
+                    <tr><td>/v1/contract-specs</td><td>GET</td><td>5 req / 5 sec</td></tr>
                   </tbody>
                 </table>
               </div>
