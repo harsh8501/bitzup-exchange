@@ -86,6 +86,89 @@ const Sidebar = () => {
         <div
           className="sidebar-section collapsible sidebar-link"
           onClick={() =>
+            setPrivateOpen(privateOpen === "private" ? null : "private")
+          }
+        >
+          <span>Private</span>
+          <IoIosArrowForward
+            className={privateOpen === "private" ? "rotate" : ""}
+          />
+        </div>
+
+        {privateOpen === "private" && (
+          <div className="sidebar-sub">
+            <NavLink to="/docs/private/get-positions" className="sidebar-link">
+              Get Positions
+            </NavLink>
+            <NavLink to="/docs/private/get-open-orders" className="sidebar-link">
+              Get Open Orders
+            </NavLink>
+            <NavLink to="/docs/private/get-order-history" className="sidebar-link">
+              Get Order History
+            </NavLink>
+            <NavLink to="/docs/private/get-trade-history" className="sidebar-link">
+              Get Trade History
+            </NavLink>
+            <NavLink to="/docs/private/get-closed-pnl" className="sidebar-link">
+              Get Closed PnL
+            </NavLink>
+            <NavLink to="/docs/private/get-wallet-balance" className="sidebar-link">
+              Get Wallet Balance
+            </NavLink>
+            <NavLink to="/docs/private/get-leverage" className="sidebar-link">
+              Get Leverage
+            </NavLink>
+            <NavLink to="/docs/private/get-margin-mode" className="sidebar-link">
+              Get Margin Mode
+            </NavLink>
+            <NavLink to="/docs/private/set-leverage" className="sidebar-link">
+              Set Leverage
+            </NavLink>
+            <NavLink to="/docs/private/switch-margin-mode" className="sidebar-link">
+              Switch Margin Mode
+            </NavLink>
+            <NavLink to="/docs/private/add-isolated-margin" className="sidebar-link">
+              Add Isolated Margin
+            </NavLink>
+            <NavLink to="/docs/private/auto-isolated-margin" className="sidebar-link">
+              Auto Isolated Margin
+            </NavLink>
+            <NavLink to="/docs/private/set-trading-stop" className="sidebar-link">
+              Set Trading Stop
+            </NavLink>
+            <NavLink to="/docs/private/place-order" className="sidebar-link">
+              Place Order
+            </NavLink>
+            <NavLink to="/docs/private/cancel-order" className="sidebar-link">
+              Cancel Order
+            </NavLink>
+            <NavLink to="/docs/private/cancel-all-orders" className="sidebar-link">
+              Cancel All Orders
+            </NavLink>
+            <NavLink to="/docs/private/modify-order" className="sidebar-link">
+              Modify Order
+            </NavLink>
+            <NavLink to="/docs/private/close-position" className="sidebar-link">
+              Close Position
+            </NavLink>
+            <NavLink to="/docs/private/close-all-position" className="sidebar-link">
+              Close All Positions
+            </NavLink>
+            <NavLink to="/docs/private/estimate-liquidation-price" className="sidebar-link">
+              Estimate Liquidation Price
+            </NavLink>
+            <NavLink to="/docs/private/deposit-to-sub-acc" className="sidebar-link">
+              Deposit to Sub Account
+            </NavLink>
+            <NavLink to="/docs/private/withdraw-from-sub-acc" className="sidebar-link">
+              Withdraw from Sub Account
+            </NavLink>
+          </div>
+        )}
+
+        <div
+          className="sidebar-section collapsible sidebar-link"
+          onClick={() =>
             setWebStream(webStream === "ws" ? null : "ws")
           }
         >
@@ -160,80 +243,6 @@ const Sidebar = () => {
         <NavLink to="/docs/enums" className="sidebar-link">
           Enums Definitions
         </NavLink>
-
-        <div
-          className="sidebar-section collapsible sidebar-link"
-          onClick={() =>
-            setPrivateOpen(privateOpen === "private" ? null : "private")
-          }
-        >
-          <span>Private</span>
-          <IoIosArrowForward
-            className={privateOpen === "private" ? "rotate" : ""}
-          />
-        </div>
-
-        {privateOpen === "private" && (
-          <div className="sidebar-sub">
-            <NavLink to="/docs/private/get-positions" className="sidebar-link">
-              Get Positions
-            </NavLink>
-            <NavLink to="/docs/private/get-open-orders" className="sidebar-link">
-              Get Open Orders
-            </NavLink>
-            <NavLink to="/docs/private/get-order-history" className="sidebar-link">
-              Get Order History
-            </NavLink>
-            <NavLink to="/docs/private/get-trade-history" className="sidebar-link">
-              Get Trade History
-            </NavLink>
-            <NavLink to="/docs/private/get-closed-pnl" className="sidebar-link">
-              Get Closed PnL
-            </NavLink>
-            <NavLink to="/docs/private/get-wallet-balance" className="sidebar-link">
-              Get Wallet Balance
-            </NavLink>
-            <NavLink to="/docs/private/get-leverage" className="sidebar-link">
-              Get Leverage
-            </NavLink>
-            <NavLink to="/docs/private/get-margin-mode" className="sidebar-link">
-              Get Margin Mode
-            </NavLink>
-            <NavLink to="/docs/private/set-leverage" className="sidebar-link">
-              Set Leverage
-            </NavLink>
-            <NavLink to="/docs/private/switch-margin-mode" className="sidebar-link">
-              Switch Margin Mode
-            </NavLink>
-            <NavLink to="/docs/private/add-isolated-margin" className="sidebar-link">
-              Add Isolated Margin
-            </NavLink>
-            <NavLink to="/docs/private/auto-isolated-margin" className="sidebar-link">
-              Auto Isolated Margin
-            </NavLink>
-            <NavLink to="/docs/private/set-trading-stop" className="sidebar-link">
-              Set Trading Stop
-            </NavLink>
-            <NavLink to="/docs/private/place-order" className="sidebar-link">
-              Place Order
-            </NavLink>
-            <NavLink to="/docs/private/cancel-order" className="sidebar-link">
-              Cancel Order
-            </NavLink>
-            <NavLink to="/docs/private/cancel-all-orders" className="sidebar-link">
-              Cancel All Orders
-            </NavLink>
-            <NavLink to="/docs/private/modify-order" className="sidebar-link">
-              Modify Order
-            </NavLink>
-            <NavLink to="/docs/private/close-position" className="sidebar-link">
-              Close Position
-            </NavLink>
-            <NavLink to="/docs/private/estimate-liquidation-price" className="sidebar-link">
-              Estimate Liquidation Price
-            </NavLink>
-          </div>
-        )}
 
         {/* <NavLink to="/docs/system-status" className="sidebar-link">
                 Get System Status

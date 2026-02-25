@@ -34,6 +34,9 @@ import { CancelAllOrders } from "./components/pages/CancelAllOrders";
 import { ModifyOrder } from "./components/pages/ModifyOrder";
 import { ClosePosition } from "./components/pages/ClosePosition";
 import { EstimateLiquidationPrice } from "./components/pages/EstimateLiquidationPrice";
+import { DepositToSubAcc } from "./components/pages/DepositToSubAcc";
+import { WithdrawFromSubAcc } from "./components/pages/WithdrawFromSubAcc";
+import { CloseAllPositions } from "./components/pages/CloseAllPositions";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -84,6 +87,9 @@ function App() {
             <Route path="docs/private/modify-order" element={<ModifyOrder />} />
             <Route path="docs/private/close-position" element={<ClosePosition />} />
             <Route path="docs/private/estimate-liquidation-price" element={<EstimateLiquidationPrice />} />
+            <Route path="docs/private/deposit-to-sub-acc" element={<DepositToSubAcc />} />
+            <Route path="docs/private/withdraw-from-sub-acc" element={<WithdrawFromSubAcc />} />
+            <Route path="docs/private/close-all-position" element={<CloseAllPositions />} />
           </Routes>
         </div>
       </div>
