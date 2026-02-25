@@ -35,7 +35,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "symbol": "BTCUSDT",
   "tp_sl_mode": "Full",
   "take_profit": 95000,
@@ -48,7 +47,6 @@ Authorization: Bearer <your_token>
 url = "https://api.bitzup.com/futures/api/v1/set-trading-stop"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {
-    "user_id": "your_user_id",
     "symbol": "BTCUSDT",
     "tp_sl_mode": "Full",
     "take_profit": 95000,
@@ -77,7 +75,6 @@ import (
 func main() {
 	url := "https://api.bitzup.com/futures/api/v1/set-trading-stop"
 	body, _ := json.Marshal(map[string]interface{}{
-		"user_id":       "your_user_id",
 		"symbol":        "BTCUSDT",
 		"tp_sl_mode":    "Full",
 		"take_profit":   95000,
@@ -103,7 +100,6 @@ public class SetTradingStopExample {
     public static void main(String[] args) throws Exception {
         String json = """
             {
-              "user_id": "your_user_id",
               "symbol": "BTCUSDT",
               "tp_sl_mode": "Full",
               "take_profit": 95000,
@@ -129,7 +125,6 @@ async function setTradingStop() {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/set-trading-stop",
       {
-        user_id: "your_user_id",
         symbol: "BTCUSDT",
         tp_sl_mode: "Full",
         take_profit: 95000,
@@ -180,7 +175,6 @@ setTradingStop();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
                                         <tr><td className="text-interval">symbol</td><td>true</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
                                         <tr>
                                             <td>tp_sl_mode</td><td>false</td><td>string</td>

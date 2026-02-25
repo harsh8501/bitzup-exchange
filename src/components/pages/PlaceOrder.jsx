@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
-export const GetWalletBalance = () => {
+export const PlaceOrder = () => {
     const contentRef = useRef(null);
     const [lang, setLang] = useState("HTTP");
     const [copied, setCopied] = useState(false);
@@ -10,34 +10,15 @@ export const GetWalletBalance = () => {
     const [activeSection, setActiveSection] = useState("http");
     const HEADER_OFFSET = 120;
 
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(codeMap[lang]);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-    };
-
-    const handleCopyRes = async () => {
-        navigator.clipboard.writeText(responseCode);
-        setCopiedRes(true);
-        setTimeout(() => setCopiedRes(false), 1500);
-    };
+    const handleCopy = async () => { await navigator.clipboard.writeText(codeMap[lang]); setCopied(true); setTimeout(() => setCopied(false), 1500); };
+    const handleCopyRes = async () => { navigator.clipboard.writeText(responseCode); setCopiedRes(true); setTimeout(() => setCopiedRes(false), 1500); };
 
     const sections = ["http", "request-params", "response-params", "request-example", "response-example"];
-
-    const scrollToSection = (id) => {
-        const container = contentRef.current;
-        const el = document.getElementById(id);
-        if (!container || !el) return;
-        const top = el.offsetTop - container.offsetTop - HEADER_OFFSET;
-        container.scrollTo({ top, behavior: "smooth" });
-    };
+    const scrollToSection = (id) => { const container = contentRef.current; const el = document.getElementById(id); if (!container || !el) return; const top = el.offsetTop - container.offsetTop - HEADER_OFFSET; container.scrollTo({ top, behavior: "smooth" }); };
 
     useEffect(() => {
         if (!contentRef.current) return;
-        const observer = new IntersectionObserver(
-            (entries) => { entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); },
-            { root: contentRef.current, rootMargin: "-30% 0px -60% 0px", threshold: 0 }
-        );
+        const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); }, { root: contentRef.current, rootMargin: "-30% 0px -60% 0px", threshold: 0 });
         sections.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
         return () => observer.disconnect();
     }, []);
@@ -45,58 +26,48 @@ export const GetWalletBalance = () => {
     const responseCode = `{
   "success": "1",
   "data": {
-    "totalUsdBalance": "10250.50",
-    "coins": [
-      {
-        "coin": "USDT",
-        "walletBalance": 10000,
-        "availableBalance": 5500.25
-      },
-      {
-        "coin": "USDC",
-        "walletBalance": 250.50,
-        "availableBalance": 250.50
-      }
-    ],
-    "totalMarginBalance": "10250.50",
-    "totalAvailableBalance": "5750.75",
-    "totalWalletBalance": "10250.50"
+    "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "client_order_id": "my_custom_id_001"
   }
 }`;
 
     const codeMap = {
-        HTTP: `POST /futures/api/v1/get-balance HTTP/1.1
+        HTTP: `POST /futures/api/v1/place-order HTTP/1.1
 Host: api.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "coin": "USDT"
+  "symbol": "BTCUSDT",
+  "side": "Buy",
+  "type": "Limit",
+  "qty": 0.05,
+  "price": 90000,
+  "time_in_force": "GTC",
+  "take_profit": 95000,
+  "stop_loss": 88000
 }`,
-
         Python: `import requests
 
-url = "https://api.bitzup.com/futures/api/v1/get-balance"
-
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer <your_token>"
-}
-
+url = "https://api.bitzup.com/futures/api/v1/place-order"
+headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {
-    "coin": "USDT"
+    "symbol": "BTCUSDT",
+    "side": "Buy",
+    "type": "Limit",
+    "qty": 0.05,
+    "price": 90000,
+    "time_in_force": "GTC",
+    "take_profit": 95000,
+    "stop_loss": 88000
 }
 
 try:
     resp = requests.post(url, json=payload, headers=headers, timeout=10)
     resp.raise_for_status()
-    data = resp.json()
-    print(data)
-except requests.exceptions.HTTPError as e:
-    print("API error:", resp.text)
+    print(resp.json())
 except requests.exceptions.RequestException as e:
-    print("Network error:", str(e))`,
-
+    print("Error:", str(e))`,
         Go: `package main
 
 import (
@@ -109,88 +80,79 @@ import (
 )
 
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/get-balance"
-
-	body, _ := json.Marshal(map[string]string{
-		"coin":    "USDT",
+	url := "https://api.bitzup.com/futures/api/v1/place-order"
+	body, _ := json.Marshal(map[string]interface{}{
+		"symbol": "BTCUSDT",
+		"side":   "Buy",
+		"type":   "Limit",
+		"qty":    0.05,
+		"price":  90000,
+		"time_in_force": "GTC",
+		"take_profit":   95000,
+		"stop_loss":     88000,
 	})
-
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer <your_token>")
-
 	client := &http.Client{Timeout: 10 * time.Second}
 	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
+	if err != nil { panic(err) }
 	defer resp.Body.Close()
-
 	data, _ := io.ReadAll(resp.Body)
 	fmt.Println(string(data))
 }`,
-
         Java: `import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.http.*;
 import java.time.Duration;
 
-public class GetWalletBalanceExample {
+public class PlaceOrderExample {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/futures/api/v1/get-balance";
-
         String json = """
             {
-              "coin": "USDT"
+              "symbol": "BTCUSDT",
+              "side": "Buy",
+              "type": "Limit",
+              "qty": 0.05,
+              "price": 90000,
+              "time_in_force": "GTC",
+              "take_profit": 95000,
+              "stop_loss": 88000
             }
             """;
-
-        HttpClient client = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(10))
-            .build();
-
+        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
+            .uri(URI.create("https://api.bitzup.com/futures/api/v1/place-order"))
             .header("Content-Type", "application/json")
             .header("Authorization", "Bearer <your_token>")
-            .POST(HttpRequest.BodyPublishers.ofString(json))
-            .build();
-
-        HttpResponse<String> response =
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-
+            .POST(HttpRequest.BodyPublishers.ofString(json)).build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }`,
-
         Node: `const axios = require("axios");
 
-async function getWalletBalance() {
+async function placeOrder() {
   try {
     const response = await axios.post(
-      "https://api.bitzup.com/futures/api/v1/get-balance",
+      "https://api.bitzup.com/futures/api/v1/place-order",
       {
-        coin: "USDT",
+        symbol: "BTCUSDT",
+        side: "Buy",
+        type: "Limit",
+        qty: 0.05,
+        price: 90000,
+        time_in_force: "GTC",
+        take_profit: 95000,
+        stop_loss: 88000,
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer <your_token>",
-        },
-      }
+      { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );
     console.log(response.data);
   } catch (error) {
-    if (error.response) {
-      console.error("API Error:", error.response.data);
-    } else {
-      console.error("Network Error:", error.message);
-    }
+    console.error("Error:", error.response?.data || error.message);
   }
 }
-
-getWalletBalance();`,
+placeOrder();`,
     };
 
     return (
@@ -202,14 +164,13 @@ getWalletBalance();`,
                             <div className="breadcrumb mb-4">
                                 <span className="kline-market">Private</span>
                                 <span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span>
-                                <span className="pill">Get Wallet Balance</span>
+                                <span className="pill">Place Order</span>
                             </div>
 
-                            <h1 className="api-title">Get Wallet Balance</h1>
+                            <h1 className="api-title">Place Order</h1>
                             <p className="api-desc">
-                                Obtain wallet balance and query asset information of each currency. Pass{" "}
-                                <code>"ALL"</code> as the <code>coin</code> parameter to get all coin balances,
-                                or specify a specific coin like <code>"USDT"</code>.
+                                Create a new futures order. Supports <code>Limit</code> and <code>Market</code> order types.
+                                You can optionally set take profit, stop loss, and time in force parameters.
                             </p>
 
                             <div className="api-cover">Requires Authentication</div>
@@ -218,7 +179,7 @@ getWalletBalance();`,
                             <h3 className="top-req-text" id="http">HTTP Request</h3>
                             <div className="http-path">
                                 <span className="method post">POST</span>
-                                <span className="path">/v1/get-balance</span>
+                                <span className="path">/v1/place-order</span>
                             </div>
 
                             <h3 className="top-req-text" id="request-params">Request Parameters</h3>
@@ -226,14 +187,16 @@ getWalletBalance();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr>
-                                            <td className="text-interval">coin</td><td>true</td><td>string</td>
-                                            <td>
-                                                Coin name, e.g. <span className="pill">USDT</span>,{" "}
-                                                <span className="pill">USDC</span>, or{" "}
-                                                <span className="pill">ALL</span> for all coins
-                                            </td>
-                                        </tr>
+                                        <tr><td className="text-interval">symbol</td><td>true</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
+                                        <tr><td className="text-interval">side</td><td>true</td><td>string</td><td><span className="pill">Buy</span> or <span className="pill">Sell</span></td></tr>
+                                        <tr><td className="text-interval">type</td><td>true</td><td>string</td><td><span className="pill">Limit</span> or <span className="pill">Market</span></td></tr>
+                                        <tr><td className="text-interval">qty</td><td>true</td><td>number</td><td>Order quantity</td></tr>
+                                        <tr><td>price</td><td>conditional</td><td>number</td><td>Order price. Required for <span className="pill">Limit</span> orders.</td></tr>
+                                        <tr><td>client_order_id</td><td>false</td><td>string</td><td>User-defined order ID for tracking</td></tr>
+                                        <tr><td>reduce_only</td><td>false</td><td>boolean</td><td>If true, the order will only reduce the position</td></tr>
+                                        <tr><td>take_profit</td><td>false</td><td>number</td><td>Take profit price</td></tr>
+                                        <tr><td>stop_loss</td><td>false</td><td>number</td><td>Stop loss price</td></tr>
+                                        <tr><td>time_in_force</td><td>false</td><td>string</td><td><span className="pill">GTC</span>, <span className="pill">IOC</span>, <span className="pill">FOK</span>, <span className="pill">PostOnly</span></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -243,26 +206,8 @@ getWalletBalance();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td>totalUsdBalance</td><td>string</td><td>Total equity in USD</td></tr>
-                                        <tr><td>totalMarginBalance</td><td>string</td><td>Total margin balance</td></tr>
-                                        <tr><td>totalAvailableBalance</td><td>string</td><td>Total available balance</td></tr>
-                                        <tr><td>totalWalletBalance</td><td>string</td><td>Total wallet balance</td></tr>
-                                        <tr>
-                                            <td>coins</td><td>array</td>
-                                            <td>Array of coin balance objects</td>
-                                        </tr>
-                                        <tr>
-                                            <td><IoIosArrowForward /> coins.coin</td><td>string</td>
-                                            <td>Coin name</td>
-                                        </tr>
-                                        <tr>
-                                            <td><IoIosArrowForward /> coins.walletBalance</td><td>number</td>
-                                            <td>Wallet balance for the coin</td>
-                                        </tr>
-                                        <tr>
-                                            <td><IoIosArrowForward /> coins.availableBalance</td><td>number</td>
-                                            <td>Available balance (wallet - positionIM - orderIM)</td>
-                                        </tr>
+                                        <tr><td>order_id</td><td>string</td><td>System-generated order ID</td></tr>
+                                        <tr><td>client_order_id</td><td>string</td><td>User-defined order ID</td></tr>
                                     </tbody>
                                 </table>
                             </div>

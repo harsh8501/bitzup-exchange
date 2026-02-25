@@ -33,19 +33,14 @@ export const GetMarginMode = () => {
         HTTP: `POST /futures/api/v1/get-margin-mode HTTP/1.1
 Host: api.bitzup.com
 Content-Type: application/json
-Authorization: Bearer <your_token>
-
-{
-  "user_id": "your_user_id"
-}`,
+Authorization: Bearer <your_token>`,
         Python: `import requests
 
 url = "https://api.bitzup.com/futures/api/v1/get-margin-mode"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
-payload = {"user_id": "your_user_id"}
 
 try:
-    resp = requests.post(url, json=payload, headers=headers, timeout=10)
+    resp = requests.post(url, headers=headers, timeout=10)
     resp.raise_for_status()
     print(resp.json())
 except requests.exceptions.RequestException as e:
@@ -53,8 +48,6 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -63,8 +56,7 @@ import (
 
 func main() {
 	url := "https://api.bitzup.com/futures/api/v1/get-margin-mode"
-	body, _ := json.Marshal(map[string]string{"user_id": "your_user_id"})
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
+	req, _ := http.NewRequest("POST", url, nil)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer <your_token>")
 	client := &http.Client{Timeout: 10 * time.Second}
@@ -80,15 +72,12 @@ import java.time.Duration;
 
 public class GetMarginModeExample {
     public static void main(String[] args) throws Exception {
-        String json = """
-            {"user_id": "your_user_id"}
-            """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("https://api.bitzup.com/futures/api/v1/get-margin-mode"))
             .header("Content-Type", "application/json")
             .header("Authorization", "Bearer <your_token>")
-            .POST(HttpRequest.BodyPublishers.ofString(json)).build();
+            .POST(HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
@@ -99,7 +88,7 @@ async function getMarginMode() {
   try {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/get-margin-mode",
-      { user_id: "your_user_id" },
+      {},
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );
     console.log(response.data);
@@ -138,14 +127,9 @@ getMarginMode();`,
                             </div>
 
                             <h3 className="top-req-text" id="request-params">Request Parameters</h3>
-                            <div className="api-table-box">
-                                <table className="table table-striped api-table mb-0">
-                                    <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
-                                    <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <p className="api-desc" style={{ fontSize: "14px" }}>
+                                No body parameters required. The user is identified via the JWT Bearer token.
+                            </p>
 
                             <h3 className="top-req-text" id="response-params">Response Parameters</h3>
                             <div className="api-table-box">

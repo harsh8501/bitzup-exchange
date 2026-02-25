@@ -35,7 +35,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "symbol": "BTCUSDT",
   "auto_margin": 1
 }`,
@@ -44,7 +43,6 @@ Authorization: Bearer <your_token>
 url = "https://api.bitzup.com/futures/api/v1/auto-isolated-margin"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {
-    "user_id": "your_user_id",
     "symbol": "BTCUSDT",
     "auto_margin": 1
 }
@@ -69,7 +67,6 @@ import (
 func main() {
 	url := "https://api.bitzup.com/futures/api/v1/auto-isolated-margin"
 	body, _ := json.Marshal(map[string]interface{}{
-		"user_id":     "your_user_id",
 		"symbol":      "BTCUSDT",
 		"auto_margin": 1,
 	})
@@ -90,7 +87,6 @@ import java.time.Duration;
 public class AutoIsolatedMarginExample {
     public static void main(String[] args) throws Exception {
         String json = """
-            {"user_id": "your_user_id", "symbol": "BTCUSDT", "auto_margin": 1}
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
@@ -108,7 +104,6 @@ async function autoIsolatedMargin() {
   try {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/auto-isolated-margin",
-      { user_id: "your_user_id", symbol: "BTCUSDT", auto_margin: 1 },
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );
     console.log(response.data);
@@ -152,7 +147,6 @@ autoIsolatedMargin();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
                                         <tr><td className="text-interval">symbol</td><td>true</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
                                         <tr>
                                             <td className="text-interval">auto_margin</td><td>true</td><td>number</td>

@@ -70,7 +70,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "symbol": "BTCUSDT",
   "limit": 20
 }`,
@@ -85,7 +84,6 @@ headers = {
 }
 
 payload = {
-    "user_id": "your_user_id",
     "symbol": "BTCUSDT",
     "limit": 20
 }
@@ -115,7 +113,6 @@ func main() {
 	url := "https://api.bitzup.com/futures/api/v1/get-closed-pnl"
 
 	body, _ := json.Marshal(map[string]interface{}{
-		"user_id": "your_user_id",
 		"symbol":  "BTCUSDT",
 		"limit":   20,
 	})
@@ -147,7 +144,6 @@ public class GetClosedPnlExample {
 
         String json = """
             {
-              "user_id": "your_user_id",
               "symbol": "BTCUSDT",
               "limit": 20
             }
@@ -178,7 +174,6 @@ async function getClosedPnl() {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/get-closed-pnl",
       {
-        user_id: "your_user_id",
         symbol: "BTCUSDT",
         limit: 20,
       },
@@ -235,7 +230,6 @@ getClosedPnl();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
                                         <tr><td className="text-interval">limit</td><td>true</td><td>number</td><td>Number of results to return</td></tr>
                                         <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
                                         <tr><td>start_time</td><td>false</td><td>number</td><td>Start timestamp in milliseconds</td></tr>

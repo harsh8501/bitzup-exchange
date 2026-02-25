@@ -77,7 +77,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "quote_coin": "USDT",
   "order_type": "order"
 }`,
@@ -92,7 +91,6 @@ headers = {
 }
 
 payload = {
-    "user_id": "your_user_id",
     "quote_coin": "USDT",
     "order_type": "order"
 }
@@ -122,7 +120,6 @@ func main() {
 	url := "https://api.bitzup.com/futures/api/v1/get-open-orders"
 
 	body, _ := json.Marshal(map[string]string{
-		"user_id":    "your_user_id",
 		"quote_coin": "USDT",
 		"order_type": "order",
 	})
@@ -154,7 +151,6 @@ public class GetOpenOrdersExample {
 
         String json = """
             {
-              "user_id": "your_user_id",
               "quote_coin": "USDT",
               "order_type": "order"
             }
@@ -185,7 +181,6 @@ async function getOpenOrders() {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/get-open-orders",
       {
-        user_id: "your_user_id",
         quote_coin: "USDT",
         order_type: "order",
       },
@@ -241,10 +236,6 @@ getOpenOrders();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr>
-                                            <td className="text-interval">user_id</td>
-                                            <td>true</td><td>string</td><td>Your unique user ID</td>
-                                        </tr>
                                         <tr>
                                             <td className="text-interval">order_type</td>
                                             <td>true</td><td>string</td>

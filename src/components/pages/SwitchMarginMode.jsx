@@ -35,7 +35,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "margin_mode": "ISOLATED_MARGIN"
 }`,
         Python: `import requests
@@ -43,7 +42,6 @@ Authorization: Bearer <your_token>
 url = "https://api.bitzup.com/futures/api/v1/switch-margin-mode"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {
-    "user_id": "your_user_id",
     "margin_mode": "ISOLATED_MARGIN"
 }
 
@@ -67,7 +65,6 @@ import (
 func main() {
 	url := "https://api.bitzup.com/futures/api/v1/switch-margin-mode"
 	body, _ := json.Marshal(map[string]string{
-		"user_id":     "your_user_id",
 		"margin_mode": "ISOLATED_MARGIN",
 	})
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
@@ -87,7 +84,6 @@ import java.time.Duration;
 public class SwitchMarginModeExample {
     public static void main(String[] args) throws Exception {
         String json = """
-            {"user_id": "your_user_id", "margin_mode": "ISOLATED_MARGIN"}
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
@@ -105,7 +101,6 @@ async function switchMarginMode() {
   try {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/switch-margin-mode",
-      { user_id: "your_user_id", margin_mode: "ISOLATED_MARGIN" },
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );
     console.log(response.data);
@@ -148,7 +143,6 @@ switchMarginMode();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
                                         <tr>
                                             <td className="text-interval">margin_mode</td><td>true</td><td>string</td>
                                             <td><span className="pill">REGULAR_MARGIN</span> or <span className="pill">ISOLATED_MARGIN</span></td>

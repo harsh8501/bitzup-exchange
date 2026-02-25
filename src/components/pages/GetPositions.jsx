@@ -89,7 +89,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "quote_coin": "USDT"
 }`,
 
@@ -103,7 +102,6 @@ headers = {
 }
 
 payload = {
-    "user_id": "your_user_id",
     "quote_coin": "USDT"
 }
 
@@ -132,7 +130,6 @@ func main() {
 	url := "https://api.bitzup.com/futures/api/v1/get-positions"
 
 	body, _ := json.Marshal(map[string]string{
-		"user_id":    "your_user_id",
 		"quote_coin": "USDT",
 	})
 
@@ -163,7 +160,6 @@ public class GetPositionsExample {
 
         String json = """
             {
-              "user_id": "your_user_id",
               "quote_coin": "USDT"
             }
             """;
@@ -193,7 +189,6 @@ async function getPositions() {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/get-positions",
       {
-        user_id: "your_user_id",
         quote_coin: "USDT",
       },
       {
@@ -260,12 +255,6 @@ getPositions();`,
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td className="text-interval">user_id</td>
-                                            <td>true</td>
-                                            <td>string</td>
-                                            <td>Your unique user ID</td>
-                                        </tr>
                                         <tr>
                                             <td className="text-interval">quote_coin</td>
                                             <td>true</td>

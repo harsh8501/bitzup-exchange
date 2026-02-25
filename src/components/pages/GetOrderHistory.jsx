@@ -75,7 +75,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "quote_coin": "USDT",
   "order_type": "Order",
   "limit": 20
@@ -91,7 +90,6 @@ headers = {
 }
 
 payload = {
-    "user_id": "your_user_id",
     "quote_coin": "USDT",
     "order_type": "Order",
     "limit": 20
@@ -122,7 +120,6 @@ func main() {
 	url := "https://api.bitzup.com/futures/api/v1/get-order-history"
 
 	body, _ := json.Marshal(map[string]interface{}{
-		"user_id":    "your_user_id",
 		"quote_coin": "USDT",
 		"order_type": "Order",
 		"limit":      20,
@@ -155,7 +152,6 @@ public class GetOrderHistoryExample {
 
         String json = """
             {
-              "user_id": "your_user_id",
               "quote_coin": "USDT",
               "order_type": "Order",
               "limit": 20
@@ -187,7 +183,6 @@ async function getOrderHistory() {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/get-order-history",
       {
-        user_id: "your_user_id",
         quote_coin: "USDT",
         order_type: "Order",
         limit: 20,
@@ -245,7 +240,6 @@ getOrderHistory();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
                                         <tr>
                                             <td className="text-interval">order_type</td><td>true</td><td>string</td>
                                             <td><span className="pill">Order</span> or <span className="pill">StopOrder</span></td>

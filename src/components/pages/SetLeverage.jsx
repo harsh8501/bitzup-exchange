@@ -35,7 +35,6 @@ Content-Type: application/json
 Authorization: Bearer <your_token>
 
 {
-  "user_id": "your_user_id",
   "symbol": "BTCUSDT",
   "leverage": "10"
 }`,
@@ -44,7 +43,6 @@ Authorization: Bearer <your_token>
 url = "https://api.bitzup.com/futures/api/v1/set-leverage"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {
-    "user_id": "your_user_id",
     "symbol": "BTCUSDT",
     "leverage": "10"
 }
@@ -69,7 +67,6 @@ import (
 func main() {
 	url := "https://api.bitzup.com/futures/api/v1/set-leverage"
 	body, _ := json.Marshal(map[string]string{
-		"user_id":  "your_user_id",
 		"symbol":   "BTCUSDT",
 		"leverage": "10",
 	})
@@ -90,7 +87,6 @@ import java.time.Duration;
 public class SetLeverageExample {
     public static void main(String[] args) throws Exception {
         String json = """
-            {"user_id": "your_user_id", "symbol": "BTCUSDT", "leverage": "10"}
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
@@ -108,7 +104,6 @@ async function setLeverage() {
   try {
     const response = await axios.post(
       "https://api.bitzup.com/futures/api/v1/set-leverage",
-      { user_id: "your_user_id", symbol: "BTCUSDT", leverage: "10" },
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );
     console.log(response.data);
@@ -151,7 +146,6 @@ setLeverage();`,
                                 <table className="table table-striped api-table mb-0">
                                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                     <tbody>
-                                        <tr><td className="text-interval">user_id</td><td>true</td><td>string</td><td>Your unique user ID</td></tr>
                                         <tr><td className="text-interval">symbol</td><td>true</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
                                         <tr><td className="text-interval">leverage</td><td>true</td><td>string</td><td>Leverage value, e.g. <span className="pill">"10"</span></td></tr>
                                     </tbody>

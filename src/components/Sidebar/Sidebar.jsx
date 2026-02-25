@@ -214,6 +214,24 @@ const Sidebar = () => {
             <NavLink to="/docs/private/set-trading-stop" className="sidebar-link">
               Set Trading Stop
             </NavLink>
+            <NavLink to="/docs/private/place-order" className="sidebar-link">
+              Place Order
+            </NavLink>
+            <NavLink to="/docs/private/cancel-order" className="sidebar-link">
+              Cancel Order
+            </NavLink>
+            <NavLink to="/docs/private/cancel-all-orders" className="sidebar-link">
+              Cancel All Orders
+            </NavLink>
+            <NavLink to="/docs/private/modify-order" className="sidebar-link">
+              Modify Order
+            </NavLink>
+            <NavLink to="/docs/private/close-position" className="sidebar-link">
+              Close Position
+            </NavLink>
+            <NavLink to="/docs/private/estimate-liquidation-price" className="sidebar-link">
+              Estimate Liquidation Price
+            </NavLink>
           </div>
         )}
 

@@ -28,6 +28,12 @@ import { SwitchMarginMode } from "./components/pages/SwitchMarginMode";
 import { AddIsolatedMargin } from "./components/pages/AddIsolatedMargin";
 import { AutoIsolatedMargin } from "./components/pages/AutoIsolatedMargin";
 import { SetTradingStop } from "./components/pages/SetTradingStop";
+import { PlaceOrder } from "./components/pages/PlaceOrder";
+import { CancelOrder } from "./components/pages/CancelOrder";
+import { CancelAllOrders } from "./components/pages/CancelAllOrders";
+import { ModifyOrder } from "./components/pages/ModifyOrder";
+import { ClosePosition } from "./components/pages/ClosePosition";
+import { EstimateLiquidationPrice } from "./components/pages/EstimateLiquidationPrice";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -72,6 +78,12 @@ function App() {
             <Route path="docs/private/add-isolated-margin" element={<AddIsolatedMargin />} />
             <Route path="docs/private/auto-isolated-margin" element={<AutoIsolatedMargin />} />
             <Route path="docs/private/set-trading-stop" element={<SetTradingStop />} />
+            <Route path="docs/private/place-order" element={<PlaceOrder />} />
+            <Route path="docs/private/cancel-order" element={<CancelOrder />} />
+            <Route path="docs/private/cancel-all-orders" element={<CancelAllOrders />} />
+            <Route path="docs/private/modify-order" element={<ModifyOrder />} />
+            <Route path="docs/private/close-position" element={<ClosePosition />} />
+            <Route path="docs/private/estimate-liquidation-price" element={<EstimateLiquidationPrice />} />
           </Routes>
         </div>
       </div>
