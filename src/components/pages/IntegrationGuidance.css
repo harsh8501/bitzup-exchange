@@ -189,6 +189,19 @@
     color: #000;
 }
 
+.api-caution {
+  background: rgba(255, 152, 0, 0.1);
+  border-left: 4px solid #ff9800;
+  padding: 16px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+[data-theme="light"] .api-caution {
+  background: rgba(255, 152, 0, 0.1);
+  color: #22c55e;
+}
+
 /* Inline pills */
 .code-pill {
   background: #2a2e3a;

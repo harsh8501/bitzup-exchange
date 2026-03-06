@@ -3,148 +3,479 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
 export const ModifyOrder = () => {
-    const contentRef = useRef(null);
-    const [lang, setLang] = useState("HTTP");
-    const [copied, setCopied] = useState(false);
-    const [copiedRes, setCopiedRes] = useState(false);
-    const [activeSection, setActiveSection] = useState("http");
-    const HEADER_OFFSET = 120;
-    const handleCopy = async () => { await navigator.clipboard.writeText(codeMap[lang]); setCopied(true); setTimeout(() => setCopied(false), 1500); };
-    const handleCopyRes = async () => { navigator.clipboard.writeText(responseCode); setCopiedRes(true); setTimeout(() => setCopiedRes(false), 1500); };
-    const sections = ["http", "request-params", "response-params", "request-example", "response-example"];
-    const scrollToSection = (id) => { const container = contentRef.current; const el = document.getElementById(id); if (!container || !el) return; const top = el.offsetTop - container.offsetTop - HEADER_OFFSET; container.scrollTo({ top, behavior: "smooth" }); };
-    useEffect(() => { if (!contentRef.current) return; const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); }, { root: contentRef.current, rootMargin: "-30% 0px -60% 0px", threshold: 0 }); sections.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); }); return () => observer.disconnect(); }, []);
+  const contentRef = useRef(null);
 
-    const responseCode = `{
-  "success": "1",
-  "data": {
-    "orderId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "orderLinkId": "my_custom_id_001"
-  }
+  const [lang, setLang] = useState("HTTP");
+  const [copied, setCopied] = useState(false);
+  const [copiedRes, setCopiedRes] = useState(false);
+
+  const [activeSection, setActiveSection] = useState("http");
+
+  const HEADER_OFFSET = 120; // adjust to your layout
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(codeMap[lang]);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  const handleCopyRes = async () => {
+    navigator.clipboard.writeText(responseCode);
+    setCopiedRes(true);
+    setTimeout(() => setCopiedRes(false), 1500);
+  };
+
+  const sections = [
+    "http",
+    "request-params",
+    "response-params",
+    "request-example",
+    "response-example",
+  ];
+
+  const scrollToSection = (id) => {
+    const container = contentRef.current;
+    const el = document.getElementById(id);
+
+    if (!container || !el) return;
+
+    const top = el.offsetTop - container.offsetTop - HEADER_OFFSET;
+
+    container.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: contentRef.current,
+        rootMargin: "-30% 0px -60% 0px", // top-biased
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const responseCode = `{
+  "retCode": 0,
+  "retMsg": "OK",
+  "result": {
+    "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa",
+    "orderLinkId": "linear-004"
+  },
+  "retExtInfo": {},
+  "time": 1672217093461
 }`;
-    const codeMap = {
-        HTTP: `POST /futures/api/v1/modify-order HTTP/1.1
+
+  const codeMap = {
+    HTTP: `POST /v5/order/amend HTTP/1.1
 Host: api.bitzup.com
 Content-Type: application/json
-Authorization: Bearer <your_token>
+Authorization: Bearer <YOUR_API_KEY>
 
 {
-  "symbol": "BTCUSDT",
-  "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "price": 91000,
-  "qty": 0.06,
-  "take_profit": 96000,
-  "stop_loss": 87000
+    "category": "linear",
+    "symbol": "ETHPERP",
+    "orderLinkId": "linear-004",
+    "triggerPrice": "1145",
+    "qty": "0.15",
+    "price": "1050",
+    "takeProfit": "0",
+    "stopLoss": "0"
 }`,
-        Python: `import requests
-url = "https://api.bitzup.com/futures/api/v1/modify-order"
-headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
-payload = {
-    "symbol": "BTCUSDT",
-    "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "price": 91000,
-    "qty": 0.06,
-    "take_profit": 96000,
-    "stop_loss": 87000
+
+    Python: `import requests
+
+url = "https://api.bitzup.com/v5/order/amend"
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer <YOUR_API_KEY>"
 }
+data = {
+    "category": "linear",
+    "symbol": "ETHPERP",
+    "orderLinkId": "linear-004",
+    "triggerPrice": "1145",
+    "qty": "0.15",
+    "price": "1050",
+    "takeProfit": "0",
+    "stopLoss": "0"
+}
+
 try:
-    resp = requests.post(url, json=payload, headers=headers, timeout=10)
-    resp.raise_for_status()
-    print(resp.json())
+    response = requests.post(url, headers=headers, json=data)
+    print(response.json())
 except requests.exceptions.RequestException as e:
     print("Error:", str(e))`,
-        Go: `package main
-import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
+
+    Go: `package main
+
+import (
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "io"
+    "net/http"
+    "time"
+)
+
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/modify-order"
-	body, _ := json.Marshal(map[string]interface{}{
-		"symbol": "BTCUSDT", "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-		"price": 91000, "qty": 0.06, "take_profit": 96000, "stop_loss": 87000,
-	})
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer <your_token>")
-	client := &http.Client{Timeout: 10 * time.Second}
-	resp, err := client.Do(req)
-	if err != nil { panic(err) }
-	defer resp.Body.Close()
-	data, _ := io.ReadAll(resp.Body)
-	fmt.Println(string(data))
+    url := "https://api.bitzup.com/v5/order/amend"
+    payload := map[string]interface{}{
+        "category":     "linear",
+        "symbol":       "ETHPERP",
+        "orderLinkId":  "linear-004",
+        "triggerPrice": "1145",
+        "qty":          "0.15",
+        "price":        "1050",
+        "takeProfit":   "0",
+        "stopLoss":     "0",
+    }
+    body, _ := json.Marshal(payload)
+
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
+    req.Header.Add("Content-Type", "application/json")
+    req.Header.Add("Authorization", "Bearer <YOUR_API_KEY>")
+
+    client := &http.Client{Timeout: 10 * time.Second}
+    res, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer res.Body.Close()
+
+    resBody, _ := io.ReadAll(res.Body)
+    fmt.Println(string(resBody))
 }`,
-        Java: `import java.net.URI; import java.net.http.*; import java.time.Duration;
-public class ModifyOrderExample {
+
+    Java: `import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class AmendOrderDemo {
     public static void main(String[] args) throws Exception {
-        String json = """
+        String url = "https://api.bitzup.com/v5/order/amend";
+        String payload = """
             {
-              "symbol": "BTCUSDT",
-              "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-              "price": 91000, "qty": 0.06,
-              "take_profit": 96000, "stop_loss": 87000
+                "category": "linear",
+                "symbol": "ETHPERP",
+                "orderLinkId": "linear-004",
+                "triggerPrice": "1145",
+                "qty": "0.15",
+                "price": "1050",
+                "takeProfit": "0",
+                "stopLoss": "0"
             }
             """;
-        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
+
+        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/modify-order"))
-            .header("Content-Type", "application/json").header("Authorization", "Bearer <your_token>")
-            .POST(HttpRequest.BodyPublishers.ofString(json)).build();
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer <YOUR_API_KEY>")
+                .POST(HttpRequest.BodyPublishers.ofString(payload))
+                .build();
+
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }`,
-        Node: `const axios = require("axios");
-async function modifyOrder() {
-  try {
-    const response = await axios.post("https://api.bitzup.com/futures/api/v1/modify-order",
-      {
-        symbol: "BTCUSDT", order_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        price: 91000, qty: 0.06, take_profit: 96000, stop_loss: 87000,
-      },
-      { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } });
-    console.log(response.data);
-  } catch (error) { console.error("Error:", error.response?.data || error.message); }
+
+    Node: `const axios = require('axios');
+
+async function amendOrder() {
+    try {
+        const response = await axios.post(
+            'https://api.bitzup.com/v5/order/amend',
+            {
+                category: 'linear',
+                symbol: 'ETHPERP',
+                orderLinkId: 'linear-004',
+                triggerPrice: '1145',
+                qty: '0.15',
+                price: '1050',
+                takeProfit: '0',
+                stopLoss: '0'
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer <YOUR_API_KEY>'
+                }
+            }
+        );
+        console.log(response.data);
+    } catch (error) {
+        console.error(error.message);
+    }
 }
-modifyOrder();`,
-    };
-    return (
-        <><div className="container-fluid p-0"><div className="api-layout"><div className="row">
-            <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
-                <div className="breadcrumb mb-4"><span className="kline-market">Private</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Modify Order</span></div>
-                <h1 className="api-title">Modify Order</h1>
-                <p className="api-desc">Modify an existing unfilled or partially filled order. You can update the price, quantity, take profit, stop loss, and trigger parameters.</p>
-                <div className="api-cover">Requires Authentication</div>
-                <div className="api-cover">Rate Limit: 15 req/s</div>
-                <h3 className="top-req-text" id="http">HTTP Request</h3>
-                <div className="http-path"><span className="method post">POST</span><span className="path">/v1/modify-order</span></div>
-                <h3 className="top-req-text" id="request-params">Request Parameters</h3>
-                <div className="api-table-box"><table className="table table-striped api-table mb-0"><thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead><tbody>
-                    <tr><td className="text-interval">symbol</td><td>true</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
-                    <tr><td className="text-interval">order_id</td><td>true</td><td>string</td><td>The order ID to modify</td></tr>
-                    <tr><td>price</td><td>false</td><td>number</td><td>New order price</td></tr>
-                    <tr><td>qty</td><td>false</td><td>number</td><td>New order quantity</td></tr>
-                    <tr><td>client_order_id</td><td>false</td><td>string</td><td>User-defined order ID</td></tr>
-                    <tr><td>take_profit</td><td>false</td><td>number</td><td>New take profit price. Set to <span className="pill">0</span> to cancel.</td></tr>
-                    <tr><td>tp_trigger_by</td><td>false</td><td>string</td><td><span className="pill">LastPrice</span>, <span className="pill">MarkPrice</span>, or <span className="pill">IndexPrice</span></td></tr>
-                    <tr><td>stop_loss</td><td>false</td><td>number</td><td>New stop loss price. Set to <span className="pill">0</span> to cancel.</td></tr>
-                    <tr><td>sl_trigger_by</td><td>false</td><td>string</td><td><span className="pill">LastPrice</span>, <span className="pill">MarkPrice</span>, or <span className="pill">IndexPrice</span></td></tr>
-                </tbody></table></div>
-                <h3 className="top-req-text" id="response-params">Response Parameters</h3>
-                <div className="api-table-box"><table className="table table-striped api-table mb-0"><thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead><tbody>
-                    <tr><td>orderId</td><td>string</td><td>Modified order ID</td></tr>
-                    <tr><td>orderLinkId</td><td>string</td><td>User-defined order ID</td></tr>
-                </tbody></table></div>
-                <h3 className="top-req-text" id="request-example">Request Example</h3>
-                <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
-                <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+
+amendOrder();`,
+  };
+
+  return (
+    <>
+      <div className="container-fluid p-0">
+        <div className="api-layout">
+          <div className="row">
+            {/* LEFT CONTENT */}
+            <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
+              {/* Breadcrumb */}
+              <div className="breadcrumb mb-4">
+                <span className="kline-market">Trade</span>
+                <span className="mx-2">
+                  <IoIosArrowForward className="kline-arrow" />
+                </span>
+                <span className="pill">Amend Order</span>
+              </div>
+
+              {/* Title */}
+              <h1 className="api-title">Amend Order</h1>
+              <p className="api-desc">
+                Amend an existing unfilled or partially filled order.
+              </p>
+
+              <div className="api-cover">Rate Limit: 10 req/s</div>
+
+              {/* HTTP REQUEST */}
+              <h3 className="top-req-text" id="http">
+                HTTP Request
+              </h3>
+              <div className="http-path">
+                <span className="method post">POST</span>
+                <span className="path">/v5/order/amend</span>
+              </div>
+
+              <h3 className="top-req-text" id="request-params">
+                Request Parameters
+              </h3>
+              <div className="api-table-box">
+                <table className="table table-striped api-table mb-0">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Required</th>
+                      <th>Type</th>
+                      <th>Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>category</td>
+                      <td>true</td>
+                      <td>string</td>
+                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                    </tr>
+                    <tr>
+                      <td>symbol</td>
+                      <td>true</td>
+                      <td>string</td>
+                      <td>Symbol name. e.g., <code>BTCUSDT</code></td>
+                    </tr>
+                    <tr>
+                      <td>orderId</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>Order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td>
+                    </tr>
+                    <tr>
+                      <td>orderLinkId</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>User customised order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td>
+                    </tr>
+                    <tr>
+                      <td>triggerPrice</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>Conditional order trigger price. If you expect the price to rise to trigger your conditional order, make sure: triggerPrice &gt; market price Else, triggerPrice &lt; market price. For spot, it is the TP/SL and Conditional order trigger price</td>
+                    </tr>
+                    <tr>
+                      <td>qty</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>Order quantity after modification. Do not pass it if not modify the qty</td>
+                    </tr>
+                    <tr>
+                      <td>price</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>Order price after modification. Do not pass it if not modify the price</td>
+                    </tr>
+                    <tr>
+                      <td>tpslMode</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>TP/SL mode. <code>Full</code>, <code>Partial</code></td>
+                    </tr>
+                    <tr>
+                      <td>takeProfit</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>Take profit price after modification. If pass "0", it means cancel the existing take profit of the order. Do not pass it if you do not want to modify the take profit</td>
+                    </tr>
+                    <tr>
+                      <td>stopLoss</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>Stop loss price after modification. If pass "0", it means cancel the existing stop loss of the order. Do not pass it if you do not want to modify the stop loss</td>
+                    </tr>
+                    <tr>
+                      <td>tpTriggerBy</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>The price type to trigger take profit. <code>MarkPrice</code>, <code>IndexPrice</code>, <code>LastPrice</code></td>
+                    </tr>
+                    <tr>
+                      <td>slTriggerBy</td>
+                      <td>false</td>
+                      <td>string</td>
+                      <td>The price type to trigger stop loss. <code>MarkPrice</code>, <code>IndexPrice</code>, <code>LastPrice</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3 className="top-req-text" id="response-params">
+                Response Parameters
+              </h3>
+              <div className="api-table-box">
+                <table className="table table-striped api-table mb-0">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>orderId</td>
+                      <td>string</td>
+                      <td>Order ID</td>
+                    </tr>
+                    <tr>
+                      <td>orderLinkId</td>
+                      <td>string</td>
+                      <td>User customised order ID</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="mt-3">
+                The acknowledgement of an amend order request indicates that the request was sucessfully accepted. This request is asynchronous so please use the websocket to confirm the order status.
+              </p>
+
+              {/* REQUEST EXAMPLE */}
+              <h3 className="top-req-text" id="request-example">
+                Request Example
+              </h3>
+
+              <div className="lang-tabs">
+                {["HTTP", "Python", "Go", "Java", "Node"].map((t) => (
+                  <button
+                    key={t}
+                    className={lang === t ? "active" : ""}
+                    onClick={() => setLang(t)}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+
+              <div className="api-code-box position-relative">
+                {/* COPY ICON */}
+                <button className="copy-btn" onClick={handleCopy}>
+                  {copied ? <FiCheck /> : <FiCopy />}
+                </button>
+
+                <pre>
+                  <code>{codeMap[lang]}</code>
+                </pre>
+              </div>
+
+              {/* RESPONSE EXAMPLE */}
+              <h3 className="top-req-text" id="response-example">
+                Response Example
+              </h3>
+              <div className="api-code-box position-relative">
+                <button className="copy-btn" onClick={handleCopyRes}>
+                  {copiedRes ? <FiCheck /> : <FiCopy />}
+                </button>
+                <pre>
+                  <code>{responseCode}</code>
+                </pre>
+              </div>
             </div>
-            <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
-                <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>
-                <li className={activeSection === "request-params" ? "active" : ""} onClick={() => scrollToSection("request-params")}>Request Parameters</li>
-                <li className={activeSection === "response-params" ? "active" : ""} onClick={() => scrollToSection("response-params")}>Response Parameters</li>
-                <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")}>Request Example</li>
-                <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")}>Response Example</li>
-            </ul></div></div>
-        </div></div></div></>
-    );
+
+            {/* RIGHT SIDEBAR */}
+            <div className="col-lg-3 col-md-4 d-none d-md-block">
+              <div className="api-sidebar">
+                <ul>
+                  <li
+                    className={activeSection === "http" ? "active" : ""}
+                    onClick={() => scrollToSection("http")}
+                  >
+                    HTTP Request
+                  </li>
+                  <li
+                    className={
+                      activeSection === "request-params" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("request-params")}
+                  >
+                    Request Parameters
+                  </li>
+                  <li
+                    className={
+                      activeSection === "response-params" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("response-params")}
+                  >
+                    Response Parameters
+                  </li>
+                  <li
+                    className={
+                      activeSection === "request-example" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("request-example")}
+                  >
+                    Request Example
+                  </li>
+                  <li
+                    className={
+                      activeSection === "response-example" ? "active" : ""
+                    }
+                    onClick={() => scrollToSection("response-example")}
+                  >
+                    Response Example
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };

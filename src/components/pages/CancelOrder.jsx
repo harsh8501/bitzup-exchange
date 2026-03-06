@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
@@ -16,57 +16,73 @@ export const CancelOrder = () => {
     useEffect(() => { if (!contentRef.current) return; const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); }, { root: contentRef.current, rootMargin: "-30% 0px -60% 0px", threshold: 0 }); sections.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); }); return () => observer.disconnect(); }, []);
 
     const responseCode = `{
-  "success": "1",
-  "message": {
-    "orderId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "orderLinkId": ""
-  }
+    "retCode": 0,
+    "retMsg": "OK",
+    "result": {
+        "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa",
+        "orderLinkId": "linear-004"
+    },
+    "retExtInfo": {},
+    "time": 1672217377164
 }`;
+
     const codeMap = {
-        HTTP: `POST /futures/api/v1/cancel-order HTTP/1.1
-Host: api.bitzup.com
+        HTTP: `POST /v5/order/cancel HTTP/1.1
+Host: api.bybit.com
+X-BAPI-SIGN: XXXXX
+X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxxxxxxxx
+X-BAPI-TIMESTAMP: 1672217376681
+X-BAPI-RECV-WINDOW: 5000
 Content-Type: application/json
-Authorization: Bearer <your_token>
 
 {
-  "symbol": "BTCUSDT",
-  "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    "category": "linear",
+    "symbol": "BTCPERP",
+    "orderLinkId": null,
+    "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa"
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/futures/api/v1/cancel-order"
-headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
-payload = {"symbol": "BTCUSDT", "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"}
+url = "https://api.bybit.com/v5/order/cancel"
+headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxxxxxxxx",
+    "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672217376681", "X-BAPI-RECV-WINDOW": "5000"}
+payload = {"category": "linear", "symbol": "BTCPERP", "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa"}
 try:
     resp = requests.post(url, json=payload, headers=headers, timeout=10)
-    resp.raise_for_status()
     print(resp.json())
 except requests.exceptions.RequestException as e:
     print("Error:", str(e))`,
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/cancel-order"
-	body, _ := json.Marshal(map[string]string{"symbol": "BTCUSDT", "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"})
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer <your_token>")
-	client := &http.Client{Timeout: 10 * time.Second}
-	resp, err := client.Do(req)
-	if err != nil { panic(err) }
-	defer resp.Body.Close()
-	data, _ := io.ReadAll(resp.Body)
-	fmt.Println(string(data))
+    url := "https://api.bybit.com/v5/order/cancel"
+    body, _ := json.Marshal(map[string]interface{}{
+        "category": "linear", "symbol": "BTCPERP",
+        "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa",
+    })
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
+    req.Header.Set("Content-Type", "application/json")
+    req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxxxxxxxx")
+    req.Header.Set("X-BAPI-SIGN", "XXXXX")
+    client := &http.Client{Timeout: 10 * time.Second}
+    resp, err := client.Do(req)
+    if err != nil { panic(err) }
+    defer resp.Body.Close()
+    data, _ := io.ReadAll(resp.Body)
+    fmt.Println(string(data))
 }`,
         Java: `import java.net.URI; import java.net.http.*; import java.time.Duration;
 public class CancelOrderExample {
     public static void main(String[] args) throws Exception {
         String json = """
-            {"symbol": "BTCUSDT", "order_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"}
+            {"category":"linear","symbol":"BTCPERP",
+             "orderId":"c6f055d9-7f21-4079-913d-e6523a9cfffa"}
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/cancel-order"))
-            .header("Content-Type", "application/json").header("Authorization", "Bearer <your_token>")
+            .uri(URI.create("https://api.bybit.com/v5/order/cancel"))
+            .header("Content-Type", "application/json")
+            .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxxxxxxxx")
+            .header("X-BAPI-SIGN", "XXXXX")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
@@ -75,34 +91,55 @@ public class CancelOrderExample {
         Node: `const axios = require("axios");
 async function cancelOrder() {
   try {
-    const response = await axios.post("https://api.bitzup.com/futures/api/v1/cancel-order",
-      { symbol: "BTCUSDT", order_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890" },
-      { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } });
+    const response = await axios.post("https://api.bybit.com/v5/order/cancel",
+      { category: "linear", symbol: "BTCPERP", orderId: "c6f055d9-7f21-4079-913d-e6523a9cfffa" },
+      { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);
   } catch (error) { console.error("Error:", error.response?.data || error.message); }
 }
 cancelOrder();`,
     };
+
     return (
-        <><div className="container-fluid p-0"><div className="api-layout"><div className="row">
+        <div className="container-fluid p-0"><div className="api-layout"><div className="row">
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
-                <div className="breadcrumb mb-4"><span className="kline-market">Private</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Cancel Order</span></div>
+                <div className="breadcrumb mb-4"><span className="kline-market">Trade</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Cancel Order</span></div>
                 <h1 className="api-title">Cancel Order</h1>
-                <p className="api-desc">Cancel an existing unfilled or partially filled order by its order ID.</p>
+                <p className="api-desc">Cancel an unfilled or partially filled order.</p>
+                <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
+                    <ul style={{ margin: 0, paddingLeft: "18px" }}>
+                        <li>You must specify either <code>orderId</code> or <code>orderLinkId</code> to cancel the order.</li>
+                        <li>If both <code>orderId</code> and <code>orderLinkId</code> are provided but do not match, the system will process the <code>orderId</code> first.</li>
+                        <li>The acknowledgement of a cancel order request indicates that the request was successfully accepted. This request is asynchronous; please use the websocket to confirm the actual order status.</li>
+                    </ul>
+                </div>
                 <div className="api-cover">Requires Authentication</div>
-                <div className="api-cover">Rate Limit: 15 req/s</div>
                 <h3 className="top-req-text" id="http">HTTP Request</h3>
-                <div className="http-path"><span className="method post">POST</span><span className="path">/v1/cancel-order</span></div>
+                <div className="http-path"><span className="method post">POST</span><span className="path">/v5/order/cancel</span></div>
                 <h3 className="top-req-text" id="request-params">Request Parameters</h3>
-                <div className="api-table-box"><table className="table table-striped api-table mb-0"><thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead><tbody>
-                    <tr><td className="text-interval">symbol</td><td>true</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
-                    <tr><td className="text-interval">order_id</td><td>true</td><td>string</td><td>The order ID to cancel</td></tr>
-                </tbody></table></div>
+                <div className="api-table-box"><table className="table table-striped api-table mb-0">
+                    <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
+                    <tbody>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
+                        <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, e.g. <code>BTCUSDT</code>, uppercase only</td></tr>
+                        <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td></tr>
+                        <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td></tr>
+                        <tr><td>orderFilter</td><td>false</td><td>string</td><td>Spot only: <code>Order</code>, <code>tpslOrder</code>, <code>StopOrder</code>. Defaults to <code>Order</code></td></tr>
+                    </tbody>
+                </table></div>
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
-                <div className="api-table-box"><table className="table table-striped api-table mb-0"><thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead><tbody>
-                    <tr><td>success</td><td>string</td><td><span className="pill">"1"</span> for success</td></tr>
-                    <tr><td>message</td><td>object</td><td>Contains orderId and orderLinkId of cancelled order</td></tr>
-                </tbody></table></div>
+                <div className="api-table-box"><table className="table table-striped api-table mb-0">
+                    <thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead>
+                    <tbody>
+                        <tr><td>retCode</td><td>number</td><td>Success/error code</td></tr>
+                        <tr><td>retMsg</td><td>string</td><td>Success/error message</td></tr>
+                        <tr><td>result</td><td>Object</td><td>Result object</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>string</td><td>Order ID</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderLinkId</td><td>string</td><td>User customised order ID</td></tr>
+                        <tr><td>retExtInfo</td><td>Object</td><td>Extra information</td></tr>
+                        <tr><td>time</td><td>number</td><td>Current timestamp (ms)</td></tr>
+                    </tbody>
+                </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
                 <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
@@ -116,6 +153,6 @@ cancelOrder();`,
                 <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")}>Request Example</li>
                 <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")}>Response Example</li>
             </ul></div></div>
-        </div></div></div></>
+        </div></div></div>
     );
 };

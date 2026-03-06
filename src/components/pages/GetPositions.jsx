@@ -1,346 +1,205 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
 export const GetPositions = () => {
-    const contentRef = useRef(null);
-    const [lang, setLang] = useState("HTTP");
-    const [copied, setCopied] = useState(false);
-    const [copiedRes, setCopiedRes] = useState(false);
-    const [activeSection, setActiveSection] = useState("http");
-    const HEADER_OFFSET = 120;
+  const contentRef = useRef(null);
+  const [lang, setLang] = useState("HTTP");
+  const [copied, setCopied] = useState(false);
+  const [copiedRes, setCopiedRes] = useState(false);
+  const [activeSection, setActiveSection] = useState("http");
+  const HEADER_OFFSET = 120;
+  const handleCopy = async () => { await navigator.clipboard.writeText(codeMap[lang]); setCopied(true); setTimeout(() => setCopied(false), 1500); };
+  const handleCopyRes = async () => { navigator.clipboard.writeText(responseCode); setCopiedRes(true); setTimeout(() => setCopiedRes(false), 1500); };
+  const sections = ["http", "request-params", "response-params", "request-example", "response-example"];
+  const scrollToSection = (id) => { const container = contentRef.current; const el = document.getElementById(id); if (!container || !el) return; const top = el.offsetTop - container.offsetTop - HEADER_OFFSET; container.scrollTo({ top, behavior: "smooth" }); };
+  useEffect(() => { if (!contentRef.current) return; const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); }, { root: contentRef.current, rootMargin: "-30% 0px -60% 0px", threshold: 0 }); sections.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); }); return () => observer.disconnect(); }, []);
 
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(codeMap[lang]);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-    };
-
-    const handleCopyRes = async () => {
-        navigator.clipboard.writeText(responseCode);
-        setCopiedRes(true);
-        setTimeout(() => setCopiedRes(false), 1500);
-    };
-
-    const sections = [
-        "http",
-        "request-params",
-        "response-params",
-        "request-example",
-        "response-example",
-    ];
-
-    const scrollToSection = (id) => {
-        const container = contentRef.current;
-        const el = document.getElementById(id);
-        if (!container || !el) return;
-        const top = el.offsetTop - container.offsetTop - HEADER_OFFSET;
-        container.scrollTo({ top, behavior: "smooth" });
-    };
-
-    useEffect(() => {
-        if (!contentRef.current) return;
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) setActiveSection(entry.target.id);
-                });
-            },
-            { root: contentRef.current, rootMargin: "-30% 0px -60% 0px", threshold: 0 }
-        );
-        sections.forEach((id) => {
-            const el = document.getElementById(id);
-            if (el) observer.observe(el);
-        });
-        return () => observer.disconnect();
-    }, []);
-
-    const responseCode = `{
-  "success": "1",
-  "data": [
-    {
-      "symbol": "BTCUSDT",
-      "price_decimal": 1,
-      "qty_decimal": 3,
-      "leverage": "10",
-      "side": "Buy",
-      "qty": "0.05",
-      "position_value": "4633.215",
-      "entry_price": "92664.30",
-      "mark_price": "92750.10",
-      "liquidation_price": "85120.50",
-      "initial_margin": "463.3215",
-      "position_margin": "467.50",
-      "unrealised_Pnl": "4.29",
-      "unrealised_Pnl_pc": "0.926",
-      "take_profit": "95000",
-      "stop_loss": "90000",
-      "trailing_stop": "0",
-      "activation_price": "92664.30",
-      "auto_margin": 0
-    }
-  ]
+  const responseCode = `{
+    "retCode": 0,
+    "retMsg": "OK",
+    "result": {
+        "list": [
+            {
+                "positionIdx": 0,
+                "riskId": 1,
+                "riskLimitValue": "150",
+                "symbol": "BTCUSD",
+                "side": "Sell",
+                "size": "300",
+                "avgPrice": "27464.50441675",
+                "positionValue": "0.01092319",
+                "tradeMode": 0,
+                "positionStatus": "Normal",
+                "autoAddMargin": 1,
+                "adlRankIndicator": 2,
+                "leverage": "10",
+                "positionBalance": "0.00139186",
+                "markPrice": "28224.50",
+                "liqPrice": "",
+                "bustPrice": "999999.00",
+                "positionMM": "0.0000015",
+                "positionIM": "0.00010923",
+                "tpslMode": "Full",
+                "takeProfit": "0.00",
+                "stopLoss": "0.00",
+                "trailingStop": "0.00",
+                "unrealisedPnl": "-0.00029413",
+                "curRealisedPnl": "0.00013123",
+                "cumRealisedPnl": "-0.00096902",
+                "seq": 5723621632,
+                "isReduceOnly": false,
+                "mmrSysUpdateTime": "",
+                "leverageSysUpdatedTime": "",
+                "createdTime": "1676538056258",
+                "updatedTime": "1697673600012"
+            }
+        ],
+        "nextPageCursor": "",
+        "category": "inverse"
+    },
+    "retExtInfo": {},
+    "time": 1697684980172
 }`;
 
-    const codeMap = {
-        HTTP: `POST /futures/api/v1/get-positions HTTP/1.1
-Host: api.bitzup.com
-Content-Type: application/json
-Authorization: Bearer <your_token>
-
-{
-  "quote_coin": "USDT"
-}`,
-
-        Python: `import requests
-
-url = "https://api.bitzup.com/futures/api/v1/get-positions"
-
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer <your_token>"
-}
-
-payload = {
-    "quote_coin": "USDT"
-}
-
+  const codeMap = {
+    HTTP: `GET /v5/position/list?category=inverse&symbol=BTCUSD HTTP/1.1
+Host: api.bybit.com
+X-BAPI-SIGN: XXXXX
+X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
+X-BAPI-TIMESTAMP: 1672280218882
+X-BAPI-RECV-WINDOW: 5000`,
+    Python: `import requests
+url = "https://api.bybit.com/v5/position/list"
+headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
+    "X-BAPI-TIMESTAMP": "1672280218882", "X-BAPI-RECV-WINDOW": "5000"}
+params = {"category": "inverse", "symbol": "BTCUSD"}
 try:
-    resp = requests.post(url, json=payload, headers=headers, timeout=10)
-    resp.raise_for_status()
-    data = resp.json()
-    print(data)
-except requests.exceptions.HTTPError as e:
-    print("API error:", resp.text)
+    resp = requests.get(url, params=params, headers=headers, timeout=10)
+    print(resp.json())
 except requests.exceptions.RequestException as e:
-    print("Network error:", str(e))`,
-
-        Go: `package main
-
-import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
-	"time"
-)
-
+    print("Error:", str(e))`,
+    Go: `package main
+import ("fmt"; "io"; "net/http"; "time")
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/get-positions"
-
-	body, _ := json.Marshal(map[string]string{
-		"quote_coin": "USDT",
-	})
-
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer <your_token>")
-
-	client := &http.Client{Timeout: 10 * time.Second}
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	data, _ := io.ReadAll(resp.Body)
-	fmt.Println(string(data))
+    url := "https://api.bybit.com/v5/position/list?category=inverse&symbol=BTCUSD"
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
+    req.Header.Set("X-BAPI-SIGN", "XXXXX")
+    client := &http.Client{Timeout: 10 * time.Second}
+    resp, err := client.Do(req)
+    if err != nil { panic(err) }
+    defer resp.Body.Close()
+    data, _ := io.ReadAll(resp.Body)
+    fmt.Println(string(data))
 }`,
-
-        Java: `import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
-public class GetPositionsExample {
+    Java: `import java.net.URI; import java.net.http.*; import java.time.Duration;
+public class GetPositionInfoExample {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/futures/api/v1/get-positions";
-
-        String json = """
-            {
-              "quote_coin": "USDT"
-            }
-            """;
-
-        HttpClient client = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(10))
-            .build();
-
+        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Content-Type", "application/json")
-            .header("Authorization", "Bearer <your_token>")
-            .POST(HttpRequest.BodyPublishers.ofString(json))
-            .build();
-
-        HttpResponse<String> response =
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-
+            .uri(URI.create("https://api.bybit.com/v5/position/list?category=inverse&symbol=BTCUSD"))
+            .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
+            .header("X-BAPI-SIGN", "XXXXX")
+            .GET().build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }`,
-
-        Node: `const axios = require("axios");
-
-async function getPositions() {
+    Node: `const axios = require("axios");
+async function getPositionInfo() {
   try {
-    const response = await axios.post(
-      "https://api.bitzup.com/futures/api/v1/get-positions",
-      {
-        quote_coin: "USDT",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer <your_token>",
-        },
-      }
-    );
+    const response = await axios.get("https://api.bybit.com/v5/position/list",
+      { params: { category: "inverse", symbol: "BTCUSD" },
+        headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);
-  } catch (error) {
-    if (error.response) {
-      console.error("API Error:", error.response.data);
-    } else {
-      console.error("Network Error:", error.message);
-    }
-  }
+  } catch (error) { console.error("Error:", error.response?.data || error.message); }
 }
+getPositionInfo();`,
+  };
 
-getPositions();`,
-    };
-
-    return (
-        <>
-            <div className="container-fluid p-0">
-                <div className="api-layout">
-                    <div className="row">
-                        {/* LEFT CONTENT */}
-                        <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
-                            <div className="breadcrumb mb-4">
-                                <span className="kline-market">Private</span>
-                                <span className="mx-2">
-                                    <IoIosArrowForward className="kline-arrow" />
-                                </span>
-                                <span className="pill">Get Positions</span>
-                            </div>
-
-                            <h1 className="api-title">Get Positions</h1>
-                            <p className="api-desc">
-                                Query real-time position data, such as position size, leverage,
-                                entry price, mark price, liquidation price, unrealised PnL, and more.
-                            </p>
-
-                            <div className="api-cover">Requires Authentication</div>
-                            <div className="api-cover">Rate Limit: 15 req/s</div>
-
-                            {/* HTTP REQUEST */}
-                            <h3 className="top-req-text" id="http">HTTP Request</h3>
-                            <div className="http-path">
-                                <span className="method post">POST</span>
-                                <span className="path">/v1/get-positions</span>
-                            </div>
-
-                            {/* REQUEST PARAMETERS */}
-                            <h3 className="top-req-text" id="request-params">Request Parameters</h3>
-                            <div className="api-table-box">
-                                <table className="table table-striped api-table mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Parameter</th>
-                                            <th>Required</th>
-                                            <th>Type</th>
-                                            <th>Comments</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td className="text-interval">quote_coin</td>
-                                            <td>true</td>
-                                            <td>string</td>
-                                            <td>
-                                                Settlement coin, e.g. <span className="pill">USDT</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            {/* RESPONSE PARAMETERS */}
-                            <h3 className="top-req-text" id="response-params">Response Parameters</h3>
-                            <div className="api-table-box">
-                                <table className="table table-striped api-table mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Parameter</th>
-                                            <th>Type</th>
-                                            <th>Comments</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>symbol</td><td>string</td><td>Symbol name</td></tr>
-                                        <tr><td>price_decimal</td><td>integer</td><td>Price precision</td></tr>
-                                        <tr><td>qty_decimal</td><td>integer</td><td>Quantity precision</td></tr>
-                                        <tr><td>leverage</td><td>string</td><td>Current leverage</td></tr>
-                                        <tr><td>side</td><td>string</td><td><span className="pill">Buy</span> or <span className="pill">Sell</span></td></tr>
-                                        <tr><td>qty</td><td>string</td><td>Position size</td></tr>
-                                        <tr><td>position_value</td><td>string</td><td>Position value in USDT</td></tr>
-                                        <tr><td>entry_price</td><td>string</td><td>Average entry price</td></tr>
-                                        <tr><td>mark_price</td><td>string</td><td>Current mark price</td></tr>
-                                        <tr><td>liquidation_price</td><td>string</td><td>Estimated liquidation price</td></tr>
-                                        <tr><td>initial_margin</td><td>string</td><td>Initial margin</td></tr>
-                                        <tr><td>position_margin</td><td>string</td><td>Position margin balance</td></tr>
-                                        <tr><td>unrealised_Pnl</td><td>string</td><td>Unrealised profit and loss</td></tr>
-                                        <tr><td>unrealised_Pnl_pc</td><td>number</td><td>Unrealised PnL percentage</td></tr>
-                                        <tr><td>take_profit</td><td>string</td><td>Take profit price</td></tr>
-                                        <tr><td>stop_loss</td><td>string</td><td>Stop loss price</td></tr>
-                                        <tr><td>trailing_stop</td><td>string</td><td>Trailing stop value</td></tr>
-                                        <tr><td>activation_price</td><td>string</td><td>Trailing stop activation price</td></tr>
-                                        <tr><td>auto_margin</td><td>integer</td><td>Auto add margin: <span className="pill">0</span> off, <span className="pill">1</span> on</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            {/* REQUEST EXAMPLE */}
-                            <h3 className="top-req-text" id="request-example">Request Example</h3>
-                            <div className="lang-tabs">
-                                {["HTTP", "Python", "Go", "Java", "Node"].map((t) => (
-                                    <button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>
-                                ))}
-                            </div>
-                            <div className="api-code-box position-relative">
-                                <button className="copy-btn" onClick={handleCopy}>
-                                    {copied ? <FiCheck /> : <FiCopy />}
-                                </button>
-                                <pre><code>{codeMap[lang]}</code></pre>
-                            </div>
-
-                            {/* RESPONSE EXAMPLE */}
-                            <h3 className="top-req-text" id="response-example">Response Example</h3>
-                            <div className="api-code-box position-relative">
-                                <button className="copy-btn" onClick={handleCopyRes}>
-                                    {copiedRes ? <FiCheck /> : <FiCopy />}
-                                </button>
-                                <pre><code>{responseCode}</code></pre>
-                            </div>
-                        </div>
-
-                        {/* RIGHT SIDEBAR */}
-                        <div className="col-lg-3 col-md-4 d-none d-md-block">
-                            <div className="api-sidebar">
-                                <ul>
-                                    <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>
-                                    <li className={activeSection === "request-params" ? "active" : ""} onClick={() => scrollToSection("request-params")}>Request Parameters</li>
-                                    <li className={activeSection === "response-params" ? "active" : ""} onClick={() => scrollToSection("response-params")}>Response Parameters</li>
-                                    <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")}>Request Example</li>
-                                    <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")}>Response Example</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <div className="container-fluid p-0"><div className="api-layout"><div className="row">
+      <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
+        <div className="breadcrumb mb-4"><span className="kline-market">Position</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Get Position Info</span></div>
+        <h1 className="api-title">Get Position Info</h1>
+        <p className="api-desc">Query real-time position data, such as position size, cumulative realized PNL, etc.</p>
+        <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
+          <ul style={{ margin: 0, paddingLeft: "18px" }}>
+            <li>If <code>symbol</code> is passed, it returns data regardless of having position or not.</li>
+            <li>If <code>symbol</code>=null and <code>settleCoin</code> specified, it returns position size greater than zero.</li>
+            <li><code>linear</code>: either <code>symbol</code> or <code>settleCoin</code> is required. <code>symbol</code> has a higher priority.</li>
+          </ul>
+        </div>
+        <div className="api-cover">Requires Authentication</div>
+        <h3 className="top-req-text" id="http">HTTP Request</h3>
+        <div className="http-path"><span className="method get">GET</span><span className="path">/v5/position/list</span></div>
+        <h3 className="top-req-text" id="request-params">Request Parameters</h3>
+        <div className="api-table-box"><table className="table table-striped api-table mb-0">
+          <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
+          <tbody>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>option</code></td></tr>
+            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <code>BTCUSDT</code>, uppercase only</td></tr>
+            <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin. <code>option</code> only</td></tr>
+            <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin</td></tr>
+            <tr><td>limit</td><td>false</td><td>integer</td><td>Limit [1, 200]. Default: 20</td></tr>
+            <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
+          </tbody>
+        </table></div>
+        <h3 className="top-req-text" id="response-params">Response Parameters</h3>
+        <div className="api-table-box"><table className="table table-striped api-table mb-0">
+          <thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead>
+          <tbody>
+            <tr><td>category</td><td>string</td><td>Product type</td></tr>
+            <tr><td>nextPageCursor</td><td>string</td><td>Cursor for next page</td></tr>
+            <tr><td>list</td><td>array</td><td>Position list</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionIdx</td><td>integer</td><td>Position index: 0 (one-way), 1 (buy hedge), 2 (sell hedge)</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; riskId</td><td>integer</td><td>Risk limit ID</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; riskLimitValue</td><td>string</td><td>Risk limit value</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; size</td><td>string</td><td>Position size</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; avgPrice</td><td>string</td><td>Average entry price</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionValue</td><td>string</td><td>Position value</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; tradeMode</td><td>integer</td><td>0: cross margin, 1: isolated margin</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionStatus</td><td>string</td><td><code>Normal</code>, <code>Liq</code>, <code>Adl</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; autoAddMargin</td><td>integer</td><td>0: off, 1: on</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; adlRankIndicator</td><td>integer</td><td>ADL rank indicator</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; leverage</td><td>string</td><td>Position leverage</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionBalance</td><td>string</td><td>Position margin</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; markPrice</td><td>string</td><td>Mark price</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; liqPrice</td><td>string</td><td>Liquidation price</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; bustPrice</td><td>string</td><td>Bankruptcy price</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionMM</td><td>string</td><td>Position maintenance margin</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionIM</td><td>string</td><td>Position initial margin</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>string</td><td><code>Full</code>, <code>Partial</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>string</td><td>Take profit price</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; stopLoss</td><td>string</td><td>Stop loss price</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; trailingStop</td><td>string</td><td>Trailing stop</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; unrealisedPnl</td><td>string</td><td>Unrealised PnL</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; curRealisedPnl</td><td>string</td><td>Current realised PnL</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; cumRealisedPnl</td><td>string</td><td>Cumulative realised PnL</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; seq</td><td>long</td><td>Cross sequence</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; isReduceOnly</td><td>boolean</td><td>true: only reduce position allowed</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; mmrSysUpdateTime</td><td>string</td><td>MMR system update timestamp (ms)</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; leverageSysUpdatedTime</td><td>string</td><td>Leverage system update timestamp (ms)</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; createdTime</td><td>string</td><td>Created timestamp (ms)</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; updatedTime</td><td>string</td><td>Updated timestamp (ms)</td></tr>
+          </tbody>
+        </table></div>
+        <h3 className="top-req-text" id="request-example">Request Example</h3>
+        <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
+        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <h3 className="top-req-text" id="response-example">Response Example</h3>
+        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+      </div>
+      <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
+        <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>
+        <li className={activeSection === "request-params" ? "active" : ""} onClick={() => scrollToSection("request-params")}>Request Parameters</li>
+        <li className={activeSection === "response-params" ? "active" : ""} onClick={() => scrollToSection("response-params")}>Response Parameters</li>
+        <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")}>Request Example</li>
+        <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")}>Response Example</li>
+      </ul></div></div>
+    </div></div></div>
+  );
 };

@@ -4,23 +4,83 @@ import { FiCopy, FiCheck } from "react-icons/fi";
 
 const IntegrationGuidance = () => {
 
-  const [lang, setLang] = useState("GET");
-  const [copied, setCopied] = useState(false);
-  const [copied1, setCopied1] = useState(false);
+  const [langSig, setLangSig] = useState("GET");
+  const [langHttp, setLangHttp] = useState("GET");
 
+  const [copiedSig, setCopiedSig] = useState(false);
+  const [copiedHttp, setCopiedHttp] = useState(false);
+  const [copied1, setCopied1] = useState(false);
 
   const getCode1 = () => {
     return `{
-  "status": 0,
-  "message": "error message",
-  "data": {},
+    "retCode": 0,
+    "retMsg": "OK",
+    "result": {
+    },
+    "retExtInfo": {},
+    "time": 1671017382656
 }`;
   };
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(codeMap[lang]);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+  const sigMap = {
+    GET: `# rule:
+timestamp+api_key+recv_window+queryString
+
+# example values:
+timestamp = "1658384314791"
+api_key = "XXXXXXXXXX"
+recv_window = "5000"
+queryString = "category=option&symbol=BTC-29JUL22-25000-C"
+
+# resulting string that needs to be signed:
+"1658384314791XXXXXXXXXX5000category=option&symbol=BTC-29JUL22-25000-C"
+
+# resulting example signature for HMAC:
+"410e0f387bafb7afd0f1722c068515e09945610124fa11774da1da857b72f30b"`,
+    POST: `# rule:
+timestamp+api_key+recv_window+jsonBodyString
+
+# example values:
+timestamp = 1658385579423
+api_key = XXXXXXXXXX
+recv_window = 5000
+jsonBodyString = {"category": "option"}
+
+# resulting string that needs to be signed:
+1658385579423XXXXXXXXXX5000{"category": "option"}
+
+# resulting example signature for HMAC:
+"f0da71972ce1811c882ca5e3fd1779791fb1fed499bef40e5558e50259acfd66"`
+  };
+
+  const codeMapHttp = {
+    GET: `GET /v5/order/realtime?category=option&symbol=BTC-29JUL22-25000-C HTTP/1.1
+Host: api-testnet.bybit.com
+-H 'X-BAPI-SIGN: XXXXXXXXXX' \\
+-H 'X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx' \\
+-H 'X-BAPI-TIMESTAMP: 1658384431891' \\
+-H 'X-BAPI-RECV-WINDOW: 5000'`,
+    POST: `POST /v5/order/create HTTP/1.1
+Host: api-testnet.bybit.com
+-H 'X-Referer: XXXXXXXXXX' \\ [the header for broker users only]
+-H 'X-BAPI-SIGN: XXXXXXXXXX' \\
+-H 'X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx' \\
+-H 'X-BAPI-TIMESTAMP: 1658385589135' \\
+-H 'X-BAPI-RECV-WINDOW: 5000' \\
+-H 'Content-Type: application/json' \\
+-d '{"category": "option"}'`
+  };
+
+  const handleCopySig = async () => {
+    await navigator.clipboard.writeText(sigMap[langSig]);
+    setCopiedSig(true);
+    setTimeout(() => setCopiedSig(false), 1500);
+  };
+
+  const handleCopyHttp = async () => {
+    await navigator.clipboard.writeText(codeMapHttp[langHttp]);
+    setCopiedHttp(true);
+    setTimeout(() => setCopiedHttp(false), 1500);
   };
 
   const handleCopy1 = async () => {
@@ -29,40 +89,126 @@ const IntegrationGuidance = () => {
     setTimeout(() => setCopied1(false), 1500);
   };
 
-  const codeMap = {
-    GET: `GET /v5/order/realtime?category=option&symbol=BTC-29JUL22-25000-C HTTP/1.1
-Host: api-testnet.bybit.com`,
-  };
-
   return (
     <div className="container-fluid p-0">
       <div className="api-layout">
         <h1 className="api-title">Integration Guidance</h1>
         <div className="alert-success api-tip mb-4">
           <strong>TIP:</strong> To learn more about the V5 API, please read the
-          introduction.
+          Introduction.
         </div>
 
-        <h3 className="top-req-text">Authentication</h3>
-        <p className="api-desc">
-          Please visit BitZup website to generate an API key.
+        <p className="api-desc mb-4">
+          IP addresses located in the US or Mainland China are restricted and will return a <code>403 Forbidden</code> error for requests to Bybit API.
         </p>
 
-        <h3 className="top-req-text">REST API Base Endpoint:</h3>
+        {/* Authentication */}
+        <h2 className="top-req-text mt-4">Authentication</h2>
         <p className="api-desc mb-3">
-          Mainnet:{" "}
-          <span className="futures-text-api">
-            https://api.bitzup.com/futures/api
-          </span>
+          Please visit Bybit's testnet or mainnet to generate an API key.
         </p>
 
-        <h6 className="top-req-text mb-2">HTTP request example</h6>
-        <div className="lang-tabs">
-          {["GET"].map((t) => (
+        <p className="api-desc mb-1">REST API Base Endpoint:</p>
+        <ul className="mb-3 text-white">
+          <li>Testnet: <code>https://api-testnet.bybit.com</code></li>
+          <li>Mainnet (both endpoints are available):
+            <ul>
+              <li><code>https://api.bybit.com</code></li>
+              <li><code>https://api.bytick.com</code></li>
+            </ul>
+          </li>
+        </ul>
+
+        {/* Select Your API Key Type */}
+        <h3 className="top-req-text mt-4">Select Your API Key Type</h3>
+        <p className="api-desc mb-3">
+          <strong>System-generated API Keys:</strong> The API key generated by the Bybit system operates with HMAC encryption. You will be provided with a pair of public and private keys. Please treat this pair of keys as passwords and keep them safe.
+        </p>
+        <p className="api-desc mb-3">
+          Follow <a href="https://github.com/bybit-exchange/api-usage-examples" target="_blank" rel="noreferrer">HMAC sample scripts</a> to complete encryption procedures.
+        </p>
+
+        <p className="api-desc mb-3">
+          <strong>Auto-generated API Keys:</strong> Self-generated API keys operate with RSA encryption. You must create your public and private keys through the software, and then only provide the public key to Bybit, we will never hold your private key.
+        </p>
+        <ol className="mb-4 text-white">
+          <li>Use <a href="https://github.com/bybit-exchange/api-rsa-generator" target="_blank" rel="noreferrer">api-rsa-generator</a> to create RSA private and public keys</li>
+          <li>Follow the <a href="https://github.com/bybit-exchange/api-usage-examples" target="_blank" rel="noreferrer">RSA sample scripts</a> to complete encryption procedures.</li>
+        </ol>
+
+        {/* HTTP Headers */}
+        <h3 className="top-req-text">HTTP Headers for Authenticated Endpoints</h3>
+        <p className="api-desc mb-2">The following HTTP header keys must be used for authentication:</p>
+        <ul className="mb-3 text-white">
+          <li><code>X-BAPI-API-KEY</code> - API key</li>
+          <li><code>X-BAPI-TIMESTAMP</code> - UTC timestamp in milliseconds</li>
+          <li><code>X-BAPI-SIGN</code> - a signature derived from the request's parameters</li>
+          <li><code>X-Referer</code> or <code>Referer</code> - the header for broker users only</li>
+        </ul>
+
+        <p className="api-desc mb-3">
+          We also provide <code>X-BAPI-RECV-WINDOW</code> (unit in millisecond and default value is 5,000) to specify how long an HTTP request is valid. It is also used to prevent replay attacks.
+        </p>
+        <p className="api-desc mb-3">
+          A smaller <code>X-BAPI-RECV-WINDOW</code> is more secure, but your request may fail if the transmission time is greater than your <code>X-BAPI-RECV-WINDOW</code>.
+        </p>
+
+        <div className="api-caution mb-4">
+          <strong>CAUTION:</strong>
+          <p className="mb-2 mt-2">Please make sure that the timestamp parameter adheres to the following rule:</p>
+          <code className="d-block mb-2">server_time - recv_window &lt;= timestamp &lt; server_time + 1000</code>
+          <p className="mb-2">which means your timestamp should lie in range: <code>[server_time - recv_window; server_time + 1000)</code></p>
+          <p className="mb-0"><code>server_time</code> stands for Bybit server time, which can be queried via the Server Time endpoint. Keep in mind it's highly recommended that you use local device time for timestamp and keep it NTP-synchronized at all times.</p>
+        </div>
+
+        {/* Create A Request */}
+        <h3 className="top-req-text">Create A Request</h3>
+        <p className="api-desc mb-2">To assist in diagnosing advanced network problems, you may consider adding <code>cdn-request-id</code> to your request headers. Its value should be unique for each request.</p>
+
+        <p className="api-desc mb-2"><strong>Basic steps:</strong></p>
+        <ol className="mb-4 text-white">
+          <li>Calculate the string you want to sign as follows:
+            <ul>
+              <li>For GET requests: <code>timestamp + API key + recv_window + queryString</code></li>
+              <li>For POST requests: <code>timestamp + API key + recv_window + jsonBodyString</code></li>
+            </ul>
+          </li>
+          <li>Use the HMAC_SHA256 or RSA_SHA256 algorithm to sign the string in step 1, and convert it to a lowercase HEX string for HMAC_SHA256, or base64 for RSA_SHA256 to obtain the string value of your signature.</li>
+          <li>Add your signature to <code>X-BAPI-API-KEY</code> header send the HTTP request. You can refer to examples below for more info.</li>
+        </ol>
+
+        <h5 className="top-req-text mt-3 mb-2">An example for how to generate plain text to encrypt</h5>
+
+        <div className="lang-tabs mt-3">
+          {["GET", "POST"].map((t) => (
             <button
               key={t}
-              className={lang === t ? "active" : ""}
-              onClick={() => setLang(t)}
+              className={langSig === t ? "active" : ""}
+              onClick={() => setLangSig(t)}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+
+        <div className="api-code-box position-relative mb-4">
+          <button className="copy-btn" onClick={handleCopySig}>
+            {copiedSig ? <FiCheck /> : <FiCopy />}
+          </button>
+          <pre>
+            <code>
+              {sigMap[langSig]}
+            </code>
+          </pre>
+        </div>
+
+        <h5 className="top-req-text mt-4 mb-2">HTTP request examples</h5>
+        <div className="lang-tabs">
+          {["GET", "POST"].map((t) => (
+            <button
+              key={t}
+              className={langHttp === t ? "active" : ""}
+              onClick={() => setLangHttp(t)}
             >
               {t}
             </button>
@@ -70,16 +216,17 @@ Host: api-testnet.bybit.com`,
         </div>
 
         <div className="api-code-box position-relative">
-          <button className="copy-btn" onClick={handleCopy}>
-            {copied ? <FiCheck /> : <FiCopy />}
+          <button className="copy-btn" onClick={handleCopyHttp}>
+            {copiedHttp ? <FiCheck /> : <FiCopy />}
           </button>
 
           <pre>
-            <code>{codeMap[lang]}</code>
+            <code>{codeMapHttp[langHttp]}</code>
           </pre>
         </div>
 
-        <h3 className="top-req-text">Common response parameters</h3>
+
+        <h2 className="top-req-text mt-4">Common response parameters</h2>
 
         {/* TABLE */}
         <div className="api-table-box mb-4">
@@ -93,43 +240,43 @@ Host: api-testnet.bybit.com`,
             </thead>
             <tbody>
               <tr>
-                <td>status</td>
+                <td>retCode</td>
                 <td>number</td>
-                <td>Success/Error code. 1: success, 0/3: error</td>
+                <td>Success/Error code. <span className="pill">0</span> means success</td>
               </tr>
               <tr>
-                <td>message</td>
+                <td>retMsg</td>
                 <td>string</td>
                 <td>
-                  Success/Error msg.
-                  <span className="pill">SUCCESS</span>
-                  indicates a successful response
+                  Success/Error msg. <span className="pill">OK</span>, <span className="pill">success</span>, <span className="pill">SUCCESS</span> indicate a successful response
                 </td>
               </tr>
               <tr>
-                <td>data</td>
+                <td>result</td>
                 <td>Object</td>
                 <td>Business data result</td>
+              </tr>
+              <tr>
+                <td>retExtInfo</td>
+                <td>Object</td>
+                <td>Extend info. Most of the time, it is <code>{"{}"}</code></td>
+              </tr>
+              <tr>
+                <td>time</td>
+                <td>number</td>
+                <td>Current timestamp (ms)</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        {/* RESPONSE CODE BOX — SAME AS API BLOCK */}
+        {/* RESPONSE CODE BOX */}
         <div className="api-code-box position-relative">
           <button className="copy-btn" onClick={handleCopy1}>
             {copied1 ? <FiCheck /> : <FiCopy />}
           </button>
           <pre>
-            <code>
-              {"{"}
-              {"\n"} "status": 0,
-              {"\n"} "message":{" "}
-              <span className="json-string">"error message"</span>,{"\n"}{" "}
-              "data": {"{"}
-              {"}"},{"\n"}
-              {"}"}
-            </code>
+            <code>{getCode1()}</code>
           </pre>
         </div>
       </div>

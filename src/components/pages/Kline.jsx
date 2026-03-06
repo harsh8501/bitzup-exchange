@@ -75,186 +75,138 @@ export const Kline = () => {
   }, []);
 
   const responseCode = `{
-        "status": "1",
-        "message": "SUCCESS",
-        "data": {
-          "symbol": "BTCUSDT",
-          "category": "linear",
-          "list": [
+    "retCode": 0,
+    "retMsg": "OK",
+    "result": {
+        "symbol": "BTCUSDT",
+        "category": "linear",
+        "list": [
             [
-              "1670608800000",
-              "17154",
-              "17154",
-              "17111",
-              "17136.5",
-              "2028.137",
-              "34736136.8065"
+                "1670608800000",
+                "17154",
+                "17154",
+                "17111",
+                "17136.5",
+                "2028.137",
+                "34736136.8065"
             ],
             [
-              "1670605200000",
-              "17143.5",
-              "17158",
-              "17137.5",
-              "17154",
-              "1095.661",
-              "18786245.062"
+                "1670605200000",
+                "17143.5",
+                "17158",
+                "17137.5",
+                "17154",
+                "1095.661",
+                "18786245.062"
             ],
             [
-              "1670601600000",
-              "17168.5",
-              "17177.5",
-              "17135.5",
-              "17143.5",
-              "2038.195",
-              "34970006.194"
+                "1670601600000",
+                "17168.5",
+                "17177.5",
+                "17135.5",
+                "17143.5",
+                "2038.195",
+                "34970006.194"
             ]
-          ]
-        }
-      }`;
+        ]
+    },
+    "retExtInfo": {},
+    "time": 1672025956592
+}`;
 
   const codeMap = {
-    HTTP: `GET /v1/kline?category=inverse&symbol=BTCUSD&interval=60&start=1670601600000&end=1670608800000 HTTP/1.1
-  Host: api.bitzup.com/futures/api`,
+    HTTP: `GET /v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3 HTTP/1.1
+Host: api.bybit.com`,
 
     Python: `import requests
 
-  url = "https://api.bitzup.com/futures/api/v1/kline"
+url = "https://api.bybit.com/v5/market/kline"
+params = {
+    "category": "linear",
+    "symbol": "BTCUSDT",
+    "interval": "60",
+    "start": 1670601600000,
+    "end": 1670608800000,
+    "limit": 3
+}
 
-  params = {
-      "symbol": "BTCUSDT",
-      "interval": 60,
-      "start": 1670601600000,
-      "end": 1670608800000,
-  }
-
-  try:
-      resp = requests.get(url, params=params, timeout=10)
-      resp.raise_for_status()  # raises for 4xx/5xx
-      data = resp.json()
-      print(data)
-  except requests.exceptions.HTTPError as e:
-      print("API error:", resp.text)
-  except requests.exceptions.RequestException as e:
-      print("Network error:", str(e))`,
+try:
+    response = requests.get(url, params=params)
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print("Error:", str(e))`,
 
     Go: `package main
 
 import (
-	"fmt"
-	"io"
-	"net/http"
-	"net/url"
-	"time"
+    "fmt"
+    "io"
+    "net/http"
+    "time"
 )
 
 func main() {
-	baseURL := "https://api.bitzup.com/futures/api/v1/kline"
+    url := "https://api.bybit.com/v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3"
 
-	params := url.Values{}
-	params.Add("symbol", "BTCUSDT")
-	params.Add("interval", "60")
-	params.Add("start", "1670601600000")
-	params.Add("end", "1670608800000")
+    req, err := http.NewRequest("GET", url, nil)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
 
-	reqURL := baseURL + "?" + params.Encode()
+    client := &http.Client{Timeout: 10 * time.Second}
+    res, err := client.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer res.Body.Close()
 
-	client := &http.Client{
-		Timeout: 10 * time.Second,
-	}
-
-	req, err := http.NewRequest("GET", reqURL, nil)
-	if err != nil {
-		panic(err)
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	body, _ := io.ReadAll(resp.Body)
-
-	if resp.StatusCode != http.StatusOK {
-		fmt.Println("API error:", string(body))
-		return
-	}
-
-	fmt.Println(string(body))
+    resBody, _ := io.ReadAll(res.Body)
+    fmt.Println(string(resBody))
 }`,
 
     Java: `import java.net.URI;
-import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 
-public class KlineExample {
-
+public class GetKlineDemo {
     public static void main(String[] args) throws Exception {
-        String baseUrl = "https://api.bitzup.com/futures/api/v1/kline";
+        String url = "https://api.bybit.com/v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3";
 
-        String query = String.format(
-            "category=%s&symbol=%s&interval=%s&start=%s&end=%s",
-            encode("BTCUSDT"),
-            encode("60"),
-            encode("1670601600000"),
-            encode("1670608800000")
-        );
-
-        HttpClient client = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(10))
-            .build();
-
+        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl + "?" + query))
-            .GET()
-            .timeout(Duration.ofSeconds(10))
-            .build();
+                .uri(URI.create(url))
+                .GET()
+                .build();
 
-        HttpResponse<String> response =
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() != 200) {
-            System.out.println("API error: " + response.body());
-            return;
-        }
-
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
-    }
-
-    private static String encode(String value) {
-        return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }
 }`,
 
-    Node: `const axios = require("axios");
+    Node: `const axios = require('axios');
 
 async function getKline() {
-  try {
-    const response = await axios.get(
-      "https://api.bitzup.com/futures/api/v1/kline",
-      {
-        params: {
-          symbol: "BTCUSDT",
-          interval: 60,
-          start: 1670601600000,
-          end: 1670608800000,
-        },
-      }
-    );
-
-    console.log(response.data);
-  } catch (error) {
-    // Axios-safe error handling
-    if (error.response) {
-      console.error("API Error:", error.response.data);
-    } else {
-      console.error("Network Error:", error.message);
+    try {
+        const response = await axios.get(
+            'https://api.bybit.com/v5/market/kline',
+            {
+                params: {
+                    category: 'linear',
+                    symbol: 'BTCUSDT',
+                    interval: '60',
+                    start: 1670601600000,
+                    end: 1670608800000,
+                    limit: 3
+                }
+            }
+        );
+        console.log(response.data);
+    } catch (error) {
+        console.error(error.message);
     }
-  }
 }
 
 getKline();`,
@@ -539,44 +491,44 @@ getKline();`,
                 </button>
                 <pre>
                   <code>
-  {"{"}
-  {"\n"}  "status": "1",
-  {"\n"}  "message": "SUCCESS",
-  {"\n"}  "data": {"{"}
-  {"\n"}    "symbol": "BTCUSDT",
-  {"\n"}    "category": "linear",
-  {"\n"}    "list": [
-  {"\n"}      [ 
-  {"\n"}        "1670608800000",
-  {"\n"}        "17154",
-  {"\n"}        "17154",
-  {"\n"}        "17111",
-  {"\n"}        "17136.5",
-  {"\n"}        "2028.137",
-  {"\n"}        "34736136.8065"
-  {"\n"}      ],
-  {"\n"}      [
-  {"\n"}        "1670605200000",
-  {"\n"}        "17143.5",
-  {"\n"}        "17158",
-  {"\n"}        "17137.5",
-  {"\n"}        "17154",
-  {"\n"}        "1095.661",
-  {"\n"}        "18786245.062"
-  {"\n"}      ],
-  {"\n"}      [
-  {"\n"}        "1670601600000",
-  {"\n"}        "17168.5",
-  {"\n"}        "17177.5",
-  {"\n"}        "17135.5",
-  {"\n"}        "17143.5",
-  {"\n"}        "2038.195",
-  {"\n"}        "34970006.194"
-  {"\n"}      ]
-  {"\n"}    ]
-  {"\n"}  {"}"}
-  {"\n"}{"}"}
-</code>
+                    {"{"}
+                    {"\n"}  "status": "1",
+                    {"\n"}  "message": "SUCCESS",
+                    {"\n"}  "data": {"{"}
+                    {"\n"}    "symbol": "BTCUSDT",
+                    {"\n"}    "category": "linear",
+                    {"\n"}    "list": [
+                    {"\n"}      [
+                    {"\n"}        "1670608800000",
+                    {"\n"}        "17154",
+                    {"\n"}        "17154",
+                    {"\n"}        "17111",
+                    {"\n"}        "17136.5",
+                    {"\n"}        "2028.137",
+                    {"\n"}        "34736136.8065"
+                    {"\n"}      ],
+                    {"\n"}      [
+                    {"\n"}        "1670605200000",
+                    {"\n"}        "17143.5",
+                    {"\n"}        "17158",
+                    {"\n"}        "17137.5",
+                    {"\n"}        "17154",
+                    {"\n"}        "1095.661",
+                    {"\n"}        "18786245.062"
+                    {"\n"}      ],
+                    {"\n"}      [
+                    {"\n"}        "1670601600000",
+                    {"\n"}        "17168.5",
+                    {"\n"}        "17177.5",
+                    {"\n"}        "17135.5",
+                    {"\n"}        "17143.5",
+                    {"\n"}        "2038.195",
+                    {"\n"}        "34970006.194"
+                    {"\n"}      ]
+                    {"\n"}    ]
+                    {"\n"}  {"}"}
+                    {"\n"}{"}"}
+                  </code>
 
                 </pre>
               </div>
