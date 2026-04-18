@@ -64,13 +64,13 @@ export const GetPositions = () => {
 
   const codeMap = {
     HTTP: `GET /v5/position/list?category=inverse&symbol=BTCUSD HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672280218882
 X-BAPI-RECV-WINDOW: 5000`,
     Python: `import requests
-url = "https://api.bybit.com/v5/position/list"
+url = "https://api.bitzup.com/v5/position/list"
 headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
     "X-BAPI-TIMESTAMP": "1672280218882", "X-BAPI-RECV-WINDOW": "5000"}
 params = {"category": "inverse", "symbol": "BTCUSD"}
@@ -82,7 +82,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/position/list?category=inverse&symbol=BTCUSD"
+    url := "https://api.bitzup.com/v5/position/list?category=inverse&symbol=BTCUSD"
     req, _ := http.NewRequest("GET", url, nil)
     req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
     req.Header.Set("X-BAPI-SIGN", "XXXXX")
@@ -98,7 +98,7 @@ public class GetPositionInfoExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/position/list?category=inverse&symbol=BTCUSD"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/list?category=inverse&symbol=BTCUSD"))
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
             .GET().build();
@@ -109,7 +109,7 @@ public class GetPositionInfoExample {
     Node: `const axios = require("axios");
 async function getPositionInfo() {
   try {
-    const response = await axios.get("https://api.bybit.com/v5/position/list",
+    const response = await axios.get("https://api.bitzup.com/v5/position/list",
       { params: { category: "inverse", symbol: "BTCUSD" },
         headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

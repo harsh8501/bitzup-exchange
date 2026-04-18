@@ -45,7 +45,7 @@ export const GetFundCustodialSubAcct = () => {
 
     const codeMap = {
         HTTP: `GET /v5/user/escrow_sub_members?pageSize=2 HTTP/1.1
-Host: api-testnet.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1739763787703

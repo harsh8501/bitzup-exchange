@@ -101,7 +101,7 @@ export const EnumsDefinitions = () => {
                                     { value: "Margin Trading" }, { value: "Partnerships" }, { value: "Launchpad" }, { value: "Upgrades" },
                                     { value: "ByVotes" }, { value: "Delistings" }, { value: "VIP" }, { value: "Futures" },
                                     { value: "Institutions" }, { value: "Options" }, { value: "WEB3" }, { value: "Copy Trading" },
-                                    { value: "Earn" }, { value: "Bybit Savings" }, { value: "Dual Asset" }, { value: "Liquidity Mining" },
+                                    { value: "Earn" }, { value: "Bitzup Savings" }, { value: "Dual Asset" }, { value: "Liquidity Mining" },
                                     { value: "Shark Fin" }, { value: "Launchpool" }, { value: "NFT GrabPic" }, { value: "Buy Crypto" },
                                     { value: "P2P Trading" }, { value: "Fiat Deposit" }, { value: "Crypto Deposit" },
                                     { value: "MT4" }, { value: "Lucky Draw" }, { value: "Unified Trading Account" },
@@ -551,7 +551,7 @@ export const EnumsDefinitions = () => {
                                 <EnumList items={[{ value: "BTCUSDT" }, { value: "ETHUSDT" }]} />
                                 <p><strong>USDT Futures:</strong></p>
                                 <EnumList items={[{ value: "BTCUSDT-21FEB25" }, { value: "ETHUSDT-14FEB25" }]} />
-                                <p style={{ fontSize: "13px", color: "#999" }}>The types of USDT Futures contracts offered by Bybit include: Weekly, Bi-Weekly, Tri-Weekly, Monthly, Bi-Monthly, Quarterly, Bi-Quarterly, Tri-Quarterly</p>
+                                <p style={{ fontSize: "13px", color: "#999" }}>The types of USDT Futures contracts offered by Bitzup include: Weekly, Bi-Weekly, Tri-Weekly, Monthly, Bi-Monthly, Quarterly, Bi-Quarterly, Tri-Quarterly</p>
                                 <p><strong>USDC Perpetual:</strong></p>
                                 <EnumList items={[{ value: "BTCPERP" }, { value: "ETHPERP" }]} />
                                 <p><strong>USDC Futures:</strong></p>

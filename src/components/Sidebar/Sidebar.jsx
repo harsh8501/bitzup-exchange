@@ -41,7 +41,7 @@ const Sidebar = () => {
         </div>
         {openSection === "market" && (
           <div className="sidebar-sub">
-            <NavLink to="/docs/v5/market/time" className="sidebar-link">Get Bybit Server Time</NavLink>
+            <NavLink to="/docs/v5/market/time" className="sidebar-link">Get Bitzup Server Time</NavLink>
             <NavLink to="/docs/v5/market/kline" className="sidebar-link">Get Kline</NavLink>
             <NavLink to="/docs/v5/market/mark-price-kline" className="sidebar-link">Get Mark Price Kline</NavLink>
             <NavLink to="/docs/v5/market/index-price-kline" className="sidebar-link">Get Index Price Kline</NavLink>

@@ -49,7 +49,7 @@ export const AddIsolatedMargin = () => {
 
     const codeMap = {
         HTTP: `POST /v5/position/add-margin HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1684234363665
@@ -63,7 +63,7 @@ Content-Type: application/json
     "positionIdx": 0
 }`,
         Python: `import requests
-url = "https://api.bybit.com/v5/position/add-margin"
+url = "https://api.bitzup.com/v5/position/add-margin"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1684234363665", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "inverse", "symbol": "ETHUSD", "margin": "0.01", "positionIdx": 0}
@@ -75,7 +75,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/position/add-margin"
+    url := "https://api.bitzup.com/v5/position/add-margin"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "inverse", "symbol": "ETHUSD", "margin": "0.01", "positionIdx": 0,
     })
@@ -94,7 +94,7 @@ public class AddReduceMarginExample {
         String json = """{"category":"inverse","symbol":"ETHUSD","margin":"0.01","positionIdx":0}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/position/add-margin"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/add-margin"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -104,7 +104,7 @@ public class AddReduceMarginExample {
         Node: `const axios = require("axios");
 async function addOrReduceMargin() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/position/add-margin",
+    const response = await axios.post("https://api.bitzup.com/v5/position/add-margin",
       { category: "inverse", symbol: "ETHUSD", margin: "0.01", positionIdx: 0 },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

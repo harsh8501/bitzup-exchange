@@ -365,7 +365,7 @@ getDepositRecords();`,
                     <tr>
                       <td>&gt; depositType</td>
                       <td>string</td>
-                      <td>The deposit type. <code>0</code>: normal deposit, <code>10</code>: deposit transferred from a Bybit address, <code>20</code>: structural product deposit</td>
+                      <td>The deposit type. <code>0</code>: normal deposit, <code>10</code>: deposit transferred from a Bitzup address, <code>20</code>: structural product deposit</td>
                     </tr>
                     <tr>
                       <td>&gt; fromAddress</td>

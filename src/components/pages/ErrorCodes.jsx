@@ -232,7 +232,7 @@ export const ErrorCodes = () => {
                                 { code: "170200", msg: "Your order quantity to sell is too large. The filled price may deviates significantly from the last price. Please try to reduce the amount of your order" },
                                 { code: "170221", msg: "This coin does not exist." },
                                 { code: "170222", msg: "Too many requests in this time frame." },
-                                { code: "170223", msg: "Your Spot account with Institutional Margin mode enabled has not been activated, please go to Bybit website to activate" },
+                                { code: "170223", msg: "Your Spot account with Institutional Margin mode enabled has not been activated, please go to Bitzup website to activate" },
                                 { code: "170224", msg: "(Spot) Your order quantity to buy is too large." },
                                 { code: "170226", msg: "This pair is not available for Institutional Margin mode." },
                                 { code: "170227", msg: "Institutional Margin Trading is not yet available for this pair." },

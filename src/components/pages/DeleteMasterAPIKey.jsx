@@ -25,7 +25,7 @@ export const DeleteMasterAPIKey = () => {
 
     const codeMap = {
         HTTP: `POST /v5/user/delete-api HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1676431576621
 X-BAPI-RECV-WINDOW: 5000

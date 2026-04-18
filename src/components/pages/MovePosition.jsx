@@ -29,7 +29,7 @@ export const MovePosition = () => {
 
   const codeMap = {
     HTTP: `POST /v5/position/move-positions HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1697684980000
@@ -50,7 +50,7 @@ Content-Type: application/json
     ]
 }`,
     Python: `import requests
-url = "https://api.bybit.com/v5/position/move-positions"
+url = "https://api.bitzup.com/v5/position/move-positions"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1697684980000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"fromUid": "100001", "toUid": "200001", "list": [
@@ -64,7 +64,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/position/move-positions"
+    url := "https://api.bitzup.com/v5/position/move-positions"
     payload := map[string]interface{}{
         "fromUid": "100001", "toUid": "200001",
         "list": []map[string]interface{}{
@@ -88,7 +88,7 @@ public class MovePositionExample {
             {"category":"linear","symbol":"BTCUSDT","price":"28000","side":"Buy","qty":"0.1"}]}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/position/move-positions"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/move-positions"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -98,7 +98,7 @@ public class MovePositionExample {
     Node: `const axios = require("axios");
 async function movePosition() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/position/move-positions",
+    const response = await axios.post("https://api.bitzup.com/v5/position/move-positions",
       { fromUid: "100001", toUid: "200001", list: [
         { category: "linear", symbol: "BTCUSDT", price: "28000", side: "Buy", qty: "0.1" }
       ]},

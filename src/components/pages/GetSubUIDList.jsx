@@ -44,7 +44,7 @@ export const GetSubUIDList = () => {
 
     const codeMap = {
         HTTP: `GET /v5/user/query-sub-members HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1676430318405

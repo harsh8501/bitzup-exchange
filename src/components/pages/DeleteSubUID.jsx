@@ -25,7 +25,7 @@ export const DeleteSubUID = () => {
 
     const codeMap = {
         HTTP: `POST /v5/user/del-submember HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1698907012755
 X-BAPI-RECV-WINDOW: 5000

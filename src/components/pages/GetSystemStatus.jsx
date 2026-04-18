@@ -110,11 +110,11 @@ export const GetSystemStatus = () => {
 
     const codeMap = {
         HTTP: `GET /v5/system/status HTTP/1.1
-Host: api.bybit.com`,
+Host: api.bitzup.com`,
 
         Python: `import requests
 
-url = "https://api.bybit.com/v5/system/status"
+url = "https://api.bitzup.com/v5/system/status"
 
 try:
     response = requests.get(url, timeout=10)
@@ -133,7 +133,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bybit.com/v5/system/status"
+    url := "https://api.bitzup.com/v5/system/status"
 
     client := &http.Client{Timeout: 10 * time.Second}
     resp, err := client.Get(url)
@@ -159,7 +159,7 @@ public class GetSystemStatus {
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.bybit.com/v5/system/status"))
+                .uri(URI.create("https://api.bitzup.com/v5/system/status"))
                 .GET()
                 .build();
 
@@ -172,7 +172,7 @@ public class GetSystemStatus {
 
 async function getSystemStatus() {
     try {
-        const response = await axios.get('https://api.bybit.com/v5/system/status');
+        const response = await axios.get('https://api.bitzup.com/v5/system/status');
         console.log(response.data);
     } catch (error) {
         console.error("Error:", error.response?.data || error.message);

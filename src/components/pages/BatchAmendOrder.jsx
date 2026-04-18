@@ -45,7 +45,7 @@ export const BatchAmendOrder = () => {
 
     const codeMap = {
         HTTP: `POST /v5/order/amend-batch HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672222064000
@@ -70,7 +70,7 @@ Content-Type: application/json
     ]
 }`,
         Python: `import requests
-url = "https://api.bybit.com/v5/order/amend-batch"
+url = "https://api.bitzup.com/v5/order/amend-batch"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672222064000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "request": [
@@ -85,7 +85,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/order/amend-batch"
+    url := "https://api.bitzup.com/v5/order/amend-batch"
     payload := map[string]interface{}{
         "category": "linear",
         "request": []map[string]interface{}{
@@ -113,7 +113,7 @@ public class BatchAmendOrderExample {
             ]}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/order/amend-batch"))
+            .uri(URI.create("https://api.bitzup.com/v5/order/amend-batch"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -123,7 +123,7 @@ public class BatchAmendOrderExample {
         Node: `const axios = require("axios");
 async function batchAmendOrder() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/order/amend-batch",
+    const response = await axios.post("https://api.bitzup.com/v5/order/amend-batch",
       { category: "linear", request: [
         { symbol: "ETHUSDT", orderId: "c6f055d9-7f21-4079-913d-e6523a9cfffa", qty: "0.15", price: "1050" },
         { symbol: "BTCUSDT", orderId: "b6f055d9-7f21-4079-913d-e6523a9cfffb", qty: "0.003", price: "28000" }

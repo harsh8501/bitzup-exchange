@@ -14,7 +14,7 @@ code_lines = """    const responseCode = `{
 
     const codeMap = {
         HTTP: `POST /v5/order/create HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 Content-Type: application/json
 
 {
@@ -32,7 +32,7 @@ Content-Type: application/json
 
         Python: `import requests
 
-url = "https://api.bybit.com/v5/order/create"
+url = "https://api.bitzup.com/v5/order/create"
 headers = {
     "Content-Type": "application/json"
 }
@@ -67,7 +67,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bybit.com/v5/order/create"
+    url := "https://api.bitzup.com/v5/order/create"
     payload := map[string]interface{}{
         "category":    "linear",
         "symbol":      "BTCUSDT",
@@ -104,7 +104,7 @@ import java.net.http.HttpResponse;
 
 public class PlaceOrderDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bybit.com/v5/order/create";
+        String url = "https://api.bitzup.com/v5/order/create";
         String payload = "{\\n" +
             "    \\"category\\": \\"linear\\",\\n" +
             "    \\"symbol\\": \\"BTCUSDT\\",\\n" +
@@ -135,7 +135,7 @@ public class PlaceOrderDemo {
 async function placeOrder() {
     try {
         const response = await axios.post(
-            'https://api.bybit.com/v5/order/create',
+            'https://api.bitzup.com/v5/order/create',
             {
                 category: 'linear',
                 symbol: 'BTCUSDT',

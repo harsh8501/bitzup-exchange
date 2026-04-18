@@ -30,7 +30,7 @@ export const PlaceOrder = () => {
 
     const codeMap = {
         HTTP: `POST /v5/order/create HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: XXXXXXXXXXXXXXXXXX
 X-BAPI-TIMESTAMP: 1672211928338
@@ -49,7 +49,7 @@ Content-Type: application/json
 }`,
         Python: `import requests
 
-url = "https://api.bybit.com/v5/order/create"
+url = "https://api.bitzup.com/v5/order/create"
 headers = {
     "Content-Type": "application/json",
     "X-BAPI-API-KEY": "XXXXXXXXXXXXXXXXXX",
@@ -76,7 +76,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/order/create"
+    url := "https://api.bitzup.com/v5/order/create"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "spot", "symbol": "BTCUSDT", "side": "Buy",
         "orderType": "Limit", "qty": "0.1", "price": "15600",
@@ -105,7 +105,7 @@ public class PlaceOrderExample {
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/order/create"))
+            .uri(URI.create("https://api.bitzup.com/v5/order/create"))
             .header("Content-Type", "application/json")
             .header("X-BAPI-API-KEY", "XXXXXXXXXXXXXXXXXX")
             .header("X-BAPI-SIGN", "XXXXX")
@@ -119,7 +119,7 @@ public class PlaceOrderExample {
         Node: `const axios = require("axios");
 async function placeOrder() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/order/create",
+    const response = await axios.post("https://api.bitzup.com/v5/order/create",
       { category: "spot", symbol: "BTCUSDT", side: "Buy", orderType: "Limit",
         qty: "0.1", price: "15600", timeInForce: "GTC", orderLinkId: "spot-test-postonly" },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "XXXXXXXXXXXXXXXXXX",

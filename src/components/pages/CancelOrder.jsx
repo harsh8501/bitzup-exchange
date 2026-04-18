@@ -28,7 +28,7 @@ export const CancelOrder = () => {
 
     const codeMap = {
         HTTP: `POST /v5/order/cancel HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672217376681
@@ -42,7 +42,7 @@ Content-Type: application/json
     "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa"
 }`,
         Python: `import requests
-url = "https://api.bybit.com/v5/order/cancel"
+url = "https://api.bitzup.com/v5/order/cancel"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672217376681", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "symbol": "BTCPERP", "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa"}
@@ -54,7 +54,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/order/cancel"
+    url := "https://api.bitzup.com/v5/order/cancel"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "linear", "symbol": "BTCPERP",
         "orderId": "c6f055d9-7f21-4079-913d-e6523a9cfffa",
@@ -79,7 +79,7 @@ public class CancelOrderExample {
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/order/cancel"))
+            .uri(URI.create("https://api.bitzup.com/v5/order/cancel"))
             .header("Content-Type", "application/json")
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
@@ -91,7 +91,7 @@ public class CancelOrderExample {
         Node: `const axios = require("axios");
 async function cancelOrder() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/order/cancel",
+    const response = await axios.post("https://api.bitzup.com/v5/order/cancel",
       { category: "linear", symbol: "BTCPERP", orderId: "c6f055d9-7f21-4079-913d-e6523a9cfffa" },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

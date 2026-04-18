@@ -42,13 +42,13 @@ export const GetClosedOptionsPositions = () => {
 
   const codeMap = {
     HTTP: `GET /v5/position/closed-position?category=option&limit=1 HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672280218882
 X-BAPI-RECV-WINDOW: 5000`,
     Python: `import requests
-url = "https://api.bybit.com/v5/position/closed-position"
+url = "https://api.bitzup.com/v5/position/closed-position"
 headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
     "X-BAPI-TIMESTAMP": "1672280218882", "X-BAPI-RECV-WINDOW": "5000"}
 params = {"category": "option", "limit": 1}
@@ -60,7 +60,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/position/closed-position?category=option&limit=1"
+    url := "https://api.bitzup.com/v5/position/closed-position?category=option&limit=1"
     req, _ := http.NewRequest("GET", url, nil)
     req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
     client := &http.Client{Timeout: 10 * time.Second}
@@ -75,7 +75,7 @@ public class GetClosedOptionsExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/position/closed-position?category=option&limit=1"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/closed-position?category=option&limit=1"))
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .GET().build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -85,7 +85,7 @@ public class GetClosedOptionsExample {
     Node: `const axios = require("axios");
 async function getClosedOptionsPositions() {
   try {
-    const response = await axios.get("https://api.bybit.com/v5/position/closed-position",
+    const response = await axios.get("https://api.bitzup.com/v5/position/closed-position",
       { params: { category: "option", limit: 1 },
         headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

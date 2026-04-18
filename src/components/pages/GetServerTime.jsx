@@ -175,13 +175,13 @@ getServerTime();`,
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>
-                <span className="pill">Get Bybit Server Time</span>
+                <span className="pill">Get Bitzup Server Time</span>
               </div>
 
               {/* Title */}
-              <h1 className="api-title">Get Bybit Server Time</h1>
+              <h1 className="api-title">Get Bitzup Server Time</h1>
               <p className="api-desc">
-                Get Bybit server time.
+                Get Bitzup server time.
               </p>
 
               {/* HTTP REQUEST */}
@@ -232,12 +232,12 @@ getServerTime();`,
                     <tr>
                       <td>timeSecond</td>
                       <td>string</td>
-                      <td>Bybit server timestamp (sec)</td>
+                      <td>Bitzup server timestamp (sec)</td>
                     </tr>
                     <tr>
                       <td>timeNano</td>
                       <td>string</td>
-                      <td>Bybit server timestamp (nano)</td>
+                      <td>Bitzup server timestamp (nano)</td>
                     </tr>
                   </tbody>
                 </table>

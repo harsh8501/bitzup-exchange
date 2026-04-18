@@ -271,7 +271,7 @@ submitWithdrawal();`,
                       <td>address</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Withdrawal address. Depending on <code>forceChain</code>, might be Bybit UID or wallet address</td>
+                      <td>Withdrawal address. Depending on <code>forceChain</code>, might be Bitzup UID or wallet address</td>
                     </tr>
                     <tr>
                       <td>tag</td>

@@ -24,11 +24,11 @@ const IntegrationGuidance = () => {
   };
 
   const codeMapGet = {
-    GET: `GET /v5/order/realtime?category=option&symbol=BTC-29JUL22-25000-C HTTP/1.1\\nHost: api-testnet.bybit.com`,
+    GET: `GET /v5/order/realtime?category=option&symbol=BTC-29JUL22-25000-C HTTP/1.1\\nHost: api.bitzup.com`,
   };
 
   const codeMapPost = {
-    POST: `POST /v5/order/create HTTP/1.1\\nHost: api-testnet.bybit.com\\nContent-Type: application/json\\n\\n{\\n    "category": "option",\\n    "symbol": "BTC-29JUL22-25000-C",\\n    "side": "Buy",\\n    "positionIdx": 0,\\n    "orderType": "Limit",\\n    "qty": "0.1",\\n    "price": "1500",\\n    "timeInForce": "GoodTillCancel",\\n    "orderLinkId": "option-test-01"\\n}`,
+    POST: `POST /v5/order/create HTTP/1.1\\nHost: api.bitzup.com\\nContent-Type: application/json\\n\\n{\\n    "category": "option",\\n    "symbol": "BTC-29JUL22-25000-C",\\n    "side": "Buy",\\n    "positionIdx": 0,\\n    "orderType": "Limit",\\n    "qty": "0.1",\\n    "price": "1500",\\n    "timeInForce": "GoodTillCancel",\\n    "orderLinkId": "option-test-01"\\n}`,
   };
 
   const handleCopyGet = async () => {
@@ -115,17 +115,17 @@ const IntegrationGuidance = () => {
         <p className="api-desc mb-0">
           Mainnet:{" "}
           <span className="futures-text-api">
-            https://api.bybit.com
+            https://api.bitzup.com
           </span>
           {" "}or{" "}
           <span className="futures-text-api">
-            https://api.bytick.com
+            https://api.bitzup.com
           </span>
         </p>
         <p className="api-desc mb-3">
           Testnet:{" "}
           <span className="futures-text-api">
-            https://api-testnet.bybit.com
+            https://api.bitzup.com
           </span>
         </p>
 

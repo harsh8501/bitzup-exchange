@@ -90,7 +90,7 @@ export const GetIndexPriceComponents = () => {
         "weight": "0.1383220862762299"
       },
       {
-        "exchange": "Bybit",
+        "exchange": "Bitzup",
         "spotPair": "BTTUSDT",
         "equivalentPrice": "0.0006502",
         "multiplier": "1000",

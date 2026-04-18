@@ -25,7 +25,7 @@ export const SwitchMarginMode = () => {
 
   const codeMap = {
     HTTP: `POST /v5/position/switch-mode HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1675249072000
@@ -39,7 +39,7 @@ Content-Type: application/json
     "mode": 3
 }`,
     Python: `import requests
-url = "https://api.bybit.com/v5/position/switch-mode"
+url = "https://api.bitzup.com/v5/position/switch-mode"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1675249072000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "symbol": "BTCUSDT", "coin": None, "mode": 3}
@@ -51,7 +51,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/position/switch-mode"
+    url := "https://api.bitzup.com/v5/position/switch-mode"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "linear", "symbol": "BTCUSDT", "coin": nil, "mode": 3,
     })
@@ -70,7 +70,7 @@ public class SwitchPositionModeExample {
         String json = """{"category":"linear","symbol":"BTCUSDT","coin":null,"mode":3}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/position/switch-mode"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/switch-mode"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -80,7 +80,7 @@ public class SwitchPositionModeExample {
     Node: `const axios = require("axios");
 async function switchPositionMode() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/position/switch-mode",
+    const response = await axios.post("https://api.bitzup.com/v5/position/switch-mode",
       { category: "linear", symbol: "BTCUSDT", coin: null, mode: 3 },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

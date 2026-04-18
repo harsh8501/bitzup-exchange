@@ -111,7 +111,7 @@ const Header = ({ theme, setTheme }) => {
                             <nav className="nav-links d-none d-md-flex">
                                 <NavLink to="/" style={{marginLeft: '16px'}}>V1 API</NavLink>
                                 {/* <NavLink to="/p2p">P2P Trading</NavLink>
-                                <NavLink to="/bybit-pay">Bybit Pay</NavLink>
+                                <NavLink to="/bybit-pay">Bitzup Pay</NavLink>
                                 <NavLink to="/tax-api">Tax API V3</NavLink> */}
                             </nav>
                         </div>
@@ -232,7 +232,7 @@ const Header = ({ theme, setTheme }) => {
                             to="/bybit-pay"
                             className="drawer-main-item external"
                             >
-                            Bybit Pay ↗
+                            Bitzup Pay ↗
                             </NavLink>
 
                             <NavLink

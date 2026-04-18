@@ -29,8 +29,8 @@ const IntegrationGuidance = () => {
   };
   
   const codeMapHttp = {
-    GET: `GET /v5/order/realtime?category=option&symbol=BTC-29JUL22-25000-C HTTP/1.1\\nHost: api-testnet.bybit.com\\n-H 'X-BAPI-SIGN: XXXXXXXXXX' \\\\\\n-H 'X-BAPI-API-KEY: XXXXXXXXXXXXXXXXXX' \\\\\\n-H 'X-BAPI-TIMESTAMP: 1658384431891' \\\\\\n-H 'X-BAPI-RECV-WINDOW: 5000'`,
-    POST: `POST /v5/order/create HTTP/1.1\\nHost: api-testnet.bybit.com\\n-H 'X-Referer: XXXXXXXXXX' \\\\ [the header for broker users only]\\n-H 'X-BAPI-SIGN: XXXXXXXXXX' \\\\\\n-H 'X-BAPI-API-KEY: XXXXXXXXXXXXXXXXXX' \\\\\\n-H 'X-BAPI-TIMESTAMP: 1658385589135' \\\\\\n-H 'X-BAPI-RECV-WINDOW: 5000' \\\\\\n-H 'Content-Type: application/json' \\\\\\n\\n{\\n    "category": "option",\\n    "symbol": "BTC-29JUL22-25000-C",\\n    "side": "Buy",\\n    "positionIdx": 0,\\n    "orderType": "Limit",\\n    "qty": "0.1",\\n    "price": "1500",\\n    "timeInForce": "GoodTillCancel",\\n    "orderLinkId": "option-test-01"\\n}`
+    GET: `GET /v5/order/realtime?category=option&symbol=BTC-29JUL22-25000-C HTTP/1.1\\nHost: api.bitzup.com\\n-H 'X-BAPI-SIGN: XXXXXXXXXX' \\\\\\n-H 'X-BAPI-API-KEY: XXXXXXXXXXXXXXXXXX' \\\\\\n-H 'X-BAPI-TIMESTAMP: 1658384431891' \\\\\\n-H 'X-BAPI-RECV-WINDOW: 5000'`,
+    POST: `POST /v5/order/create HTTP/1.1\\nHost: api.bitzup.com\\n-H 'X-Referer: XXXXXXXXXX' \\\\ [the header for broker users only]\\n-H 'X-BAPI-SIGN: XXXXXXXXXX' \\\\\\n-H 'X-BAPI-API-KEY: XXXXXXXXXXXXXXXXXX' \\\\\\n-H 'X-BAPI-TIMESTAMP: 1658385589135' \\\\\\n-H 'X-BAPI-RECV-WINDOW: 5000' \\\\\\n-H 'Content-Type: application/json' \\\\\\n\\n{\\n    "category": "option",\\n    "symbol": "BTC-29JUL22-25000-C",\\n    "side": "Buy",\\n    "positionIdx": 0,\\n    "orderType": "Limit",\\n    "qty": "0.1",\\n    "price": "1500",\\n    "timeInForce": "GoodTillCancel",\\n    "orderLinkId": "option-test-01"\\n}`
   };
 
   const handleCopySig = async () => {
@@ -145,17 +145,17 @@ const IntegrationGuidance = () => {
         <p className="api-desc mb-0">
           Mainnet:{" "}
           <span className="futures-text-api">
-            https://api.bybit.com
+            https://api.bitzup.com
           </span>
           {" "}or{" "}
           <span className="futures-text-api">
-            https://api.bytick.com
+            https://api.bitzup.com
           </span>
         </p>
         <p className="api-desc mb-3">
           Testnet:{" "}
           <span className="futures-text-api">
-            https://api-testnet.bybit.com
+            https://api.bitzup.com
           </span>
         </p>
 

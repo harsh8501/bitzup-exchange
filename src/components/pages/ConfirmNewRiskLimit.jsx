@@ -25,7 +25,7 @@ export const ConfirmNewRiskLimit = () => {
 
   const codeMap = {
     HTTP: `POST /v5/position/confirm-pending-mmr HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1698051123673
@@ -37,7 +37,7 @@ Content-Type: application/json
     "symbol": "BTCUSDT"
 }`,
     Python: `import requests
-url = "https://api.bybit.com/v5/position/confirm-pending-mmr"
+url = "https://api.bitzup.com/v5/position/confirm-pending-mmr"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1698051123673", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "symbol": "BTCUSDT"}
@@ -49,7 +49,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bybit.com/v5/position/confirm-pending-mmr"
+    url := "https://api.bitzup.com/v5/position/confirm-pending-mmr"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "linear", "symbol": "BTCUSDT",
     })
@@ -68,7 +68,7 @@ public class ConfirmNewRiskLimitExample {
         String json = """{"category":"linear","symbol":"BTCUSDT"}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bybit.com/v5/position/confirm-pending-mmr"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/confirm-pending-mmr"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -78,7 +78,7 @@ public class ConfirmNewRiskLimitExample {
     Node: `const axios = require("axios");
 async function confirmNewRiskLimit() {
   try {
-    const response = await axios.post("https://api.bybit.com/v5/position/confirm-pending-mmr",
+    const response = await axios.post("https://api.bitzup.com/v5/position/confirm-pending-mmr",
       { category: "linear", symbol: "BTCUSDT" },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

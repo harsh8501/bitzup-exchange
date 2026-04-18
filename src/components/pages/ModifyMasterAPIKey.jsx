@@ -44,7 +44,7 @@ export const ModifyMasterAPIKey = () => {
 
     const codeMap = {
         HTTP: `POST /v5/user/update-api HTTP/1.1
-Host: api.bybit.com
+Host: api.bitzup.com
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1676431108106
 X-BAPI-RECV-WINDOW: 5000
