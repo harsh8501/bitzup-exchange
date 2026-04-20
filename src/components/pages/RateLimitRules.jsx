@@ -66,12 +66,14 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
         <div className="api-layout">
           <div className="row">
             {/* LEFT CONTENT */}
-            <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
+            <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               <div className="breadcrumb mb-4">
+                <span className="text-muted">Guide</span>
+                <span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span>
                 <span className="pill">Rate Limit Rules</span>
               </div>
 
-              <h1 className="api-title">Rate Limit Rules</h1>
+              <h1 className="api-title" style={{ fontSize: "32px", marginBottom: "16px" }}>Rate Limit Rules</h1>
 
               {/* ── IP Limit ── */}
               <div className="api-cover" id="ip-limit">IP Limit</div>
@@ -111,9 +113,11 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                 <li><span className="pill">X-Bapi-Limit-Reset-Timestamp</span> - the timestamp indicating when your request limit resets if you have exceeded your rate_limit. Otherwise, this is just the current timestamp (it may not exactly match <span className="pill">timeNow</span>).</li>
               </ul>
 
-              <h4 style={{ marginTop: "20px", marginBottom: "12px" }}>Http Response Header Example</h4>
-              <div className="code-block-wrapper" style={{ marginBottom: "24px" }}>
-                <pre className="code-block">{responseHeaderExample}</pre>
+              <h4 style={{ marginTop: "32px", marginBottom: "16px", color: "var(--text-primary)", fontSize: "18px" }}>Http Response Header Example</h4>
+              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                <pre style={{ margin: 0 }}>
+                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseHeaderExample}</code>
+                </pre>
               </div>
 
               {/* ── API Rate Limit Table ── */}
@@ -304,22 +308,18 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
             </div>
 
             {/* RIGHT SIDEBAR */}
-            <div className="col-lg-3 col-md-4 d-none d-md-block">
-              <div className="api-sidebar">
-                <ul>
-                  <li className={activeSection === "ip-limit" ? "active" : ""} onClick={() => scrollToSection("ip-limit")}>IP Limit</li>
-                  <li className={activeSection === "http-ip-limit" ? "active" : ""} onClick={() => scrollToSection("http-ip-limit")} style={{ paddingLeft: "20px" }}>HTTP IP limit</li>
-                  <li className={activeSection === "websocket-ip-limit" ? "active" : ""} onClick={() => scrollToSection("websocket-ip-limit")} style={{ paddingLeft: "20px" }}>Websocket IP limit</li>
-                  <li className={activeSection === "api-rate-limit" ? "active" : ""} onClick={() => scrollToSection("api-rate-limit")}>API Rate Limit</li>
-                  <li className={activeSection === "api-rate-limit-table" ? "active" : ""} onClick={() => scrollToSection("api-rate-limit-table")} style={{ paddingLeft: "20px" }}>API Rate Limit Table</li>
-                  <li className={activeSection === "trade" ? "active" : ""} onClick={() => scrollToSection("trade")} style={{ paddingLeft: "32px" }}>Trade</li>
-                  <li className={activeSection === "position" ? "active" : ""} onClick={() => scrollToSection("position")} style={{ paddingLeft: "32px" }}>Position</li>
-                  <li className={activeSection === "account" ? "active" : ""} onClick={() => scrollToSection("account")} style={{ paddingLeft: "32px" }}>Account</li>
-                  <li className={activeSection === "asset" ? "active" : ""} onClick={() => scrollToSection("asset")} style={{ paddingLeft: "32px" }}>Asset</li>
-                  <li className={activeSection === "user" ? "active" : ""} onClick={() => scrollToSection("user")} style={{ paddingLeft: "32px" }}>User</li>
-
-                  <li className={activeSection === "spread-trading" ? "active" : ""} onClick={() => scrollToSection("spread-trading")} style={{ paddingLeft: "32px" }}>Spread Trading</li>
-                  <li className={activeSection === "batch-endpoints" ? "active" : ""} onClick={() => scrollToSection("batch-endpoints")}>Instructions for batch endpoints</li>
+            <div className="col-lg-3 d-none d-lg-block">
+              <div className="api-sidebar-wrapper" style={{ position: "sticky", top: "100px", borderLeft: "1px solid var(--border-color)", paddingLeft: "20px" }}>
+                <h5 style={{ fontSize: "12px", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "16px", letterSpacing: "1px" }}>On this page</h5>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  <li className={activeSection === "ip-limit" ? "active" : ""} onClick={() => scrollToSection("ip-limit")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "ip-limit" || activeSection === "http-ip-limit" || activeSection === "websocket-ip-limit" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>IP Limit</li>
+                  <li className={activeSection === "api-rate-limit" ? "active" : ""} onClick={() => scrollToSection("api-rate-limit")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "api-rate-limit" || activeSection === "api-rate-limit-table" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>API Rate Limit</li>
+                  <li className={activeSection === "trade" ? "active" : ""} onClick={() => scrollToSection("trade")} style={{ padding: "8px 24px", cursor: "pointer", fontSize: "13px", color: activeSection === "trade" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>● Trade</li>
+                  <li className={activeSection === "position" ? "active" : ""} onClick={() => scrollToSection("position")} style={{ padding: "8px 24px", cursor: "pointer", fontSize: "13px", color: activeSection === "position" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>● Position</li>
+                  <li className={activeSection === "account" ? "active" : ""} onClick={() => scrollToSection("account")} style={{ padding: "8px 24px", cursor: "pointer", fontSize: "13px", color: activeSection === "account" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>● Account</li>
+                  <li className={activeSection === "asset" ? "active" : ""} onClick={() => scrollToSection("asset")} style={{ padding: "8px 24px", cursor: "pointer", fontSize: "13px", color: activeSection === "asset" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>● Asset</li>
+                  <li className={activeSection === "user" ? "active" : ""} onClick={() => scrollToSection("user")} style={{ padding: "8px 24px", cursor: "pointer", fontSize: "13px", color: activeSection === "user" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>● User</li>
+                  <li className={activeSection === "batch-endpoints" ? "active" : ""} onClick={() => scrollToSection("batch-endpoints")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "batch-endpoints" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s", marginTop: "12px" }}>Batch Endpoints</li>
                 </ul>
               </div>
             </div>

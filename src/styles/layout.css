@@ -5,9 +5,10 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: var(--bg-header);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
-    padding: 12px 0px;
+    padding: 12px 24px;
 }
 
 .nav-links a {
@@ -23,7 +24,7 @@
 
 .nav-links a.active,
 .nav-links a:hover {
-    color: #2edbad;
+    color: var(--text-accent);
 }
 
 .icon-btn {
@@ -76,7 +77,7 @@
 }
 
 .extras-trigger:hover {
-    color: #2edbad;
+    color: var(--text-accent);
 }
 
 .extras-menu {
@@ -132,7 +133,7 @@
 }
 
 .lang-trigger:hover {
-    color: #2edbad;
+    color: var(--text-accent);
 }
 
 .lang-trigger svg {
@@ -169,8 +170,8 @@
 }
 
 .lang-item.active {
-    background: #3a3a3a;
-    color: #2edbad;
+    background: var(--accent-neon-dim);
+    color: var(--text-accent);
 }
 
 .lang-item:hover {
@@ -532,7 +533,7 @@
 
 .sidebar.collapsed {
     width: 50px;
-    background: #0a221c;
+    background: var(--bg-secondary);
 }
 
 [data-theme="light"] .sidebar.collapsed {
@@ -579,7 +580,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: #0a221c;
+    background: var(--bg-secondary);
 }
 
 [data-theme="light"] .sidebar-footer {
@@ -606,7 +607,7 @@
 }
 
 .collapse-btn:hover {
-    color: #2edbad;
+    color: var(--text-accent);
 }
 
 [data-theme="light"] .collapse-btn {
@@ -681,8 +682,8 @@
 }
 
 [data-theme="dark"] .sidebar-link.active {
-    background: #0a221c;
-    color: #2edbad;
+    background: var(--accent-neon-dim);
+    color: var(--text-accent);
     font-weight: 500;
 }
 
@@ -749,11 +750,11 @@
 }
 
 .pill {
-    background: #0a221c;
+    background: var(--accent-neon-dim);
     padding: 2px 8px;
     border-radius: 6px;
     margin: 0 4px;
-    color: #2edbad;
+    color: var(--text-accent);
     font-size: 13px;
 }
 
@@ -779,7 +780,7 @@
 }
 
 .api-cover {
-    border-left: 3px solid #2edbad;
+    border-left: 3px solid var(--text-accent);
     padding-left: 12px;
     margin: 24px 0;
     color: #fff;
@@ -795,9 +796,9 @@
 }
 
 .method {
-    color: #2edbad;
+    color: var(--text-accent);
     font-weight: 600;
-    background: #0a221c;
+    background: var(--accent-neon-dim);
     font-size: 13px;
 }
 

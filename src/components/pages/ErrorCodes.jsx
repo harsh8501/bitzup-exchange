@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 export const ErrorCodes = () => {
     const contentRef = useRef(null);
@@ -59,10 +60,12 @@ export const ErrorCodes = () => {
                         {/* LEFT CONTENT */}
                         <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                             <div className="breadcrumb mb-4">
+                                <span className="text-muted">Guide</span>
+                                <span className="mx-2"><IoIosArrowForward className="kline-arrow" style={{ verticalAlign: "middle" }} /></span>
                                 <span className="pill">Error Codes</span>
                             </div>
 
-                            <h1 className="api-title">Error Codes</h1>
+                            <h1 className="api-title" style={{ fontSize: "32px", marginBottom: "32px" }}>Error Codes</h1>
 
                             {/* HTTP Code */}
                             <h2 className="top-req-text" id="http-code">HTTP Code</h2>
@@ -194,110 +197,8 @@ export const ErrorCodes = () => {
                                 { code: "110071", msg: "orderLinkId is duplicated" },
                             ]} />
 
-                            {/* Spot Trade */}
-                            <h2 className="top-req-text" id="spot-trade">Spot Trade</h2>
-                            <ErrorTable data={[
-                                { code: "170000", msg: "Business Error" },
-                                { code: "170001", msg: "Internal error" },
-                                { code: "170005", msg: "Too many new orders; current limit is %s orders per %s." },
-                                { code: "170007", msg: "Timeout waiting for response from backend server." },
-                                { code: "170010", msg: "Purchase failed: Exceed the maximum position limit of leveraged tokens, the## current total net value of positions is %s USDT, and positions can be opened up to {0} USDT" },
-                                { code: "170031", msg: "The feature has been suspended" },
-                                { code: "170032", msg: "Network error. Please try again later" },
-                                { code: "170033", msg: "margin trade banned" },
-                                { code: "170034", msg: "Leverage token trading banned" },
-                                { code: "170035", msg: "(Spot) This order could not be filled or partially filled." },
-                                { code: "170036", msg: "Cross margin order exceeded!" },
-                                { code: "170037", msg: "Order has been cancelled by the operator" },
-                                { code: "170105", msg: "Parameter '%s' was empty." },
-                                { code: "170115", msg: "Invalid timeInForce." },
-                                { code: "170116", msg: "Invalid orderType." },
-                                { code: "170117", msg: "Invalid side." },
-                                { code: "170121", msg: "Invalid symbol." },
-                                { code: "170124", msg: "Order amount too large." },
-                                { code: "170130", msg: "Data sent for paramter '%s' is not valid." },
-                                { code: "170131", msg: "Balance is not enough" },
-                                { code: "170132", msg: "Order price too high, too low, or too much precision." },
-                                { code: "170133", msg: "Order quantity too large, too small, or too much precision." },
-                                { code: "170134", msg: "Order was not found." },
-                                { code: "170135", msg: "Order is cancelling." },
-                                { code: "170137", msg: "Order already filled" },
-                                { code: "170139", msg: "Order already cancelled" },
-                                { code: "170140", msg: "Minimum order qty has not been met" },
-                                { code: "170141", msg: "Invalid price step." },
-                                { code: "170190", msg: "Cancel order has been finished" },
-                                { code: "170197", msg: "Your order quantity to buy is too large. The filled price may deviates significantly from the mark price. Please try to reduce the amount of your order" },
-                                { code: "170198", msg: "Your order quantity to sell is too large. The filled price may deviates significantly from the mark price. Please try to reduce the amount of your order" },
-                                { code: "170199", msg: "Your order quantity to buy is too large. The filled price may deviates significantly from the last price. Please try to reduce the amount of your order" },
-                                { code: "170200", msg: "Your order quantity to sell is too large. The filled price may deviates significantly from the last price. Please try to reduce the amount of your order" },
-                                { code: "170221", msg: "This coin does not exist." },
-                                { code: "170222", msg: "Too many requests in this time frame." },
-                                { code: "170223", msg: "Your Spot account with Institutional Margin mode enabled has not been activated, please go to Bitzup website to activate" },
-                                { code: "170224", msg: "(Spot) Your order quantity to buy is too large." },
-                                { code: "170226", msg: "This pair is not available for Institutional Margin mode." },
-                                { code: "170227", msg: "Institutional Margin Trading is not yet available for this pair." },
-                                { code: "170228", msg: "Unexpected error. Please check Order History for your recent orders." },
-                                { code: "170229", msg: "The requested quantity exceeds the maximum quantity" },
-                                { code: "170234", msg: "Order's notional value has exceeded the limit." },
-                                { code: "170241", msg: "The OCO order number is out of limit" },
-                            ]} />
-
-                            {/* Spot Margin Trade */}
-                            <h2 className="top-req-text" id="spot-margin-trade">Spot Margin Trade</h2>
-                            <ErrorTable data={[
-                                { code: "170101", msg: "Spot margin switch failed" },
-                                { code: "170102", msg: "Spot margin switch is not available, it will cause a liquidation" },
-                                { code: "170103", msg: "Spot margin switch is not available, there are active orders" },
-                                { code: "170104", msg: "Spot margin switch is not available, there is no position" },
-                                { code: "170105", msg: "Can not toggle during pending spot margin" },
-                                { code: "170106", msg: "Can not toggle during pending stop order" },
-                                { code: "170107", msg: "Can not toggle in cross margin mode" },
-                                { code: "170108", msg: "Can not toggle while in a liquidation" },
-                                { code: "170109", msg: "Spot margin current status error" },
-                                { code: "170110", msg: "Spot margin switching in progress" },
-                                { code: "170111", msg: "Not allow to switch in pre market trading" },
-                            ]} />
-
-                            {/* Asset */}
-                            <h2 className="top-req-text" id="asset">Asset</h2>
-                            <ErrorTable data={[
-                                { code: "131001", msg: "Internal error" },
-                                { code: "131002", msg: "Withdraw address chain or destination tag are not equal" },
-                                { code: "131003", msg: "Internal error" },
-                                { code: "131004", msg: "KYC needed" },
-                                { code: "131065", msg: "Your KYC information is incomplete, please go to the KYC information page of the web or app to complete the information." },
-                                { code: "131066", msg: "This address does not support withdrawals for the time being. Please switch to another address for withdrawing" },
-                                { code: "131067", msg: "Travel rule verification failed, please contact the target exchange." },
-                                { code: "131068", msg: "Travel rule information is insufficient, please provide additional details." },
-                                { code: "131069", msg: "Unable to withdraw to the receipt, please contact the target exchange." },
-                                { code: "131070", msg: "The recipient's name is mismatched with the targeted exchange." },
-                                { code: "131071", msg: "The recipient has not undergone KYC verification." },
-                                { code: "131072", msg: "Your withdrawal currency is not supported by the target exchange." },
-                                { code: "131073", msg: "Your withdrawal address is mismatched or invalid on the target exchange." },
-                                { code: "131084", msg: "The withdrawal amount exceeds your daily withdrawal limit." },
-                                { code: "131085", msg: "The withdrawal amount is lower than the minimum withdrawal amount." },
-                                { code: "131086", msg: "Withdrawal address does not exist or has not been added." },
-                                { code: "131087", msg: "The withdrawal address is not in the address book." },
-                                { code: "131088", msg: "Withdrawal amount exceeds the risk limit." },
-                                { code: "131089", msg: "Withdrawal failed. Contact support." },
-                                { code: "131090", msg: "Withdrawal has been submitted. Please check the withdrawal status in your withdrawal records." },
-                                { code: "131091", msg: "Insufficient balance" },
-                                { code: "131092", msg: "Withdraw amount exceeds the daily maximum" },
-                                { code: "131093", msg: "There is an ongoing withdrawal of this coin" },
-                                { code: "131094", msg: "Please wait for the last withdrawal transaction to complete" },
-                                { code: "131095", msg: "The account is under risk control." },
-                                { code: "131200", msg: "Service error" },
-                                { code: "131201", msg: "Internal transfer failed" },
-                                { code: "131202", msg: "Insufficient balance" },
-                                { code: "131203", msg: "Invalid coin" },
-                                { code: "131204", msg: "Transfer amount exceeds the risk limit" },
-                                { code: "131205", msg: "Failed to complete the transfer, please try again later" },
-                                { code: "131210", msg: "Withdrawal address is blocked" },
-                                { code: "131215", msg: "Transfer amount has exceeded the maximum amount" },
-                            ]} />
-
                             {/* User */}
-                            <h2 className="top-req-text" id="user">User</h2>
+                            <h2 className="top-req-text" id="user" style={{ borderBottom: "1px solid var(--border-color)", paddingBottom: "12px", marginTop: "40px" }}>User</h2>
                             <ErrorTable data={[
                                 { code: "10001", msg: "Request parameter error" },
                                 { code: "140001", msg: "API key has expired" },
@@ -313,20 +214,17 @@ export const ErrorCodes = () => {
                                 { code: "140011", msg: "API key already exists" },
                                 { code: "140012", msg: "API key permission is not correct" },
                             ]} />
-
                         </div>
 
-                        {/* RIGHT SIDEBAR */}
-                        <div className="col-lg-3 col-md-4 d-none d-md-block">
-                            <div className="api-sidebar">
-                                <ul>
-                                    <li className={activeSection === "http-code" ? "active" : ""} onClick={() => scrollToSection("http-code")}>HTTP Code</li>
-                                    <li className={activeSection === "ws-oe-general-code" ? "active" : ""} onClick={() => scrollToSection("ws-oe-general-code")}>WS OE General code</li>
-                                    <li className={activeSection === "uta" ? "active" : ""} onClick={() => scrollToSection("uta")}>UTA</li>
-                                    <li className={activeSection === "spot-trade" ? "active" : ""} onClick={() => scrollToSection("spot-trade")}>Spot Trade</li>
-                                    <li className={activeSection === "spot-margin-trade" ? "active" : ""} onClick={() => scrollToSection("spot-margin-trade")}>Spot Margin Trade</li>
-                                    <li className={activeSection === "asset" ? "active" : ""} onClick={() => scrollToSection("asset")}>Asset</li>
-                                    <li className={activeSection === "user" ? "active" : ""} onClick={() => scrollToSection("user")}>User</li>
+                        <div className="col-lg-3 d-none d-lg-block">
+                            <div className="api-sidebar-wrapper" style={{ position: "sticky", top: "100px", borderLeft: "1px solid var(--border-color)", paddingLeft: "20px", maxHeight: "calc(100vh - 120px)", overflowY: "auto" }}>
+                                <h5 style={{ fontSize: "12px", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "16px", letterSpacing: "1px" }}>On this page</h5>
+                                <ul style={{ listStyle: "none", padding: 0 }}>
+                                    <li className={activeSection === "http-code" ? "active" : ""} onClick={() => scrollToSection("http-code")} style={{ padding: "6px 0", cursor: "pointer", fontSize: "13px", color: activeSection === "http-code" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>HTTP Code</li>
+                                    <li className={activeSection === "ws-oe-general-code" ? "active" : ""} onClick={() => scrollToSection("ws-oe-general-code")} style={{ padding: "6px 0", cursor: "pointer", fontSize: "13px", color: activeSection === "ws-oe-general-code" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>WS OE General code</li>
+                                    <li className={activeSection === "uta" ? "active" : ""} onClick={() => scrollToSection("uta")} style={{ padding: "6px 0", cursor: "pointer", fontSize: "13px", color: activeSection === "uta" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>UTA</li>
+                                    <li className={activeSection === "asset" ? "active" : ""} onClick={() => scrollToSection("asset")} style={{ padding: "6px 0", cursor: "pointer", fontSize: "13px", color: activeSection === "asset" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Asset</li>
+                                    <li className={activeSection === "user" ? "active" : ""} onClick={() => scrollToSection("user")} style={{ padding: "6px 0", cursor: "pointer", fontSize: "13px", color: activeSection === "user" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>User</li>
                                 </ul>
                             </div>
                         </div>

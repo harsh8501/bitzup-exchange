@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 export const EnumsDefinitions = () => {
     const contentRef = useRef(null);
@@ -53,10 +54,11 @@ export const EnumsDefinitions = () => {
     );
 
     const EnumList = ({ items }) => (
-        <ul>
+        <ul style={{ listStyle: "none", padding: 0 }}>
             {items.map((item, i) => (
-                <li key={i} style={{ marginBottom: "8px" }}>
-                    <span className="pill">{item.value}</span> {item.desc && <span>{item.desc}</span>}
+                <li key={i} style={{ marginBottom: "12px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                    <span className="pill" style={{ background: "var(--accent-neon-dim)", color: "var(--text-accent)", border: "1px solid var(--text-accent-dim)", padding: "2px 8px", borderRadius: "4px", fontSize: "12px", whiteSpace: "nowrap" }}>{item.value}</span> 
+                    {item.desc && <span style={{ color: "var(--text-secondary)", fontSize: "14px", lineHeight: "1.6" }}>{item.desc}</span>}
                 </li>
             ))}
         </ul>
@@ -70,9 +72,11 @@ export const EnumsDefinitions = () => {
                         {/* LEFT CONTENT */}
                         <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                             <div className="breadcrumb mb-4">
+                                <span className="text-muted">Guide</span>
+                                <span className="mx-2"><IoIosArrowForward className="kline-arrow" style={{ verticalAlign: "middle" }} /></span>
                                 <span className="pill">Enums Definitions</span>
                             </div>
-                            <h1 className="api-title">Enums Definitions</h1>
+                            <h1 className="api-title" style={{ fontSize: "32px", marginBottom: "32px" }}>Enums Definitions</h1>
 
                             {/* locale */}
                             <EnumSection id="locale" title="locale">
@@ -591,28 +595,30 @@ export const EnumsDefinitions = () => {
                         </div>
 
                         {/* RIGHT SIDEBAR */}
-                        <div className="col-lg-3 col-md-4 d-none d-md-block">
-                            <div className="api-sidebar">
-                                <ul>
-                                    {sections.map((id) => {
-                                        const labels = {
-                                            "type-uta-translog": "type (uta-translog)",
-                                            "type-contract-translog": "type (contract-translog)",
-                                            "sbe-orderStatus": "sbe-orderStatus",
-                                        };
-                                        return (
-                                            <li
-                                                key={id}
-                                                className={activeSection === id ? "active" : ""}
-                                                onClick={() => scrollToSection(id)}
-                                            >
-                                                {labels[id] || id}
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
+                    <div className="col-lg-3 d-none d-lg-block">
+                        <div className="api-sidebar-wrapper" style={{ position: "sticky", top: "100px", borderLeft: "1px solid var(--border-color)", paddingLeft: "20px", maxHeight: "calc(100vh - 120px)", overflowY: "auto" }}>
+                            <h5 style={{ fontSize: "12px", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "16px", letterSpacing: "1px" }}>On this page</h5>
+                            <ul style={{ listStyle: "none", padding: 0 }}>
+                                {sections.map((id) => {
+                                    const labels = {
+                                        "type-uta-translog": "type (uta-translog)",
+                                        "type-contract-translog": "type (contract-translog)",
+                                        "sbe-orderStatus": "sbe-orderStatus",
+                                    };
+                                    return (
+                                        <li
+                                            key={id}
+                                            className={activeSection === id ? "active" : ""}
+                                            onClick={() => scrollToSection(id)}
+                                            style={{ padding: "6px 0", cursor: "pointer", fontSize: "13px", color: activeSection === id ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}
+                                        >
+                                            {labels[id] || id}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

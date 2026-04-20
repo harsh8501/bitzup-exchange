@@ -22,7 +22,7 @@ export const PlaceOrder = () => {
     "retMsg": "OK",
     "result": {
         "orderId": "1321003749386327552",
-        "orderLinkId": "spot-test-postonly"
+        "orderLinkId": "futures-test-postonly"
     },
     "retExtInfo": {},
     "time": 1672211918471
@@ -38,14 +38,14 @@ X-BAPI-RECV-WINDOW: 5000
 Content-Type: application/json
 
 {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT",
     "side": "Buy",
     "orderType": "Limit",
     "qty": "0.1",
     "price": "15600",
     "timeInForce": "GTC",
-    "orderLinkId": "spot-test-postonly"
+    "orderLinkId": "futures-test-postonly"
 }`,
         Python: `import requests
 
@@ -58,14 +58,14 @@ headers = {
     "X-BAPI-RECV-WINDOW": "5000"
 }
 payload = {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT",
     "side": "Buy",
     "orderType": "Limit",
     "qty": "0.1",
     "price": "15600",
     "timeInForce": "GTC",
-    "orderLinkId": "spot-test-postonly"
+    "orderLinkId": "futures-test-postonly"
 }
 try:
     resp = requests.post(url, json=payload, headers=headers, timeout=10)
@@ -136,14 +136,14 @@ placeOrder();`,
                 <div className="row">
                     <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                         <div className="breadcrumb mb-4">
-                            <span className="kline-market">Trade</span>
+                            <span className="text-muted">Trade</span>
                             <span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span>
                             <span className="pill">Place Order</span>
                         </div>
 
-                        <h1 className="api-title">Place Order</h1>
-                        <p className="api-desc">
-                            This endpoint supports creating orders for Spot, Margin trading, USDT perpetual, USDT futures, USDC perpetual, USDC futures, Inverse Futures, and Options.
+                        <h1 className="api-title" style={{ fontSize: "32px", marginBottom: "16px" }}>Place Order</h1>
+                        <p className="api-desc" style={{ fontSize: "16px", color: "var(--text-secondary)", marginBottom: "24px" }}>
+                            This endpoint supports creating orders for USDT perpetual, USDT futures, USDC perpetual, USDC futures, and Inverse Futures.
                         </p>
 
                         <div className="api-info-box">
@@ -162,10 +162,10 @@ placeOrder();`,
 
                         <div className="api-cover">Requires Authentication</div>
 
-                        <h3 className="top-req-text" id="http">HTTP Request</h3>
-                        <div className="http-path">
-                            <span className="method post">POST</span>
-                            <span className="path">/v5/order/create</span>
+                        <h3 className="top-req-text" id="http" style={{ borderBottom: "1px solid var(--border-color)", paddingBottom: "12px", marginTop: "40px" }}>HTTP Request</h3>
+                        <div className="http-path" style={{ background: "var(--bg-card)", padding: "12px 16px", borderRadius: "8px", display: "flex", gap: "12px", alignItems: "center", marginBottom: "32px" }}>
+                            <span className="method" style={{ padding: "4px 8px", borderRadius: "4px" }}>POST</span>
+                            <span className="path" style={{ fontWeight: "500", letterSpacing: "0.5px" }}>/v5/order/create</span>
                         </div>
 
                         <h3 className="top-req-text" id="request-params">Request Parameters</h3>
@@ -173,16 +173,13 @@ placeOrder();`,
                             <table className="table table-striped api-table mb-0">
                                 <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                 <tbody>
-                                    <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
+                                    <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code></td></tr>
                                     <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, e.g. <code>BTCUSDT</code>, uppercase only</td></tr>
-                                    <tr><td>isLeverage</td><td>false</td><td>integer</td><td>Spot only: <code>0</code> (default: false), <code>1</code> (true: margin trading)</td></tr>
                                     <tr><td>side</td><td><strong>true</strong></td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
                                     <tr><td>orderType</td><td><strong>true</strong></td><td>string</td><td><code>Market</code>, <code>Limit</code></td></tr>
                                     <tr><td>qty</td><td><strong>true</strong></td><td>string</td><td>Order quantity</td></tr>
-                                    <tr><td>marketUnit</td><td>false</td><td>string</td><td>Spot Market Buy unit: <code>baseCoin</code>, <code>quoteCoin</code></td></tr>
                                     <tr><td>price</td><td>false</td><td>string</td><td>Order price. Required for Limit orders</td></tr>
                                     <tr><td>triggerDirection</td><td>false</td><td>integer</td><td>Conditional order: <code>1</code> (rises to), <code>2</code> (falls to)</td></tr>
-                                    <tr><td>orderFilter</td><td>false</td><td>string</td><td>Spot only: <code>Order</code>, <code>tpslOrder</code>, <code>StopOrder</code></td></tr>
                                     <tr><td>triggerPrice</td><td>false</td><td>string</td><td>Trigger price for conditional orders</td></tr>
                                     <tr><td>triggerBy</td><td>false</td><td>string</td><td>Trigger type: <code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
                                     <tr><td>orderIv</td><td>false</td><td>string</td><td>Options only: Implied volatility</td></tr>
@@ -228,26 +225,31 @@ placeOrder();`,
                                 <button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>
                             ))}
                         </div>
-                        <div className="api-code-box position-relative">
-                            <button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button>
-                            <pre><code>{codeMap[lang]}</code></pre>
+                        <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                            <button className="copy-btn" onClick={handleCopy} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
+                                {copied ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
+                            </button>
+                            <pre style={{ margin: 0 }}><code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMap[lang]}</code></pre>
                         </div>
 
                         <h3 className="top-req-text" id="response-example">Response Example</h3>
-                        <div className="api-code-box position-relative">
-                            <button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button>
-                            <pre><code>{responseCode}</code></pre>
+                        <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                            <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
+                                {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
+                            </button>
+                            <pre style={{ margin: 0 }}><code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseCode}</code></pre>
                         </div>
                     </div>
 
-                    <div className="col-lg-3 col-md-4 d-none d-md-block">
-                        <div className="api-sidebar">
-                            <ul>
-                                <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>
-                                <li className={activeSection === "request-params" ? "active" : ""} onClick={() => scrollToSection("request-params")}>Request Parameters</li>
-                                <li className={activeSection === "response-params" ? "active" : ""} onClick={() => scrollToSection("response-params")}>Response Parameters</li>
-                                <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")}>Request Example</li>
-                                <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")}>Response Example</li>
+                    <div className="col-lg-3 d-none d-lg-block">
+                        <div className="api-sidebar-wrapper" style={{ position: "sticky", top: "100px", borderLeft: "1px solid var(--border-color)", paddingLeft: "20px" }}>
+                            <h5 style={{ fontSize: "12px", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "16px", letterSpacing: "1px" }}>On this page</h5>
+                            <ul style={{ listStyle: "none", padding: 0 }}>
+                                <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "http" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>HTTP Request</li>
+                                <li className={activeSection === "request-params" ? "active" : ""} onClick={() => scrollToSection("request-params")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "request-params" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Request Parameters</li>
+                                <li className={activeSection === "response-params" ? "active" : ""} onClick={() => scrollToSection("response-params")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "response-params" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Response Parameters</li>
+                                <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "request-example" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Request Example</li>
+                                <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "response-example" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Response Example</li>
                             </ul>
                         </div>
                     </div>
