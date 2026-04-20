@@ -48,7 +48,7 @@ const Sidebar = () => {
             <NavLink to="/docs/v5/market/premium-index-price-kline" className="sidebar-link">Get Premium Index Price Kline</NavLink>
             <NavLink to="/docs/v5/market/instruments-info" className="sidebar-link">Get Instruments Info</NavLink>
             <NavLink to="/docs/v5/market/orderbook" className="sidebar-link">Get Orderbook</NavLink>
-            <NavLink to="/docs/v5/market/rpi-orderbook" className="sidebar-link">Get RPI Orderbook</NavLink>
+
             <NavLink to="/docs/v5/market/tickers" className="sidebar-link">Get Tickers</NavLink>
             <NavLink to="/docs/v5/market/funding-rate-history" className="sidebar-link">Get Funding Rate History</NavLink>
             <NavLink to="/docs/v5/market/recent-public-trades" className="sidebar-link">Get Recent Public Trades</NavLink>
@@ -94,7 +94,7 @@ const Sidebar = () => {
             <NavLink to="/docs/v5/position/set-auto-add-margin" className="sidebar-link">Set Auto Add Margin</NavLink>
             <NavLink to="/docs/v5/position/add-margin" className="sidebar-link">Add Or Reduce Margin</NavLink>
             <NavLink to="/docs/v5/position/closed-pnl" className="sidebar-link">Get Closed PnL (2 years)</NavLink>
-            <NavLink to="/docs/v5/position/closed-options-positions" className="sidebar-link">Get Closed Options Positions (6 months)</NavLink>
+
             <NavLink to="/docs/v5/position/move-position" className="sidebar-link">Move Position</NavLink>
             <NavLink to="/docs/v5/position/move-position-history" className="sidebar-link">Get Move Position History</NavLink>
             <NavLink to="/docs/v5/position/confirm-new-risk-limit" className="sidebar-link">Confirm New Risk Limit</NavLink>
@@ -120,13 +120,9 @@ const Sidebar = () => {
             <NavLink to="/docs/v5/account/dcp-info" className="sidebar-link">Get DCP Info</NavLink>
             <NavLink to="/docs/v5/account/set-collateral-coin" className="sidebar-link">Set Collateral Coin</NavLink>
             <NavLink to="/docs/v5/account/set-margin-mode" className="sidebar-link">Set Margin Mode</NavLink>
-            <NavLink to="/docs/v5/account/set-spot-hedging" className="sidebar-link">Set Spot Hedging</NavLink>
+
             <NavLink to="/docs/v5/account/borrow-history" className="sidebar-link">Get Borrow History (2 years)</NavLink>
             <NavLink to="/docs/v5/account/batch-set-collateral-coin" className="sidebar-link">Batch Set Collateral Coin</NavLink>
-            <NavLink to="/docs/v5/account/coin-greeks" className="sidebar-link">Get Coin Greeks</NavLink>
-            <NavLink to="/docs/v5/account/mmp-state" className="sidebar-link">Get MMP State</NavLink>
-            <NavLink to="/docs/v5/account/reset-mmp" className="sidebar-link">Reset MMP</NavLink>
-            <NavLink to="/docs/v5/account/set-mmp" className="sidebar-link">Set MMP</NavLink>
             <NavLink to="/docs/v5/account/user-setting-config" className="sidebar-link">Get Trade Behaviour Config</NavLink>
             <NavLink to="/docs/v5/account/set-price-limit" className="sidebar-link">Set Price Limit Behaviour</NavLink>
           </div>
@@ -180,33 +176,7 @@ const Sidebar = () => {
               </div>
             )}
 
-            {/* Convert, Convert Small Balances, Fiat Convert */}
-            <div className="sidebar-section collapsible sidebar-link sub-header" onClick={(e) => toggleSubSection(e, "asset_convert")}>
-              <span>Convert</span><IoIosArrowForward className={openSubSection === "asset_convert" ? "rotate" : ""} />
-            </div>
-            {openSubSection === "asset_convert" && (
-              <div className="sidebar-sub deep">
-                <NavLink to="/docs/v5/asset/convert/rate" className="sidebar-link">Get Convert Rate</NavLink>
-              </div>
-            )}
 
-            <div className="sidebar-section collapsible sidebar-link sub-header" onClick={(e) => toggleSubSection(e, "asset_convert_small")}>
-              <span>Convert Small Balances</span><IoIosArrowForward className={openSubSection === "asset_convert_small" ? "rotate" : ""} />
-            </div>
-            {openSubSection === "asset_convert_small" && (
-              <div className="sidebar-sub deep">
-                <NavLink to="/docs/v5/asset/convert-small/records" className="sidebar-link">Convert Small Balances Records</NavLink>
-              </div>
-            )}
-
-            <div className="sidebar-section collapsible sidebar-link sub-header" onClick={(e) => toggleSubSection(e, "asset_fiat_convert")}>
-              <span>Fiat-Convert</span><IoIosArrowForward className={openSubSection === "asset_fiat_convert" ? "rotate" : ""} />
-            </div>
-            {openSubSection === "asset_fiat_convert" && (
-              <div className="sidebar-sub deep">
-                <NavLink to="/docs/v5/asset/fiat-convert/history" className="sidebar-link">Fiat Convert History</NavLink>
-              </div>
-            )}
 
           </div>
         )}
@@ -261,7 +231,7 @@ const Sidebar = () => {
                 <NavLink to="/docs/v5/websocket/private/position" className="sidebar-link">Position</NavLink>
                 <NavLink to="/docs/v5/websocket/private/execution" className="sidebar-link">Execution</NavLink>
                 <NavLink to="/docs/v5/websocket/private/wallet" className="sidebar-link">Wallet</NavLink>
-                <NavLink to="/docs/v5/websocket/private/greek" className="sidebar-link">Greek</NavLink>
+
               </div>
             )}
           </div>

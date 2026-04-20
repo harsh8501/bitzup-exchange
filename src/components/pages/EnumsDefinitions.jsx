@@ -11,7 +11,7 @@ export const EnumsDefinitions = () => {
         "timeInForce", "createType", "execType", "orderType", "stopOrderType",
         "tickDirection", "interval", "intervalTime", "positionIdx", "positionStatus",
         "rejectReason", "accountType", "transferStatus", "depositStatus",
-        "withdrawStatus", "triggerBy", "cancelType", "optionPeriod",
+        "withdrawStatus", "triggerBy", "cancelType",
         "dataRecordingPeriod", "contractType", "status", "symbolType",
         "curAuctionPhase", "marginTrading", "copyTrading",
         "type-uta-translog", "type-contract-translog",
@@ -96,25 +96,19 @@ export const EnumsDefinitions = () => {
                             {/* announcementTag */}
                             <EnumSection id="announcementTag" title="announcementTag">
                                 <EnumList items={[
-                                    { value: "Spot" }, { value: "Derivatives" }, { value: "Spot Listings" }, { value: "BTC" }, { value: "ETH" },
-                                    { value: "Trading Bots" }, { value: "USDC" }, { value: "Leveraged Tokens" }, { value: "USDT" },
-                                    { value: "Margin Trading" }, { value: "Partnerships" }, { value: "Launchpad" }, { value: "Upgrades" },
-                                    { value: "ByVotes" }, { value: "Delistings" }, { value: "VIP" }, { value: "Futures" },
-                                    { value: "Institutions" }, { value: "Options" }, { value: "WEB3" }, { value: "Copy Trading" },
-                                    { value: "Earn" }, { value: "Bitzup Savings" }, { value: "Dual Asset" }, { value: "Liquidity Mining" },
-                                    { value: "Shark Fin" }, { value: "Launchpool" }, { value: "NFT GrabPic" }, { value: "Buy Crypto" },
-                                    { value: "P2P Trading" }, { value: "Fiat Deposit" }, { value: "Crypto Deposit" },
-                                    { value: "MT4" }, { value: "Lucky Draw" }, { value: "Unified Trading Account" },
+                                    { value: "Derivatives" }, { value: "BTC" }, { value: "ETH" },
+                                    { value: "USDC" }, { value: "USDT" },
+                                    { value: "Upgrades" }, { value: "Futures" },
+                                    { value: "Institutions" }, { value: "Copy Trading" },
+                                    { value: "Unified Trading Account" },
                                 ]} />
                             </EnumSection>
 
                             {/* category */}
                             <EnumSection id="category" title="category">
                                 <EnumList items={[
-                                    { value: "spot" },
                                     { value: "linear", desc: "USDT perpetual, USDT Futures and USDC contract, including USDC perp, USDC futures" },
                                     { value: "inverse", desc: "Inverse contract, including Inverse perp, Inverse futures" },
-                                    { value: "option" },
                                 ]} />
                             </EnumSection>
 
@@ -129,7 +123,7 @@ export const EnumsDefinitions = () => {
                                 <p><strong>closed status</strong></p>
                                 <EnumList items={[
                                     { value: "Rejected" },
-                                    { value: "PartiallyFilledCanceled", desc: "Only spot has this order status" },
+
                                     { value: "Filled" },
                                     { value: "Cancelled", desc: "In derivatives, orders with this status may have an executed qty" },
                                     { value: "Triggered", desc: "instantaneous state for conditional orders from Untriggered to New" },
@@ -145,14 +139,7 @@ export const EnumsDefinitions = () => {
                                     { value: "FOK", desc: "FillOrKill" },
                                     { value: "PostOnly" },
                                 ]} />
-                                <p><span className="pill">RPI</span></p>
-                                <ul>
-                                    <li style={{ marginBottom: "6px" }}>Exclusive Matching: Only match non-algorithmic users; no execution against orders from Open API.</li>
-                                    <li style={{ marginBottom: "6px" }}>Post-Only Mechanism: Act as maker orders, adding liquidity</li>
-                                    <li style={{ marginBottom: "6px" }}>Lower Priority: Execute after non-RPI orders at the same price level.</li>
-                                    <li style={{ marginBottom: "6px" }}>Limited Access: Initially for select market makers across multiple pairs.</li>
-                                    <li style={{ marginBottom: "6px" }}>Order Book Updates: Excluded from API but displayed on the GUI.</li>
-                                </ul>
+
                             </EnumSection>
 
                             {/* createType */}
@@ -184,7 +171,7 @@ export const EnumsDefinitions = () => {
                                     { value: "CloseByMartingaleBot", desc: "Order closed by Martingale bot" },
                                     { value: "CreateByIceBerg", desc: "Order created by Ice berg strategy" },
                                     { value: "CreateByArbitrage", desc: "Order created by arbitrage" },
-                                    { value: "CreateByDdh", desc: "Option dynamic delta hedge order" },
+
                                     { value: "CreateByBboOrder", desc: "BBO order" },
                                 ]} />
                             </EnumSection>
@@ -223,10 +210,7 @@ export const EnumsDefinitions = () => {
                                     { value: "Stop" },
                                     { value: "PartialTakeProfit" },
                                     { value: "PartialStopLoss" },
-                                    { value: "tpslOrder", desc: "spot TP/SL order" },
-                                    { value: "OcoOrder", desc: "spot Oco order" },
                                     { value: "MmRateClose", desc: "On web or app can set MMR to close position" },
-                                    { value: "BidirectionalTpslOrder", desc: "Spot bidirectional tpsl order" },
                                 ]} />
                             </EnumSection>
 
@@ -373,25 +357,10 @@ export const EnumsDefinitions = () => {
                                     { value: "CancelByOCOTpCanceledBySlTriggered", desc: "The take profit order was canceled due to the triggering of the stop loss" },
                                     { value: "CancelByOCOSlCanceledByTpTriggered", desc: "The stop loss order was canceled due to the triggering of the take profit" },
                                 ]} />
-                                <p><strong>Options:</strong></p>
-                                <EnumList items={[
-                                    { value: "CancelByUser" }, { value: "CancelByReduceOnly" },
-                                    { value: "CancelAllBeforeLiq", desc: "cancelled due to liquidation" },
-                                    { value: "CancelAllBeforeAdl", desc: "cancelled due to ADL" },
-                                    { value: "CancelBySettle" }, { value: "CancelByCannotAffordOrderCost" },
-                                    { value: "CancelByPmTrialMmOverEquity" }, { value: "CancelByAccountBlocking" },
-                                    { value: "CancelByDelivery" }, { value: "CancelByMmpTriggered" },
-                                    { value: "CancelByCrossSelfMuch" }, { value: "CancelByCrossReachMaxTradeNum" },
-                                    { value: "CancelByDCP" }, { value: "CancelBySmp" },
-                                ]} />
+
                             </EnumSection>
 
-                            {/* optionPeriod */}
-                            <EnumSection id="optionPeriod" title="optionPeriod">
-                                <p>BTC: <span className="pill">7</span> <span className="pill">14</span> <span className="pill">21</span> <span className="pill">30</span> <span className="pill">60</span> <span className="pill">90</span> <span className="pill">180</span> <span className="pill">270</span> days</p>
-                                <p>ETH: <span className="pill">7</span> <span className="pill">14</span> <span className="pill">21</span> <span className="pill">30</span> <span className="pill">60</span> <span className="pill">90</span> <span className="pill">180</span> <span className="pill">270</span> days</p>
-                                <p>SOL: <span className="pill">7</span> <span className="pill">14</span> <span className="pill">21</span> <span className="pill">30</span> <span className="pill">60</span> <span className="pill">90</span> days</p>
-                            </EnumSection>
+
 
                             {/* dataRecordingPeriod */}
                             <EnumSection id="dataRecordingPeriod" title="dataRecordingPeriod">
@@ -464,7 +433,7 @@ export const EnumsDefinitions = () => {
                                     { value: "TRANSFER_IN", desc: "Assets that transferred into Unified wallet" },
                                     { value: "TRANSFER_OUT", desc: "Assets that transferred out from Unified wallet" },
                                     { value: "TRADE" }, { value: "SETTLEMENT", desc: "USDT Perp funding settlement, and USDC Perp funding settlement + USDC 8-hour session settlement" },
-                                    { value: "DELIVERY", desc: "USDC Futures, Option delivery" },
+                                    { value: "DELIVERY", desc: "USDC Futures delivery" },
                                     { value: "LIQUIDATION" }, { value: "ADL", desc: "Auto-Deleveraging" },
                                     { value: "AIRDROP" }, { value: "BONUS", desc: "Bonus claimed" },
                                     { value: "BONUS_RECOLLECT", desc: "Bonus expired" },
@@ -479,16 +448,7 @@ export const EnumsDefinitions = () => {
                                     { value: "AUTO_PRINCIPLE_REPAYMENT_INS_LOAN" }, { value: "AUTO_INTEREST_REPAYMENT_INS_LOAN" },
                                     { value: "TRANSFER_IN_INS_LOAN", desc: "Transfer In when in the liquidation of OTC loan" },
                                     { value: "TRANSFER_OUT_INS_LOAN", desc: "Transfer Out when in the liquidation of OTC loan" },
-                                    { value: "SPOT_REPAYMENT_SELL", desc: "One-click repayment currency sell" },
-                                    { value: "SPOT_REPAYMENT_BUY", desc: "One-click repayment currency buy" },
-                                    { value: "TOKENS_SUBSCRIPTION", desc: "Spot leverage token subscription" },
-                                    { value: "TOKENS_REDEMPTION", desc: "Spot leverage token redemption" },
-                                    { value: "AUTO_DEDUCTION", desc: "Asset auto deducted by system (roll back)" },
-                                    { value: "FLEXIBLE_STAKING_SUBSCRIPTION", desc: "Byfi flexible stake subscription" },
-                                    { value: "FLEXIBLE_STAKING_REDEMPTION", desc: "Byfi flexible stake redemption" },
-                                    { value: "FIXED_STAKING_SUBSCRIPTION", desc: "Byfi fixed stake subscription" },
-                                    { value: "FLEXIBLE_STAKING_REFUND", desc: "Byfi flexible stake refund" },
-                                    { value: "FIXED_STAKING_REFUND", desc: "Byfi fixed stake refund" },
+
                                     { value: "PREMARKET_TRANSFER_OUT" }, { value: "PREMARKET_DELIVERY_SELL_NEW_COIN" },
                                     { value: "PREMARKET_DELIVERY_BUY_NEW_COIN" }, { value: "PREMARKET_DELIVERY_PLEDGE_PAY_SELLER" },
                                     { value: "PREMARKET_DELIVERY_PLEDGE_BACK" }, { value: "PREMARKET_ROLLBACK_PLEDGE_BACK" },
@@ -565,13 +525,7 @@ export const EnumsDefinitions = () => {
                                     { value: "BTCUSDU23", desc: "U: Third quarter; 23: 2023" },
                                     { value: "BTCUSDZ23", desc: "Z: Fourth quarter; 23: 2023" },
                                 ]} />
-                                <p><strong>Spot:</strong></p>
-                                <EnumList items={[{ value: "BTCUSDT" }, { value: "ETHUSDC" }]} />
-                                <p><strong>Option:</strong></p>
-                                <EnumList items={[
-                                    { value: "BTC-13FEB25-89000-P-USDT", desc: "USDT Option" },
-                                    { value: "ETH-28FEB25-2800-C", desc: "USDC Option" },
-                                ]} />
+
                             </EnumSection>
 
                             {/* vipLevel */}
@@ -603,8 +557,7 @@ export const EnumsDefinitions = () => {
                             {/* product */}
                             <EnumSection id="product" title="product">
                                 <EnumList items={[
-                                    { value: "1", desc: "Futures" }, { value: "2", desc: "Spot" },
-                                    { value: "3", desc: "Option" }, { value: "4", desc: "Spread" },
+                                    { value: "1", desc: "Futures" },
                                 ]} />
                             </EnumSection>
 

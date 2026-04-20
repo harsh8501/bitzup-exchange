@@ -18,7 +18,6 @@ export const RateLimitRules = () => {
     "account",
     "asset",
     "user",
-    "spot-margin-trade",
     "spread-trading",
     "batch-endpoints",
   ];
@@ -94,7 +93,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                 </li>
                 <li>Do not frequently connect and disconnect the connection</li>
                 <li>
-                  Do not establish more than 1,000 connections per IP for market data. The connection limits are counted separately for Spot, Linear, Inverse, and Options markets
+                  Do not establish more than 1,000 connections per IP for market data. The connection limits are counted separately for Linear and Inverse markets
                 </li>
               </ul>
 
@@ -128,7 +127,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                     <tr>
                       <th>Method</th>
                       <th>Path</th>
-                      <th colSpan={4} style={{ textAlign: "center" }}>UTA2.0 Pro</th>
+                      <th colSpan={2} style={{ textAlign: "center" }}>UTA2.0 Pro</th>
                       <th>upgradable</th>
                     </tr>
                     <tr>
@@ -136,24 +135,21 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                       <th></th>
                       <th>inverse</th>
                       <th>linear</th>
-                      <th>option</th>
-                      <th>spot</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td>POST</td><td>/v5/order/create</td><td>10/s</td><td>10/s</td><td>10/s</td><td>20/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/amend</td><td>10/s</td><td>10/s</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/cancel</td><td>10/s</td><td>10/s</td><td>10/s</td><td>20/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/cancel-all</td><td>10/s</td><td>10/s</td><td>1/s</td><td>20/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/create-batch</td><td>10/s</td><td>10/s</td><td>10/s</td><td>20/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/amend-batch</td><td>10/s</td><td>10/s</td><td>10/s</td><td>20/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/cancel-batch</td><td>10/s</td><td>10/s</td><td>10/s</td><td>20/s</td><td>Y</td></tr>
-                    <tr><td></td><td>/v5/order/disconnected-cancel-all</td><td colSpan={4}>5/s</td><td>N</td></tr>
-                    <tr><td></td><td>/v5/order/realtime</td><td colSpan={4}>50/s</td><td>N</td></tr>
-                    <tr><td></td><td>/v5/order/history</td><td colSpan={4}>50/s</td><td>N</td></tr>
-                    <tr><td>GET</td><td>/v5/execution/list</td><td colSpan={4}>50/s</td><td>N</td></tr>
-                    <tr><td></td><td>/v5/order/spot-borrow-check</td><td>-</td><td colSpan={2}></td><td>50/s</td><td>N</td></tr>
+                    <tr><td>POST</td><td>/v5/order/create</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/amend</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/cancel</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/cancel-all</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/create-batch</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/amend-batch</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/cancel-batch</td><td>10/s</td><td>10/s</td><td>Y</td></tr>
+                    <tr><td></td><td>/v5/order/disconnected-cancel-all</td><td colSpan={2}>5/s</td><td>N</td></tr>
+                    <tr><td></td><td>/v5/order/realtime</td><td colSpan={2}>50/s</td><td>N</td></tr>
+                    <tr><td></td><td>/v5/order/history</td><td colSpan={2}>50/s</td><td>N</td></tr>
+                    <tr><td>GET</td><td>/v5/execution/list</td><td colSpan={2}>50/s</td><td>N</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -166,7 +162,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                     <tr>
                       <th>Method</th>
                       <th>Path</th>
-                      <th colSpan={4} style={{ textAlign: "center" }}>UTA2.0 Pro</th>
+                      <th colSpan={2} style={{ textAlign: "center" }}>UTA2.0 Pro</th>
                       <th>upgradable</th>
                     </tr>
                     <tr>
@@ -174,15 +170,13 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                       <th></th>
                       <th>inverse</th>
                       <th>linear</th>
-                      <th>option</th>
-                      <th>spot</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td>GET</td><td>/v5/position/list</td><td colSpan={4}>50/s</td><td>N</td></tr>
-                    <tr><td></td><td>/v5/position/closed-pnl</td><td colSpan={2}>50/s</td><td>-</td><td>-</td><td>N</td></tr>
-                    <tr><td>POST</td><td>/v5/position/set-leverage</td><td colSpan={2}>10/s</td><td>10/s</td><td>-</td><td>N</td></tr>
+                    <tr><td>GET</td><td>/v5/position/list</td><td colSpan={2}>50/s</td><td>N</td></tr>
+                    <tr><td></td><td>/v5/position/closed-pnl</td><td colSpan={2}>50/s</td><td>N</td></tr>
+                    <tr><td>POST</td><td>/v5/position/set-leverage</td><td colSpan={2}>10/s</td><td>N</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -202,11 +196,8 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                     <tr><td>/v5/account/repay</td><td></td><td>1/s</td><td>N</td></tr>
                     <tr><td>/v5/account/no-convert-repay</td><td></td><td>1/s</td><td>N</td></tr>
                     <tr><td>/v5/account/collateral-info</td><td></td><td>50/s</td><td>N</td></tr>
-                    <tr><td>GET</td><td>/v5/asset/coin-greeks</td><td></td><td>50/s</td><td>N</td></tr>
                     <tr><td>GET</td><td>/v5/account/transaction-log</td><td>accountType=UNIFIED</td><td>30/s</td><td>N</td></tr>
-                    <tr><td rowSpan={4}>GET</td><td rowSpan={4}>/v5/account/fee-rate</td><td>category=linear</td><td>10/s</td><td>N</td></tr>
-                    <tr><td>category=spot</td><td>5/s</td><td>N</td></tr>
-                    <tr><td>category=option</td><td>5/s</td><td>N</td></tr>
+                    <tr><td rowSpan={2}>GET</td><td rowSpan={2}>/v5/account/fee-rate</td><td>category=linear</td><td>10/s</td><td>N</td></tr>
                     <tr><td>category=inverse</td><td>10/s</td><td>N</td></tr>
                   </tbody>
                 </table>
@@ -264,9 +255,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                 </table>
               </div>
 
-              {/* Spot Margin Trade (UTA) */}
-              <h4 className="top-req-text" id="spot-margin-trade" style={{ fontSize: "16px", marginTop: "24px" }}>Spot Margin Trade (UTA)</h4>
-              <p>For now, there is no limit for endpoints under this category</p>
+
 
               {/* Spread Trading */}
               <h4 className="top-req-text" id="spread-trading" style={{ fontSize: "16px", marginTop: "24px" }}>Spread Trading</h4>
@@ -299,7 +288,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                 </p>
               </div>
 
-              <h4 style={{ marginTop: "24px", marginBottom: "12px" }}>When category = linear spot or inverse</h4>
+              <h4 style={{ marginTop: "24px", marginBottom: "12px" }}>When category = linear or inverse</h4>
               <ul>
                 <li style={{ marginBottom: "10px" }}>
                   API for batch create/amend/cancel order, the frequency of the API will be consistent with the current configuration, but the counting consumption will be consumed according to the actual number of orders. (Number of consumption = number of requests * number of orders included in a single request), and the configuration of business lines is independent of each other.
@@ -328,7 +317,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                   <li className={activeSection === "account" ? "active" : ""} onClick={() => scrollToSection("account")} style={{ paddingLeft: "32px" }}>Account</li>
                   <li className={activeSection === "asset" ? "active" : ""} onClick={() => scrollToSection("asset")} style={{ paddingLeft: "32px" }}>Asset</li>
                   <li className={activeSection === "user" ? "active" : ""} onClick={() => scrollToSection("user")} style={{ paddingLeft: "32px" }}>User</li>
-                  <li className={activeSection === "spot-margin-trade" ? "active" : ""} onClick={() => scrollToSection("spot-margin-trade")} style={{ paddingLeft: "32px" }}>Spot Margin Trade (UTA)</li>
+
                   <li className={activeSection === "spread-trading" ? "active" : ""} onClick={() => scrollToSection("spread-trading")} style={{ paddingLeft: "32px" }}>Spread Trading</li>
                   <li className={activeSection === "batch-endpoints" ? "active" : ""} onClick={() => scrollToSection("batch-endpoints")}>Instructions for batch endpoints</li>
                 </ul>

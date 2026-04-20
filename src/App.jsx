@@ -54,7 +54,7 @@ import { GetIndexPriceKline } from "./components/pages/GetIndexPriceKline";
 import { GetPremiumIndexPriceKline } from "./components/pages/GetPremiumIndexPriceKline";
 import { GetInstrumentsInfo } from "./components/pages/GetInstrumentsInfo";
 import { GetOrderbook } from "./components/pages/GetOrderbook";
-import { GetRpiOrderbook } from "./components/pages/GetRpiOrderbook";
+
 import { GetFundingRateHistory } from "./components/pages/GetFundingRateHistory";
 import { GetOpenInterest } from "./components/pages/GetOpenInterest";
 import { GetHistoricalVolatility } from "./components/pages/GetHistoricalVolatility";
@@ -68,7 +68,7 @@ import { GetOrderPriceLimit } from "./components/pages/GetOrderPriceLimit";
 import { MovePosition } from "./components/pages/MovePosition";
 import { GetMovePositionHistory } from "./components/pages/GetMovePositionHistory";
 import { ConfirmNewRiskLimit } from "./components/pages/ConfirmNewRiskLimit";
-import { GetClosedOptionsPositions } from "./components/pages/GetClosedOptionsPositions";
+
 import { GetTransferableAmount } from "./components/pages/GetTransferableAmount";
 import { GetTransactionLog } from "./components/pages/GetTransactionLog";
 import { GetAccountInfo } from "./components/pages/GetAccountInfo";
@@ -82,12 +82,8 @@ import { GetCollateralInfo } from "./components/pages/GetCollateralInfo";
 import { GetDCPInfo } from "./components/pages/GetDCPInfo";
 import { SetCollateralCoin } from "./components/pages/SetCollateralCoin";
 import { SetMarginMode } from "./components/pages/SetMarginMode";
-import { SetSpotHedging } from "./components/pages/SetSpotHedging";
 import { BatchSetCollateralCoin } from "./components/pages/BatchSetCollateralCoin";
-import { GetCoinGreeks } from "./components/pages/GetCoinGreeks";
-import { GetMMPState } from "./components/pages/GetMMPState";
-import { SetMMP } from "./components/pages/SetMMP";
-import { ResetMMP } from "./components/pages/ResetMMP";
+
 import { GetTradeBehaviourConfig } from "./components/pages/GetTradeBehaviourConfig";
 import { SetPriceLimitBehaviour } from "./components/pages/SetPriceLimitBehaviour";
 import { GetDeliveryRecord } from "./components/pages/GetDeliveryRecord";
@@ -121,7 +117,7 @@ import { PrivateOrderWS } from "./components/pages/PrivateOrderWS";
 import { PrivatePositionWS } from "./components/pages/PrivatePositionWS";
 import { PrivateExecutionWS } from "./components/pages/PrivateExecutionWS";
 import { PrivateWalletWS } from "./components/pages/PrivateWalletWS";
-import { PrivateGreekWS } from "./components/pages/PrivateGreekWS";
+
 
 // --- PLACEHOLDER ---
 import { Placeholder } from "./components/pages/Placeholder";
@@ -158,7 +154,7 @@ function App() {
             <Route path="/docs/v5/market/premium-index-price-kline" element={<GetPremiumIndexPriceKline />} />
             <Route path="/docs/v5/market/instruments-info" element={<GetInstrumentsInfo />} />
             <Route path="/docs/v5/market/orderbook" element={<GetOrderbook />} />
-            <Route path="/docs/v5/market/rpi-orderbook" element={<GetRpiOrderbook />} />
+
             <Route path="/docs/v5/market/tickers" element={<Tickers />} />
             <Route path="/docs/v5/market/funding-rate-history" element={<GetFundingRateHistory />} />
             <Route path="/docs/v5/market/recent-public-trades" element={<RecentPublicTrades />} />
@@ -192,7 +188,7 @@ function App() {
             <Route path="/docs/v5/position/set-auto-add-margin" element={<AutoIsolatedMargin />} />
             <Route path="/docs/v5/position/add-margin" element={<AddIsolatedMargin />} />
             <Route path="/docs/v5/position/closed-pnl" element={<GetClosedPnl />} />
-            <Route path="/docs/v5/position/closed-options-positions" element={<GetClosedOptionsPositions />} />
+
             <Route path="/docs/v5/position/move-position" element={<MovePosition />} />
             <Route path="/docs/v5/position/move-position-history" element={<GetMovePositionHistory />} />
             <Route path="/docs/v5/position/confirm-new-risk-limit" element={<ConfirmNewRiskLimit />} />
@@ -206,18 +202,13 @@ function App() {
             <Route path="/docs/v5/account/manual-borrow" element={<ManualBorrow />} />
             <Route path="/docs/v5/account/manual-repay-without-conversion" element={<ManualRepayWithoutAssetConversion />} />
             <Route path="/docs/v5/account/manual-repay" element={<ManualRepay />} />
+            <Route path="/docs/v5/account/borrow-history" element={<GetBorrowHistory />} />
             <Route path="/docs/v5/account/fee-rate" element={<GetFeeRate />} />
             <Route path="/docs/v5/account/collateral-info" element={<GetCollateralInfo />} />
             <Route path="/docs/v5/account/dcp-info" element={<GetDCPInfo />} />
             <Route path="/docs/v5/account/set-collateral-coin" element={<SetCollateralCoin />} />
-            <Route path="/docs/v5/account/set-margin-mode" element={<SetMarginMode />} />
-            <Route path="/docs/v5/account/set-spot-hedging" element={<SetSpotHedging />} />
-            <Route path="/docs/v5/account/borrow-history" element={<GetBorrowHistory />} />
             <Route path="/docs/v5/account/batch-set-collateral-coin" element={<BatchSetCollateralCoin />} />
-            <Route path="/docs/v5/account/coin-greeks" element={<GetCoinGreeks />} />
-            <Route path="/docs/v5/account/mmp-state" element={<GetMMPState />} />
-            <Route path="/docs/v5/account/reset-mmp" element={<ResetMMP />} />
-            <Route path="/docs/v5/account/set-mmp" element={<SetMMP />} />
+            <Route path="/docs/v5/account/set-margin-mode" element={<SetMarginMode />} />
             <Route path="/docs/v5/account/user-setting-config" element={<GetTradeBehaviourConfig />} />
             <Route path="/docs/v5/account/set-price-limit" element={<SetPriceLimitBehaviour />} />
 
@@ -231,9 +222,7 @@ function App() {
             <Route path="/docs/v5/asset/transfer/internal" element={<CreateInternalTransfer />} />
             <Route path="/docs/v5/asset/deposit/records" element={<GetDepositRecords />} />
             <Route path="/docs/v5/asset/withdraw/create" element={<SubmitWithdrawal />} />
-            <Route path="/docs/v5/asset/convert/rate" element={<Placeholder breadcrumbGroup="Asset" title="Get Convert Rate" />} />
-            <Route path="/docs/v5/asset/convert-small/records" element={<Placeholder breadcrumbGroup="Asset" title="Convert Small Balances Records" />} />
-            <Route path="/docs/v5/asset/fiat-convert/history" element={<Placeholder breadcrumbGroup="Asset" title="Fiat Convert History" />} />
+
 
             {/* User */}
             <Route path="/docs/v5/user/create-sub-member" element={<CreateSubMember />} />
@@ -261,7 +250,7 @@ function App() {
             <Route path="/docs/v5/websocket/private/position" element={<PrivatePositionWS />} />
             <Route path="/docs/v5/websocket/private/execution" element={<PrivateExecutionWS />} />
             <Route path="/docs/v5/websocket/private/wallet" element={<PrivateWalletWS />} />
-            <Route path="/docs/v5/websocket/private/greek" element={<PrivateGreekWS />} />
+
           </Routes>
         </div>
       </div>
