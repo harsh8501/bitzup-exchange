@@ -286,40 +286,40 @@ getKline();`,
                           }}
                         >
                           <li>
-                            <span className="pill">1</span>
+                            <span className="pill-magenta">1</span>
                           </li>
                           <li>
-                            <span className="pill">3</span>
+                            <span className="pill-magenta">3</span>
                           </li>
                           <li>
-                            <span className="pill">5</span>
+                            <span className="pill-magenta">5</span>
                           </li>
                           <li>
-                            <span className="pill">15</span>
+                            <span className="pill-magenta">15</span>
                           </li>
                           <li>
-                            <span className="pill">60</span>
+                            <span className="pill-magenta">60</span>
                           </li>
                           <li>
-                            <span className="pill">120</span>
+                            <span className="pill-magenta">120</span>
                           </li>
                           <li>
-                            <span className="pill">240</span>
+                            <span className="pill-magenta">240</span>
                           </li>
                           <li>
-                            <span className="pill">360</span>
+                            <span className="pill-magenta">360</span>
                           </li>
                           <li>
-                            <span className="pill">720</span>
+                            <span className="pill-magenta">720</span>
                           </li>
                           <li>
-                            <span className="pill">D</span>
+                            <span className="pill-magenta">D</span>
                           </li>
                           <li>
-                            <span className="pill">W</span>
+                            <span className="pill-magenta">W</span>
                           </li>
                           <li>
-                            <span className="pill">M</span>
+                            <span className="pill-magenta">M</span>
                           </li>
                         </ul>
                       </td>

@@ -313,20 +313,19 @@ ws.on("close", () => console.log("Disconnected`,
             <div className="container-fluid p-0">
               <div className="api-layout">
         <div className="row">
-          {/* LEFT CONTENT */}
-          <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
-            {/* Breadcrumb */}
-            <div className="breadcrumb mb-4">
-              <span className="kline-market">WebSocket Stream</span>
-              <span className="mx-2">
-                <IoIosArrowForward className="kline-arrow" />
-              </span>
-              <span className="kline-market">Public</span>
-              <span className="mx-2">
-                <IoIosArrowForward className="kline-arrow" />
-              </span>
-              <span className="pill">Kline</span>
-            </div>
+            <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
+              {/* Breadcrumb */}
+              <div className="breadcrumb mb-4">
+                <span className="text-muted">WebSocket Stream</span>
+                <span className="mx-2">
+                  <IoIosArrowForward className="kline-arrow" />
+                </span>
+                <span className="text-muted">Public</span>
+                <span className="mx-2">
+                  <IoIosArrowForward className="kline-arrow" />
+                </span>
+                <span className="pill">Kline</span>
+              </div>
 
             {/* Title */}
             <h1 className="api-title"> Kline</h1>
@@ -348,12 +347,31 @@ ws.on("close", () => console.log("Disconnected`,
                   </div>
             
              <h3>Available intervals:</h3>
-            <ul>
-              <li style={{marginBottom: '8px'}}><span className="pill">1</span> <span className="pill"> 3</span> <span className="pill"> 5</span>  <span className="pill"> 15</span> <span className="pill"> 30 </span> (min)</li>
-              <li style={{marginBottom: '8px'}}><span className="pill">60</span> <span className="pill"> 120</span> <span className="pill"> 240</span>  <span className="pill"> 360</span> <span className="pill"> 720 </span> (min)</li>
-              <li style={{marginBottom: '8px'}}><span className="pill"> D </span> (day)</li>
-              <li style={{marginBottom: '8px'}}><span className="pill">W </span> (week)</li>
-              <li style={{marginBottom: '8px'}}><span className="pill"> M </span> (month)</li>
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              <li style={{marginBottom: '12px'}}>
+                {["1","3","5","15","30"].map(v => (
+                  <span key={v} className="pill-magenta" style={{ marginRight: "8px" }}>{v}</span>
+                ))}
+                <span className="text-muted" style={{ fontSize: "14px" }}>(min)</span>
+              </li>
+              <li style={{marginBottom: '12px'}}>
+                {["60","120","240","360","720"].map(v => (
+                  <span key={v} className="pill-magenta" style={{ marginRight: "8px" }}>{v}</span>
+                ))}
+                <span className="text-muted" style={{ fontSize: "14px" }}>(min)</span>
+              </li>
+              <li style={{marginBottom: '12px'}}>
+                <span className="pill-magenta" style={{ marginRight: "8px" }}>D</span>
+                <span className="text-muted" style={{ fontSize: "14px" }}>(day)</span>
+              </li>
+              <li style={{marginBottom: '12px'}}>
+                <span className="pill-magenta" style={{ marginRight: "8px" }}>W</span>
+                <span className="text-muted" style={{ fontSize: "14px" }}>(week)</span>
+              </li>
+              <li style={{marginBottom: '12px'}}>
+                <span className="pill-magenta" style={{ marginRight: "8px" }}>M</span>
+                <span className="text-muted" style={{ fontSize: "14px" }}>(month)</span>
+              </li>
             </ul>
 
             {/* HTTP REQUEST */}
@@ -559,42 +577,15 @@ ws.on("close", () => console.log("Disconnected`,
           </div>
 
           {/* RIGHT SIDEBAR */}
-          <div className="col-lg-3 col-md-4 d-none d-md-block">
-            <div className="api-sidebar">
-              <ul>
-                  <li
-                    className={
-                      activeSection === "subscribe-kline" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("subscribe-kline")}
-                  >
-                    Subscribe to Kline
-                  </li>
-                  <li
-                    className={
-                      activeSection === "response-parameters" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("response-parameters")}
-                  >
-                    Subscribe Example
-                  </li>
-                  <li
-                    className={
-                      activeSection === "Subscribe Example" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("Subscribe Example")}
-                  >
-                    Subscribe Example
-                  </li>
-                  <li
-                    className={
-                      activeSection === "response-example" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("response-example")}
-                  >
-                    Response Example
-                  </li>
-                </ul>
+          <div className="col-lg-3 d-none d-lg-block">
+            <div className="api-sidebar-wrapper" style={{ position: "sticky", top: "100px", borderLeft: "1px solid var(--border-color)", paddingLeft: "20px" }}>
+              <h5 style={{ fontSize: "12px", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "16px", letterSpacing: "1px" }}>On this page</h5>
+              <ul style={{ listStyle: "none", padding: 0 }}>
+                <li className={activeSection === "subscribe-kline" ? "active" : ""} onClick={() => scrollToSection("subscribe-kline")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "subscribe-kline" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Subscribe to Kline</li>
+                <li className={activeSection === "response-parameters" ? "active" : ""} onClick={() => scrollToSection("response-parameters")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "response-parameters" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Response Parameters</li>
+                <li className={activeSection === "Subscribe Example" ? "active" : ""} onClick={() => scrollToSection("Subscribe Example")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "Subscribe Example" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Subscribe Example</li>
+                <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "response-example" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Response Example</li>
+              </ul>
             </div>
           </div>
         </div>

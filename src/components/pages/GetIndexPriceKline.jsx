@@ -203,11 +203,10 @@ getIndexPriceKline();`,
       <div className="container-fluid p-0">
         <div className="api-layout">
           <div className="row">
-            {/* LEFT CONTENT */}
-            <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
+            <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               {/* Breadcrumb */}
               <div className="breadcrumb mb-4">
-                <span className="kline-market">Market</span>
+                <span className="text-muted">Market</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>
@@ -247,7 +246,7 @@ getIndexPriceKline();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code>. When category is not passed, use linear by default</td>
+                      <td>Product type. <span className="pill-magenta">linear</span>, <span className="pill-magenta">inverse</span>. When category is not passed, use linear by default</td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -256,10 +255,14 @@ getIndexPriceKline();`,
                       <td>Symbol name.</td>
                     </tr>
                     <tr>
-                      <td>interval</td>
-                      <td>true</td>
-                      <td>string</td>
-                      <td>Kline interval. <code>1</code>,<code>3</code>,<code>5</code>,<code>15</code>,<code>30</code>,<code>60</code>,<code>120</code>,<code>240</code>,<code>360</code>,<code>720</code>,<code>D</code>,<code>M</code>,<code>W</code></td>
+                      <td>
+                        Kline interval.
+                        <ul className="pill-list">
+                          {["1","3","5","15","30","60","120","240","360","720","D","M","W"].map(v => (
+                            <li key={v}><span className="pill-magenta">{v}</span></li>
+                          ))}
+                        </ul>
+                      </td>
                     </tr>
                     <tr>
                       <td>start</td>
@@ -370,47 +373,15 @@ getIndexPriceKline();`,
             </div>
 
             {/* RIGHT SIDEBAR */}
-            <div className="col-lg-3 col-md-4 d-none d-md-block">
-              <div className="api-sidebar">
-                <ul>
-                  <li
-                    className={activeSection === "http" ? "active" : ""}
-                    onClick={() => scrollToSection("http")}
-                  >
-                    HTTP Request
-                  </li>
-                  <li
-                    className={
-                      activeSection === "request-params" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("request-params")}
-                  >
-                    Request Parameters
-                  </li>
-                  <li
-                    className={
-                      activeSection === "response-params" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("response-params")}
-                  >
-                    Response Parameters
-                  </li>
-                  <li
-                    className={
-                      activeSection === "request-example" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("request-example")}
-                  >
-                    Request Example
-                  </li>
-                  <li
-                    className={
-                      activeSection === "response-example" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("response-example")}
-                  >
-                    Response Example
-                  </li>
+            <div className="col-lg-3 d-none d-lg-block">
+              <div className="api-sidebar-wrapper" style={{ position: "sticky", top: "100px", borderLeft: "1px solid var(--border-color)", paddingLeft: "20px" }}>
+                <h5 style={{ fontSize: "12px", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "16px", letterSpacing: "1px" }}>On this page</h5>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "http" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>HTTP Request</li>
+                  <li className={activeSection === "request-params" ? "active" : ""} onClick={() => scrollToSection("request-params")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "request-params" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Request Parameters</li>
+                  <li className={activeSection === "response-params" ? "active" : ""} onClick={() => scrollToSection("response-params")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "response-params" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Response Parameters</li>
+                  <li className={activeSection === "request-example" ? "active" : ""} onClick={() => scrollToSection("request-example")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "request-example" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Request Example</li>
+                  <li className={activeSection === "response-example" ? "active" : ""} onClick={() => scrollToSection("response-example")} style={{ padding: "8px 0", cursor: "pointer", fontSize: "14px", color: activeSection === "response-example" ? "var(--text-accent)" : "var(--text-secondary)", transition: "all 0.2s" }}>Response Example</li>
                 </ul>
               </div>
             </div>
