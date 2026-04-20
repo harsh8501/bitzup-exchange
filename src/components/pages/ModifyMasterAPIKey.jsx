@@ -77,7 +77,7 @@ print(session.modify_master_api_key(
         "Options": ["OptionsTrade"],
     },
 ))`,
-        Node: `const { RestClientV5 } = require('bybit-api');
+        Node: `const { RestClientV5 } = require('bitzup-api');
 const client = new RestClientV5({
     testnet: true,
     key: 'xxxxxxxxxxxxxxxxxx',

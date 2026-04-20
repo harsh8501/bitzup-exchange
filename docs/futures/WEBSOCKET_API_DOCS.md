@@ -1,6 +1,6 @@
 # Bitzup Futures — WebSocket API (V5)
 
-The Bitzup Futures WebSocket API provides real-time market data and account updates, modeled after the Bybit V5 WebSocket interface.
+The Bitzup Futures WebSocket API provides real-time market data and account updates, modeled after the Bitzup V5 WebSocket interface.
 
 ---
 

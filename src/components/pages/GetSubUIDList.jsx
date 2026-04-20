@@ -56,7 +56,7 @@ session = HTTP(
     api_secret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 )
 print(session.get_sub_uid())`,
-        Node: `const { RestClientV5 } = require('bybit-api');
+        Node: `const { RestClientV5 } = require('bitzup-api');
 const client = new RestClientV5({
     testnet: true,
     key: 'xxxxxxxxxxxxxxxxxx',

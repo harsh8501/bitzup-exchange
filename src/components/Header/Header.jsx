@@ -109,9 +109,9 @@ const Header = ({ theme, setTheme }) => {
                             </Link>
 
                             <nav className="nav-links d-none d-md-flex">
-                                <NavLink to="/" style={{marginLeft: '16px'}}>V1 API</NavLink>
+                                <NavLink to="/" style={{marginLeft: '16px'}}>Futures API</NavLink>
                                 {/* <NavLink to="/p2p">P2P Trading</NavLink>
-                                <NavLink to="/bybit-pay">Bitzup Pay</NavLink>
+                                <NavLink to="/bitzup-pay">Bitzup Pay</NavLink>
                                 <NavLink to="/tax-api">Tax API V3</NavLink> */}
                             </nav>
                         </div>
@@ -219,7 +219,7 @@ const Header = ({ theme, setTheme }) => {
                                 `drawer-main-item ${isActive ? "active" : ""}`
                             }
                             >
-                            V5 API
+                            Futures API
                             </NavLink>
                             <NavLink
                             to="/p2p"
@@ -229,7 +229,7 @@ const Header = ({ theme, setTheme }) => {
                             </NavLink>
 
                             <NavLink
-                            to="/bybit-pay"
+                            to="/bitzup-pay"
                             className="drawer-main-item external"
                             >
                             Bitzup Pay ↗

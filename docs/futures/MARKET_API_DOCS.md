@@ -1,6 +1,6 @@
 # Bitzup Futures — Market API (V5)
 
-The Bitzup Futures Market API provides public market data, including tickers, order books, trades, and klines. This API is modeled after the Bybit V5 structure.
+The Bitzup Futures Market API provides public market data, including tickers, order books, trades, and klines. This API is modeled after the Bitzup V5 structure.
 
 > **Base URL:** `https://api.bitzup.com/v5`  
 > **Type:** Public API (No authentication required)

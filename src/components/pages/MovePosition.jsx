@@ -145,7 +145,7 @@ movePosition();`,
           <tbody>
             <tr><td>blockTradeId</td><td>string</td><td>Block trade ID</td></tr>
             <tr><td>status</td><td>string</td><td><code>Processing</code>, <code>Rejected</code></td></tr>
-            <tr><td>rejectParty</td><td>string</td><td><code>""</code> means initial validation passed. <code>Taker</code>, <code>Maker</code>, <code>bybit</code> when rejected</td></tr>
+            <tr><td>rejectParty</td><td>string</td><td><code>""</code> means initial validation passed. <code>Taker</code>, <code>Maker</code>, <code>bitzup</code> when rejected</td></tr>
           </tbody>
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>

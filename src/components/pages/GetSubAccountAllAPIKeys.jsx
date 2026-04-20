@@ -68,7 +68,7 @@ session = HTTP(
 print(session.get_sub_account_all_api_keys(
     subMemberId="53888000",
 ))`,
-        Node: `const { RestClientV5 } = require('bybit-api');
+        Node: `const { RestClientV5 } = require('bitzup-api');
 const client = new RestClientV5({
     testnet: true,
     key: 'xxxxxxxxxxxxxxxxxx',

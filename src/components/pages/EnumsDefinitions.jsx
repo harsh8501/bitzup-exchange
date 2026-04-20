@@ -87,7 +87,7 @@ export const EnumsDefinitions = () => {
                             {/* announcementType */}
                             <EnumSection id="announcementType" title="announcementType">
                                 <EnumList items={[
-                                    { value: "new_crypto" }, { value: "latest_bybit_news" }, { value: "delistings" },
+                                    { value: "new_crypto" }, { value: "latest_bitzup_news" }, { value: "delistings" },
                                     { value: "latest_activities" }, { value: "product_updates" }, { value: "maintenance_updates" },
                                     { value: "new_fiat_listings" }, { value: "other" },
                                 ]} />

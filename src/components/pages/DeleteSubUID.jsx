@@ -45,7 +45,7 @@ session = HTTP(
 print(session.delete_sub_uid(
     subMemberId="112725187",
 ))`,
-        Node: `const { RestClientV5 } = require('bybit-api');
+        Node: `const { RestClientV5 } = require('bitzup-api');
 const client = new RestClientV5({
     testnet: true,
     key: 'xxxxxxxxxxxxxxxxxx',

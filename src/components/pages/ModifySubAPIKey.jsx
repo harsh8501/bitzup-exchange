@@ -75,7 +75,7 @@ print(session.modify_sub_api_key(
         "Wallet": ["AccountTransfer"],
     },
 ))`,
-        Node: `const { RestClientV5 } = require('bybit-api');
+        Node: `const { RestClientV5 } = require('bitzup-api');
 const client = new RestClientV5({
     testnet: true,
     key: 'xxxxxxxxxxxxxxxxxx',
