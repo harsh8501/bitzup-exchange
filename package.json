@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/harsh8501/bitzup-exchange.git",
+  "homepage": "https://harsh8501.github.io/bitzup-exchange/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
