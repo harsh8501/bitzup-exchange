@@ -405,10 +405,10 @@ ws.send(JSON.stringify({"req_id": "100001", "op": "ping"}));`}</code>
                 <pre>{privatePongResponse}</pre>
               </div>
 
-              <div className="api-caution mb-5" style={{ background: "rgba(255, 171, 0, 0.05)", borderLeft: "4px solid #ffab00", padding: "16px", borderRadius: "8px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#ffab00", marginBottom: "8px" }}>
+              <div className="api-caution mb-5 api-info-box">
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
                   <FiAlertTriangle size={20} />
-                  <strong style={{ textTransform: "uppercase", fontSize: "14px" }}>caution</strong>
+                  <strong style={{ textTransform: "uppercase", fontSize: "14px" }} className="api-info-title">caution</strong>
                 </div>
                 <p className="mb-0" style={{ color: "var(--text-secondary)" }}>
                   To avoid network or program issues, we recommend that you send the <span className="pill">ping</span> heartbeat packet every 20 seconds to maintain the WebSocket connection.
