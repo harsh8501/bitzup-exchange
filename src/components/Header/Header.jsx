@@ -148,7 +148,7 @@ const Header = ({ theme, setTheme }) => {
                                     className="lang-trigger"
                                     onClick={() => setOpen((prev) => !prev)}
                                 >
-                                    <LuLanguages />
+                                    {/* <LuLanguages /> */}
                                     {language}
                                     {/* <IoMdArrowDropdown size={20} /> */}
                                 </span>

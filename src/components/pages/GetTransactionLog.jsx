@@ -301,7 +301,12 @@ getTransactionLog();`,
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Limit for data size per page. [1, 50]. Default: 20</td>
+                      <td>
+                        Limit . [
+                        <span className="pill">1</span>,
+                        <span className="pill">50</span> ]. Default:{" "}
+                        <span className="pill"> 20 </span>
+                      </td>
                     </tr>
                     <tr>
                       <td>cursor</td>

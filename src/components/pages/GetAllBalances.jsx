@@ -196,7 +196,7 @@ getAllBalances();`,
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               {/* Breadcrumb */}
               <div className="breadcrumb mb-4">
-                <span className="text-muted">Asset</span>
+                <span className="text-mutne">Asset</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>

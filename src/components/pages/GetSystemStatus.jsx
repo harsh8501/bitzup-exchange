@@ -187,7 +187,7 @@ getSystemStatus();`,
                 <div className="row">
                     <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                         <div className="breadcrumb mb-4">
-                            <span className="text-muted">Guide</span>
+                            <span className="kline-market">Guide</span>
                             <span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span>
                             <span className="pill">Get System Status</span>
                         </div>
@@ -265,62 +265,62 @@ getSystemStatus();`,
                                         <td>Result object</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "28px" }}>&gt; list</td>
+                                        <td style={{ paddingLeft: "11px" }}>&gt; list</td>
                                         <td>array</td>
                                         <td>List of system status items</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; id</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; id</td>
                                         <td>string</td>
                                         <td>Unique identifier</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; title</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; title</td>
                                         <td>string</td>
                                         <td>Title of system maintenance</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; state</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; state</td>
                                         <td>string</td>
                                         <td>System state</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; begin</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; begin</td>
                                         <td>string</td>
                                         <td>Start time of system maintenance, timestamp in milliseconds</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; end</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; end</td>
                                         <td>string</td>
                                         <td>End time of system maintenance, timestamp in milliseconds. Before maintenance is completed, it is the expected end time. After maintenance is completed, it will be changed to the actual end time.</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; href</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; href</td>
                                         <td>string</td>
                                         <td>Hyperlink to system maintenance details. Default value is empty string</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; serviceTypes</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; serviceTypes</td>
                                         <td>{"array<int>"}</td>
                                         <td>Service Type</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; product</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; product</td>
                                         <td>{"array<int>"}</td>
                                         <td>Product</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; uidSuffix</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; uidSuffix</td>
                                         <td>{"array<int>"}</td>
                                         <td>Affected UID tail number</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; maintainType</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; maintainType</td>
                                         <td>string</td>
                                         <td>Maintenance type</td>
                                     </tr>
                                     <tr>
-                                        <td style={{ paddingLeft: "48px" }}>&gt;&gt; env</td>
+                                        <td style={{ paddingLeft: "28px" }}>&gt;&gt; env</td>
                                         <td>string</td>
                                         <td>Environment</td>
                                     </tr>

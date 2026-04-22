@@ -271,7 +271,7 @@ getInstrumentsInfo();`,
                     </tr>
                     <tr>
                       <td>symbol</td>
-                      <td>false</td>
+                      <td>true</td>
                       <td>string</td>
                       <td>Symbol name.</td>
                     </tr>
@@ -297,7 +297,12 @@ getInstrumentsInfo();`,
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Limit for data size per page. [1, 1000]. Default: 500</td>
+                    <td>
+                        Limit for data size per page. [
+                        <span className="pill">1</span>,
+                        <span className="pill">1000</span> ]. Default:{" "}
+                        <span className="pill"> 200 </span>
+                      </td>
                     </tr>
                     <tr>
                       <td>cursor</td>

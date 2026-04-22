@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
-import { FiCopy, FiCheck } from "react-icons/fi";
+import { FiCopy, FiCheck, FiAlertTriangle } from "react-icons/fi";
 
 export const Connect = () => {
   const contentRef = useRef(null);
@@ -9,23 +9,28 @@ export const Connect = () => {
   const [copied, setCopied] = useState(false);
   const [copiedRes, setCopiedRes] = useState(false);
 
+  // Local tabs for examples
+  const [pongTab, setPongTab] = useState("Spot");
+  const [subscribeTab, setSubscribeTab] = useState("Linear/Inverse");
+
   const [activeSection, setActiveSection] = useState("endpoints");
 
   const HEADER_OFFSET = 120;
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(codeMap[lang]);
+  const handleCopy = async (text) => {
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const handleCopyRes = async () => {
-    navigator.clipboard.writeText(responseCode);
-    setCopiedRes(true);
-    setTimeout(() => setCopiedRes(false), 1500);
-  };
-
-  const sections = ["endpoints", "authentication", "ping-pong"];
+  const sections = [
+    "endpoints",
+    "authentication",
+    "heartbeat",
+    "subscribe",
+    "filters",
+    "response",
+  ];
 
   const scrollToSection = (id) => {
     const container = contentRef.current;
@@ -67,11 +72,34 @@ export const Connect = () => {
     return () => observer.disconnect();
   }, []);
 
-  const responseCode = `{
+  const authResponse = `{
     "success": true,
     "ret_msg": "",
     "op": "auth",
     "conn_id": "cejreaspqfh3sjdnldmg-p"
+}`;
+
+  const publicPongResponse = `{
+    "success": true,
+    "ret_msg": "pong",
+    "conn_id": "0970e817-426e-429a-a679-ff7f55e0b16a",
+    "op": "ping"
+}`;
+
+  const privatePongResponse = `{
+    "req_id": "test",
+    "op": "pong",
+    "args": [
+        "1675418560633"
+    ],
+    "conn_id": "cfcb4ocsvfriu23r3er0-1b"
+}`;
+
+  const subscribeResponse = `{
+    "success": true,
+    "ret_msg": "",
+    "op": "subscribe",
+    "conn_id": "cejreassvfrsfvb9v1a0-2m"
 }`;
 
   const codeMap = {
@@ -175,7 +203,8 @@ ws.on('close', function close() {
               {/* Title */}
               <h1 className="api-title">Connect</h1>
               <p className="api-desc">
-                Establish WebSocket connections for streaming real-time public and private market data.
+                Establish WebSocket connections for streaming real-time public
+                and private market data.
               </p>
 
               {/* ENDPOINTS */}
@@ -183,24 +212,91 @@ ws.on('close', function close() {
                 WSS Endpoints
               </h3>
 
-              <div className="api-table-box premium-card" style={{ background: "rgba(255,255,255,0.02)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border-color)" }}>
-                <h5 style={{ color: "var(--text-accent)", marginBottom: "16px" }}>WebSocket Public Channel</h5>
-                <p style={{ color: "var(--text-secondary)" }}>Public topics do not require authentication and provide high-frequency market data.</p>
-                <div style={{ background: "var(--bg-card)", padding: "16px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
-                  <div style={{ marginBottom: "8px" }}><strong>Linear (Futures):</strong></div>
-                  <code style={{ color: "var(--text-accent)", wordBreak: "break-all" }}>wss://stream.bitzup.com/v5/public/linear</code>
+              <div
+                className="api-table-box premium-card"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  padding: "24px",
+                  borderRadius: "12px",
+                  border: "1px solid var(--border-color)",
+                }}
+              >
+                <h5
+                  style={{ color: "var(--text-accent)", marginBottom: "16px" }}
+                >
+                  WebSocket Public Channel
+                </h5>
+                <p style={{ color: "var(--text-secondary)" }}>
+                  Public topics do not require authentication and provide
+                  high-frequency market data.
+                </p>
+                <div
+                  style={{
+                    background: "var(--bg-card)",
+                    padding: "16px",
+                    borderRadius: "8px",
+                    border: "1px solid var(--border-color)",
+                  }}
+                >
+                  <div style={{ marginBottom: "8px" }} className="text-mutne">
+                    <strong>Linear (Futures):</strong>
+                  </div>
+                  <code
+                    style={{ color: "var(--text-accent)", wordBreak: "break-all" }}
+                  >
+                    wss://stream.bitzup.com/v5/public/linear
+                  </code>
                 </div>
               </div>
 
-              <div className="api-table-box mt-4 premium-card" style={{ background: "rgba(255,255,255,0.02)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border-color)" }}>
-                <h5 style={{ color: "var(--text-accent)", marginBottom: "16px" }}>WebSocket Private Channel</h5>
-                <p style={{ color: "var(--text-secondary)" }}>Private topics require authentication via API key to receive account events.</p>
-                <div style={{ background: "var(--bg-card)", padding: "16px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
-                  <div style={{ marginBottom: "8px" }}><strong>Main URL:</strong></div>
-                  <code style={{ color: "var(--text-accent)", wordBreak: "break-all" }}>wss://stream.bitzup.com/v5/private</code>
+              <div
+                className="api-table-box mt-4 premium-card"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  padding: "24px",
+                  borderRadius: "12px",
+                  border: "1px solid var(--border-color)",
+                }}
+              >
+                <h5
+                  style={{ color: "var(--text-accent)", marginBottom: "16px" }}
+                >
+                  WebSocket Private Channel
+                </h5>
+                <p style={{ color: "var(--text-secondary)" }}>
+                  Private topics require authentication via API key to receive
+                  account events.
+                </p>
+                <div
+                  style={{
+                    background: "var(--bg-card)",
+                    padding: "16px",
+                    borderRadius: "8px",
+                    border: "1px solid var(--border-color)",
+                  }}
+                >
+                  <div style={{ marginBottom: "8px" }} className="text-mutne">
+                    <strong>Main URL:</strong>
+                  </div>
+                  <code
+                    style={{ color: "var(--text-accent)", wordBreak: "break-all" }}
+                  >
+                    wss://stream.bitzup.com/v5/private
+                  </code>
                 </div>
-                <div className="mt-4" style={{ background: "var(--accent-neon-dim)", padding: "16px", borderRadius: "8px", borderLeft: "4px solid var(--text-accent)" }}>
-                  <strong style={{ color: "var(--text-accent)" }}>TIP:</strong> You can customise alive duration by adding <span className="pill">max_active_time</span> (e.g. 30s to 600s).
+                <div
+                  className="mt-4 text-mutne"
+                  style={{
+                    background: "var(--accent-neon-dim)",
+                    padding: "16px",
+                    borderRadius: "8px",
+                    borderLeft: "4px solid var(--text-accent)",
+                  }}
+                >
+                  <strong style={{ color: "var(--text-accent)" }}>TIP:</strong>{" "}
+                  You can customise alive duration by adding{" "}
+                  <span className="pill">max_active_time</span> (e.g. 30s to
+                  600s).
                 </div>
               </div>
 
@@ -209,7 +305,9 @@ ws.on('close', function close() {
                 Authentication
               </h3>
               <p>
-                Apply for authentication when establishing a connection to private topics. The signature should be generated using HMAC SHA256 against <span className="pill">GET/realtime{"{"}expires{"}"}</span>.
+                Apply for authentication when establishing a connection to
+                private topics. The signature should be generated using HMAC
+                SHA256 against <span className="pill">GET/realtime{"{"}expires{"}"}</span>.
               </p>
 
               <div className="lang-tabs">
@@ -224,41 +322,183 @@ ws.on('close', function close() {
                 ))}
               </div>
 
-              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
-                {/* COPY ICON */}
-                <button className="copy-btn" onClick={handleCopy}>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <button
+                  className="copy-btn"
+                  onClick={() => handleCopy(codeMap[lang])}
+                >
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
-
-                <pre>
-                  {codeMap[lang]}
-                </pre>
+                <pre>{codeMap[lang]}</pre>
               </div>
 
-              <p className="mt-4 text-muted">Successful authentication sample response:</p>
-              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
-                <button className="copy-btn" onClick={handleCopyRes}>
-                  {copiedRes ? <FiCheck /> : <FiCopy />}
-                </button>
-                <pre>
-                  {responseCode}
-                </pre>
-              </div>
-
-              {/* PING PONG */}
-              <h3 className="top-req-text mt-5" id="ping-pong">
-                Ping / Pong Interval
-              </h3>
-              <p>
-                Send a <span className="pill">ping</span> frame every 20 seconds to keep the connection alive.
+              <p className="mt-4 text-mutne">
+                Successful authentication sample response:
               </p>
-              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <button
+                  className="copy-btn"
+                  onClick={() => handleCopy(authResponse)}
+                >
+                  {copied ? <FiCheck /> : <FiCopy />}
+                </button>
+                <pre>{authResponse}</pre>
+              </div>
+
+              {/* HEARTBEAT */}
+              <h1 className="api-title mt-5" id="heartbeat">
+                How to Send the Heartbeat Packet
+              </h1>
+              <h5 className="mt-4 text-mutne mb-3">How to Send</h5>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "30px" }}
+              >
                 <pre>
-                  <code>{`{
-    "req_id": "100001", // optional
-    "op": "ping"
+                  <code>{`// req_id is a customised ID, which is optional
+ws.send(JSON.stringify({"req_id": "100001", "op": "ping"}));`}</code>
+                </pre>
+              </div>
+
+              <h5 className="mt-4 text-mutne mb-3">Pong message example of public channels</h5>
+              <div className="lang-tabs">
+                {["Spot", "Linear/Inverse"].map((t) => (
+                  <button
+                    key={t}
+                    className={pongTab === t ? "active" : ""}
+                    onClick={() => setPongTab(t)}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <button
+                  className="copy-btn"
+                  onClick={() => handleCopy(publicPongResponse)}
+                >
+                  {copied ? <FiCheck /> : <FiCopy />}
+                </button>
+                <pre>{publicPongResponse}</pre>
+              </div>
+
+              <h5 className="mt-4 text-mutne mb-3">Pong message example of private channels</h5>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <button
+                  className="copy-btn"
+                  onClick={() => handleCopy(privatePongResponse)}
+                >
+                  {copied ? <FiCheck /> : <FiCopy />}
+                </button>
+                <pre>{privatePongResponse}</pre>
+              </div>
+
+              <div className="api-caution mb-5" style={{ background: "rgba(255, 171, 0, 0.05)", borderLeft: "4px solid #ffab00", padding: "16px", borderRadius: "8px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#ffab00", marginBottom: "8px" }}>
+                  <FiAlertTriangle size={20} />
+                  <strong style={{ textTransform: "uppercase", fontSize: "14px" }}>caution</strong>
+                </div>
+                <p className="mb-0" style={{ color: "var(--text-secondary)" }}>
+                  To avoid network or program issues, we recommend that you send the <span className="pill">ping</span> heartbeat packet every 20 seconds to maintain the WebSocket connection.
+                </p>
+              </div>
+
+              {/* SUBSCRIBE */}
+              <h1 className="api-title mt-5" id="subscribe">
+                How to Subscribe to Topics
+              </h1>
+              <h3 className="top-req-text mt-4" id="filters">Understanding WebSocket Filters</h3>
+              <h5 className="mt-4 text-mutne mb-3">How to subscribe with a filter</h5>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "30px" }}
+              >
+                <pre>
+                  <code>{`// Subscribing level 1 orderbook
+{
+    "req_id": "test", // optional
+    "op": "subscribe",
+    "args": [
+        "orderbook.1.BTCUSDT"
+    ]
 }`}</code>
                 </pre>
+              </div>
+
+              <p className="mt-4">Subscribing with multiple symbols and topics is supported.</p>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <pre>
+                  <code>{`{
+    "req_id": "test", // optional
+    "op": "subscribe",
+    "args": [
+        "orderbook.1.BTCUSDT",
+        "publicTrade.BTCUSDT",
+        "orderbook.1.ETHUSDT"
+    ]
+}`}</code>
+                </pre>
+              </div>
+
+              <h5 className="mt-4 text-mutne mb-3">Understanding WebSocket Filters: Unsubscription</h5>
+              <p>You can dynamically subscribe and unsubscribe from topics without unsubscribing from the WebSocket like so:</p>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <pre>
+                  <code>{`{
+    "op": "unsubscribe",
+    "args": [
+        "publicTrade.ETHUSD"
+    ],
+    "req_id": "customised_id"
+}`}</code>
+                </pre>
+              </div>
+
+              {/* RESPONSE */}
+              <h1 className="api-title mt-5" id="response">
+                Understanding the Subscription Response
+              </h1>
+              <p className="mt-4 mb-3">Topic subscription response message example</p>
+              <div className="lang-tabs">
+                {["Linear/Inverse"].map((t) => (
+                  <button
+                    key={t}
+                    className={subscribeTab === t ? "active" : ""}
+                    onClick={() => setSubscribeTab(t)}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+              <div
+                className="api-code-box position-relative"
+                style={{ marginBottom: "40px" }}
+              >
+                <button
+                  className="copy-btn"
+                  onClick={() => handleCopy(subscribeResponse)}
+                >
+                  {copied ? <FiCheck /> : <FiCopy />}
+                </button>
+                <pre>{subscribeResponse}</pre>
               </div>
             </div>
 
@@ -270,7 +510,7 @@ ws.on('close', function close() {
                     className={activeSection === "endpoints" ? "active" : ""}
                     onClick={() => scrollToSection("endpoints")}
                   >
-                    WSS Endpoints
+                    Endpoints
                   </li>
                   <li
                     className={
@@ -281,12 +521,28 @@ ws.on('close', function close() {
                     Authentication
                   </li>
                   <li
-                    className={
-                      activeSection === "ping-pong" ? "active" : ""
-                    }
-                    onClick={() => scrollToSection("ping-pong")}
+                    className={activeSection === "heartbeat" ? "active" : ""}
+                    onClick={() => scrollToSection("heartbeat")}
                   >
-                    Ping / Pong
+                    Heartbeat Packet
+                  </li>
+                  <li
+                    className={activeSection === "subscribe" ? "active" : ""}
+                    onClick={() => scrollToSection("subscribe")}
+                  >
+                    Subscribe to Topics
+                  </li>
+                  <li
+                    className={activeSection === "filters" ? "active" : ""}
+                    onClick={() => scrollToSection("filters")}
+                  >
+                    WebSocket Filters
+                  </li>
+                  <li
+                    className={activeSection === "response" ? "active" : ""}
+                    onClick={() => scrollToSection("response")}
+                  >
+                    Subscription Response
                   </li>
                 </ul>
               </div>
@@ -297,3 +553,4 @@ ws.on('close', function close() {
     </>
   );
 };
+

@@ -249,9 +249,11 @@ getRecentTrades();`,
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Limit for data size per page.<br/>
-                      futures: [1, 1000], default: 500<br/>
-                      
+                      <td>
+                        Limit for data size per page. [
+                        <span className="pill">1</span>,
+                        <span className="pill">1000</span> ]. Default:{" "}
+                        <span className="pill"> 200 </span>
                       </td>
                     </tr>
                   </tbody>
@@ -319,12 +321,13 @@ getRecentTrades();`,
                     <tr>
                       <td>&gt; isRPITrade</td>
                       <td>boolean</td>
-                      <td>Whether the trade is RPI trade. Invalid for <span className="pill">option</span>.</td>
+                      <td>Whether the trade is RPI trade
+                        </td>
                     </tr>
                     <tr>
                       <td>&gt; seq</td>
                       <td>string</td>
-                      <td>Cross sequence. Invalid for <span className="pill">option</span>.</td>
+                      <td>Cross sequence. </td>
                     </tr>
                   </tbody>
                 </table>

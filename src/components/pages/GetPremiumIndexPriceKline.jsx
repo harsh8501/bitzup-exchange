@@ -204,7 +204,7 @@ getPremiumIndexPriceKline();`,
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               {/* Breadcrumb */}
               <div className="breadcrumb mb-4">
-                <span className="text-muted">Market</span>
+                <span className="text-mutne">Market</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>
@@ -281,7 +281,12 @@ getPremiumIndexPriceKline();`,
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Limit for data size per page. [1, 1000]. Default: 200</td>
+                     <td>
+                        Limit for data size per page. [
+                        <span className="pill">1</span>,
+                        <span className="pill">1000</span> ]. Default:{" "}
+                        <span className="pill"> 200 </span>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

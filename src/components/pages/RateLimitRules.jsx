@@ -68,7 +68,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
             {/* LEFT CONTENT */}
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               <div className="breadcrumb mb-4">
-                <span className="text-muted">Guide</span>
+                <span className="text-mutne">Guide</span>
                 <span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span>
                 <span className="pill">Rate Limit Rules</span>
               </div>
@@ -80,12 +80,12 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
 
               {/* HTTP IP limit */}
               <h3 className="top-req-text" id="http-ip-limit">HTTP IP limit</h3>
-              <p>
+              <div className="text-mutne">
                 You are allowed to send 600 requests within a 5-second window per IP by default. This limit applies to all traffic directed to <span className="pill">api.bitzup.com</span>. If you encounter the error "403, access too frequent", it indicates that your IP has exceeded the allowed request frequency. In this case, you should terminate all HTTP sessions and wait for at least 10 minutes. The ban will be lifted automatically. For Bitzup Futures, these limits are optimized for high-frequency trading.
-              </p>
-              <p>
+              </div>
+              <div className="text-mutne">
                 We do not recommend running your application at the very edge of these limits in case abnormal network activity results in an unexpected violation.
-              </p>
+              </div>
 
               {/* Websocket IP limit */}
               <h3 className="text-mutne" id="websocket-ip-limit">Websocket IP limit</h3>
@@ -101,13 +101,13 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
 
               {/* ── API Rate Limit ── */}
               <div className="api-cover" id="api-rate-limit">API Rate Limit</div>
-              <p>
+              <div className="text-mutne">
                 If you receive <span className="pill">"retCode": 10006, "retMsg": "Too many visits!"</span> in the JSON response, you have hit the API rate limit.
-              </p>
-              <p>
+              </div>
+              <div className="text-mutne">
                 The API rate limit is based on the rolling time window per second and UID. In other words, it is per second per UID. Every request to the API returns response header shown in the code panel:
-              </p>
-              <ul>
+              </div>
+              <ul className="text-mutne">
                 <li><span className="pill">X-Bapi-Limit-Status</span> - your remaining requests for current endpoint</li>
                 <li><span className="pill">X-Bapi-Limit</span> - your current limit for current endpoint</li>
                 <li><span className="pill">X-Bapi-Limit-Reset-Timestamp</span> - the timestamp indicating when your request limit resets if you have exceeded your rate_limit. Otherwise, this is just the current timestamp (it may not exactly match <span className="pill">timeNow</span>).</li>

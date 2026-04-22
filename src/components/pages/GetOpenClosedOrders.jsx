@@ -148,13 +148,18 @@ getOpenClosedOrders();`,
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
                         <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
-                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name. For Spot, required when <span className="pill">openOnly</span> is 1 or 2</td></tr>
+                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name</td></tr>
                         <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin. linear only</td></tr>
                         <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID</td></tr>
                         <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID</td></tr>
                         <tr><td>openOnly</td><td>false</td><td>integer</td><td><span className="pill">0</span> (default): query open orders. <span className="pill">1</span>: query recent 500 closed orders. Ignored when querying by <span className="pill">orderId</span>/<span className="pill">orderLinkId</span></td></tr>
                         <tr><td>orderFilter</td><td>false</td><td>string</td><td><span className="pill">Order</span>, <span className="pill">StopOrder</span>, <span className="pill">tpslOrder</span>, <span className="pill">OcoOrder</span>, <span className="pill">BidirectionalTpslOrder</span></td></tr>
-                        <tr><td>limit</td><td>false</td><td>integer</td><td>Limit per page. [1, 50]. Default: 20</td></tr>
+                        <tr><td>limit</td><td>false</td><td>integer</td> <td>
+                        Limit for data size per page. [
+                        <span className="pill">1</span>,
+                        <span className="pill">50</span> ]. Default:{" "}
+                        <span className="pill"> 20 </span>
+                      </td></tr>
                         <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
                     </tbody>
                 </table></div>

@@ -206,7 +206,7 @@ getIndexPriceKline();`,
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               {/* Breadcrumb */}
               <div className="breadcrumb mb-4">
-                <span className="text-muted">Market</span>
+                <span className="text-mutne">Market</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>
@@ -283,7 +283,12 @@ getIndexPriceKline();`,
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Limit for data size per page. [1, 1000]. Default: 200</td>
+                     <td>
+                        Limit for data size per page. [
+                        <span className="pill">1</span>,
+                        <span className="pill">1000</span> ]. Default:{" "}
+                        <span className="pill"> 200 </span>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -313,21 +318,45 @@ getIndexPriceKline();`,
                       <td>Symbol name</td>
                     </tr>
                     <tr>
-                      <td>list</td>
+                       <td>list</td>
                       <td>array</td>
+                      
+                        <td>An string array of individual kline. Sort in reverse by startTime.</td>
+                    </tr>
+                    <tr>
                       <td>
-                        An string array of individual kline. Sort in reverse by startTime.
-                        <br />
-                        <span className="pill">[0]</span>: startTime (ms)
-                        <br />
-                        <span className="pill">[1]</span>: openPrice
-                        <br />
-                        <span className="pill">[2]</span>: highPrice
-                        <br />
-                        <span className="pill">[3]</span>: lowPrice
-                        <br />
-                        <span className="pill">[4]</span>: closePrice
+                        <IoIosArrowForward /> list[0]: startTime
                       </td>
+                      <td>string</td>
+                      <td>Start time of the kline (ms)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[1]: openPrice
+                      </td>
+                      <td>string</td>
+                      <td>Open price</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[2]: highPrice
+                      </td>
+                      <td>string</td>
+                      <td>Highest price</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[3]: lowPrice
+                      </td>
+                      <td>string</td>
+                      <td>Lowest price</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <IoIosArrowForward /> list[4]: closePrice
+                      </td>
+                      <td>string</td>
+                      <td>Close price</td>
                     </tr>
                   </tbody>
                 </table>

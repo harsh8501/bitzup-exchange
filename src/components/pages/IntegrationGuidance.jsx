@@ -163,12 +163,12 @@ Host: api.bitzup.com
           A smaller <span className="pill">X-BAPI-RECV-WINDOW</span> is more secure, but your request may fail if the transmission time is greater than your <span className="pill">X-BAPI-RECV-WINDOW</span>.
         </p>
 
-        <div className="api-caution mb-4">
+        <div className="api-caution text-mutne mb-4">
           <strong>CAUTION:</strong>
-          <p className="mb-2 mt-2">Please make sure that the timestamp parameter adheres to the following rule:</p>
+          <div className="mb-2 mt-2">Please make sure that the timestamp parameter adheres to the following rule:</div>
           <code className="d-block mb-2">server_time - recv_window &lt;= timestamp &lt; server_time + 1000</code>
-          <p className="mb-2">which means your timestamp should lie in range: <span className="pill">[server_time - recv_window; server_time + 1000)</span></p>
-          <p className="mb-0"><span className="pill">server_time</span> stands for Bitzup server time, which can be queried via the Server Time endpoint. Keep in mind it's highly recommended that you use local device time for timestamp and keep it NTP-synchronized at all times.</p>
+          <div className="mb-2">which means your timestamp should lie in range: <span className="pill">(server_time - recv_window; server_time + 1000)</span></div>
+          <div className="mb-0"><span className="pill">server_time</span> stands for Bitzup server time, which can be queried via the Server Time endpoint. Keep in mind it's highly recommended that you use local device time for timestamp and keep it NTP-synchronized at all times.</div>
         </div>
 
         {/* Create A Request */}

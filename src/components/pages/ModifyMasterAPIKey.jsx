@@ -114,7 +114,7 @@ client
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
                         <tr><td>readOnly</td><td>false</td><td>integer</td><td><span className="pill">0</span>: Read and Write (default), <span className="pill">1</span>: Read only</td></tr>
-                        <tr><td>ips</td><td>false</td><td>array</td><td>Set the IP bind. e.g., <span className="pill">["xxx.xxx.xxx.xxx"]</span>. <span className="pill">["*"]</span> means no restriction</td></tr>
+
                         <tr><td>permissions</td><td>false</td><td>Object</td><td>Tick the types of permission</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; ContractTrade</td><td>false</td><td>array</td><td><span className="pill">"Order"</span>, <span className="pill">"Position"</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; Spot</td><td>false</td><td>array</td><td><span className="pill">"SpotTrade"</span></td></tr>

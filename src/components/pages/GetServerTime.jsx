@@ -171,7 +171,7 @@ getServerTime();`,
             <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
               {/* Breadcrumb */}
               <div className="breadcrumb mb-4">
-                <span className="kline-market">Market</span>
+                <span className="text-mutne">Market</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>

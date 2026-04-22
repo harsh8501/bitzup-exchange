@@ -216,7 +216,7 @@ getTickers();`,
             <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
               {/* Breadcrumb */}
               <div className="breadcrumb mb-4">
-                <span className="text-muted">Market</span>
+                <span className="kline-market">Market</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>
@@ -256,7 +256,7 @@ getTickers();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <span className="pill-magenta">linear</span></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>

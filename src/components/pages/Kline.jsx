@@ -220,7 +220,7 @@ getKline();`,
             {/* LEFT CONTENT */}
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
               <div className="breadcrumb mb-4">
-                <span className="text-muted">Market</span>
+                <span className="text-mutne">Market</span>
                 <span className="mx-2">
                   <IoIosArrowForward className="kline-arrow" />
                 </span>

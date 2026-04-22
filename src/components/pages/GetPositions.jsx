@@ -140,9 +140,14 @@ getPositionInfo();`,
           <tbody>
             <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
             <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span>, uppercase only</td></tr>
-            <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin. <span className="pill">option</span> only</td></tr>
+            <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin. </td></tr>
             <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin</td></tr>
-            <tr><td>limit</td><td>false</td><td>integer</td><td>Limit [1, 200]. Default: 20</td></tr>
+            <tr><td>limit</td><td>false</td><td>integer</td> <td>
+                        Limit  [
+                        <span className="pill">1</span>,
+                        <span className="pill">200</span> ]. Default:{" "}
+                        <span className="pill"> 20 </span>
+                      </td></tr>
             <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
           </tbody>
         </table></div>

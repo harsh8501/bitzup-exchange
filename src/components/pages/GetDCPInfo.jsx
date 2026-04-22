@@ -242,12 +242,12 @@ getDCPInfo();`,
                     <tr>
                       <td>&gt; product</td>
                       <td>string</td>
-                      <td><span className="pill">SPOT</span>, <span className="pill">DERIVATIVES</span>, <span className="pill">OPTIONS</span></td>
+                      <td><span className="pill">SPOT</span></td>
                     </tr>
                     <tr>
                       <td>&gt; dcpStatus</td>
                       <td>string</td>
-                      <td><span className="pill">ON</span>, <span className="pill">OFF</span></td>
+                      <td><span className="pill">ON</span></td>
                     </tr>
                     <tr>
                       <td>&gt; timeWindow</td>

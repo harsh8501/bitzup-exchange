@@ -72,7 +72,7 @@ export const EnumsDefinitions = () => {
                         {/* LEFT CONTENT */}
                         <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                             <div className="breadcrumb mb-4">
-                                <span className="text-muted">Guide</span>
+                                <span className="text-mutne">Guide</span>
                                 <span className="mx-2"><IoIosArrowForward className="kline-arrow" style={{ verticalAlign: "middle" }} /></span>
                                 <span className="pill">Enums Definitions</span>
                             </div>

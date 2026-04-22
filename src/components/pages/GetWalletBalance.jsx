@@ -200,7 +200,7 @@ getWalletBalance();`,
                     <div className="row">
                         <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                             <div className="breadcrumb mb-4">
-                                <span className="text-muted">Account</span>
+                                <span className="text-mutne">Account</span>
                                 <span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span>
                                 <span className="pill">Get Wallet Balance</span>
                             </div>
