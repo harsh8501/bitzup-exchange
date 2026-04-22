@@ -77,7 +77,7 @@ export const RecentPublicTrades = () => {
   "retCode": 0,
   "retMsg": "OK",
   "result": {
-    "category": "spot",
+    "category": "linear",
     "list": [
       {
         "execId": "2100000000007764263",
@@ -97,14 +97,14 @@ export const RecentPublicTrades = () => {
 }`;
 
   const codeMap = {
-    HTTP: `GET /v5/market/recent-trade?category=spot&symbol=BTCUSDT&limit=1 HTTP/1.1
+    HTTP: `GET /v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1 HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/recent-trade"
 params = {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT",
     "limit": "1"
 }
@@ -125,7 +125,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/recent-trade?category=spot&symbol=BTCUSDT&limit=1"
+    url := "https://api.bitzup.com/v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -152,7 +152,7 @@ import java.net.http.HttpResponse;
 
 public class GetRecentTradesDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/recent-trade?category=spot&symbol=BTCUSDT&limit=1";
+        String url = "https://api.bitzup.com/v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -173,7 +173,7 @@ async function getRecentTrades() {
             'https://api.bitzup.com/v5/market/recent-trade',
             {
                 params: {
-                    category: 'spot',
+                    category: "linear",
                     symbol: 'BTCUSDT',
                     limit: 1
                 }
@@ -237,33 +237,21 @@ getRecentTrades();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
-                      <td>false</td>
+                      <td>true</td>
                       <td>string</td>
-                      <td>Symbol name. required for spot/linear/inverse. optional for option. If optional field is not passed, return BTC data by default.</td>
-                    </tr>
-                    <tr>
-                      <td>baseCoin</td>
-                      <td>false</td>
-                      <td>string</td>
-                      <td>Base coin. Apply to <code>option</code> only.</td>
-                    </tr>
-                    <tr>
-                      <td>optionType</td>
-                      <td>false</td>
-                      <td>string</td>
-                      <td>Option type. <code>Call</code>, <code>Put</code></td>
+                      <td>Symbol name.</td>
                     </tr>
                     <tr>
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
                       <td>Limit for data size per page.<br/>
-                      spot: [1,60], default: 60<br/>
-                      others: [1,1000], default: 500
+                      futures: [1, 1000], default: 500<br/>
+                      
                       </td>
                     </tr>
                   </tbody>
@@ -316,7 +304,7 @@ getRecentTrades();`,
                     <tr>
                       <td>&gt; side</td>
                       <td>string</td>
-                      <td>Side of taker. <code>Buy</code>, <code>Sell</code></td>
+                      <td>Side of taker. <span className="pill">Buy</span>, <span className="pill">Sell</span></td>
                     </tr>
                     <tr>
                       <td>&gt; time</td>
@@ -331,12 +319,12 @@ getRecentTrades();`,
                     <tr>
                       <td>&gt; isRPITrade</td>
                       <td>boolean</td>
-                      <td>Whether the trade is RPI trade. Invalid for <code>option</code>.</td>
+                      <td>Whether the trade is RPI trade. Invalid for <span className="pill">option</span>.</td>
                     </tr>
                     <tr>
                       <td>&gt; seq</td>
                       <td>string</td>
-                      <td>Cross sequence. Invalid for <code>option</code>.</td>
+                      <td>Cross sequence. Invalid for <span className="pill">option</span>.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -359,14 +347,14 @@ getRecentTrades();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -374,12 +362,12 @@ getRecentTrades();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

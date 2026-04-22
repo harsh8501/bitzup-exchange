@@ -305,7 +305,7 @@ createInternalTransfer();`,
                     <tr>
                       <td>status</td>
                       <td>string</td>
-                      <td>Transfer status: <code>STATUS_UNKNOWN</code>, <code>SUCCESS</code>, <code>PENDING</code>, <code>FAILED</code></td>
+                      <td>Transfer status: <span className="pill">STATUS_UNKNOWN</span>, <span className="pill">SUCCESS</span>, <span className="pill">PENDING</span>, <span className="pill">FAILED</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -328,14 +328,14 @@ createInternalTransfer();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -343,12 +343,12 @@ createInternalTransfer();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -1,6 +1,7 @@
 .api-content {
   overflow-y: auto;
   height: 100vh;
+  width: 100%;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -237,8 +238,12 @@
 
 .api-title {
   font-size: 48px;
+  color: #fff;
   font-weight: 700;
   margin-bottom: 30px;
+}
+[data-theme="light"] .api-title {
+  color: #000;
 }
 
 /* .api-desc {
@@ -257,6 +262,7 @@
   background: #1f2937;
   padding: 6px 10px;
   border-radius: 6px;
+  color: var(--text-primary);
 }
 
 .lang-tabs {
@@ -283,15 +289,27 @@
 }
 
 .api-code-box {
-  background: #14161c;
+  background: var(--bg-card) !important;
   border-radius: 14px;
   padding: 20px;
   overflow-x: auto;
   margin-bottom: 40px;
+  border: 1px solid var(--border-color) !important;
 }
 
-[data-theme="light"] .api-code-box {
-     background: #f0f3f2;
+.api-code-box pre,
+.api-code-box code,
+.api-code-box .pill {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+.api-code-box .json-string {
+  color: #00FFD1 !important; /* Restore Cyan for strings */
+}
+
+.api-code-box .key {
+  color: #a78bfa !important; /* Restore Purple for keys */
 }
 
 /* .api-table-box {
@@ -415,6 +433,7 @@
 
 .api-layout {
   padding: 24px;
+  width: 100%;
 }
 
 .api-code-box {

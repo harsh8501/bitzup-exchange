@@ -99,9 +99,9 @@ setLeverage();`,
         <p className="api-desc">According to the risk limit, leverage affects the maximum position value that can be opened, that is, the greater the leverage, the smaller the maximum position value that can be opened, and vice versa.</p>
         <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
           <ul style={{ margin: 0, paddingLeft: "18px" }}>
-            <li>One-way mode: <code>buyLeverage</code> must be the same as <code>sellLeverage</code>.</li>
-            <li>Hedge mode isolated margin: <code>buyLeverage</code> and <code>sellLeverage</code> can be different.</li>
-            <li>Hedge mode cross margin: <code>buyLeverage</code> must be the same as <code>sellLeverage</code>.</li>
+            <li>One-way mode: <span className="pill">buyLeverage</span> must be the same as <span className="pill">sellLeverage</span>.</li>
+            <li>Hedge mode isolated margin: <span className="pill">buyLeverage</span> and <span className="pill">sellLeverage</span> can be different.</li>
+            <li>Hedge mode cross margin: <span className="pill">buyLeverage</span> must be the same as <span className="pill">sellLeverage</span>.</li>
           </ul>
         </div>
         <div className="api-cover">Requires Authentication</div>
@@ -111,10 +111,10 @@ setLeverage();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code></td></tr>
-            <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <code>BTCUSDT</code></td></tr>
-            <tr><td>buyLeverage</td><td><strong>true</strong></td><td>string</td><td>Buy side leverage. Must be &gt;= <code>1</code></td></tr>
-            <tr><td>sellLeverage</td><td><strong>true</strong></td><td>string</td><td>Sell side leverage. Must be &gt;= <code>1</code></td></tr>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span></td></tr>
+            <tr><td>buyLeverage</td><td><strong>true</strong></td><td>string</td><td>Buy side leverage. Must be &gt;= <span className="pill">1</span></td></tr>
+            <tr><td>sellLeverage</td><td><strong>true</strong></td><td>string</td><td>Sell side leverage. Must be &gt;= <span className="pill">1</span></td></tr>
           </tbody>
         </table></div>
         <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -126,9 +126,9 @@ setLeverage();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

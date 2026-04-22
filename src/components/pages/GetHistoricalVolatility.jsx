@@ -76,7 +76,7 @@ export const GetHistoricalVolatility = () => {
     const responseCode = `{
   "retCode": 0,
   "retMsg": "SUCCESS",
-  "category": "option",
+  "category": "linear",
   "result": [
     {
       "period": 30,
@@ -87,14 +87,14 @@ export const GetHistoricalVolatility = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/historical-volatility?category=option&baseCoin=ETH&period=30 HTTP/1.1
+        HTTP: `GET /v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30 HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/historical-volatility"
 params = {
-    "category": "option",
+    "category": "linear",
     "baseCoin": "ETH",
     "period": "30"
 }
@@ -115,7 +115,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/historical-volatility?category=option&baseCoin=ETH&period=30"
+    url := "https://api.bitzup.com/v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -142,7 +142,7 @@ import java.net.http.HttpResponse;
 
 public class GetHistoricalVolatilityDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/historical-volatility?category=option&baseCoin=ETH&period=30";
+        String url = "https://api.bitzup.com/v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -163,7 +163,7 @@ async function getHistoricalVolatility() {
             'https://api.bitzup.com/v5/market/historical-volatility',
             {
                 params: {
-                    category: 'option',
+                    category: "linear",
                     baseCoin: 'ETH',
                     period: 30
                 }
@@ -197,7 +197,7 @@ getHistoricalVolatility();`,
               {/* Title */}
               <h1 className="api-title">Get Historical Volatility</h1>
               <p className="api-desc">
-                Query option historical volatility.
+                Query linear volatility.
               </p>
 
               {/* HTTP REQUEST */}
@@ -227,7 +227,7 @@ getHistoricalVolatility();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>baseCoin</td>
@@ -239,7 +239,7 @@ getHistoricalVolatility();`,
                       <td>period</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Period. <code>7</code>, <code>14</code>, <code>21</code>, <code>30</code>, <code>60</code>, <code>90</code>, <code>180</code>, <code>270</code></td>
+                      <td>Period. <span className="pill">7</span>, <span className="pill">14</span>, <span className="pill">21</span>, <span className="pill">30</span>, <span className="pill">60</span>, <span className="pill">90</span>, <span className="pill">180</span>, <span className="pill">270</span></td>
                     </tr>
                     <tr>
                       <td>startTime</td>
@@ -306,14 +306,14 @@ getHistoricalVolatility();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -321,12 +321,12 @@ getHistoricalVolatility();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

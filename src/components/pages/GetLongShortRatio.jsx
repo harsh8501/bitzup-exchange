@@ -240,7 +240,7 @@ getLongShortRatio();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -252,7 +252,7 @@ getLongShortRatio();`,
                       <td>period</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Data recording period. <code>5min</code>, <code>15min</code>, <code>30min</code>, <code>1h</code>, <code>4h</code>, <code>1d</code></td>
+                      <td>Data recording period. <span className="pill">5min</span>, <span className="pill">15min</span>, <span className="pill">30min</span>, <span className="pill">1h</span>, <span className="pill">4h</span>, <span className="pill">1d</span></td>
                     </tr>
                     <tr>
                       <td>limit</td>
@@ -264,7 +264,7 @@ getLongShortRatio();`,
                       <td>cursor</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Cursor. Use the <code>nextPageCursor</code> token from the response to retrieve the next page of the result set</td>
+                      <td>Cursor. Use the <span className="pill">nextPageCursor</span> token from the response to retrieve the next page of the result set</td>
                     </tr>
                   </tbody>
                 </table>
@@ -334,14 +334,14 @@ getLongShortRatio();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -349,12 +349,12 @@ getLongShortRatio();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

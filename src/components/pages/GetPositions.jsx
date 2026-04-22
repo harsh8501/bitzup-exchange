@@ -56,14 +56,14 @@ export const GetPositions = () => {
             }
         ],
         "nextPageCursor": "",
-        "category": "inverse"
+        "category": "linear"
     },
     "retExtInfo": {},
     "time": 1697684980172
 }`;
 
   const codeMap = {
-    HTTP: `GET /v5/position/list?category=inverse&symbol=BTCUSD HTTP/1.1
+    HTTP: `GET /v5/position/list?category=linear&symbol=BTCUSD HTTP/1.1
 Host: api.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
@@ -73,7 +73,7 @@ X-BAPI-RECV-WINDOW: 5000`,
 url = "https://api.bitzup.com/v5/position/list"
 headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
     "X-BAPI-TIMESTAMP": "1672280218882", "X-BAPI-RECV-WINDOW": "5000"}
-params = {"category": "inverse", "symbol": "BTCUSD"}
+params = {"category": "linear", "symbol": "BTCUSD"}
 try:
     resp = requests.get(url, params=params, headers=headers, timeout=10)
     print(resp.json())
@@ -82,7 +82,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/position/list?category=inverse&symbol=BTCUSD"
+    url := "https://api.bitzup.com/v5/position/list?category=linear&symbol=BTCUSD"
     req, _ := http.NewRequest("GET", url, nil)
     req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
     req.Header.Set("X-BAPI-SIGN", "XXXXX")
@@ -98,7 +98,7 @@ public class GetPositionInfoExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/position/list?category=inverse&symbol=BTCUSD"))
+            .uri(URI.create("https://api.bitzup.com/v5/position/list?category=linear&symbol=BTCUSD"))
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
             .GET().build();
@@ -110,7 +110,7 @@ public class GetPositionInfoExample {
 async function getPositionInfo() {
   try {
     const response = await axios.get("https://api.bitzup.com/v5/position/list",
-      { params: { category: "inverse", symbol: "BTCUSD" },
+      { params: { category: "linear", symbol: "BTCUSD" },
         headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);
   } catch (error) { console.error("Error:", error.response?.data || error.message); }
@@ -126,9 +126,9 @@ getPositionInfo();`,
         <p className="api-desc">Query real-time position data, such as position size, cumulative realized PNL, etc.</p>
         <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
           <ul style={{ margin: 0, paddingLeft: "18px" }}>
-            <li>If <code>symbol</code> is passed, it returns data regardless of having position or not.</li>
-            <li>If <code>symbol</code>=null and <code>settleCoin</code> specified, it returns position size greater than zero.</li>
-            <li><code>linear</code>: either <code>symbol</code> or <code>settleCoin</code> is required. <code>symbol</code> has a higher priority.</li>
+            <li>If <span className="pill">symbol</span> is passed, it returns data regardless of having position or not.</li>
+            <li>If <span className="pill">symbol</span>=null and <span className="pill">settleCoin</span> specified, it returns position size greater than zero.</li>
+            <li><span className="pill">linear</span>: either <span className="pill">symbol</span> or <span className="pill">settleCoin</span> is required. <span className="pill">symbol</span> has a higher priority.</li>
           </ul>
         </div>
         <div className="api-cover">Requires Authentication</div>
@@ -138,9 +138,9 @@ getPositionInfo();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>option</code></td></tr>
-            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <code>BTCUSDT</code>, uppercase only</td></tr>
-            <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin. <code>option</code> only</td></tr>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span>, uppercase only</td></tr>
+            <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin. <span className="pill">option</span> only</td></tr>
             <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin</td></tr>
             <tr><td>limit</td><td>false</td><td>integer</td><td>Limit [1, 200]. Default: 20</td></tr>
             <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
@@ -157,12 +157,12 @@ getPositionInfo();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; riskId</td><td>integer</td><td>Risk limit ID</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; riskLimitValue</td><td>string</td><td>Risk limit value</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; size</td><td>string</td><td>Position size</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; avgPrice</td><td>string</td><td>Average entry price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; positionValue</td><td>string</td><td>Position value</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; tradeMode</td><td>integer</td><td>0: cross margin, 1: isolated margin</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionStatus</td><td>string</td><td><code>Normal</code>, <code>Liq</code>, <code>Adl</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; positionStatus</td><td>string</td><td><span className="pill">Normal</span>, <span className="pill">Liq</span>, <span className="pill">Adl</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; autoAddMargin</td><td>integer</td><td>0: off, 1: on</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; adlRankIndicator</td><td>integer</td><td>ADL rank indicator</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; leverage</td><td>string</td><td>Position leverage</td></tr>
@@ -172,7 +172,7 @@ getPositionInfo();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; bustPrice</td><td>string</td><td>Bankruptcy price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; positionMM</td><td>string</td><td>Position maintenance margin</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; positionIM</td><td>string</td><td>Position initial margin</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>string</td><td><code>Full</code>, <code>Partial</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>string</td><td><span className="pill">Full</span>, <span className="pill">Partial</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>string</td><td>Take profit price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; stopLoss</td><td>string</td><td>Stop loss price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; trailingStop</td><td>string</td><td>Trailing stop</td></tr>
@@ -189,9 +189,9 @@ getPositionInfo();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

@@ -135,9 +135,9 @@ function App() {
   return (
     <>
       <Header theme={theme} setTheme={setTheme} />
-      <div className="d-flex">
+      <div className="d-flex " style={{ marginTop: "64px" }}>
         <Sidebar />
-        <div className="flex-grow-1 page-content">
+        <div className="flex-grow-1 page-content" style={{ width: "100%" }}>
           <Routes>
             {/* Guide & Status */}
             <Route path="/" element={<IntegrationGuidance />} />
@@ -159,11 +159,6 @@ function App() {
             <Route path="/docs/v5/market/funding-rate-history" element={<GetFundingRateHistory />} />
             <Route path="/docs/v5/market/recent-public-trades" element={<RecentPublicTrades />} />
             <Route path="/docs/v5/market/open-interest" element={<GetOpenInterest />} />
-            <Route path="/docs/v5/market/historical-volatility" element={<GetHistoricalVolatility />} />
-            <Route path="/docs/v5/market/insurance-pool" element={<GetInsurancePool />} />
-            <Route path="/docs/v5/market/risk-limit" element={<GetRiskLimit />} />
-            <Route path="/docs/v5/market/delivery-price" element={<GetDeliveryPrice />} />
-            <Route path="/docs/v5/market/new-delivery-price" element={<GetNewDeliveryPrice />} />
             <Route path="/docs/v5/market/long-short-ratio" element={<GetLongShortRatio />} />
             <Route path="/docs/v5/market/index-components" element={<GetIndexPriceComponents />} />
             <Route path="/docs/v5/market/order-price-limit" element={<GetOrderPriceLimit />} />
@@ -213,9 +208,6 @@ function App() {
             <Route path="/docs/v5/account/set-price-limit" element={<SetPriceLimitBehaviour />} />
 
             {/* Asset */}
-            <Route path="/docs/v5/asset/delivery-record" element={<GetDeliveryRecord />} />
-            <Route path="/docs/v5/asset/usdc-session-settlement" element={<GetUSDCSessionSettlement />} />
-            <Route path="/docs/v5/asset/coin-exchange-records" element={<GetCoinExchangeRecords />} />
             <Route path="/docs/v5/asset/coin-info" element={<GetCoinInfo />} />
             <Route path="/docs/v5/asset/sub-uid" element={<GetSubUID />} />
             <Route path="/docs/v5/asset/balances/all" element={<GetAllBalances />} />

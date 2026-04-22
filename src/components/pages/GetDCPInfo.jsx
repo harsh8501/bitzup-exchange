@@ -242,12 +242,12 @@ getDCPInfo();`,
                     <tr>
                       <td>&gt; product</td>
                       <td>string</td>
-                      <td><code>SPOT</code>, <code>DERIVATIVES</code>, <code>OPTIONS</code></td>
+                      <td><span className="pill">SPOT</span>, <span className="pill">DERIVATIVES</span>, <span className="pill">OPTIONS</span></td>
                     </tr>
                     <tr>
                       <td>&gt; dcpStatus</td>
                       <td>string</td>
-                      <td><code>ON</code>, <code>OFF</code></td>
+                      <td><span className="pill">ON</span>, <span className="pill">OFF</span></td>
                     </tr>
                     <tr>
                       <td>&gt; timeWindow</td>
@@ -275,14 +275,14 @@ getDCPInfo();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -290,12 +290,12 @@ getDCPInfo();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

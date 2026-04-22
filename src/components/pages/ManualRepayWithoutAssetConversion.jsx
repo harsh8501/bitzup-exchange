@@ -214,7 +214,7 @@ manualRepayWithoutConversion();`,
               {/* Title */}
               <h1 className="api-title">Manual Repay Without Asset Conversion</h1>
               <p className="api-desc">
-                If coin is passed in input parameter and amount is not, the repayment amount will be the available spot balance of that coin.
+                If coin is passed in input parameter and amount is not, the repayment amount will be the available linear of that coin.
               </p>
 
               {/* HTTP REQUEST */}
@@ -250,7 +250,7 @@ manualRepayWithoutConversion();`,
                       <td>amount</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Repay amount. If not passed, we will query your available spot balance of the same coin and apply the full amount toward your liabilities.</td>
+                      <td>Repay amount. If not passed, we will query your available linear of the same coin and apply the full amount toward your liabilities.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -272,7 +272,7 @@ manualRepayWithoutConversion();`,
                     <tr>
                       <td>resultStatus</td>
                       <td>string</td>
-                      <td>Execution result status: <code>P</code>: Processing, <code>SU</code>: Success, <code>FA</code>: Failed</td>
+                      <td>Execution result status: <span className="pill">P</span>: Processing, <span className="pill">SU</span>: Success, <span className="pill">FA</span>: Failed</td>
                     </tr>
                   </tbody>
                 </table>
@@ -295,14 +295,14 @@ manualRepayWithoutConversion();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -310,12 +310,12 @@ manualRepayWithoutConversion();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

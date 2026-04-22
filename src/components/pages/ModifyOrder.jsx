@@ -283,25 +283,25 @@ amendOrder();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Symbol name. e.g., <code>BTCUSDT</code></td>
+                      <td>Symbol name. e.g., <span className="pill">BTCUSDT</span></td>
                     </tr>
                     <tr>
                       <td>orderId</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td>
+                      <td>Order ID. Either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> is required</td>
                     </tr>
                     <tr>
                       <td>orderLinkId</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>User customised order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td>
+                      <td>User customised order ID. Either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> is required</td>
                     </tr>
                     <tr>
                       <td>triggerPrice</td>
@@ -325,7 +325,7 @@ amendOrder();`,
                       <td>tpslMode</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>TP/SL mode. <code>Full</code>, <code>Partial</code></td>
+                      <td>TP/SL mode. <span className="pill">Full</span>, <span className="pill">Partial</span></td>
                     </tr>
                     <tr>
                       <td>takeProfit</td>
@@ -343,13 +343,13 @@ amendOrder();`,
                       <td>tpTriggerBy</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>The price type to trigger take profit. <code>MarkPrice</code>, <code>IndexPrice</code>, <code>LastPrice</code></td>
+                      <td>The price type to trigger take profit. <span className="pill">MarkPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">LastPrice</span></td>
                     </tr>
                     <tr>
                       <td>slTriggerBy</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>The price type to trigger stop loss. <code>MarkPrice</code>, <code>IndexPrice</code>, <code>LastPrice</code></td>
+                      <td>The price type to trigger stop loss. <span className="pill">MarkPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">LastPrice</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -403,14 +403,14 @@ amendOrder();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -418,12 +418,12 @@ amendOrder();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -177,7 +177,7 @@ ws.on('close', function close() {
                 Subscribe Strategy
               </h3>
               <p>
-                <strong>Topic:</strong> <code>publicTrade.{"{"}symbol{"}"}</code> e.g., <code>publicTrade.BTCUSDT</code>
+                <strong>Topic:</strong> <span className="pill">publicTrade.{"{"}symbol{"}"}</span> e.g., <span className="pill">publicTrade.BTCUSDT</span>
               </p>
 
               <h3 className="top-req-text" id="response-params">
@@ -201,7 +201,7 @@ ws.on('close', function close() {
                     <tr>
                       <td>type</td>
                       <td>string</td>
-                      <td>Message type: <code>snapshot</code></td>
+                      <td>Message type: <span className="pill">snapshot</span></td>
                     </tr>
                     <tr>
                       <td>ts</td>
@@ -226,7 +226,7 @@ ws.on('close', function close() {
                     <tr>
                       <td>data.S</td>
                       <td>string</td>
-                      <td>Side of the taker: <code>Buy</code>, <code>Sell</code></td>
+                      <td>Side of the taker: <span className="pill">Buy</span>, <span className="pill">Sell</span></td>
                     </tr>
                     <tr>
                       <td>data.v</td>
@@ -241,7 +241,7 @@ ws.on('close', function close() {
                     <tr>
                       <td>data.L</td>
                       <td>string</td>
-                      <td>Direction of price change (e.g., <code>PlusTick</code>, <code>ZeroPlusTick</code>, <code>MinusTick</code>, <code>ZeroMinusTick</code>)</td>
+                      <td>Direction of price change (e.g., <span className="pill">PlusTick</span>, <span className="pill">ZeroPlusTick</span>, <span className="pill">MinusTick</span>, <span className="pill">ZeroMinusTick</span>)</td>
                     </tr>
                     <tr>
                       <td>data.i</td>
@@ -274,14 +274,14 @@ ws.on('close', function close() {
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -289,12 +289,12 @@ ws.on('close', function close() {
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

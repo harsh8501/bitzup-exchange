@@ -276,7 +276,7 @@ getMmpState();`,
                     <tr>
                       <td>&gt; frozenPeriod</td>
                       <td>string</td>
-                      <td>Frozen period (ms). <code>0</code> means the trade will remain frozen until manually reset</td>
+                      <td>Frozen period (ms). <span className="pill">0</span> means the trade will remain frozen until manually reset</td>
                     </tr>
                     <tr>
                       <td>&gt; qtyLimit</td>
@@ -296,7 +296,7 @@ getMmpState();`,
                     <tr>
                       <td>&gt; mmpFrozen</td>
                       <td>boolean</td>
-                      <td><ul><li><code>true</code>: mmpFrozenUntil is meaningful</li><li><code>false</code>: please ignore the value of mmpFrozenUntil</li></ul></td>
+                      <td><ul><li><span className="pill">true</span>: mmpFrozenUntil is meaningful</li><li><span className="pill">false</span>: please ignore the value of mmpFrozenUntil</li></ul></td>
                     </tr>
                   </tbody>
                 </table>
@@ -319,14 +319,14 @@ getMmpState();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -334,12 +334,12 @@ getMmpState();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

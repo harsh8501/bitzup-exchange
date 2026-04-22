@@ -1,18 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
+  /* Default (Dark - Restored to Screenshot) */
   --bg-primary: #000000;
   --bg-secondary: #0B0E11;
-  --bg-card: #14181C;
+  --bg-sidebar: #010101; /* Deep black sidebar */
+  --bg-card: #0F1216;
+  --bg-code: #0D1117;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #848E9C;
+  --text-muted: #6c757d;
+  --text-accent: #00FFD1; /* neon */
+  --text-main: #FFFFFF;
+  
   --accent-neon: #00FFD1;
   --accent-neon-dim: rgba(0, 255, 209, 0.1);
   --accent-magenta: #F0458C;
   --accent-magenta-dim: rgba(240, 69, 140, 0.1);
-  --text-primary: #FFFFFF;
-  --text-secondary: #848E9C;
+  
   --border-color: #2D333B;
   --header-height: 72px;
   --sidebar-width: 260px;
+  --bg-header: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-sidebar: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-code: #f1f5f9;
+  
+  --text-primary: #020617;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-accent: #00A68E;
+  --text-main: #0B0E11;
+  
+  --accent-neon: #00A68E;
+  --accent-neon-dim: rgba(0, 166, 142, 0.1);
+  --border-color: #e2e8f0;
+  --bg-header: rgba(255, 255, 255, 0.95);
 }
 
 * {
@@ -29,6 +58,7 @@ body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar for a premium look */
@@ -50,6 +80,24 @@ body {
   background: var(--text-secondary);
 }
 
+.pill {
+  background: var(--accent-neon-dim);
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin: 0 4px;
+  color: var(--accent-neon);
+  font-size: 13px;
+}
+
+.pill-magenta {
+  background: var(--accent-magenta-dim);
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin: 0 4px;
+  color: var(--accent-magenta);
+  font-size: 13px;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -61,7 +109,7 @@ a:hover {
 }
 
 .api-layout {
-  display: flex;
+  /* display: flex; */
   background-color: var(--bg-primary);
 }
 
@@ -71,13 +119,81 @@ a:hover {
   width: 100%;
 }
 
+/* Breadcrumb & Global Muted Fix */
+.breadcrumb span .text-muted {
+  color: #cbd5e1 !important; /* Bright enough for Dark Mode */
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .breadcrumb span.text-muted {
+  color: #64748b !important; /* Standard muted for Light Mode */
+}
+
+ .text-mutne {
+  color: #fff !important; /* Bright enough for Dark Mode */
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .text-mutne {
+  color: #000 !important; /* Standard muted for Light Mode */
+}
 /* Typography Overrides */
 h1, h2, h3, h4, h5 {
   font-weight: 600;
   color: var(--text-primary);
 }
 
-p {
-  color: var(--text-secondary);
+p, .api-desc {
+  color: var(--text-secondary) !important;
   line-height: 1.6;
 }
+
+/* Code Block Standardization (Theme-Aware) */
+.api-code-box {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.api-code-box pre,
+.api-code-box code {
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace !important;
+}
+
+/* Premium Light Mode Code Block */
+[data-theme="light"] .api-code-box {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-theme="light"] .api-code-box pre,
+[data-theme="light"] .api-code-box code,
+[data-theme="light"] .api-code-box span {
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .api-code-box .json-string,
+[data-theme="light"] .api-code-box .string {
+  color: #059669 !important; /* Premium Emerald in White Mode */
+}
+
+[data-theme="light"] .api-code-box .key,
+[data-theme="light"] .api-code-box .property {
+  color: #7c3aed !important; /* Premium Violet in White Mode */
+}
+
+/* High Contrast for descriptions */
+.api-desc {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .api-desc {
+  color: var(--text-primary) !important;
+; /* Slightly lighter for readability on black */
+}
+

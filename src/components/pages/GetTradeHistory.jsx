@@ -120,7 +120,7 @@ getTradeHistory();`,
         <h1 className="api-title">Get Trade History (2 years)</h1>
         <p className="api-desc">Query users' execution records, sorted by execTime in descending order.</p>
         <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Tip</span></div>
-          <p>Response items may have sorting issues when <code>execTime</code> is the same. It is recommended to sort according to <code>execId</code>+<code>orderId</code>+<code>leavesQty</code>.</p>
+          <p>Response items may have sorting issues when <span className="pill">execTime</span> is the same. It is recommended to sort according to <span className="pill">execId</span>+<span className="pill">orderId</span>+<span className="pill">leavesQty</span>.</p>
         </div>
         <div className="api-cover">Requires Authentication</div>
         <h3 className="top-req-text" id="http">HTTP Request</h3>
@@ -129,8 +129,8 @@ getTradeHistory();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
-            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <code>BTCUSDT</code>, uppercase only</td></tr>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span>, uppercase only</td></tr>
             <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID</td></tr>
             <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID</td></tr>
             <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin, uppercase only</td></tr>
@@ -151,12 +151,12 @@ getTradeHistory();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>string</td><td>Order ID</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; orderLinkId</td><td>string</td><td>User customised order ID</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; orderPrice</td><td>string</td><td>Order price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; orderQty</td><td>string</td><td>Order quantity</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; leavesQty</td><td>string</td><td>Remaining qty not executed</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; createType</td><td>string</td><td>Order create type</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><code>Market</code>, <code>Limit</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><span className="pill">Market</span>, <span className="pill">Limit</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; stopOrderType</td><td>string</td><td>Stop order type</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; execFee</td><td>string</td><td>Executed trading fee</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; execId</td><td>string</td><td>Execution ID</td></tr>
@@ -168,11 +168,7 @@ getTradeHistory();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; feeCurrency</td><td>string</td><td>Trading fee currency</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; isMaker</td><td>boolean</td><td>Is maker order</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; feeRate</td><td>string</td><td>Trading fee rate</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; tradeIv</td><td>string</td><td>Trade IV (option only)</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; markIv</td><td>string</td><td>Mark price IV (option only)</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; markPrice</td><td>string</td><td>Mark price when executing</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; indexPrice</td><td>string</td><td>Index price (option only)</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; underlyingPrice</td><td>string</td><td>Underlying price (option only)</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; blockTradeId</td><td>string</td><td>Paradigm block trade ID</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; closedSize</td><td>string</td><td>Closed position size</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; seq</td><td>long</td><td>Cross sequence</td></tr>
@@ -181,9 +177,9 @@ getTradeHistory();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

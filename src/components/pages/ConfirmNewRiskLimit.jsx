@@ -92,7 +92,7 @@ confirmNewRiskLimit();`,
       <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
         <div className="breadcrumb mb-4"><span className="kline-market">Position</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Confirm New Risk Limit</span></div>
         <h1 className="api-title">Confirm New Risk Limit</h1>
-        <p className="api-desc">It is only applicable when the user is marked as only reducing positions (please see the <code>isReduceOnly</code> field in the Get Position Info endpoint). After the user has taken measures to bring the position to a safe state, this endpoint can be called to remove the reduce-only mark.</p>
+        <p className="api-desc">It is only applicable when the user is marked as only reducing positions (please see the <span className="pill">isReduceOnly</span> field in the Get Position Info endpoint). After the user has taken measures to bring the position to a safe state, this endpoint can be called to remove the reduce-only mark.</p>
         <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
           <ul style={{ margin: 0, paddingLeft: "18px" }}>
             <li>You can consider a series of measures, e.g., lower the risk limit, decrease leverage, reduce the position, add margin, or cancel orders.</li>
@@ -106,8 +106,8 @@ confirmNewRiskLimit();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code></td></tr>
-            <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <code>BTCUSDT</code></td></tr>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span></td></tr>
           </tbody>
         </table></div>
         <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -119,9 +119,9 @@ confirmNewRiskLimit();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

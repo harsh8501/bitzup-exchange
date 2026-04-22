@@ -77,7 +77,7 @@ export const GetRiskLimit = () => {
   "retCode": 0,
   "retMsg": "OK",
   "result": {
-    "category": "inverse",
+    "category": "linear",
     "list": [
       {
         "id": 1,
@@ -96,14 +96,14 @@ export const GetRiskLimit = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/risk-limit?category=inverse&symbol=BTCUSD HTTP/1.1
+        HTTP: `GET /v5/market/risk-limit?category=linear&symbol=BTCUSD HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/risk-limit"
 params = {
-    "category": "inverse",
+    "category": "linear",
     "symbol": "BTCUSD"
 }
 
@@ -123,7 +123,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/risk-limit?category=inverse&symbol=BTCUSD"
+    url := "https://api.bitzup.com/v5/market/risk-limit?category=linear&symbol=BTCUSD"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -150,7 +150,7 @@ import java.net.http.HttpResponse;
 
 public class GetRiskLimitDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/risk-limit?category=inverse&symbol=BTCUSD";
+        String url = "https://api.bitzup.com/v5/market/risk-limit?category=linear&symbol=BTCUSD";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -171,7 +171,7 @@ async function getRiskLimit() {
             'https://api.bitzup.com/v5/market/risk-limit',
             {
                 params: {
-                    category: 'inverse',
+                    category: "linear",
                     symbol: 'BTCUSD'
                 }
             }
@@ -234,7 +234,7 @@ getRiskLimit();`,
                       <td>category</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code>. Default: <code>linear</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -297,7 +297,7 @@ getRiskLimit();`,
                     <tr>
                       <td>&gt; isLowestRisk</td>
                       <td>integer</td>
-                      <td>Is it the lowest risk limit. <code>1</code>: true, <code>0</code>: false</td>
+                      <td>Is it the lowest risk limit. <span className="pill">1</span>: true, <span className="pill">0</span>: false</td>
                     </tr>
                     <tr>
                       <td>&gt; maxLeverage</td>
@@ -307,7 +307,7 @@ getRiskLimit();`,
                     <tr>
                       <td>&gt; mmDeduction</td>
                       <td>string</td>
-                      <td>Always <code>""</code></td>
+                      <td>Always <span className="pill">""</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -330,14 +330,14 @@ getRiskLimit();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -345,12 +345,12 @@ getRiskLimit();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

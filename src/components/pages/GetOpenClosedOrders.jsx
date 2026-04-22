@@ -147,14 +147,13 @@ getOpenClosedOrders();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
-                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name. For Spot, required when <code>openOnly</code> is 1 or 2</td></tr>
-                        <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin. Spot only</td></tr>
-                        <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin. Linear & Inverse only</td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name. For Spot, required when <span className="pill">openOnly</span> is 1 or 2</td></tr>
+                        <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin. linear only</td></tr>
                         <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID</td></tr>
                         <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID</td></tr>
-                        <tr><td>openOnly</td><td>false</td><td>integer</td><td><code>0</code> (default): query open orders. <code>1</code>: query recent 500 closed orders. Ignored when querying by <code>orderId</code>/<code>orderLinkId</code></td></tr>
-                        <tr><td>orderFilter</td><td>false</td><td>string</td><td><code>Order</code>, <code>StopOrder</code>, <code>tpslOrder</code>, <code>OcoOrder</code>, <code>BidirectionalTpslOrder</code></td></tr>
+                        <tr><td>openOnly</td><td>false</td><td>integer</td><td><span className="pill">0</span> (default): query open orders. <span className="pill">1</span>: query recent 500 closed orders. Ignored when querying by <span className="pill">orderId</span>/<span className="pill">orderLinkId</span></td></tr>
+                        <tr><td>orderFilter</td><td>false</td><td>string</td><td><span className="pill">Order</span>, <span className="pill">StopOrder</span>, <span className="pill">tpslOrder</span>, <span className="pill">OcoOrder</span>, <span className="pill">BidirectionalTpslOrder</span></td></tr>
                         <tr><td>limit</td><td>false</td><td>integer</td><td>Limit per page. [1, 50]. Default: 20</td></tr>
                         <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
                     </tbody>
@@ -172,8 +171,7 @@ getOpenClosedOrders();`,
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; price</td><td>string</td><td>Order price</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td>string</td><td>Order quantity</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; isLeverage</td><td>string</td><td>0: no leverage, 1: use leverage (Spot only)</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; positionIdx</td><td>integer</td><td>Position index (0, 1, 2)</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderStatus</td><td>string</td><td>Order status</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; createType</td><td>string</td><td>Order create type</td></tr>
@@ -185,15 +183,15 @@ getOpenClosedOrders();`,
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; cumExecQty</td><td>string</td><td>Cumulative executed quantity</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; cumExecValue</td><td>string</td><td>Cumulative executed value</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; cumExecFee</td><td>string</td><td>Cumulative executed fee</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; timeInForce</td><td>string</td><td><code>GTC</code>, <code>IOC</code>, <code>FOK</code>, <code>PostOnly</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><code>Market</code>, <code>Limit</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; timeInForce</td><td>string</td><td><span className="pill">GTC</span>, <span className="pill">IOC</span>, <span className="pill">FOK</span>, <span className="pill">PostOnly</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><span className="pill">Market</span>, <span className="pill">Limit</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; stopOrderType</td><td>string</td><td>Stop order type</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderIv</td><td>string</td><td>Implied volatility</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; marketUnit</td><td>string</td><td>Qty unit for Spot market orders</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; marketUnit</td><td>string</td><td>Qty unit for market orders</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerPrice</td><td>string</td><td>Trigger price</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>string</td><td>Take profit price</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; stopLoss</td><td>string</td><td>Stop loss price</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>string</td><td><code>Full</code>, <code>Partial</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>string</td><td><span className="pill">Full</span>, <span className="pill">Partial</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; tpLimitPrice</td><td>string</td><td>Limit price for TP</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; slLimitPrice</td><td>string</td><td>Limit price for SL</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; tpTriggerBy</td><td>string</td><td>Price type to trigger TP</td></tr>
@@ -203,7 +201,7 @@ getOpenClosedOrders();`,
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; lastPriceOnCreated</td><td>string</td><td>Last price at creation</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; reduceOnly</td><td>boolean</td><td>Reduce only status</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; closeOnTrigger</td><td>boolean</td><td>Close on trigger status</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; placeType</td><td>string</td><td><code>iv</code>, <code>price</code> (Options only)</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; placeType</td><td>string</td><td><span className="pill">iv</span>, <span className="pill">price</span> (Options only)</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; smpType</td><td>string</td><td>SMP execution type</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; smpGroup</td><td>integer</td><td>SMP group ID</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; smpOrderId</td><td>string</td><td>Counterparty order ID for SMP</td></tr>
@@ -213,9 +211,9 @@ getOpenClosedOrders();`,
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

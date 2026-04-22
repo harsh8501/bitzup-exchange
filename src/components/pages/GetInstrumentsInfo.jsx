@@ -267,7 +267,7 @@ getInstrumentsInfo();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -285,13 +285,13 @@ getInstrumentsInfo();`,
                       <td>status</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Symbol status filter. <code>PreLaunch</code>, <code>Trading</code>, <code>Delivering</code>.</td>
+                      <td>Symbol status filter. <span className="pill">PreLaunch</span>, <span className="pill">Trading</span>, <span className="pill">Delivering</span>.</td>
                     </tr>
                     <tr>
                       <td>baseCoin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Base coin. Applies to linear, inverse, option only.</td>
+                      <td>Base coin. Applies to <span className="pill">linear</span> only.</td>
                     </tr>
                     <tr>
                       <td>limit</td>
@@ -368,14 +368,14 @@ getInstrumentsInfo();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -383,12 +383,12 @@ getInstrumentsInfo();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

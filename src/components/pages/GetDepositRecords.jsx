@@ -365,7 +365,7 @@ getDepositRecords();`,
                     <tr>
                       <td>&gt; depositType</td>
                       <td>string</td>
-                      <td>The deposit type. <code>0</code>: normal deposit, <code>10</code>: deposit transferred from a Bitzup address, <code>20</code>: structural product deposit</td>
+                      <td>The deposit type. <span className="pill">0</span>: normal deposit, <span className="pill">10</span>: deposit transferred from a Bitzup address, <span className="pill">20</span>: structural product deposit</td>
                     </tr>
                     <tr>
                       <td>&gt; fromAddress</td>
@@ -398,14 +398,14 @@ getDepositRecords();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -413,12 +413,12 @@ getDepositRecords();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

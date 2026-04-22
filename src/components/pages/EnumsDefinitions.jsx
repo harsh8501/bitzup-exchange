@@ -112,7 +112,6 @@ export const EnumsDefinitions = () => {
                             <EnumSection id="category" title="category">
                                 <EnumList items={[
                                     { value: "linear", desc: "USDT perpetual, USDT Futures and USDC contract, including USDC perp, USDC futures" },
-                                    { value: "inverse", desc: "Inverse contract, including Inverse perp, Inverse futures" },
                                 ]} />
                             </EnumSection>
 
@@ -188,7 +187,7 @@ export const EnumsDefinitions = () => {
                                     { value: "Funding", desc: "Funding fee" },
                                     { value: "BustTrade", desc: "Takeover liquidation" },
                                     { value: "Delivery", desc: "USDC futures delivery; Position closed by contract delisted" },
-                                    { value: "Settle", desc: "Inverse futures settlement; Position closed due to delisting" },
+                                    { value: "Settle", desc: "linear futures settlement; Position closed due to delisting" },
                                     { value: "BlockTrade" },
                                     { value: "MovePosition" },
                                     { value: "FutureSpread", desc: "Spread leg execution" },
@@ -378,10 +377,8 @@ export const EnumsDefinitions = () => {
                             {/* contractType */}
                             <EnumSection id="contractType" title="contractType">
                                 <EnumList items={[
-                                    { value: "InversePerpetual" },
                                     { value: "LinearPerpetual" },
                                     { value: "LinearFutures", desc: "USDT/USDC Futures" },
-                                    { value: "InverseFutures" },
                                 ]} />
                             </EnumSection>
 
@@ -477,8 +474,8 @@ export const EnumsDefinitions = () => {
                                 <EnumList items={[
                                     { value: "TRANSFER_IN", desc: "Assets that transferred into (inverse) derivatives wallet" },
                                     { value: "TRANSFER_OUT", desc: "Assets that transferred out from (inverse) derivatives wallet" },
-                                    { value: "TRADE" }, { value: "SETTLEMENT", desc: "USDT / Inverse Perp funding settlement" },
-                                    { value: "DELIVERY", desc: "Inverse Futures delivery" },
+                                    { value: "TRADE" }, { value: "SETTLEMENT", desc: "USDT / linear futures funding settlement" },
+                                    { value: "DELIVERY", desc: "linear futures delivery" },
                                     { value: "LIQUIDATION" }, { value: "ADL", desc: "Auto-Deleveraging" },
                                     { value: "AIRDROP" }, { value: "BONUS", desc: "Bonus claimed" },
                                     { value: "BONUS_RECOLLECT", desc: "Bonus expired" },
@@ -520,16 +517,6 @@ export const EnumsDefinitions = () => {
                                 <EnumList items={[{ value: "BTCPERP" }, { value: "ETHPERP" }]} />
                                 <p><strong>USDC Futures:</strong></p>
                                 <EnumList items={[{ value: "BTC-24MAR23" }]} />
-                                <p><strong>Inverse Perpetual:</strong></p>
-                                <EnumList items={[{ value: "BTCUSD" }, { value: "ETHUSD" }]} />
-                                <p><strong>Inverse Futures:</strong></p>
-                                <EnumList items={[
-                                    { value: "BTCUSDH23", desc: "H: First quarter; 23: 2023" },
-                                    { value: "BTCUSDM23", desc: "M: Second quarter; 23: 2023" },
-                                    { value: "BTCUSDU23", desc: "U: Third quarter; 23: 2023" },
-                                    { value: "BTCUSDZ23", desc: "Z: Fourth quarter; 23: 2023" },
-                                ]} />
-
                             </EnumSection>
 
                             {/* vipLevel */}

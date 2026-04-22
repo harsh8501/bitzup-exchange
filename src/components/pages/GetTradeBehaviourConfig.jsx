@@ -77,7 +77,7 @@ export const GetTradeBehaviourConfig = () => {
   "retCode": 0,
   "retMsg": "OK",
   "result": {
-    "lpaSpot": true,
+    "lpaLinear": true,
     "lpaPerp": false
   },
   "retExtInfo": {},
@@ -225,14 +225,14 @@ getTradeBehaviourConfig();`,
                   </thead>
                   <tbody>
                     <tr>
-                      <td>lpaSpot</td>
+                      <td>lpaLinear</td>
                       <td>boolean</td>
-                      <td><ul><li><code>true</code>: If the order price exceeds the limit, the system will automatically adjust the price to the nearest allowed price</li><li><code>false</code>: If the order price exceeds the limit, the system rejects the request</li></ul></td>
+                      <td><ul><li><span className="pill">true</span>: If the order price exceeds the limit, the system will automatically adjust the price to the nearest allowed price</li><li><span className="pill">false</span>: If the order price exceeds the limit, the system rejects the request</li></ul></td>
                     </tr>
                     <tr>
                       <td>lpaPerp</td>
                       <td>boolean</td>
-                      <td><ul><li><code>true</code>: If the order price exceeds the limit, the system rejects the request</li><li><code>false</code>: If the order price exceeds the limit, the system will automatically adjust the price to the nearest allowed price</li></ul></td>
+                      <td><ul><li><span className="pill">true</span>: If the order price exceeds the limit, the system rejects the request</li><li><span className="pill">false</span>: If the order price exceeds the limit, the system will automatically adjust the price to the nearest allowed price</li></ul></td>
                     </tr>
                   </tbody>
                 </table>
@@ -255,14 +255,14 @@ getTradeBehaviourConfig();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -270,12 +270,12 @@ getTradeBehaviourConfig();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

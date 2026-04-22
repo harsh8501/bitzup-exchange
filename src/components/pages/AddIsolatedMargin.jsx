@@ -19,7 +19,7 @@ export const AddIsolatedMargin = () => {
     "retCode": 0,
     "retMsg": "OK",
     "result": {
-        "category": "inverse",
+        "category": "linear",
         "symbol": "ETHUSD",
         "positionIdx": 0,
         "riskId": 11,
@@ -57,7 +57,7 @@ X-BAPI-RECV-WINDOW: 5000
 Content-Type: application/json
 
 {
-    "category": "inverse",
+    "category": "linear",
     "symbol": "ETHUSD",
     "margin": "0.01",
     "positionIdx": 0
@@ -66,7 +66,7 @@ Content-Type: application/json
 url = "https://api.bitzup.com/v5/position/add-margin"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1684234363665", "X-BAPI-RECV-WINDOW": "5000"}
-payload = {"category": "inverse", "symbol": "ETHUSD", "margin": "0.01", "positionIdx": 0}
+payload = {"category": "linear", "symbol": "ETHUSD", "margin": "0.01", "positionIdx": 0}
 try:
     resp = requests.post(url, json=payload, headers=headers, timeout=10)
     print(resp.json())
@@ -77,7 +77,7 @@ import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
     url := "https://api.bitzup.com/v5/position/add-margin"
     body, _ := json.Marshal(map[string]interface{}{
-        "category": "inverse", "symbol": "ETHUSD", "margin": "0.01", "positionIdx": 0,
+        "category": "linear", "symbol": "ETHUSD", "margin": "0.01", "positionIdx": 0,
     })
     req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
     req.Header.Set("Content-Type", "application/json")
@@ -105,7 +105,7 @@ public class AddReduceMarginExample {
 async function addOrReduceMargin() {
   try {
     const response = await axios.post("https://api.bitzup.com/v5/position/add-margin",
-      { category: "inverse", symbol: "ETHUSD", margin: "0.01", positionIdx: 0 },
+      { category: "linear", symbol: "ETHUSD", margin: "0.01", positionIdx: 0 },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);
   } catch (error) { console.error("Error:", error.response?.data || error.message); }
@@ -126,10 +126,10 @@ addOrReduceMargin();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code></td></tr>
-                        <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <code>BTCUSDT</code>, uppercase only</td></tr>
-                        <tr><td>margin</td><td><strong>true</strong></td><td>string</td><td>Add or reduce margin. Add: <code>"10"</code>. Reduce: <code>"-10"</code></td></tr>
-                        <tr><td>positionIdx</td><td>false</td><td>integer</td><td><code>0</code>: one-way mode, <code>1</code>: hedge Buy side, <code>2</code>: hedge Sell side</td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+                        <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span>, uppercase only</td></tr>
+                        <tr><td>margin</td><td><strong>true</strong></td><td>string</td><td>Add or reduce margin. Add: <span className="pill">"10"</span>. Reduce: <span className="pill">"-10"</span></td></tr>
+                        <tr><td>positionIdx</td><td>false</td><td>integer</td><td><span className="pill">0</span>: one-way mode, <span className="pill">1</span>: hedge Buy side, <span className="pill">2</span>: hedge Sell side</td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -149,7 +149,7 @@ addOrReduceMargin();`,
                         <tr><td>markPrice</td><td>string</td><td>Mark price</td></tr>
                         <tr><td>leverage</td><td>string</td><td>Leverage</td></tr>
                         <tr><td>autoAddMargin</td><td>integer</td><td>0: off, 1: on</td></tr>
-                        <tr><td>positionStatus</td><td>string</td><td><code>Normal</code>, <code>Liq</code>, <code>Adl</code></td></tr>
+                        <tr><td>positionStatus</td><td>string</td><td><span className="pill">Normal</span>, <span className="pill">Liq</span>, <span className="pill">Adl</span></td></tr>
                         <tr><td>positionIM</td><td>string</td><td>Position initial margin</td></tr>
                         <tr><td>positionMM</td><td>string</td><td>Position maintenance margin</td></tr>
                         <tr><td>unrealisedPnl</td><td>string</td><td>Unrealised PnL</td></tr>
@@ -163,9 +163,9 @@ addOrReduceMargin();`,
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

@@ -288,13 +288,13 @@ batchSetCollateralCoin();`,
                       <td>&gt; coin</td>
                       <td>true</td>
                       <td>string</td>
-                      <td><code>USDT</code>, <code>USDC</code> cannot be set</td>
+                      <td><span className="pill">USDT</span>, <span className="pill">USDC</span> cannot be set</td>
                     </tr>
                     <tr>
                       <td>&gt; collateralSwitch</td>
                       <td>true</td>
                       <td>string</td>
-                      <td><code>ON</code>, <code>OFF</code></td>
+                      <td><span className="pill">ON</span>, <span className="pill">OFF</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -326,7 +326,7 @@ batchSetCollateralCoin();`,
                     <tr>
                       <td>&gt; collateralSwitch</td>
                       <td>string</td>
-                      <td><code>ON</code>, <code>OFF</code></td>
+                      <td><span className="pill">ON</span>, <span className="pill">OFF</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -349,14 +349,14 @@ batchSetCollateralCoin();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -364,12 +364,12 @@ batchSetCollateralCoin();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -295,7 +295,7 @@ getInsurance();`,
                       <td>string</td>
                       <td>
                         <ul>
-                          <li>symbols with <code>"BTCUSDT,ETHUSDT,SOLUSDT"</code> mean these contracts are shared with one insurance pool</li>
+                          <li>symbols with <span className="pill">"BTCUSDT,ETHUSDT,SOLUSDT"</span> mean these contracts are shared with one insurance pool</li>
                           <li>For an isolated insurance pool, it returns one contract</li>
                         </ul>
                       </td>
@@ -321,14 +321,14 @@ getInsurance();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -336,12 +336,12 @@ getInsurance();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

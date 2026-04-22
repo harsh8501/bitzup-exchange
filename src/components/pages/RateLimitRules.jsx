@@ -88,14 +88,14 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
               </p>
 
               {/* Websocket IP limit */}
-              <h3 className="top-req-text" id="websocket-ip-limit">Websocket IP limit</h3>
-              <ul>
+              <h3 className="text-mutne" id="websocket-ip-limit">Websocket IP limit</h3>
+              <ul className="text-mutne">
                 <li>
                   Do not establish more than 500 connections within a 5-minute window. This limit applies to all connections directed to <span className="pill">socket.bitzup.com</span> as well as local site hostnames such as <span className="pill">stream.bitzup.com</span>.
                 </li>
                 <li>Do not frequently connect and disconnect the connection</li>
                 <li>
-                  Do not establish more than 1,000 connections per IP for market data. The connection limits are counted separately for Linear and Inverse markets
+                  Do not establish more than 1,000 connections per IP for market data. The connection limits are counted separately for linear markets
                 </li>
               </ul>
 
@@ -114,9 +114,9 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
               </ul>
 
               <h4 style={{ marginTop: "32px", marginBottom: "16px", color: "var(--text-primary)", fontSize: "18px" }}>Http Response Header Example</h4>
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseHeaderExample}</code>
+                  <code >{responseHeaderExample}</code>
                 </pre>
               </div>
 
@@ -137,7 +137,6 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                     <tr>
                       <th></th>
                       <th></th>
-                      <th>inverse</th>
                       <th>linear</th>
                       <th></th>
                     </tr>
@@ -172,7 +171,6 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                     <tr>
                       <th></th>
                       <th></th>
-                      <th>inverse</th>
                       <th>linear</th>
                       <th></th>
                     </tr>
@@ -202,7 +200,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                     <tr><td>/v5/account/collateral-info</td><td></td><td>50/s</td><td>N</td></tr>
                     <tr><td>GET</td><td>/v5/account/transaction-log</td><td>accountType=UNIFIED</td><td>30/s</td><td>N</td></tr>
                     <tr><td rowSpan={2}>GET</td><td rowSpan={2}>/v5/account/fee-rate</td><td>category=linear</td><td>10/s</td><td>N</td></tr>
-                    <tr><td>category=inverse</td><td>10/s</td><td>N</td></tr>
+                    <tr><td>category=linear</td><td>10/s</td><td>N</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -261,8 +259,6 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
 
 
 
-              {/* Spread Trading */}
-              <h4 className="top-req-text" id="spread-trading" style={{ fontSize: "16px", marginTop: "24px" }}>Spread Trading</h4>
               <div className="api-table-box">
                 <table className="table table-striped api-table mb-0">
                   <thead>
@@ -292,8 +288,8 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
                 </p>
               </div>
 
-              <h4 style={{ marginTop: "24px", marginBottom: "12px" }}>When category = linear or inverse</h4>
-              <ul>
+              <h4 style={{ marginTop: "24px", marginBottom: "12px" }} className="text-mutne">When category = linear</h4>
+              <ul className="text-mutne">
                 <li style={{ marginBottom: "10px" }}>
                   API for batch create/amend/cancel order, the frequency of the API will be consistent with the current configuration, but the counting consumption will be consumed according to the actual number of orders. (Number of consumption = number of requests * number of orders included in a single request), and the configuration of business lines is independent of each other.
                 </li>

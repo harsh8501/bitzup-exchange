@@ -25,12 +25,12 @@ const Sidebar = () => {
   }, [collapsed]);
 
   return (
-    <aside className={`sidebar \${collapsed ? "collapsed" : ""}`}>
+    <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       <div className="sidebar-scroll">
 
         {/* Guide & Status */}
         <NavLink to="/" className="sidebar-link">Integration Guidance</NavLink>
-        <NavLink to="/docs/v5/system-status" className="sidebar-link">Get System Status</NavLink>
+        <NavLink to="/docs/v5/system-status" className="sidebar-link">Get System Status Guide</NavLink>
         <NavLink to="/docs/v5/rate-limit" className="sidebar-link">Rate Limit Rules</NavLink>
         <NavLink to="/docs/v5/enum" className="sidebar-link">Enums Definitions</NavLink>
         <NavLink to="/docs/v5/error" className="sidebar-link">Error Codes</NavLink>
@@ -53,11 +53,6 @@ const Sidebar = () => {
             <NavLink to="/docs/v5/market/funding-rate-history" className="sidebar-link">Get Funding Rate History</NavLink>
             <NavLink to="/docs/v5/market/recent-public-trades" className="sidebar-link">Get Recent Public Trades</NavLink>
             <NavLink to="/docs/v5/market/open-interest" className="sidebar-link">Get Open Interest</NavLink>
-            <NavLink to="/docs/v5/market/historical-volatility" className="sidebar-link">Get Historical Volatility</NavLink>
-            <NavLink to="/docs/v5/market/insurance-pool" className="sidebar-link">Get Insurance Pool</NavLink>
-            <NavLink to="/docs/v5/market/risk-limit" className="sidebar-link">Get Risk Limit</NavLink>
-            <NavLink to="/docs/v5/market/delivery-price" className="sidebar-link">Get Delivery Price</NavLink>
-            <NavLink to="/docs/v5/market/new-delivery-price" className="sidebar-link">Get New Delivery Price</NavLink>
             <NavLink to="/docs/v5/market/long-short-ratio" className="sidebar-link">Get Long Short Ratio</NavLink>
           </div>
         )}
@@ -134,9 +129,6 @@ const Sidebar = () => {
         </div>
         {openSection === "asset" && (
           <div className="sidebar-sub">
-            <NavLink to="/docs/v5/asset/delivery-record" className="sidebar-link">Get Delivery Record (2 years)</NavLink>
-            <NavLink to="/docs/v5/asset/usdc-session-settlement" className="sidebar-link">Get USDC Session Settlement (2 years)</NavLink>
-            <NavLink to="/docs/v5/asset/coin-exchange-records" className="sidebar-link">Get Coin Exchange Records</NavLink>
             <NavLink to="/docs/v5/asset/coin-info" className="sidebar-link">Get Coin Info</NavLink>
             <NavLink to="/docs/v5/asset/sub-uid" className="sidebar-link">Get Sub UID</NavLink>
 

@@ -252,7 +252,7 @@ getAccountInfo();`,
                     <tr>
                       <td>marginMode</td>
                       <td>string</td>
-                      <td>Margin mode. <code>ISOLATED_MARGIN</code>, <code>REGULAR_MARGIN</code>, <code>PORTFOLIO_MARGIN</code></td>
+                      <td>Margin mode. <span className="pill">ISOLATED_MARGIN</span>, <span className="pill">REGULAR_MARGIN</span>, <span className="pill">PORTFOLIO_MARGIN</span></td>
                     </tr>
                     <tr>
                       <td>isMasterTrader</td>
@@ -262,7 +262,7 @@ getAccountInfo();`,
                     <tr>
                       <td>spotHedgingStatus</td>
                       <td>string</td>
-                      <td>Spot hedging status. <code>ON</code>, <code>OFF</code></td>
+                      <td>Hedging status. <span className="pill">ON</span>, <span className="pill">OFF</span></td>
                     </tr>
                     <tr>
                       <td>updatedTime</td>
@@ -305,14 +305,14 @@ getAccountInfo();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -320,12 +320,12 @@ getAccountInfo();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

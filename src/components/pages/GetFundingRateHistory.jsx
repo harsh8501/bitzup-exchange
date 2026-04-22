@@ -231,7 +231,7 @@ getFundingRateHistory();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -255,7 +255,7 @@ getFundingRateHistory();`,
                       <td>limit</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Limit for data size per page. [1, 200]. Default: 200</td>
+                      <td>Limit for data size per page. [<span style={{ color: "var(--text-accent)" }}>1, 200</span>]. Default: <span style={{ color: "var(--text-accent)" }}>200</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -320,14 +320,14 @@ getFundingRateHistory();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -335,12 +335,12 @@ getFundingRateHistory();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

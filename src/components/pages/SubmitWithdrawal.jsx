@@ -265,13 +265,13 @@ submitWithdrawal();`,
                       <td>chain</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Chain name. Optional depending on <code>forceChain</code> setting</td>
+                      <td>Chain name. Optional depending on <span className="pill">forceChain</span> setting</td>
                     </tr>
                     <tr>
                       <td>address</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Withdrawal address. Depending on <code>forceChain</code>, might be Bitzup UID or wallet address</td>
+                      <td>Withdrawal address. Depending on <span className="pill">forceChain</span>, might be Bitzup UID or wallet address</td>
                     </tr>
                     <tr>
                       <td>tag</td>
@@ -295,19 +295,19 @@ submitWithdrawal();`,
                       <td>forceChain</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td><code>0</code>(default): If the address is parsed out to be an internal address, then internal transfer. <code>1</code>: Force on-chain. <code>2</code>: Use UID to withdraw</td>
+                      <td><span className="pill">0</span>(default): If the address is parsed out to be an internal address, then internal transfer. <span className="pill">1</span>: Force on-chain. <span className="pill">2</span>: Use UID to withdraw</td>
                     </tr>
                     <tr>
                       <td>accountType</td>
                       <td>false</td>
                       <td>string</td>
-                      <td><code>FUND</code>: Funding wallet. <code>UTA</code>: Unified Trading Account. <code>FUND,UTA</code>: Combo deduction</td>
+                      <td><span className="pill">FUND</span>: Funding wallet. <span className="pill">UTA</span>: Unified Trading Account. <span className="pill">FUND,UTA</span>: Combo deduction</td>
                     </tr>
                     <tr>
                       <td>feeType</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td><code>0</code>(default): input amount is actual received. <code>1</code>: system handles fee</td>
+                      <td><span className="pill">0</span>(default): input amount is actual received. <span className="pill">1</span>: system handles fee</td>
                     </tr>
                     <tr>
                       <td>requestId</td>
@@ -358,14 +358,14 @@ submitWithdrawal();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -373,12 +373,12 @@ submitWithdrawal();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

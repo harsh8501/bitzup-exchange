@@ -171,7 +171,7 @@ ws.on('close', function close() {
               {/* Title */}
               <h1 className="api-title">Kline</h1>
               <p className="api-desc">
-                Subscribe to the klines stream to get live candlestick updates.
+                Subscribe to the klines stream to get live klinestick updates.
               </p>
 
               {/* SUBSCRIBE PARAMETERS */}
@@ -179,7 +179,7 @@ ws.on('close', function close() {
                 Subscribe Strategy
               </h3>
               <p>
-                <strong>Topic:</strong> <code>kline.{"{"}interval{"}"}.{"{"}symbol{"}"}</code> e.g., <code>kline.5.BTCUSDT</code>
+                <strong>Topic:</strong> <span className="pill">kline.{"{"}interval{"}"}.{"{"}symbol{"}"}</span> e.g., <span className="pill">kline.5.BTCUSDT</span>
               </p>
               <div className="api-table-box">
                 <table className="table table-striped api-table mb-0">
@@ -217,7 +217,7 @@ ws.on('close', function close() {
                     <tr>
                       <td>type</td>
                       <td>string</td>
-                      <td>Message type: <code>snapshot</code></td>
+                      <td>Message type: <span className="pill">snapshot</span></td>
                     </tr>
                     <tr>
                       <td>ts</td>
@@ -300,14 +300,14 @@ ws.on('close', function close() {
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -315,12 +315,12 @@ ws.on('close', function close() {
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

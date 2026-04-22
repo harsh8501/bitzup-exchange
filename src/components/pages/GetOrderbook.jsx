@@ -100,14 +100,14 @@ export const GetOrderbook = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/orderbook?category=spot&symbol=BTCUSDT HTTP/1.1
+        HTTP: `GET /v5/market/orderbook?category=linear&symbol=BTCUSDT HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/orderbook"
 params = {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT"
 }
 
@@ -127,7 +127,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/orderbook?category=spot&symbol=BTCUSDT"
+    url := "https://api.bitzup.com/v5/market/orderbook?category=linear&symbol=BTCUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -154,7 +154,7 @@ import java.net.http.HttpResponse;
 
 public class GetOrderbookDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/orderbook?category=spot&symbol=BTCUSDT";
+        String url = "https://api.bitzup.com/v5/market/orderbook?category=linear&symbol=BTCUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -175,7 +175,7 @@ async function getOrderbook() {
             'https://api.bitzup.com/v5/market/orderbook',
             {
                 params: {
-                    category: 'spot',
+                    category: "linear",
                     symbol: 'BTCUSDT'
                 }
             }
@@ -238,7 +238,7 @@ getOrderbook();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -251,9 +251,7 @@ getOrderbook();`,
                       <td>false</td>
                       <td>integer</td>
                       <td>Limit size for each bid and ask.<br />
-                          spot: [1, 200]. Default: 1.<br />
-                          linear&inverse: [1, 500]. Default: 25.<br />
-                          option: [1, 25]. Default: 1.
+                          linear: [<span style={{ color: "var(--text-accent)" }}>1, 500</span>]. Default: <span style={{ color: "var(--text-accent)" }}>25</span>.
                       </td>
                     </tr>
                   </tbody>
@@ -349,14 +347,14 @@ getOrderbook();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -364,12 +362,14 @@ getOrderbook();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
-                <button className="copy-btn" onClick={handleCopyRes}>
-                  {copiedRes ? <FiCheck /> : <FiCopy />}
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
+                <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
+                  {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
-                <pre>
-                  <code>{responseCode}</code>
+                <pre style={{ margin: 0 }}>
+                  <code >
+                    {responseCode}
+                  </code>
                 </pre>
               </div>
             </div>

@@ -119,7 +119,7 @@ movePosition();`,
           <ul style={{ margin: 0, paddingLeft: "18px" }}>
             <li>UIDs must be UTA (Unified Trading Account).</li>
             <li>Must be in one-way mode for Futures.</li>
-            <li>linear &amp; inverse: the price needs to be between [95% of mark price, 105% of mark price].</li>
+            <li>linear: the price needs to be between [95% of mark price, 105% of mark price].</li>
           </ul>
         </div>
         <div className="api-cover">Requires Authentication</div>
@@ -132,10 +132,10 @@ movePosition();`,
             <tr><td>fromUid</td><td><strong>true</strong></td><td>string</td><td>From UID. Must be UTA</td></tr>
             <tr><td>toUid</td><td><strong>true</strong></td><td>string</td><td>To UID. Must be UTA</td></tr>
             <tr><td>list</td><td><strong>true</strong></td><td>array</td><td>List of position move objects</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>spot</code>, <code>option</code>, <code>inverse</code></td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <code>BTCUSDT</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; price</td><td><strong>true</strong></td><td>string</td><td>Trade price</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td><strong>true</strong></td><td>string</td><td><code>Buy</code>, <code>Sell</code>. Side of fromUid</td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td><strong>true</strong></td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span>. Side of fromUid</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td><strong>true</strong></td><td>string</td><td>Trade quantity</td></tr>
           </tbody>
         </table></div>
@@ -144,15 +144,15 @@ movePosition();`,
           <thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
             <tr><td>blockTradeId</td><td>string</td><td>Block trade ID</td></tr>
-            <tr><td>status</td><td>string</td><td><code>Processing</code>, <code>Rejected</code></td></tr>
-            <tr><td>rejectParty</td><td>string</td><td><code>""</code> means initial validation passed. <code>Taker</code>, <code>Maker</code>, <code>bitzup</code> when rejected</td></tr>
+            <tr><td>status</td><td>string</td><td><span className="pill">Processing</span>, <span className="pill">Rejected</span></td></tr>
+            <tr><td>rejectParty</td><td>string</td><td><span className="pill">""</span> means initial validation passed. <span className="pill">Taker</span>, <span className="pill">Maker</span>, <span className="pill">bitzup</span> when rejected</td></tr>
           </tbody>
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

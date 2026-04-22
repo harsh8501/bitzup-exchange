@@ -114,14 +114,14 @@ client
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
                         <tr><td>apikey</td><td>false</td><td>string</td><td>Sub account api key. Required when using master api key to manage sub api key</td></tr>
-                        <tr><td>readOnly</td><td>false</td><td>integer</td><td><code>0</code>: Read and Write (default), <code>1</code>: Read only</td></tr>
-                        <tr><td>ips</td><td>false</td><td>array</td><td>Set the IP bind. <code>["*"]</code> means no restriction</td></tr>
+                        <tr><td>readOnly</td><td>false</td><td>integer</td><td><span className="pill">0</span>: Read and Write (default), <span className="pill">1</span>: Read only</td></tr>
+                        <tr><td>ips</td><td>false</td><td>array</td><td>Set the IP bind. <span className="pill">["*"]</span> means no restriction</td></tr>
                         <tr><td>permissions</td><td>false</td><td>Object</td><td>Tick the types of permission</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; ContractTrade</td><td>false</td><td>array</td><td><code>"Order"</code>, <code>"Position"</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Spot</td><td>false</td><td>array</td><td><code>"SpotTrade"</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Wallet</td><td>false</td><td>array</td><td><code>"AccountTransfer"</code>, <code>"SubMemberTransfer"</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Options</td><td>false</td><td>array</td><td><code>"OptionsTrade"</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Exchange</td><td>false</td><td>array</td><td><code>"ExchangeHistory"</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; ContractTrade</td><td>false</td><td>array</td><td><span className="pill">"Order"</span>, <span className="pill">"Position"</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Spot</td><td>false</td><td>array</td><td><span className="pill">"SpotTrade"</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Wallet</td><td>false</td><td>array</td><td><span className="pill">"AccountTransfer"</span>, <span className="pill">"SubMemberTransfer"</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Options</td><td>false</td><td>array</td><td><span className="pill">"OptionsTrade"</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; Exchange</td><td>false</td><td>array</td><td><span className="pill">"ExchangeHistory"</span></td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -131,17 +131,17 @@ client
                         <tr><td>id</td><td>string</td><td>Unique ID</td></tr>
                         <tr><td>note</td><td>string</td><td>The remark</td></tr>
                         <tr><td>apiKey</td><td>string</td><td>Api key</td></tr>
-                        <tr><td>readOnly</td><td>integer</td><td><code>0</code>: Read and Write, <code>1</code>: Read only</td></tr>
-                        <tr><td>secret</td><td>string</td><td>Always <code>""</code></td></tr>
+                        <tr><td>readOnly</td><td>integer</td><td><span className="pill">0</span>: Read and Write, <span className="pill">1</span>: Read only</td></tr>
+                        <tr><td>secret</td><td>string</td><td>Always <span className="pill">""</span></td></tr>
                         <tr><td>permissions</td><td>Object</td><td>Permission categories</td></tr>
                         <tr><td>ips</td><td>array</td><td>IP addresses</td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

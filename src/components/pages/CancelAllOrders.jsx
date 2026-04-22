@@ -110,9 +110,9 @@ cancelAllOrders();`,
                 <p className="api-desc">Cancel all open orders.</p>
                 <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
                     <ul style={{ margin: 0, paddingLeft: "18px" }}>
-                        <li>Supports cancelling by <code>symbol</code>, <code>baseCoin</code>, or <code>settleCoin</code>. Priority: <code>symbol</code> &gt; <code>baseCoin</code> &gt; <code>settleCoin</code>.</li>
-                        <li><code>category=linear</code> or <code>inverse</code>: Must specify one of <code>symbol</code>, <code>baseCoin</code>, or <code>settleCoin</code>.</li>
-                        <li><code>category=spot</code>: Can cancel all normal orders without passing any filters.</li>
+                        <li>Supports cancelling by <span className="pill">symbol</span>, <span className="pill">baseCoin</span>, or <span className="pill">settleCoin</span>. Priority: <span className="pill">symbol</span> &gt; <span className="pill">baseCoin</span> &gt; <span className="pill">settleCoin</span>.</li>
+                        <li><span className="pill">category=linear</span> or <span className="pill">inverse</span>: Must specify one of <span className="pill">symbol</span>, <span className="pill">baseCoin</span>, or <span className="pill">settleCoin</span>.</li>
+                        <li><span className="pill">category=linear</span>: Can cancel all normal orders without passing any filters.</li>
                         <li>Futures can cancel up to 500 orders at once.</li>
                     </ul>
                 </div>
@@ -123,12 +123,12 @@ cancelAllOrders();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
-                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, e.g. <code>BTCUSDT</code></td></tr>
-                        <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin, e.g. <code>BTC</code></td></tr>
-                        <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin, e.g. <code>USDT</code>. Not supported for spot</td></tr>
-                        <tr><td>orderFilter</td><td>false</td><td>string</td><td><code>Order</code>, <code>StopOrder</code>, <code>tpslOrder</code></td></tr>
-                        <tr><td>stopOrderType</td><td>false</td><td>string</td><td><code>Stop</code>. Valid for linear/inverse when <code>orderFilter</code> is <code>StopOrder</code></td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
+                        <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin, e.g. <span className="pill">BTC</span></td></tr>
+                        <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin, e.g. <span className="pill">USDT</span>. Not supported for spot</td></tr>
+                        <tr><td>orderFilter</td><td>false</td><td>string</td><td><span className="pill">Order</span>, <span className="pill">StopOrder</span>, <span className="pill">tpslOrder</span></td></tr>
+                        <tr><td>stopOrderType</td><td>false</td><td>string</td><td><span className="pill">Stop</span>. Valid for linear/inverse when <span className="pill">orderFilter</span> is <span className="pill">StopOrder</span></td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -141,16 +141,16 @@ cancelAllOrders();`,
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; list</td><td>array</td><td>Array of cancelled orders</td></tr>
                         <tr><td style={{ paddingLeft: "48px" }}>&gt;&gt; orderId</td><td>string</td><td>Order ID</td></tr>
                         <tr><td style={{ paddingLeft: "48px" }}>&gt;&gt; orderLinkId</td><td>string</td><td>User customised order ID</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; success</td><td>string</td><td><code>"1"</code> for success, <code>"0"</code> for failure</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; success</td><td>string</td><td><span className="pill">"1"</span> for success, <span className="pill">"0"</span> for failure</td></tr>
                         <tr><td>retExtInfo</td><td>Object</td><td>Extra information</td></tr>
                         <tr><td>time</td><td>number</td><td>Current timestamp (ms)</td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

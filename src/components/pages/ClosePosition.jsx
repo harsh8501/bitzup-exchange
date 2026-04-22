@@ -92,7 +92,7 @@ closePosition();`,
             <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
                 <div className="breadcrumb mb-4"><span className="kline-market">Private</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Close Position</span></div>
                 <h1 className="api-title">Close Position</h1>
-                <p className="api-desc">Close an existing position by placing a reduce-only order on the opposite side. The <code>side</code> must be the opposite of the current position side (e.g. <code>Sell</code> to close a long position).</p>
+                <p className="api-desc">Close an existing position by placing a reduce-only order on the opposite side. The <span className="pill">side</span> must be the opposite of the current position side (e.g. <span className="pill">Sell</span> to close a long position).</p>
                 <div className="api-cover">Requires Authentication</div>
                 <div className="api-cover">Rate Limit: 15 req/s</div>
                 <h3 className="top-req-text" id="http">HTTP Request</h3>
@@ -113,9 +113,9 @@ closePosition();`,
                 </tbody></table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

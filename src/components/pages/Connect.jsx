@@ -183,25 +183,24 @@ ws.on('close', function close() {
                 WSS Endpoints
               </h3>
 
-              <div className="api-table-box">
-                <h5>WebSocket Public Channel</h5>
-                <p>Public topics do not require authentication.</p>
-                <ul>
-                  <li><strong>Spot:</strong> <code>wss://stream.bitzup.com/v5/public/spot</code></li>
-                  <li><strong>Linear (USDT, USDC Perps & Futures):</strong> <code>wss://stream.bitzup.com/v5/public/linear</code></li>
-                  <li><strong>Inverse:</strong> <code>wss://stream.bitzup.com/v5/public/inverse</code></li>
-                  <li><strong>Option (USDC):</strong> <code>wss://stream.bitzup.com/v5/public/option</code></li>
-                </ul>
+              <div className="api-table-box premium-card" style={{ background: "rgba(255,255,255,0.02)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border-color)" }}>
+                <h5 style={{ color: "var(--text-accent)", marginBottom: "16px" }}>WebSocket Public Channel</h5>
+                <p style={{ color: "var(--text-secondary)" }}>Public topics do not require authentication and provide high-frequency market data.</p>
+                <div style={{ background: "var(--bg-card)", padding: "16px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
+                  <div style={{ marginBottom: "8px" }}><strong>Linear (Futures):</strong></div>
+                  <code style={{ color: "var(--text-accent)", wordBreak: "break-all" }}>wss://stream.bitzup.com/v5/public/linear</code>
+                </div>
               </div>
 
-              <div className="api-table-box mt-4">
-                <h5>WebSocket Private Channel</h5>
-                <p>Private topics require authentication via API key.</p>
-                <ul>
-                  <li><strong>Main URL:</strong> <code>wss://stream.bitzup.com/v5/private</code></li>
-                </ul>
-                <div className="alert alert-info">
-                  <strong>Tip:</strong> Customise Private Connection Alive Time. You can customise alive duration by adding a param <code>max_active_time</code>, the lowest value is <code>30s</code> (30 seconds), the highest value is <code>600s</code> (10 minutes). e.g., <code>wss://stream.bitzup.com/v5/private?max_active_time=1m</code>.
+              <div className="api-table-box mt-4 premium-card" style={{ background: "rgba(255,255,255,0.02)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border-color)" }}>
+                <h5 style={{ color: "var(--text-accent)", marginBottom: "16px" }}>WebSocket Private Channel</h5>
+                <p style={{ color: "var(--text-secondary)" }}>Private topics require authentication via API key to receive account events.</p>
+                <div style={{ background: "var(--bg-card)", padding: "16px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
+                  <div style={{ marginBottom: "8px" }}><strong>Main URL:</strong></div>
+                  <code style={{ color: "var(--text-accent)", wordBreak: "break-all" }}>wss://stream.bitzup.com/v5/private</code>
+                </div>
+                <div className="mt-4" style={{ background: "var(--accent-neon-dim)", padding: "16px", borderRadius: "8px", borderLeft: "4px solid var(--text-accent)" }}>
+                  <strong style={{ color: "var(--text-accent)" }}>TIP:</strong> You can customise alive duration by adding <span className="pill">max_active_time</span> (e.g. 30s to 600s).
                 </div>
               </div>
 
@@ -210,7 +209,7 @@ ws.on('close', function close() {
                 Authentication
               </h3>
               <p>
-                Apply for authentication when establishing a connection to private topics. The signature should be generated using HMAC SHA256 against <code>GET/realtime{"{"}expires{"}"}</code>.
+                Apply for authentication when establishing a connection to private topics. The signature should be generated using HMAC SHA256 against <span className="pill">GET/realtime{"{"}expires{"}"}</span>.
               </p>
 
               <div className="lang-tabs">
@@ -225,24 +224,24 @@ ws.on('close', function close() {
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
               <p className="mt-4 text-muted">Successful authentication sample response:</p>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
 
@@ -251,9 +250,9 @@ ws.on('close', function close() {
                 Ping / Pong Interval
               </h3>
               <p>
-                Send a <code>ping</code> frame every 20 seconds to keep the connection alive.
+                Send a <span className="pill">ping</span> frame every 20 seconds to keep the connection alive.
               </p>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <pre>
                   <code>{`{
     "req_id": "100001", // optional

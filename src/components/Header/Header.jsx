@@ -2,8 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useEffect, useRef } from "react";
 import { FiSearch, FiMoon, FiSun } from "react-icons/fi";
-import LogoDark from "../../../public/logo-dark.svg";
-import LogoLight from "../../../public/logo-light.svg";
+import LogoDark from "../../assets/logo-dark.svg";
+import LogoLight from "../../assets/logo-light.svg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { LuLanguages } from "react-icons/lu";
 import { LuMenu } from "react-icons/lu";
@@ -102,7 +102,7 @@ const Header = ({ theme, setTheme }) => {
                                     setDrawerView("docs");
                                     setMobileOpen(true);
                                 }} >
-                                <LuMenu size={34} />
+                                <LuMenu size={34} className="icon-btn" />
                             </span>
                             <Link to="/" className="logo">
                                 <img src={theme === "dark" ? LogoLight : LogoDark} alt="logo"width={120}/>
@@ -221,7 +221,7 @@ const Header = ({ theme, setTheme }) => {
                             >
                             Futures API
                             </NavLink>
-                            <NavLink
+                            {/* <NavLink
                             to="/p2p"
                             className="drawer-main-item"
                             >
@@ -240,7 +240,7 @@ const Header = ({ theme, setTheme }) => {
                             className="drawer-main-item"
                             >
                             Tax API V3
-                            </NavLink>
+                            </NavLink> */}
                     </div>
 
 

@@ -291,13 +291,13 @@ createSubUIDAPIKey();`,
                       <td>readOnly</td>
                       <td>true</td>
                       <td>integer</td>
-                      <td><code>0</code>: Read-Write, <code>1</code>: Read-Only</td>
+                      <td><span className="pill">0</span>: Read-Write, <span className="pill">1</span>: Read-Only</td>
                     </tr>
                     <tr>
                       <td>ips</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>IP bindings safely separated by commas. e.g. <code>"192.168.0.1,192.168.0.2"</code>. Pass <code>"*"</code> if no bind.</td>
+                      <td>IP bindings safely separated by commas. e.g. <span className="pill">"192.168.0.1,192.168.0.2"</span>. Pass <span className="pill">"*"</span> if no bind.</td>
                     </tr>
                     <tr>
                       <td>permissions</td>
@@ -305,7 +305,7 @@ createSubUIDAPIKey();`,
                       <td>object</td>
                       <td>
                         Permission configurations. The supported features depend on the subaccount type. 
-                        Common keys include <code>ContractTrade</code>, <code>Spot</code>, <code>Wallet</code>, <code>Options</code>, <code>Exchange</code>, etc.
+                        Common keys include <span className="pill">ContractTrade</span>, <span className="pill">Wallet</span>, <span className="pill">Options</span>, <span className="pill">Exchange</span>, etc.
                       </td>
                     </tr>
                   </tbody>
@@ -343,7 +343,7 @@ createSubUIDAPIKey();`,
                     <tr>
                       <td>readOnly</td>
                       <td>integer</td>
-                      <td><code>0</code>: Read/Write, <code>1</code>: Read only</td>
+                      <td><span className="pill">0</span>: Read/Write, <span className="pill">1</span>: Read only</td>
                     </tr>
                     <tr>
                       <td>secret</td>
@@ -376,14 +376,14 @@ createSubUIDAPIKey();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -391,12 +391,12 @@ createSubUIDAPIKey();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

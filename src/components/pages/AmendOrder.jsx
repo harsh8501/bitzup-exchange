@@ -168,22 +168,22 @@ amendOrder();`,
                             <table className="table table-striped api-table mb-0">
                                 <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                                 <tbody>
-                                    <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
-                                    <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <code>BTCUSDT</code>, uppercase only</td></tr>
-                                    <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td></tr>
-                                    <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td></tr>
-                                    <tr><td>orderIv</td><td>false</td><td>string</td><td>Implied volatility. <code>option</code> only. Pass the real value, e.g. for 10%, 0.1 should be passed</td></tr>
-                                    <tr><td>triggerPrice</td><td>false</td><td>string</td><td>Conditional order trigger price. If you expect the price to rise to trigger, ensure <code>triggerPrice</code> &gt; current market price</td></tr>
+                                    <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+                                    <tr><td>symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span>, uppercase only</td></tr>
+                                    <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID. Either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> is required</td></tr>
+                                    <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID. Either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> is required</td></tr>
+                                    <tr><td>orderIv</td><td>false</td><td>string</td><td>Implied volatility. <span className="pill">option</span> only. Pass the real value, e.g. for 10%, 0.1 should be passed</td></tr>
+                                    <tr><td>triggerPrice</td><td>false</td><td>string</td><td>Conditional order trigger price. If you expect the price to rise to trigger, ensure <span className="pill">triggerPrice</span> &gt; current market price</td></tr>
                                     <tr><td>qty</td><td>false</td><td>string</td><td>Order quantity after modification. Do not pass it if not modified</td></tr>
                                     <tr><td>price</td><td>false</td><td>string</td><td>Order price after modification. Do not pass it if not modified</td></tr>
-                                    <tr><td>tpslMode</td><td>false</td><td>string</td><td>TP/SL mode: <code>Full</code> (entire position), <code>Partial</code> (partial position). <code>linear</code> only</td></tr>
-                                    <tr><td>takeProfit</td><td>false</td><td>string</td><td>Take profit price after modification. Pass <code>"0"</code> to cancel existing TP. Valid for <code>linear</code> &amp; <code>inverse</code></td></tr>
-                                    <tr><td>stopLoss</td><td>false</td><td>string</td><td>Stop loss price after modification. Pass <code>"0"</code> to cancel existing SL. Valid for <code>linear</code> &amp; <code>inverse</code></td></tr>
-                                    <tr><td>tpTriggerBy</td><td>false</td><td>string</td><td>TP trigger price type: <code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
-                                    <tr><td>slTriggerBy</td><td>false</td><td>string</td><td>SL trigger price type: <code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
-                                    <tr><td>triggerBy</td><td>false</td><td>string</td><td>Conditional order trigger type: <code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
-                                    <tr><td>tpLimitPrice</td><td>false</td><td>string</td><td>TP limit price for partial limit TP/SL orders. Option not supported</td></tr>
-                                    <tr><td>slLimitPrice</td><td>false</td><td>string</td><td>SL limit price for partial limit TP/SL orders. Option not supported</td></tr>
+                                    <tr><td>tpslMode</td><td>false</td><td>string</td><td>TP/SL mode: <span className="pill">Full</span> (entire position), <span className="pill">Partial</span> (partial position). <span className="pill">linear</span> only</td></tr>
+                                    <tr><td>takeProfit</td><td>false</td><td>string</td><td>Take profit price after modification. Pass <span className="pill">"0"</span> to cancel existing TP. Valid for <span className="pill">linear</span></td></tr>
+                                    <tr><td>stopLoss</td><td>false</td><td>string</td><td>Stop loss price after modification. Pass <span className="pill">"0"</span> to cancel existing SL. Valid for <span className="pill">linear</span></td></tr>
+                                    <tr><td>tpTriggerBy</td><td>false</td><td>string</td><td>TP trigger price type: <span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
+                                    <tr><td>slTriggerBy</td><td>false</td><td>string</td><td>SL trigger price type: <span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
+                                    <tr><td>triggerBy</td><td>false</td><td>string</td><td>Conditional order trigger type: <span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
+                                    <tr><td>tpLimitPrice</td><td>false</td><td>string</td><td>TP limit price for partial limit TP/SL orders.</td></tr>
+                                    <tr><td>slLimitPrice</td><td>false</td><td>string</td><td>SL limit price for partial limit TP/SL orders.</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -210,15 +210,15 @@ amendOrder();`,
                                 <button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>
                             ))}
                         </div>
-                        <div className="api-code-box position-relative">
+                        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                             <button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button>
-                            <pre><code>{codeMap[lang]}</code></pre>
+                            <pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre>
                         </div>
 
                         <h3 className="top-req-text" id="response-example">Response Example</h3>
-                        <div className="api-code-box position-relative">
+                        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                             <button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button>
-                            <pre><code>{responseCode}</code></pre>
+                            <pre style={{ margin: 0 }}><code >{responseCode}</code></pre>
                         </div>
                     </div>
 

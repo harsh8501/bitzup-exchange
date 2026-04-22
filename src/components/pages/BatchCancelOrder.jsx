@@ -139,8 +139,8 @@ batchCancelOrder();`,
                 <p className="api-desc">This endpoint allows you to cancel more than one open order in a single request. Supports up to 10 orders per request.</p>
                 <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
                     <ul style={{ margin: 0, paddingLeft: "18px" }}>
-                        <li>You must specify either <code>orderId</code> or <code>orderLinkId</code> for each order.</li>
-                        <li>Each batch cancel order undergoes its own validation. Check <code>retExtInfo</code> for individual error codes.</li>
+                        <li>You must specify either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> for each order.</li>
+                        <li>Each batch cancel order undergoes its own validation. Check <span className="pill">retExtInfo</span> for individual error codes.</li>
                     </ul>
                 </div>
                 <div className="api-cover">Requires Authentication</div>
@@ -150,10 +150,10 @@ batchCancelOrder();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
                         <tr><td>request</td><td><strong>true</strong></td><td>array</td><td>List of cancel order objects (max 10)</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>false</td><td>string</td><td>Order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>false</td><td>string</td><td>Order ID. Either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> is required</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderLinkId</td><td>false</td><td>string</td><td>User customised order ID</td></tr>
                     </tbody>
                 </table></div>
@@ -178,9 +178,9 @@ batchCancelOrder();`,
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

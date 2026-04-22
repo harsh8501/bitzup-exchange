@@ -93,17 +93,17 @@ client
                         <tr><td>subMembers</td><td>array</td><td>Object</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; uid</td><td>string</td><td>Sub UID</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; username</td><td>string</td><td>Username. 6-16 characters</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; memberType</td><td>integer</td><td><code>1</code>: normal sub account, <code>6</code>: custodial sub account</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; status</td><td>integer</td><td><code>1</code>: normal, <code>2</code>: login banned, <code>4</code>: frozen</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; memberType</td><td>integer</td><td><span className="pill">1</span>: normal sub account, <span className="pill">6</span>: custodial sub account</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; status</td><td>integer</td><td><span className="pill">1</span>: normal, <span className="pill">2</span>: login banned, <span className="pill">4</span>: frozen</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; remark</td><td>string</td><td>Remark</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; accountMode</td><td>integer</td><td><code>1</code>: Classic Account, <code>3</code>: UTA1.0, <code>4</code>: UTA1.0 Pro, <code>5</code>: UTA2.0, <code>6</code>: UTA2.0 Pro</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; accountMode</td><td>integer</td><td><span className="pill">1</span>: Classic Account, <span className="pill">3</span>: UTA1.0, <span className="pill">4</span>: UTA1.0 Pro, <span className="pill">5</span>: UTA2.0, <span className="pill">6</span>: UTA2.0 Pro</td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

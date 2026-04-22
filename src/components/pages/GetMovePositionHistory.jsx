@@ -111,11 +111,11 @@ getMovePositionHistory();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td>false</td><td>string</td><td>Product type: <code>linear</code>, <code>spot</code>, <code>option</code>, <code>inverse</code></td></tr>
+            <tr><td>category</td><td>false</td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
             <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name</td></tr>
             <tr><td>startTime</td><td>false</td><td>integer</td><td>Start timestamp (ms)</td></tr>
             <tr><td>endTime</td><td>false</td><td>integer</td><td>End timestamp (ms)</td></tr>
-            <tr><td>status</td><td>false</td><td>string</td><td><code>Processing</code>, <code>Filled</code>, <code>Rejected</code></td></tr>
+            <tr><td>status</td><td>false</td><td>string</td><td><span className="pill">Processing</span>, <span className="pill">Filled</span>, <span className="pill">Rejected</span></td></tr>
             <tr><td>blockTradeId</td><td>false</td><td>string</td><td>Block trade ID</td></tr>
             <tr><td>limit</td><td>false</td><td>integer</td><td>Limit [1, 200]. Default: 20</td></tr>
             <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
@@ -132,11 +132,11 @@ getMovePositionHistory();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>string</td><td>Order ID</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; userId</td><td>integer</td><td>User ID</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; price</td><td>string</td><td>Trade price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td>string</td><td>Trade quantity</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; execFee</td><td>string</td><td>Execution fee</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; status</td><td>string</td><td><code>Processing</code>, <code>Filled</code>, <code>Rejected</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; status</td><td>string</td><td><span className="pill">Processing</span>, <span className="pill">Filled</span>, <span className="pill">Rejected</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; execId</td><td>string</td><td>Execution ID</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; resultCode</td><td>integer</td><td>Result code. 0 means success</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; resultMessage</td><td>string</td><td>Result message</td></tr>
@@ -146,9 +146,9 @@ getMovePositionHistory();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

@@ -109,9 +109,9 @@ getClosedPnl();`,
                 <p className="api-desc">Query user's closed profit and loss records. The results are sorted by createdTime in descending order.</p>
                 <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
                     <ul style={{ margin: 0, paddingLeft: "18px" }}>
-                        <li>If <code>startTime</code> and <code>endTime</code> are not passed, return 7 days by default.</li>
-                        <li>Only <code>startTime</code> passed: range between startTime and startTime+7 days.</li>
-                        <li>Only <code>endTime</code> passed: range between endTime-7 days and endTime.</li>
+                        <li>If <span className="pill">startTime</span> and <span className="pill">endTime</span> are not passed, return 7 days by default.</li>
+                        <li>Only <span className="pill">startTime</span> passed: range between startTime and startTime+7 days.</li>
+                        <li>Only <span className="pill">endTime</span> passed: range between endTime-7 days and endTime.</li>
                         <li>Both passed: endTime - startTime &lt;= 7 days.</li>
                     </ul>
                 </div>
@@ -122,11 +122,11 @@ getClosedPnl();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code></td></tr>
-                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <code>BTCUSDT</code></td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+                        <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span></td></tr>
                         <tr><td>startTime</td><td>false</td><td>integer</td><td>Start timestamp (ms)</td></tr>
                         <tr><td>endTime</td><td>false</td><td>integer</td><td>End timestamp (ms)</td></tr>
-                        <tr><td>limit</td><td>false</td><td>integer</td><td>Limit [1, 100]. Default: <code>50</code></td></tr>
+                        <tr><td>limit</td><td>false</td><td>integer</td><td>Limit [1, 100]. Default: <span className="pill">50</span></td></tr>
                         <tr><td>cursor</td><td>false</td><td>string</td><td>Cursor for pagination</td></tr>
                     </tbody>
                 </table></div>
@@ -139,11 +139,11 @@ getClosedPnl();`,
                         <tr><td>list</td><td>array</td><td>Closed PnL list</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>string</td><td>Order ID</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td>string</td><td>Order quantity</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderPrice</td><td>string</td><td>Order price</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><code>Market</code>, <code>Limit</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; execType</td><td>string</td><td><code>Trade</code>, <code>BustTrade</code>, <code>SessionSettlePnL</code>, <code>Settle</code>, <code>MovePosition</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><span className="pill">Market</span>, <span className="pill">Limit</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; execType</td><td>string</td><td><span className="pill">Trade</span>, <span className="pill">BustTrade</span>, <span className="pill">SessionSettlePnL</span>, <span className="pill">Settle</span>, <span className="pill">MovePosition</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; closedSize</td><td>string</td><td>Closed size</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; cumEntryValue</td><td>string</td><td>Cumulative entry value</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; avgEntryPrice</td><td>string</td><td>Average entry price</td></tr>
@@ -158,9 +158,9 @@ getClosedPnl();`,
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

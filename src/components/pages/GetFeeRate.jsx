@@ -235,7 +235,7 @@ getFeeRate();`,
                       <td>category</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -247,7 +247,7 @@ getFeeRate();`,
                       <td>baseCoin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Base coin. <code>SOL</code>, <code>BTC</code>, <code>ETH</code>. Valid for <code>option</code> only</td>
+                      <td>Base coin. <span className="pill">SOL</span>, <span className="pill">BTC</span>, <span className="pill">ETH</span>. Valid for <span className="pill">option</span> only</td>
                     </tr>
                   </tbody>
                 </table>
@@ -279,7 +279,7 @@ getFeeRate();`,
                     <tr>
                       <td>&gt; baseCoin</td>
                       <td>string</td>
-                      <td>Base coin. Valid for <code>option</code> only. Spot and Derivatives do not have this field</td>
+                      <td>Base coin.</td>
                     </tr>
                     <tr>
                       <td>&gt; takerFeeRate</td>
@@ -312,14 +312,14 @@ getFeeRate();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -327,12 +327,12 @@ getFeeRate();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -341,7 +341,7 @@ ws.on("error", console.error);`,
               <li>Default depth is 20 levels per sides</li>
               <li>No depth parameter is required on the client</li>
              </ul>
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               <button className="copy-btn" onClick={handleSubscribe}>
                 {copiedRes ? <FiCheck /> : <FiCopy />}
               </button>
@@ -362,7 +362,7 @@ ws.on("error", console.error);`,
               <li>Clients must send a ping periodically to keep the connection alive.</li>
               <li>Recommended interval: every 5 seconds</li>
              </ul>
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               <button className="copy-btn" onClick={handleAction}>
                 {copiedAction ? <FiCheck /> : <FiCopy />}
               </button>
@@ -466,20 +466,20 @@ ws.on("error", console.error);`,
               ))}
             </div>
 
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               {/* COPY ICON */}
               <button className="copy-btn" onClick={handleCopy}>
                 {copied ? <FiCheck /> : <FiCopy />}
               </button>
 
               <pre>
-                <code>{codeMap[lang]}</code>
+                {codeMap[lang]}
               </pre>
             </div>
 
             {/* RESPONSE EXAMPLE */}
             <h3 className="top-req-text" id="response-example">Response Example</h3>
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               <button className="copy-btn" onClick={handleCopyRes}>
                 {copiedRes ? <FiCheck /> : <FiCopy />}
               </button>

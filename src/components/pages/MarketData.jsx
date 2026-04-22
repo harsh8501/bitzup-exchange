@@ -253,25 +253,25 @@ getInstrumentsInfo();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Symbol name. e.g., <code>BTCUSDT</code></td>
+                      <td>Symbol name. e.g., <span className="pill">BTCUSDT</span></td>
                     </tr>
                     <tr>
                       <td>status</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Symbol status. e.g., <code>Trading</code></td>
+                      <td>Symbol status. e.g., <span className="pill">Trading</span></td>
                     </tr>
                     <tr>
                       <td>baseCoin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Base coin. e.g., <code>BTC</code></td>
+                      <td>Base coin. e.g., <span className="pill">BTC</span></td>
                     </tr>
                     <tr>
                       <td>limit</td>
@@ -283,7 +283,7 @@ getInstrumentsInfo();`,
                       <td>cursor</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Cursor. Use the <code>nextPageCursor</code> token from previous response to retrieve the next page</td>
+                      <td>Cursor. Use the <span className="pill">nextPageCursor</span> token from previous response to retrieve the next page</td>
                     </tr>
                   </tbody>
                 </table>
@@ -330,7 +330,7 @@ getInstrumentsInfo();`,
                     <tr>
                       <td>└ status</td>
                       <td>string</td>
-                      <td>Instrument status (<code>PreLaunch</code>, <code>Trading</code>, <code>Settling</code>, <code>Delivering</code>, <code>Closed</code>)</td>
+                      <td>Instrument status (<span className="pill">PreLaunch</span>, <span className="pill">Trading</span>, <span className="pill">Settling</span>, <span className="pill">Delivering</span>, <span className="pill">Closed</span>)</td>
                     </tr>
                     <tr>
                       <td>└ baseCoin</td>
@@ -355,7 +355,7 @@ getInstrumentsInfo();`,
                     <tr>
                       <td>└ deliveryTime</td>
                       <td>string</td>
-                      <td>Delivery time (ms). <code>0</code> for perpetual</td>
+                      <td>Delivery time (ms). <span className="pill">0</span> for perpetual</td>
                     </tr>
                     <tr>
                       <td>└ priceScale</td>
@@ -443,14 +443,14 @@ getInstrumentsInfo();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -458,12 +458,12 @@ getInstrumentsInfo();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

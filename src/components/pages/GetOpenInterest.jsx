@@ -78,7 +78,7 @@ export const GetOpenInterest = () => {
   "retMsg": "OK",
   "result": {
     "symbol": "BTCUSD",
-    "category": "inverse",
+    "category": "linear",
     "list": [
       {
         "openInterest": "461134384.00000000",
@@ -96,14 +96,14 @@ export const GetOpenInterest = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/open-interest?category=inverse&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000 HTTP/1.1
+        HTTP: `GET /v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000 HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/open-interest"
 params = {
-    "category": "inverse",
+    "category": "linear",
     "symbol": "BTCUSD",
     "intervalTime": "5min",
     "startTime": "1669571100000",
@@ -126,7 +126,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/open-interest?category=inverse&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000"
+    url := "https://api.bitzup.com/v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -153,7 +153,7 @@ import java.net.http.HttpResponse;
 
 public class GetOpenInterestDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/open-interest?category=inverse&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000";
+        String url = "https://api.bitzup.com/v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -174,7 +174,7 @@ async function getOpenInterest() {
             'https://api.bitzup.com/v5/market/open-interest',
             {
                 params: {
-                    category: 'inverse',
+                    category: "linear",
                     symbol: 'BTCUSD',
                     intervalTime: '5min',
                     startTime: 1669571100000,
@@ -240,7 +240,7 @@ getOpenInterest();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -252,7 +252,7 @@ getOpenInterest();`,
                       <td>intervalTime</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Interval. <code>5min</code>, <code>15min</code>, <code>30min</code>, <code>1h</code>, <code>4h</code>, <code>1d</code></td>
+                      <td>Interval. <span className="pill">5min</span>, <span className="pill">15min</span>, <span className="pill">30min</span>, <span className="pill">1h</span>, <span className="pill">4h</span>, <span className="pill">1d</span></td>
                     </tr>
                     <tr>
                       <td>startTime</td>
@@ -276,7 +276,7 @@ getOpenInterest();`,
                       <td>cursor</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Cursor. Use the <code>nextPageCursor</code> token from the response to retrieve the next page of the result set</td>
+                      <td>Cursor. Use the <span className="pill">nextPageCursor</span> token from the response to retrieve the next page of the result set</td>
                     </tr>
                   </tbody>
                 </table>
@@ -346,14 +346,14 @@ getOpenInterest();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -361,12 +361,12 @@ getOpenInterest();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -342,7 +342,7 @@ ws.on("close", () => console.log("Disconnected`,
                     </div>
       
                     <ul className="api-info-list">
-                      <li>If confirm=true, this means that the candle has closed. Otherwise, the candle is still open and updating.</li>
+                      <li>If confirm=true, this means that the kline has closed. Otherwise, the kline is still open and updating.</li>
                     </ul>
                   </div>
             
@@ -350,26 +350,26 @@ ws.on("close", () => console.log("Disconnected`,
             <ul style={{ listStyle: "none", padding: 0 }}>
               <li style={{marginBottom: '12px'}}>
                 {["1","3","5","15","30"].map(v => (
-                  <span key={v} className="pill-magenta" style={{ marginRight: "8px" }}>{v}</span>
+                  <span key={v} className="pill" style={{ marginRight: "8px" }}>{v}</span>
                 ))}
                 <span className="text-muted" style={{ fontSize: "14px" }}>(min)</span>
               </li>
               <li style={{marginBottom: '12px'}}>
                 {["60","120","240","360","720"].map(v => (
-                  <span key={v} className="pill-magenta" style={{ marginRight: "8px" }}>{v}</span>
+                  <span key={v} className="pill" style={{ marginRight: "8px" }}>{v}</span>
                 ))}
                 <span className="text-muted" style={{ fontSize: "14px" }}>(min)</span>
               </li>
               <li style={{marginBottom: '12px'}}>
-                <span className="pill-magenta" style={{ marginRight: "8px" }}>D</span>
+                <span className="pill" style={{ marginRight: "8px" }}>D</span>
                 <span className="text-muted" style={{ fontSize: "14px" }}>(day)</span>
               </li>
               <li style={{marginBottom: '12px'}}>
-                <span className="pill-magenta" style={{ marginRight: "8px" }}>W</span>
+                <span className="pill" style={{ marginRight: "8px" }}>W</span>
                 <span className="text-muted" style={{ fontSize: "14px" }}>(week)</span>
               </li>
               <li style={{marginBottom: '12px'}}>
-                <span className="pill-magenta" style={{ marginRight: "8px" }}>M</span>
+                <span className="pill" style={{ marginRight: "8px" }}>M</span>
                 <span className="text-muted" style={{ fontSize: "14px" }}>(month)</span>
               </li>
             </ul>
@@ -381,7 +381,7 @@ ws.on("close", () => console.log("Disconnected`,
              <ul>
               <li>symbol, like BTCUSDT, uppercase only</li>
              </ul>
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               <button className="copy-btn" onClick={handleSubscribe}>
                 {copiedRes ? <FiCheck /> : <FiCopy />}
               </button>
@@ -436,7 +436,7 @@ ws.on("close", () => console.log("Disconnected`,
                       <IoIosArrowForward /> start
                     </td>
                     <td>string</td>
-                    <td>Start time of the candle (ms)</td>
+                    <td>Start time of the kline (ms)</td>
                   </tr>
                   <tr>
                     <td>
@@ -465,7 +465,7 @@ ws.on("close", () => console.log("Disconnected`,
                     </td>
                     <td>string</td>
                     <td>
-                      Close price. Is the last traded price when the candle is
+                      Close price. Is the last traded price when the kline is
                       not closed
                     </td>
                   </tr>
@@ -508,7 +508,7 @@ ws.on("close", () => console.log("Disconnected`,
                     </td>
                     <td>number</td>
                     <td>
-                      The timestamp (ms) of the last matched order in the candle
+                      The timestamp (ms) of the last matched order in the kline
                     </td>
                   </tr>
                 </tbody>
@@ -532,20 +532,20 @@ ws.on("close", () => console.log("Disconnected`,
               ))}
             </div>
 
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               {/* COPY ICON */}
               <button className="copy-btn" onClick={handleCopy}>
                 {copied ? <FiCheck /> : <FiCopy />}
               </button>
 
               <pre>
-                <code>{codeMap[lang]}</code>
+                {codeMap[lang]}
               </pre>
             </div>
 
             {/* RESPONSE EXAMPLE */}
             <h3 className="top-req-text" id="response-example">Response Example</h3>
-            <div className="api-code-box position-relative">
+            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
               <button className="copy-btn" onClick={handleCopyRes}>
                 {copiedRes ? <FiCheck /> : <FiCopy />}
               </button>

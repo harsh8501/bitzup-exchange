@@ -240,7 +240,7 @@ getTransferableAmount();`,
                       <td>coinName</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Coin name. E.g. <code>BTC,USDC,USDT,SOL</code></td>
+                      <td>Coin name. E.g. <span className="pill">BTC,USDC,USDT,SOL</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -290,14 +290,14 @@ getTransferableAmount();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -305,12 +305,12 @@ getTransferableAmount();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -262,7 +262,7 @@ getCoinInfo();`,
                       <td>coin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Coin name. e.g., <code>MNT</code></td>
+                      <td>Coin name. e.g., <span className="pill">MNT</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -339,12 +339,12 @@ getCoinInfo();`,
                     <tr>
                       <td>&gt;&gt; chainDeposit</td>
                       <td>string</td>
-                      <td>Deposit status. <code>0</code>:suspend, <code>1</code>:normal</td>
+                      <td>Deposit status. <span className="pill">0</span>:suspend, <span className="pill">1</span>:normal</td>
                     </tr>
                     <tr>
                       <td>&gt;&gt; chainWithdraw</td>
                       <td>string</td>
-                      <td>Withdraw status. <code>0</code>:suspend, <code>1</code>:normal</td>
+                      <td>Withdraw status. <span className="pill">0</span>:suspend, <span className="pill">1</span>:normal</td>
                     </tr>
                     <tr>
                       <td>&gt;&gt; minAccuracy</td>
@@ -387,14 +387,14 @@ getCoinInfo();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -402,12 +402,12 @@ getCoinInfo();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

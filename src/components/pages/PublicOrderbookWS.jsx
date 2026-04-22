@@ -190,7 +190,7 @@ ws.on('close', function close() {
                 Subscribe Strategy
               </h3>
               <p>
-                <strong>Topic:</strong> <code>orderbook.{"{"}depth{"}"}.{"{"}symbol{"}"}</code> e.g., <code>orderbook.1.BTCUSDT</code>
+                <strong>Topic:</strong> <span className="pill">orderbook.{"{"}depth{"}"}.{"{"}symbol{"}"}</span> e.g., <span className="pill">orderbook.1.BTCUSDT</span>
               </p>
               <div className="api-table-box">
                 <table className="table table-striped api-table mb-0">
@@ -202,7 +202,7 @@ ws.on('close', function close() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Linear & Inverse: Level 1, 50, 200, 1000</td>
+                      <td>linear: Level 1, 50, 200, 1000</td>
                       <td>10ms, 20ms, 100ms, 200ms respectively</td>
                     </tr>
                     <tr>
@@ -238,7 +238,7 @@ ws.on('close', function close() {
                     <tr>
                       <td>type</td>
                       <td>string</td>
-                      <td>Message type: <code>snapshot</code> or <code>delta</code></td>
+                      <td>Message type: <span className="pill">snapshot</span> or <span className="pill">delta</span></td>
                     </tr>
                     <tr>
                       <td>ts</td>
@@ -258,17 +258,17 @@ ws.on('close', function close() {
                     <tr>
                       <td>data.b</td>
                       <td>array</td>
-                      <td>Bids. An array of <code>[price, size]</code></td>
+                      <td>Bids. An array of <span className="pill">[price, size]</span></td>
                     </tr>
                     <tr>
                       <td>data.a</td>
                       <td>array</td>
-                      <td>Asks. An array of <code>[price, size]</code></td>
+                      <td>Asks. An array of <span className="pill">[price, size]</span></td>
                     </tr>
                     <tr>
                       <td>data.u</td>
                       <td>integer</td>
-                      <td>Update ID. Is <code>1</code> if caused by a service restart</td>
+                      <td>Update ID. Is <span className="pill">1</span> if caused by a service restart</td>
                     </tr>
                     <tr>
                       <td>data.seq</td>
@@ -296,14 +296,14 @@ ws.on('close', function close() {
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -311,12 +311,12 @@ ws.on('close', function close() {
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

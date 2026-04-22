@@ -78,7 +78,7 @@ export const GetIndexPriceKline = () => {
   "retMsg": "OK",
   "result": {
     "symbol": "BTCUSDZ22",
-    "category": "inverse",
+    "category": "linear",
     "list": [
       [
         "1670608800000",
@@ -101,14 +101,14 @@ export const GetIndexPriceKline = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/index-price-kline?category=inverse&symbol=BTCUSDZ22&interval=1&start=1670601600000&end=1670608800000&limit=2 HTTP/1.1
+        HTTP: `GET /v5/market/index-price-kline?category=linear&symbol=BTCUSDZ22&interval=1&start=1670601600000&end=1670608800000&limit=2 HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/index-price-kline"
 params = {
-    "category": "inverse",
+    "category": "linear",
     "symbol": "BTCUSDZ22",
     "interval": "1",
     "start": 1670601600000,
@@ -132,7 +132,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/index-price-kline?category=inverse&symbol=BTCUSDZ22&interval=1&start=1670601600000&end=1670608800000&limit=2"
+    url := "https://api.bitzup.com/v5/market/index-price-kline?category=linear&symbol=BTCUSDZ22&interval=1&start=1670601600000&end=1670608800000&limit=2"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -159,7 +159,7 @@ import java.net.http.HttpResponse;
 
 public class GetIndexPriceKlineDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/index-price-kline?category=inverse&symbol=BTCUSDZ22&interval=1&start=1670601600000&end=1670608800000&limit=2";
+        String url = "https://api.bitzup.com/v5/market/index-price-kline?category=linear&symbol=BTCUSDZ22&interval=1&start=1670601600000&end=1670608800000&limit=2";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -180,7 +180,7 @@ async function getIndexPriceKline() {
             'https://api.bitzup.com/v5/market/index-price-kline',
             {
                 params: {
-                    category: 'inverse',
+                    category: "linear",
                     symbol: 'BTCUSDZ22',
                     interval: '1',
                     start: 1670601600000,
@@ -246,7 +246,7 @@ getIndexPriceKline();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <span className="pill-magenta">linear</span>, <span className="pill-magenta">inverse</span>. When category is not passed, use linear by default</td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -255,11 +255,14 @@ getIndexPriceKline();`,
                       <td>Symbol name.</td>
                     </tr>
                     <tr>
+                      <td>interval</td>
+                      <td>true</td>
+                      <td>string</td>
                       <td>
                         Kline interval.
                         <ul className="pill-list">
                           {["1","3","5","15","30","60","120","240","360","720","D","M","W"].map(v => (
-                            <li key={v}><span className="pill-magenta">{v}</span></li>
+                            <li key={v}><span className="pill">{v}</span></li>
                           ))}
                         </ul>
                       </td>
@@ -313,17 +316,17 @@ getIndexPriceKline();`,
                       <td>list</td>
                       <td>array</td>
                       <td>
-                        An string array of individual candle. Sort in reverse by startTime.
+                        An string array of individual kline. Sort in reverse by startTime.
                         <br />
-                        <code>[0]</code>: startTime (ms)
+                        <span className="pill">[0]</span>: startTime (ms)
                         <br />
-                        <code>[1]</code>: openPrice
+                        <span className="pill">[1]</span>: openPrice
                         <br />
-                        <code>[2]</code>: highPrice
+                        <span className="pill">[2]</span>: highPrice
                         <br />
-                        <code>[3]</code>: lowPrice
+                        <span className="pill">[3]</span>: lowPrice
                         <br />
-                        <code>[4]</code>: closePrice
+                        <span className="pill">[4]</span>: closePrice
                       </td>
                     </tr>
                   </tbody>
@@ -347,14 +350,14 @@ getIndexPriceKline();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -362,12 +365,14 @@ getIndexPriceKline();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
-                <button className="copy-btn" onClick={handleCopyRes}>
-                  {copiedRes ? <FiCheck /> : <FiCopy />}
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
+                <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
+                  {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
-                <pre>
-                  <code>{responseCode}</code>
+                <pre style={{ margin: 0 }}>
+                  <code >
+                    {responseCode}
+                  </code>
                 </pre>
               </div>
             </div>

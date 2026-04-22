@@ -328,7 +328,7 @@ ws.on("error", console.error);`,
               <ul>
                 <li>symbol, like BTCUSDT, uppercase only</li>
               </ul>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleSubscribe}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
@@ -352,7 +352,7 @@ ws.on("error", console.error);`,
                 </li>
                 <li>Recommended interval: every 5 seconds</li>
               </ul>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleAction}>
                   {copiedaction ? <FiCheck /> : <FiCopy />}
                 </button>
@@ -444,20 +444,20 @@ ws.on("error", console.error);`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
               {/* RESPONSE EXAMPLE */}
               <h3 className="top-req-text" id="response-example">Response Example</h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>

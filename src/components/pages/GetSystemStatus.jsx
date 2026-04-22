@@ -345,18 +345,18 @@ getSystemStatus();`,
                             ))}
                         </div>
 
-                        <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                             <button className="copy-btn" onClick={handleCopy} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>{copied ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}</button>
-                            <pre style={{ margin: 0 }}><code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMap[lang]}</code></pre>
+                            <pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre>
                         </div>
 
                         {/* RESPONSE EXAMPLE */}
                         <h3 className="top-req-text" id="response-example">
                             Response Example
                         </h3>
-                        <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                             <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>{copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}</button>
-                            <pre style={{ margin: 0 }}><code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseCode}</code></pre>
+                            <pre style={{ margin: 0 }}><code >{responseCode}</code></pre>
                         </div>
                     </div>
 

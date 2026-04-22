@@ -268,7 +268,7 @@ getBorrowHistory();`,
                       <td>cursor</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Cursor. Use the <code>nextPageCursor</code> token from the response to retrieve the next page of the result set</td>
+                      <td>Cursor. Use the <span className="pill">nextPageCursor</span> token from the response to retrieve the next page of the result set</td>
                     </tr>
                   </tbody>
                 </table>
@@ -363,14 +363,14 @@ getBorrowHistory();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -378,12 +378,12 @@ getBorrowHistory();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

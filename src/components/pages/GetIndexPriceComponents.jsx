@@ -272,7 +272,7 @@ getIndexPriceComponents();`,
                       <td>indexName</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Index name, e.g., <code>BTCUSDT</code></td>
+                      <td>Index name, e.g., <span className="pill">BTCUSDT</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -319,12 +319,12 @@ getIndexPriceComponents();`,
                     <tr>
                       <td>&gt; spotPair</td>
                       <td>string</td>
-                      <td>Spot pair name</td>
+                      <td>Base pair name</td>
                     </tr>
                     <tr>
                       <td>&gt; equivalentPrice</td>
                       <td>string</td>
-                      <td>Converted price based on <code>multiplier</code> and <code>price</code></td>
+                      <td>Converted price based on <span className="pill">multiplier</span> and <span className="pill">price</span></td>
                     </tr>
                     <tr>
                       <td>&gt; multiplier</td>
@@ -334,7 +334,7 @@ getIndexPriceComponents();`,
                     <tr>
                       <td>&gt; price</td>
                       <td>string</td>
-                      <td>Original spot price</td>
+                      <td>Original index component price</td>
                     </tr>
                     <tr>
                       <td>&gt; weight</td>
@@ -362,14 +362,14 @@ getIndexPriceComponents();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -377,12 +377,12 @@ getIndexPriceComponents();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

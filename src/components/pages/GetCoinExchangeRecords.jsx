@@ -237,13 +237,13 @@ getCoinExchangeRecords();`,
                       <td>fromCoin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>From coin. e.g., <code>BTC</code></td>
+                      <td>From coin. e.g., <span className="pill">BTC</span></td>
                     </tr>
                     <tr>
                       <td>toCoin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>To coin. e.g., <code>USDT</code></td>
+                      <td>To coin. e.g., <span className="pill">USDT</span></td>
                     </tr>
                     <tr>
                       <td>limit</td>
@@ -340,14 +340,14 @@ getCoinExchangeRecords();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -355,12 +355,12 @@ getCoinExchangeRecords();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

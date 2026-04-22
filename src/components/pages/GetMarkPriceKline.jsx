@@ -239,7 +239,7 @@ getMarkPriceKline();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <span className="pill-magenta">linear</span>, <span className="pill-magenta">inverse</span>. When category is not passed, use linear by default</td>
+                      <td>Product type. <span className="pill">linear</span>, <span className="pill">inverse</span>. When category is not passed, use linear by default</td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -248,14 +248,18 @@ getMarkPriceKline();`,
                       <td>Symbol name.</td>
                     </tr>
                     <tr>
+                      <td>interval</td>
+                      <td>true</td>
+                      <td>string</td>
                       <td>
                         Kline interval.
                         <ul className="pill-list">
                           {["1","3","5","15","30","60","120","240","360","720","D","M","W"].map(v => (
-                            <li key={v}><span className="pill-magenta">{v}</span></li>
+                            <li key={v}><span className="pill">{v}</span></li>
                           ))}
                         </ul>
                       </td>
+                      
                     </tr>
                     <tr>
                       <td>start</td>
@@ -307,7 +311,7 @@ getMarkPriceKline();`,
                       <td>array</td>
                       <td>
                         <ul>
-                          <li>An string array of individual candle</li>
+                          <li>An string array of individual kline</li>
                           <li>
                             Sort in reverse by{" "}
                             <span className="pill">startTime</span>
@@ -320,7 +324,7 @@ getMarkPriceKline();`,
                         <IoIosArrowForward /> list[0]: startTime
                       </td>
                       <td>string</td>
-                      <td>Start time of the candle (ms)</td>
+                      <td>Start time of the kline (ms)</td>
                     </tr>
                     <tr>
                       <td>
@@ -371,14 +375,14 @@ getMarkPriceKline();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -386,12 +390,14 @@ getMarkPriceKline();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
-                <button className="copy-btn" onClick={handleCopyRes}>
-                  {copiedRes ? <FiCheck /> : <FiCopy />}
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
+                <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
+                  {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
-                <pre>
-                  <code>{responseCode}</code>
+                <pre style={{ margin: 0 }}>
+                  <code >
+                    {responseCode}
+                  </code>
                 </pre>
               </div>
             </div>

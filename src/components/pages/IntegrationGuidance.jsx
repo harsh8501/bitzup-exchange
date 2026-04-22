@@ -110,17 +110,12 @@ Host: api.bitzup.com
           </p>
 
           <p className="api-desc mb-2" style={{ fontWeight: "600", color: "var(--text-primary)" }}>REST API Base Endpoint:</p>
-          <ul className="mb-4 text-white" style={{ listStyle: "none", paddingLeft: "0" }}>
-            <li style={{ marginBottom: "12px", display: "flex", alignItems: "center", gap: "10px" }}>
-              <span style={{ color: "var(--text-accent)" }}>●</span> 
-              <span>Testnet: <code style={{ background: "var(--bg-card)", padding: "4px 8px", borderRadius: "4px" }}>https://api.bitzup.com</code></span>
-            </li>
+          <ul className="mb-4 text-mutne" style={{ listStyle: "none", paddingLeft: "0" }}>
             <li style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
               <span style={{ color: "var(--text-accent)", marginTop: "4px" }}>●</span>
               <div>
-                <span style={{ display: "block", marginBottom: "8px" }}>Mainnet (both endpoints are available):</span>
+                <span style={{ display: "block", marginBottom: "8px" }}>Mainnet:</span>
                 <ul style={{ listStyle: "none", paddingLeft: "20px" }}>
-                  <li style={{ marginBottom: "6px" }}>- <code style={{ background: "var(--bg-card)", padding: "4px 8px", borderRadius: "4px" }}>https://api.bitzup.com</code></li>
                   <li>- <code style={{ background: "var(--bg-card)", padding: "4px 8px", borderRadius: "4px" }}>https://api.bitzup.com</code></li>
                 </ul>
               </div>
@@ -139,7 +134,7 @@ Host: api.bitzup.com
           <p className="api-desc mb-3">
             <strong style={{ color: "var(--text-primary)" }}>Auto-generated API Keys:</strong> Self-generated API keys operate with RSA encryption. You must create your public and private keys through the software, and then only provide the public key to Bitzup, we will never hold your private key.
           </p>
-          <ol className="mb-5 text-white" style={{ paddingLeft: "20px" }}>
+          <ol className="mb-5 text-mutne" style={{ paddingLeft: "20px" }}>
             <li style={{ marginBottom: "10px" }}>Use <a href="https://github.com/bitzup-exchange/api-rsa-generator" target="_blank" rel="noreferrer" style={{ color: "var(--text-accent)", textDecoration: "underline" }}>api-rsa-generator</a> to create RSA private and public keys</li>
             <li>Follow the <a href="https://github.com/bitzup-exchange/api-usage-examples" target="_blank" rel="noreferrer" style={{ color: "var(--text-accent)", textDecoration: "underline" }}>RSA sample scripts</a> to complete encryption procedures.</li>
           </ol>
@@ -147,7 +142,7 @@ Host: api.bitzup.com
           {/* HTTP Headers */}
           <h3 className="top-req-text" style={{ fontSize: "20px", marginBottom: "16px" }}>HTTP Headers for Authenticated Endpoints</h3>
           <p className="api-desc mb-3">The following HTTP header keys must be used for authentication:</p>
-          <ul className="mb-4 text-white" style={{ listStyle: "none", paddingLeft: "0" }}>
+          <ul className="mb-4 text-mutne" style={{ listStyle: "none", paddingLeft: "0" }}>
             {[
               { key: "X-BAPI-API-KEY", desc: "API key" },
               { key: "X-BAPI-TIMESTAMP", desc: "UTC timestamp in milliseconds" },
@@ -162,34 +157,34 @@ Host: api.bitzup.com
           </ul>
 
         <p className="api-desc mb-3">
-          We also provide <code>X-BAPI-RECV-WINDOW</code> (unit in millisecond and default value is 5,000) to specify how long an HTTP request is valid. It is also used to prevent replay attacks.
+          We also provide <span className="pill">X-BAPI-RECV-WINDOW</span> (unit in millisecond and default value is 5,000) to specify how long an HTTP request is valid. It is also used to prevent replay attacks.
         </p>
         <p className="api-desc mb-3">
-          A smaller <code>X-BAPI-RECV-WINDOW</code> is more secure, but your request may fail if the transmission time is greater than your <code>X-BAPI-RECV-WINDOW</code>.
+          A smaller <span className="pill">X-BAPI-RECV-WINDOW</span> is more secure, but your request may fail if the transmission time is greater than your <span className="pill">X-BAPI-RECV-WINDOW</span>.
         </p>
 
         <div className="api-caution mb-4">
           <strong>CAUTION:</strong>
           <p className="mb-2 mt-2">Please make sure that the timestamp parameter adheres to the following rule:</p>
           <code className="d-block mb-2">server_time - recv_window &lt;= timestamp &lt; server_time + 1000</code>
-          <p className="mb-2">which means your timestamp should lie in range: <code>[server_time - recv_window; server_time + 1000)</code></p>
-          <p className="mb-0"><code>server_time</code> stands for Bitzup server time, which can be queried via the Server Time endpoint. Keep in mind it's highly recommended that you use local device time for timestamp and keep it NTP-synchronized at all times.</p>
+          <p className="mb-2">which means your timestamp should lie in range: <span className="pill">[server_time - recv_window; server_time + 1000)</span></p>
+          <p className="mb-0"><span className="pill">server_time</span> stands for Bitzup server time, which can be queried via the Server Time endpoint. Keep in mind it's highly recommended that you use local device time for timestamp and keep it NTP-synchronized at all times.</p>
         </div>
 
         {/* Create A Request */}
         <h3 className="top-req-text">Create A Request</h3>
-        <p className="api-desc mb-2">To assist in diagnosing advanced network problems, you may consider adding <code>cdn-request-id</code> to your request headers. Its value should be unique for each request.</p>
+        <p className="api-desc mb-2">To assist in diagnosing advanced network problems, you may consider adding <span className="pill">cdn-request-id</span> to your request headers. Its value should be unique for each request.</p>
 
         <p className="api-desc mb-2"><strong>Basic steps:</strong></p>
-        <ol className="mb-4 text-white">
+        <ol className="mb-4 text-mutne">
           <li>Calculate the string you want to sign as follows:
             <ul>
-              <li>For GET requests: <code>timestamp + API key + recv_window + queryString</code></li>
-              <li>For POST requests: <code>timestamp + API key + recv_window + jsonBodyString</code></li>
+              <li>For GET requests: <span className="pill">timestamp + API key + recv_window + queryString</span></li>
+              <li>For POST requests: <span className="pill">timestamp + API key + recv_window + jsonBodyString</span></li>
             </ul>
           </li>
           <li>Use the HMAC_SHA256 or RSA_SHA256 algorithm to sign the string in step 1, and convert it to a lowercase HEX string for HMAC_SHA256, or base64 for RSA_SHA256 to obtain the string value of your signature.</li>
-          <li>Add your signature to <code>X-BAPI-API-KEY</code> header send the HTTP request. You can refer to examples below for more info.</li>
+          <li>Add your signature to <span className="pill">X-BAPI-API-KEY</span> header send the HTTP request. You can refer to examples below for more info.</li>
         </ol>
 
         <h5 className="top-req-text mt-3 mb-2">An example for how to generate plain text to encrypt</h5>
@@ -206,12 +201,12 @@ Host: api.bitzup.com
           ))}
         </div>
 
-          <div className="api-code-box position-relative mb-4" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
+          <div className="api-code-box position-relative mb-4" >
             <button className="copy-btn" onClick={handleCopySig} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
               {copiedSig ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
             </button>
             <pre style={{ margin: 0 }}>
-              <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>
+              <code >
                 {sigMap[langSig]}
               </code>
             </pre>
@@ -230,13 +225,13 @@ Host: api.bitzup.com
           ))}
         </div>
 
-          <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
+          <div className="api-code-box position-relative" >
             <button className="copy-btn" onClick={handleCopyHttp} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
               {copiedHttp ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
             </button>
 
             <pre style={{ margin: 0 }}>
-              <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMapHttp[langHttp]}</code>
+              <code >{codeMapHttp[langHttp]}</code>
             </pre>
           </div>
 
@@ -274,7 +269,7 @@ Host: api.bitzup.com
               <tr>
                 <td>retExtInfo</td>
                 <td>Object</td>
-                <td>Extend info. Most of the time, it is <code>{"{}"}</code></td>
+                <td>Extend info. Most of the time, it is <span className="pill">{"{}"}</span></td>
               </tr>
               <tr>
                 <td>time</td>
@@ -286,12 +281,12 @@ Host: api.bitzup.com
         </div>
 
         {/* RESPONSE CODE BOX */}
-          <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
+          <div className="api-code-box position-relative" >
             <button className="copy-btn" onClick={handleCopy1} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
               {copied1 ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
             </button>
             <pre style={{ margin: 0 }}>
-              <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{getCode1()}</code>
+              <code >{getCode1()}</code>
             </pre>
           </div>
         </div>

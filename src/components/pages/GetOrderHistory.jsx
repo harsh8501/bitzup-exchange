@@ -147,13 +147,13 @@ getOrderHistory();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
-            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, e.g. <code>BTCUSDT</code></td></tr>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, e.g. <span className="pill">BTCUSDT</span></td></tr>
             <tr><td>baseCoin</td><td>false</td><td>string</td><td>Base coin, uppercase only</td></tr>
             <tr><td>settleCoin</td><td>false</td><td>string</td><td>Settle coin, uppercase only</td></tr>
             <tr><td>orderId</td><td>false</td><td>string</td><td>Order ID</td></tr>
             <tr><td>orderLinkId</td><td>false</td><td>string</td><td>User customised order ID</td></tr>
-            <tr><td>orderFilter</td><td>false</td><td>string</td><td><code>Order</code>, <code>StopOrder</code>, <code>tpslOrder</code>, <code>OcoOrder</code>, <code>BidirectionalTpslOrder</code></td></tr>
+            <tr><td>orderFilter</td><td>false</td><td>string</td><td><span className="pill">Order</span>, <span className="pill">StopOrder</span>, <span className="pill">tpslOrder</span>, <span className="pill">OcoOrder</span>, <span className="pill">BidirectionalTpslOrder</span></td></tr>
             <tr><td>orderStatus</td><td>false</td><td>string</td><td>Order status filter</td></tr>
             <tr><td>startTime</td><td>false</td><td>integer</td><td>Start timestamp (ms)</td></tr>
             <tr><td>endTime</td><td>false</td><td>integer</td><td>End timestamp (ms)</td></tr>
@@ -173,8 +173,7 @@ getOrderHistory();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td>string</td><td>Symbol name</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; price</td><td>string</td><td>Order price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td>string</td><td>Order quantity</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; isLeverage</td><td>string</td><td>Whether to borrow (Spot only): <code>0</code>, <code>1</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; orderStatus</td><td>string</td><td>Order status</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; avgPrice</td><td>string</td><td>Average filled price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; leavesQty</td><td>string</td><td>Remaining quantity</td></tr>
@@ -182,7 +181,7 @@ getOrderHistory();`,
             <tr><td style={{ paddingLeft: "28px" }}>&gt; cumExecValue</td><td>string</td><td>Cumulative executed value</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; cumExecFee</td><td>string</td><td>Cumulative executed fee</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; timeInForce</td><td>string</td><td>Time in force</td></tr>
-            <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><code>Market</code>, <code>Limit</code></td></tr>
+            <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td>string</td><td><span className="pill">Market</span>, <span className="pill">Limit</span></td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; stopOrderType</td><td>string</td><td>Stop order type</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerPrice</td><td>string</td><td>Trigger price</td></tr>
             <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>string</td><td>Take profit price</td></tr>
@@ -199,9 +198,9 @@ getOrderHistory();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

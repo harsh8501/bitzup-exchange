@@ -77,7 +77,7 @@ export const GetNewDeliveryPrice = () => {
   "retCode": 0,
   "retMsg": "",
   "result": {
-    "category": "option",
+    "category": "linear",
     "list": [
       {
         "deliveryPrice": "111675.89830854",
@@ -94,14 +94,14 @@ export const GetNewDeliveryPrice = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/new-delivery-price?category=option&baseCoin=BTC HTTP/1.1
+        HTTP: `GET /v5/market/new-delivery-price?category=linear&baseCoin=BTC HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/new-delivery-price"
 params = {
-    "category": "option",
+    "category": "linear",
     "baseCoin": "BTC"
 }
 
@@ -121,7 +121,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/new-delivery-price?category=option&baseCoin=BTC"
+    url := "https://api.bitzup.com/v5/market/new-delivery-price?category=linear&baseCoin=BTC"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -148,7 +148,7 @@ import java.net.http.HttpResponse;
 
 public class GetNewDeliveryPriceDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/new-delivery-price?category=option&baseCoin=BTC";
+        String url = "https://api.bitzup.com/v5/market/new-delivery-price?category=linear&baseCoin=BTC";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -169,7 +169,7 @@ async function getNewDeliveryPrice() {
             'https://api.bitzup.com/v5/market/new-delivery-price',
             {
                 params: {
-                    category: 'option',
+                    category: "linear",
                     baseCoin: 'BTC'
                 }
             }
@@ -202,7 +202,7 @@ getNewDeliveryPrice();`,
               {/* Title */}
               <h1 className="api-title">Get New Delivery Price</h1>
               <p className="api-desc">
-                Get historical option delivery prices.
+                Get historical futures delivery prices.
               </p>
 
               {/* HTTP REQUEST */}
@@ -232,13 +232,13 @@ getNewDeliveryPrice();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>baseCoin</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Base coin. Default: <code>BTC</code></td>
+                      <td>Base coin. Default: <span className="pill">BTC</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -298,14 +298,14 @@ getNewDeliveryPrice();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -313,12 +313,12 @@ getNewDeliveryPrice();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

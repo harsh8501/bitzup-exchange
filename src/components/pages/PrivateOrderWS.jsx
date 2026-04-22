@@ -58,7 +58,7 @@ export const PrivateOrderWS = () => {
             "triggerDirection": 0,
             "triggerBy": "",
             "closeOnTrigger": false,
-            "category": "option",
+            "category": "linear",
             "placeType": "price",
             "smpType": "None",
             "smpGroup": 0,
@@ -102,11 +102,11 @@ while True:
                 <p className="api-desc">Subscribe to the order stream to see changes to your orders in real-time.</p>
 
                 <h3 className="top-req-text" id="topic">Topic</h3>
-                <p className="api-desc"><strong>All-In-One Topic:</strong> <code>order</code></p>
-                <p className="api-desc"><strong>Categorised Topic:</strong> <code>order.spot</code>, <code>order.linear</code>, <code>order.inverse</code>, <code>order.option</code></p>
+                <p className="api-desc"><strong>All-In-One Topic:</strong> <span className="pill">order</span></p>
+                <p className="api-desc"><strong>Categorised Topic:</strong> <span className="pill"></span>, <span className="pill">order.linear</span>, <span className="pill"></span>, <span className="pill"></span></p>
                 <ul className="text-white mb-3">
                     <li>All-In-One topic and Categorised topic cannot be in the same subscription request</li>
-                    <li>All-In-One topic: Allow you to listen to all categories (spot, linear, inverse, option) websocket updates</li>
+                    <li>All-In-One topic: Allow you to listen to all categories (linear) websocket updates</li>
                     <li>Categorised Topic: Allow you to listen only to specific category websocket updates</li>
                 </ul>
 
@@ -114,12 +114,12 @@ while True:
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td>string</td><td>Product type: <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td></tr>
+                        <tr><td>category</td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
                         <tr><td>symbol</td><td>string</td><td>Symbol name</td></tr>
                         <tr><td>orderId</td><td>string</td><td>Order ID</td></tr>
                         <tr><td>orderLinkId</td><td>string</td><td>User customised order ID</td></tr>
-                        <tr><td>side</td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
-                        <tr><td>orderType</td><td>string</td><td>Order type. <code>Market</code>, <code>Limit</code></td></tr>
+                        <tr><td>side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
+                        <tr><td>orderType</td><td>string</td><td>Order type. <span className="pill">Market</span>, <span className="pill">Limit</span></td></tr>
                         <tr><td>price</td><td>string</td><td>Order price</td></tr>
                         <tr><td>qty</td><td>string</td><td>Order qty</td></tr>
                         <tr><td>timeInForce</td><td>string</td><td>Time in force</td></tr>
@@ -135,18 +135,18 @@ while True:
                         <tr><td>stopOrderType</td><td>string</td><td>Stop order type</td></tr>
                         <tr><td>triggerPrice</td><td>string</td><td>Trigger price</td></tr>
                         <tr><td>triggerBy</td><td>string</td><td>The price type to trigger</td></tr>
-                        <tr><td>triggerDirection</td><td>integer</td><td><code>1</code>: rise, <code>2</code>: fall</td></tr>
+                        <tr><td>triggerDirection</td><td>integer</td><td><span className="pill">1</span>: rise, <span className="pill">2</span>: fall</td></tr>
                         <tr><td>takeProfit</td><td>string</td><td>Take profit price</td></tr>
                         <tr><td>stopLoss</td><td>string</td><td>Stop loss price</td></tr>
                         <tr><td>tpTriggerBy</td><td>string</td><td>The price type to trigger take profit</td></tr>
                         <tr><td>slTriggerBy</td><td>string</td><td>The price type to trigger stop loss</td></tr>
                         <tr><td>tpLimitPrice</td><td>string</td><td>The limit order price when take profit price is triggered</td></tr>
                         <tr><td>slLimitPrice</td><td>string</td><td>The limit order price when stop loss price is triggered</td></tr>
-                        <tr><td>tpslMode</td><td>string</td><td>TP/SL mode, <code>Full</code>: entire position, <code>Partial</code>: partial position</td></tr>
+                        <tr><td>tpslMode</td><td>string</td><td>TP/SL mode, <span className="pill">Full</span>: entire position, <span className="pill">Partial</span>: partial position</td></tr>
                         <tr><td>positionIdx</td><td>integer</td><td>Position index</td></tr>
                         <tr><td>reduceOnly</td><td>boolean</td><td>Reduce only</td></tr>
                         <tr><td>closeOnTrigger</td><td>boolean</td><td>Close on trigger</td></tr>
-                        <tr><td>placeType</td><td>string</td><td>Place type. option: <code>iv</code>, <code>price</code></td></tr>
+                        <tr><td>placeType</td><td>string</td><td>Place type. linear: <span className="pill">iv</span>, <span className="pill">price</span></td></tr>
                         <tr><td>smpType</td><td>string</td><td>SMP execution type</td></tr>
                         <tr><td>smpGroup</td><td>integer</td><td>SMP group ID</td></tr>
                         <tr><td>smpOrderId</td><td>string</td><td>The counterparty's orderID which triggers SMP</td></tr>
@@ -155,16 +155,15 @@ while True:
                         <tr><td>closedPnl</td><td>string</td><td>Closed PnL</td></tr>
                         <tr><td>blockTradeId</td><td>string</td><td>Block trade ID</td></tr>
                         <tr><td>orderIv</td><td>string</td><td>Implied volatility</td></tr>
-                        <tr><td>feeCurrency</td><td>string</td><td>Fee currency. Spot only</td></tr>
                     </tbody>
                 </table></div>
 
                 <h3 className="top-req-text" id="subscribe-example">Subscribe Example</h3>
                 <div className="lang-tabs">{["wsJSON", "Python"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t === "wsJSON" ? "WebSocket" : t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
 
                 <h3 className="top-req-text" id="stream-example">Stream Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{streamExample}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><span className="pill">{streamExample}</span></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "topic" ? "active" : ""} onClick={() => scrollToSection("topic")}>Topic</li>

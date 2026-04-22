@@ -21,14 +21,14 @@ export const BatchPlaceOrder = () => {
     "result": {
         "list": [
             {
-                "category": "spot",
+                "category": "linear",
                 "symbol": "BTCUSDT",
                 "orderId": "1666800494330512128",
                 "orderLinkId": "spot-btc-03",
                 "createAt": "1713434102752"
             },
             {
-                "category": "spot",
+                "category": "linear",
                 "symbol": "ATOMUSDT",
                 "orderId": "1666800494330512129",
                 "orderLinkId": "spot-atom-03",
@@ -55,7 +55,7 @@ X-BAPI-RECV-WINDOW: 5000
 Content-Type: application/json
 
 {
-    "category": "spot",
+    "category": "linear",
     "request": [
         {
             "symbol": "BTCUSDT",
@@ -82,7 +82,7 @@ url = "https://api.bitzup.com/v5/order/create-batch"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1713434102000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {
-    "category": "spot",
+    "category": "linear",
     "request": [
         {"symbol": "BTCUSDT", "side": "Buy", "orderType": "Limit",
          "qty": "0.1", "price": "30000", "timeInForce": "GTC", "orderLinkId": "spot-btc-03"},
@@ -100,7 +100,7 @@ import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
     url := "https://api.bitzup.com/v5/order/create-batch"
     payload := map[string]interface{}{
-        "category": "spot",
+        "category": "linear",
         "request": []map[string]interface{}{
             {"symbol": "BTCUSDT", "side": "Buy", "orderType": "Limit",
              "qty": "0.1", "price": "30000", "timeInForce": "GTC", "orderLinkId": "spot-btc-03"},
@@ -141,7 +141,7 @@ public class BatchPlaceOrderExample {
 async function batchPlaceOrder() {
   try {
     const response = await axios.post("https://api.bitzup.com/v5/order/create-batch",
-      { category: "spot", request: [
+      { category: "linear", request: [
         { symbol: "BTCUSDT", side: "Buy", orderType: "Limit", qty: "0.1", price: "30000", timeInForce: "GTC", orderLinkId: "spot-btc-03" },
         { symbol: "ATOMUSDT", side: "Sell", orderType: "Limit", qty: "2", price: "12", timeInForce: "GTC", orderLinkId: "spot-atom-03" }
       ]},
@@ -162,7 +162,7 @@ batchPlaceOrder();`,
                     <ul style={{ margin: 0, paddingLeft: "18px" }}>
                         <li>Make sure you have sufficient funds in your account when placing an order.</li>
                         <li>Each batch order undergoes its own validation and risk check.</li>
-                        <li>If some orders fail, <code>retCode</code> remains <code>0</code>. Check <code>retExtInfo</code> for individual order error codes.</li>
+                        <li>If some orders fail, <span className="pill">retCode</span> remains <span className="pill">0</span>. Check <span className="pill">retExtInfo</span> for individual order error codes.</li>
                     </ul>
                 </div>
                 <div className="api-cover">Requires Authentication</div>
@@ -172,27 +172,26 @@ batchPlaceOrder();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
                         <tr><td>request</td><td><strong>true</strong></td><td>array</td><td>List of order objects (max 10)</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td><strong>true</strong></td><td>string</td><td><code>Buy</code>, <code>Sell</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td><strong>true</strong></td><td>string</td><td><code>Market</code>, <code>Limit</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; side</td><td><strong>true</strong></td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderType</td><td><strong>true</strong></td><td>string</td><td><span className="pill">Market</span>, <span className="pill">Limit</span></td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td><strong>true</strong></td><td>string</td><td>Order quantity</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; price</td><td>false</td><td>string</td><td>Order price (required for Limit)</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; isLeverage</td><td>false</td><td>integer</td><td><code>0</code> regular spot, <code>1</code> leverage spot</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerDirection</td><td>false</td><td>integer</td><td><code>1</code> rises to trigger, <code>2</code> falls to trigger</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; isLeverage</td><td>false</td><td>integer</td><td><span className="pill">0</span> regular spot, <span className="pill">1</span> leverage spot</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerDirection</td><td>false</td><td>integer</td><td><span className="pill">1</span> rises to trigger, <span className="pill">2</span> falls to trigger</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerPrice</td><td>false</td><td>string</td><td>Trigger price for conditional orders</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerBy</td><td>false</td><td>string</td><td><code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderIv</td><td>false</td><td>string</td><td>Order IV (option only)</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; timeInForce</td><td><strong>true</strong></td><td>string</td><td><code>GTC</code>, <code>IOC</code>, <code>FOK</code>, <code>PostOnly</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; positionIdx</td><td>false</td><td>integer</td><td><code>0</code> one-way, <code>1</code> buy hedge, <code>2</code> sell hedge</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerBy</td><td>false</td><td>string</td><td><span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; timeInForce</td><td><strong>true</strong></td><td>string</td><td><span className="pill">GTC</span>, <span className="pill">IOC</span>, <span className="pill">FOK</span>, <span className="pill">PostOnly</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; positionIdx</td><td>false</td><td>integer</td><td><span className="pill">0</span> one-way, <span className="pill">1</span> buy hedge, <span className="pill">2</span> sell hedge</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderLinkId</td><td>false</td><td>string</td><td>User-defined order ID</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>false</td><td>string</td><td>Take profit price</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; stopLoss</td><td>false</td><td>string</td><td>Stop loss price</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; reduceOnly</td><td>false</td><td>boolean</td><td>Linear & Inverse only</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>false</td><td>string</td><td><code>Full</code>, <code>Partial</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpOrderType</td><td>false</td><td>string</td><td><code>Market</code> (default), <code>Limit</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; slOrderType</td><td>false</td><td>string</td><td><code>Market</code> (default), <code>Limit</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; reduceOnly</td><td>false</td><td>boolean</td><td>linear only</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpslMode</td><td>false</td><td>string</td><td><span className="pill">Full</span>, <span className="pill">Partial</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpOrderType</td><td>false</td><td>string</td><td><span className="pill">Market</span> (default), <span className="pill">Limit</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; slOrderType</td><td>false</td><td>string</td><td><span className="pill">Market</span> (default), <span className="pill">Limit</span></td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -217,9 +216,9 @@ batchPlaceOrder();`,
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

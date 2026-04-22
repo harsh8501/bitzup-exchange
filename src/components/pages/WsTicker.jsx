@@ -258,14 +258,14 @@ ws.on("error", console.error);`,
                       </button>
                     ))}
                   </div>
-                  <div className="api-code-box position-relative">
+                  <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                     {/* COPY ICON */}
                     <button className="copy-btn" onClick={handleCopy}>
                       {copied ? <FiCheck /> : <FiCopy />}
                     </button>
 
                     <pre>
-                      <code>{codeMap[tickerType]}</code>
+                      <span className="pill">{codeMap[tickerType]}</span>
                     </pre>
                   </div>
 
@@ -282,7 +282,7 @@ ws.on("error", console.error);`,
                       </button>
                     ))}
                   </div>
-                  <div className="api-code-box position-relative">
+                  <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                     {/* COPY ICON */}
                     <button className="copy-btn" onClick={handleCopyRes}>
                       {copiedRes ? <FiCheck /> : <FiCopy />}

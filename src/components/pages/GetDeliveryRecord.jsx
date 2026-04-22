@@ -78,7 +78,7 @@ export const GetDeliveryRecord = () => {
   "retMsg": "OK",
   "result": {
     "nextPageCursor": "132791%3A0%2C132791%3A0",
-    "category": "option",
+    "category": "linear",
     "list": [
       {
         "symbol": "BTC-29DEC22-16000-P",
@@ -97,13 +97,13 @@ export const GetDeliveryRecord = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/asset/delivery-record?expDate=29DEC22&category=option HTTP/1.1
+        HTTP: `GET /v5/asset/delivery-record?expDate=29DEC22&category=linear HTTP/1.1
 Host: api.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=option"
+url = "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -124,7 +124,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=option"
+    url := "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -152,7 +152,7 @@ import java.net.http.HttpResponse;
 
 public class GetDeliveryRecordDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=option";
+        String url = "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -174,7 +174,7 @@ async function getDeliveryRecord() {
             'https://api.bitzup.com/v5/asset/delivery-record',
             {
                 params: {
-                    category: 'option',
+                    category: "linear",
                     expDate: '29DEC22'
                 },
                 headers: {
@@ -210,7 +210,7 @@ getDeliveryRecord();`,
               {/* Title */}
               <h1 className="api-title">Get Delivery Record (2 years)</h1>
               <p className="api-desc">
-                Query delivery records of Inverse Futures, USDC Futures, USDT Futures and Options, sorted by deliveryTime in descending order
+                Query delivery records of linear futures, USDC Futures, USDT Futures, sorted by deliveryTime in descending order
               </p>
 
               {/* HTTP REQUEST */}
@@ -240,7 +240,7 @@ getDeliveryRecord();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>inverse</code>, <code>linear</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -264,7 +264,7 @@ getDeliveryRecord();`,
                       <td>expDate</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Expiry date. e.g., <code>25MAR22</code></td>
+                      <td>Expiry date. e.g., <span className="pill">25MAR22</span></td>
                     </tr>
                     <tr>
                       <td>limit</td>
@@ -318,7 +318,7 @@ getDeliveryRecord();`,
                     <tr>
                       <td>&gt; side</td>
                       <td>string</td>
-                      <td><code>Buy</code>, <code>Sell</code></td>
+                      <td><span className="pill">Buy</span>, <span className="pill">Sell</span></td>
                     </tr>
                     <tr>
                       <td>&gt; position</td>
@@ -371,14 +371,14 @@ getDeliveryRecord();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -386,12 +386,12 @@ getDeliveryRecord();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

@@ -231,7 +231,7 @@ getKline();`,
               <h1 className="api-title" style={{ fontSize: "32px", marginBottom: "16px" }}>Get Kline</h1>
               <p className="api-desc" style={{ fontSize: "16px", color: "var(--text-secondary)", marginBottom: "24px" }}>
                 Query for historical klines (also known as
-                candles/candlesticks). Charts are returned in groups based on
+                klines/klinesticks). Charts are returned in groups based on
                 the requested interval.
               </p>
 
@@ -276,51 +276,20 @@ getKline();`,
                       <td>string</td>
                       <td>
                         Kline interval:
-                        <ul
-                          style={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: "6px",
-                            listStyle: "none",
-                            padding: 0,
-                          }}
-                        >
-                          <li>
-                            <span className="pill-magenta">1</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">3</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">5</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">15</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">60</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">120</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">240</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">360</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">720</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">D</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">W</span>
-                          </li>
-                          <li>
-                            <span className="pill-magenta">M</span>
-                          </li>
+                        <ul className="pill-list">
+                          <li><span className="pill">1</span></li>
+                          <li><span className="pill">3</span></li>
+                          <li><span className="pill">5</span></li>
+                          <li><span className="pill">15</span></li>
+                          <li><span className="pill">30</span></li>
+                          <li><span className="pill">60</span></li>
+                          <li><span className="pill">120</span></li>
+                          <li><span className="pill">240</span></li>
+                          <li><span className="pill">360</span></li>
+                          <li><span className="pill">720</span></li>
+                          <li><span className="pill">D</span></li>
+                          <li><span className="pill">M</span></li>
+                          <li><span className="pill">W</span></li>
                         </ul>
                       </td>
                     </tr>
@@ -379,7 +348,7 @@ getKline();`,
                       <td>array</td>
                       <td>
                         <ul>
-                          <li>An string array of individual candle</li>
+                          <li>An string array of individual kline</li>
                           <li>
                             Sort in reverse by{" "}
                             <span className="pill">startTime</span>
@@ -392,7 +361,7 @@ getKline();`,
                         <IoIosArrowForward /> list[0]: startTime
                       </td>
                       <td>string</td>
-                      <td>Start time of the candle (ms)</td>
+                      <td>Start time of the kline (ms)</td>
                     </tr>
                     <tr>
                       <td>
@@ -421,7 +390,7 @@ getKline();`,
                       </td>
                       <td>string</td>
                       <td>
-                        Close price. Is the last traded price when the candle is
+                        Close price. Is the last traded price when the kline is
                         not closed
                       </td>
                     </tr>
@@ -471,13 +440,13 @@ getKline();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopy} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
                   {copied ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
 
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMap[lang]}</code>
+                  <code >{codeMap[lang]}</code>
                 </pre>
               </div>
 
@@ -485,12 +454,12 @@ getKline();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
                   {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>
+                  <code >
                     {responseCode}
                   </code>
                 </pre>

@@ -266,13 +266,13 @@ createSubMember();`,
                       <td>memberType</td>
                       <td>true</td>
                       <td>integer</td>
-                      <td><code>1</code>: normal subaccount, <code>6</code>: custodial subaccount</td>
+                      <td><span className="pill">1</span>: normal subaccount, <span className="pill">6</span>: custodial subaccount</td>
                     </tr>
                     <tr>
                       <td>switch</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td><code>0</code>: turn off quick login (default), <code>1</code>: turn on quick login</td>
+                      <td><span className="pill">0</span>: turn off quick login (default), <span className="pill">1</span>: turn on quick login</td>
                     </tr>
                     <tr>
                       <td>note</td>
@@ -310,12 +310,12 @@ createSubMember();`,
                     <tr>
                       <td>memberType</td>
                       <td>integer</td>
-                      <td><code>1</code>: normal, <code>6</code>: custodial</td>
+                      <td><span className="pill">1</span>: normal, <span className="pill">6</span>: custodial</td>
                     </tr>
                     <tr>
                       <td>status</td>
                       <td>integer</td>
-                      <td><code>1</code>: normal, <code>2</code>: login banned, <code>4</code>: frozen</td>
+                      <td><span className="pill">1</span>: normal, <span className="pill">2</span>: login banned, <span className="pill">4</span>: frozen</td>
                     </tr>
                     <tr>
                       <td>remark</td>
@@ -343,14 +343,14 @@ createSubMember();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -358,12 +358,12 @@ createSubMember();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

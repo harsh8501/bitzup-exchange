@@ -280,25 +280,25 @@ getOpenOrders();`,
                                             <td>category</td>
                                             <td>true</td>
                                             <td>string</td>
-                                            <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                                            <td>Product type. <span className="pill">linear</span></td>
                                         </tr>
                                         <tr>
                                             <td>symbol</td>
                                             <td>false</td>
                                             <td>string</td>
-                                            <td>Symbol name. For linear, either <code>symbol</code>, <code>baseCoin</code>, or <code>settleCoin</code> is required</td>
+                                            <td>Symbol name. For linear, either <span className="pill">symbol</span>, <span className="pill">baseCoin</span>, or <span className="pill">settleCoin</span> is required</td>
                                         </tr>
                                         <tr>
                                             <td>baseCoin</td>
                                             <td>false</td>
                                             <td>string</td>
-                                            <td>Base coin. For linear, either <code>symbol</code>, <code>baseCoin</code>, or <code>settleCoin</code> is required</td>
+                                            <td>Base coin. For linear, either <span className="pill">symbol</span>, <span className="pill">baseCoin</span>, or <span className="pill">settleCoin</span> is required</td>
                                         </tr>
                                         <tr>
                                             <td>settleCoin</td>
                                             <td>false</td>
                                             <td>string</td>
-                                            <td>Settle coin. For linear, either <code>symbol</code>, <code>baseCoin</code>, or <code>settleCoin</code> is required</td>
+                                            <td>Settle coin. For linear, either <span className="pill">symbol</span>, <span className="pill">baseCoin</span>, or <span className="pill">settleCoin</span> is required</td>
                                         </tr>
                                         <tr>
                                             <td>orderId</td>
@@ -316,13 +316,13 @@ getOpenOrders();`,
                                             <td>openOnly</td>
                                             <td>false</td>
                                             <td>integer</td>
-                                            <td><code>0</code>(default): query open status orders. <code>1</code>: query max 500 recent closed orders</td>
+                                            <td><span className="pill">0</span>(default): query open status orders. <span className="pill">1</span>: query max 500 recent closed orders</td>
                                         </tr>
                                         <tr>
                                             <td>orderFilter</td>
                                             <td>false</td>
                                             <td>string</td>
-                                            <td><code>Order</code>, <code>StopOrder</code>, <code>tpslOrder</code>, <code>OcoOrder</code>. Default: all kinds of orders</td>
+                                            <td><span className="pill">Order</span>, <span className="pill">StopOrder</span>, <span className="pill">tpslOrder</span>, <span className="pill">OcoOrder</span>. Default: all kinds of orders</td>
                                         </tr>
                                         <tr>
                                             <td>limit</td>
@@ -386,7 +386,7 @@ getOpenOrders();`,
                                         <tr>
                                             <td>&gt; side</td>
                                             <td>string</td>
-                                            <td>Side. <code>Buy</code>, <code>Sell</code></td>
+                                            <td>Side. <span className="pill">Buy</span>, <span className="pill">Sell</span></td>
                                         </tr>
                                         <tr>
                                             <td>&gt; orderStatus</td>
@@ -424,14 +424,14 @@ getOpenOrders();`,
                                 ))}
                             </div>
 
-                            <div className="api-code-box position-relative">
+                            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                                 {/* COPY ICON */}
                                 <button className="copy-btn" onClick={handleCopy}>
                                     {copied ? <FiCheck /> : <FiCopy />}
                                 </button>
 
                                 <pre>
-                                    <code>{codeMap[lang]}</code>
+                                    {codeMap[lang]}
                                 </pre>
                             </div>
 
@@ -439,12 +439,12 @@ getOpenOrders();`,
                             <h3 className="top-req-text" id="response-example">
                                 Response Example
                             </h3>
-                            <div className="api-code-box position-relative">
+                            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                                 <button className="copy-btn" onClick={handleCopyRes}>
                                     {copiedRes ? <FiCheck /> : <FiCopy />}
                                 </button>
                                 <pre>
-                                    <code>{responseCode}</code>
+                                    {responseCode}
                                 </pre>
                             </div>
                         </div>

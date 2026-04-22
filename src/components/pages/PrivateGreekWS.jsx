@@ -61,10 +61,10 @@ while True:
             <div className="col-lg-9 col-md-8 api-content" ref={contentRef}>
                 <div className="breadcrumb mb-4"><span className="kline-market">WebSocket Private</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Greek</span></div>
                 <h1 className="api-title">Greek</h1>
-                <p className="api-desc">Subscribe to the greeks stream to see changes to your greeks data in real-time. <code>option</code> only.</p>
+                <p className="api-desc">Subscribe to the greeks stream to see changes to your greeks data in real-time. <span className="pill">option</span> only.</p>
 
                 <h3 className="top-req-text" id="topic">Topic</h3>
-                <p className="api-desc"><strong>Topic:</strong> <code>greeks</code></p>
+                <p className="api-desc"><strong>Topic:</strong> <span className="pill">greeks</span></p>
 
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
@@ -80,10 +80,10 @@ while True:
 
                 <h3 className="top-req-text" id="subscribe-example">Subscribe Example</h3>
                 <div className="lang-tabs">{["wsJSON", "Python"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t === "wsJSON" ? "WebSocket" : t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
 
                 <h3 className="top-req-text" id="stream-example">Stream Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{streamExample}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><span className="pill">{streamExample}</span></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "topic" ? "active" : ""} onClick={() => scrollToSection("topic")}>Topic</li>

@@ -192,7 +192,7 @@ ws.on('close', function close() {
                 Subscribe Strategy
               </h3>
               <p>
-                <strong>Topic:</strong> <code>tickers.{"{"}symbol{"}"}</code> e.g., <code>tickers.BTCUSDT</code>
+                <strong>Topic:</strong> <span className="pill">tickers.{"{"}symbol{"}"}</span> e.g., <span className="pill">tickers.BTCUSDT</span>
               </p>
 
               <h3 className="top-req-text" id="response-params">
@@ -216,7 +216,7 @@ ws.on('close', function close() {
                     <tr>
                       <td>type</td>
                       <td>string</td>
-                      <td>Message type: <code>snapshot</code> or <code>delta</code></td>
+                      <td>Message type: <span className="pill">snapshot</span> or <span className="pill">delta</span></td>
                     </tr>
                     <tr>
                       <td>ts</td>
@@ -279,14 +279,14 @@ ws.on('close', function close() {
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -294,12 +294,12 @@ ws.on('close', function close() {
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

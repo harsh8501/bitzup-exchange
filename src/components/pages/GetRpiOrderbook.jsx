@@ -102,14 +102,14 @@ export const GetRpiOrderbook = () => {
 }`;
 
     const codeMap = {
-        HTTP: `GET /v5/market/rpi_orderbook?category=spot&symbol=BTCUSDT HTTP/1.1
+        HTTP: `GET /v5/market/rpi_orderbook?category=linear&symbol=BTCUSDT HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/rpi_orderbook"
 params = {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT"
 }
 
@@ -129,7 +129,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/rpi_orderbook?category=spot&symbol=BTCUSDT"
+    url := "https://api.bitzup.com/v5/market/rpi_orderbook?category=linear&symbol=BTCUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -156,7 +156,7 @@ import java.net.http.HttpResponse;
 
 public class GetRpiOrderbookDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/rpi_orderbook?category=spot&symbol=BTCUSDT";
+        String url = "https://api.bitzup.com/v5/market/rpi_orderbook?category=linear&symbol=BTCUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -177,7 +177,7 @@ async function getRpiOrderbook() {
             'https://api.bitzup.com/v5/market/rpi_orderbook',
             {
                 params: {
-                    category: 'spot',
+                    category: "linear",
                     symbol: 'BTCUSDT'
                 }
             }
@@ -240,7 +240,7 @@ getRpiOrderbook();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
@@ -351,14 +351,14 @@ getRpiOrderbook();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -366,12 +366,12 @@ getRpiOrderbook();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>

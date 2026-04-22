@@ -248,19 +248,19 @@ getAllBalances();`,
                       <td>withBonus</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Whether query bonus or not. <code>0</code>: no, <code>1</code>: yes. Default is 0</td>
+                      <td>Whether query bonus or not. <span className="pill">0</span>: no, <span className="pill">1</span>: yes. Default is 0</td>
                     </tr>
                     <tr>
                       <td>withSubId</td>
                       <td>false</td>
                       <td>integer</td>
-                      <td>Whether query the balance of sub account or not. <code>0</code>: no, <code>1</code>: yes</td>
+                      <td>Whether query the balance of sub account or not. <span className="pill">0</span>: no, <span className="pill">1</span>: yes</td>
                     </tr>
                     <tr>
                       <td>memberId</td>
                       <td>false</td>
                       <td>string</td>
-                      <td>Sub UID. To query the sub UID sub account balance, both <code>withSubId=1</code> and <code>accountType</code> need to be specified</td>
+                      <td>Sub UID. To query the sub UID sub account balance, both <span className="pill">withSubId=1</span> and <span className="pill">accountType</span> need to be specified</td>
                     </tr>
                   </tbody>
                 </table>
@@ -335,14 +335,14 @@ getAllBalances();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
                   {copied ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
 
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMap[lang]}</code>
+                  <code >{codeMap[lang]}</code>
                 </pre>
               </div>
 
@@ -350,12 +350,12 @@ getAllBalances();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
                   {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseCode}</code>
+                  <code >{responseCode}</code>
                 </pre>
               </div>
             </div>

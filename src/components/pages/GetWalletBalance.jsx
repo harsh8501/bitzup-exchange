@@ -208,8 +208,8 @@ getWalletBalance();`,
                             <h1 className="api-title" style={{ fontSize: "32px", marginBottom: "16px" }}>Get Wallet Balance</h1>
                             <p className="api-desc">
                                 Obtain wallet balance and query asset information of each currency. Pass{" "}
-                                <code>"ALL"</code> as the <code>coin</code> parameter to get all coin balances,
-                                or specify a specific coin like <code>"USDT"</code>.
+                                <span className="pill">"ALL"</span> as the <span className="pill">coin</span> parameter to get all coin balances,
+                                or specify a specific coin like <span className="pill">"USDT"</span>.
                             </p>
 
                             <div className="api-cover">Requires Authentication</div>
@@ -273,15 +273,15 @@ getWalletBalance();`,
                                     <button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>
                                 ))}
                             </div>
-                            <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                                 <button className="copy-btn" onClick={handleCopy} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>{copied ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}</button>
-                                <pre style={{ margin: 0 }}><code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMap[lang]}</code></pre>
+                                <pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre>
                             </div>
 
                             <h3 className="top-req-text" id="response-example">Response Example</h3>
-                            <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+                            <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                                 <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>{copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}</button>
-                                <pre style={{ margin: 0 }}><code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseCode}</code></pre>
+                                <pre style={{ margin: 0 }}><code >{responseCode}</code></pre>
                             </div>
                         </div>
 

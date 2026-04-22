@@ -77,7 +77,7 @@ export const Tickers = () => {
   "retCode": 0,
   "retMsg": "OK",
   "result": {
-    "category": "inverse",
+    "category": "linear",
     "list": [
       {
         "symbol": "BTCUSD",
@@ -118,14 +118,14 @@ export const Tickers = () => {
 }`;
 
   const codeMap = {
-    HTTP: `GET /v5/market/tickers?category=inverse&symbol=BTCUSD HTTP/1.1
+    HTTP: `GET /v5/market/tickers?category=linear&symbol=BTCUSD HTTP/1.1
 Host: api.bitzup.com`,
 
     Python: `import requests
 
 url = "https://api.bitzup.com/v5/market/tickers"
 params = {
-    "category": "inverse",
+    "category": "linear",
     "symbol": "BTCUSD"
 }
 
@@ -145,7 +145,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/tickers?category=inverse&symbol=BTCUSD"
+    url := "https://api.bitzup.com/v5/market/tickers?category=linear&symbol=BTCUSD"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -172,7 +172,7 @@ import java.net.http.HttpResponse;
 
 public class GetTickersDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/tickers?category=inverse&symbol=BTCUSD";
+        String url = "https://api.bitzup.com/v5/market/tickers?category=linear&symbol=BTCUSD";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -193,7 +193,7 @@ async function getTickers() {
             'https://api.bitzup.com/v5/market/tickers',
             {
                 params: {
-                    category: 'inverse',
+                    category: "linear",
                     symbol: 'BTCUSD'
                 }
             }
@@ -256,26 +256,15 @@ getTickers();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>spot</code>, <code>linear</code>, <code>inverse</code>, <code>option</code></td>
+                      <td>Product type. <span className="pill-magenta">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>
-                      <td>false</td>
+                      <td>true</td>
                       <td>string</td>
                       <td>Symbol name.</td>
                     </tr>
-                    <tr>
-                      <td>baseCoin</td>
-                      <td>false</td>
-                      <td>string</td>
-                      <td>Base coin. For <code>option</code> only.</td>
-                    </tr>
-                    <tr>
-                      <td>expDate</td>
-                      <td>false</td>
-                      <td>string</td>
-                      <td>Expiry date. e.g., 25DEC22. For <code>option</code> only.</td>
-                    </tr>
+
                   </tbody>
                 </table>
               </div>
@@ -459,14 +448,14 @@ getTickers();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
                   {copied ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
 
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{codeMap[lang]}</code>
+                  <code >{codeMap[lang]}</code>
                 </pre>
               </div>
 
@@ -474,12 +463,12 @@ getTickers();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative" style={{ background: "var(--bg-code)", padding: "20px", borderRadius: "8px", border: "1px solid var(--border-color)", marginBottom: "40px" }}>
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes} style={{ position: "absolute", top: "12px", right: "12px", background: "transparent", border: "none", color: "var(--text-secondary)", cursor: "pointer" }}>
                   {copiedRes ? <FiCheck color="var(--text-accent)" /> : <FiCopy />}
                 </button>
                 <pre style={{ margin: 0 }}>
-                  <code style={{ color: "#e6edf3", fontSize: "14px", lineHeight: "1.5" }}>{responseCode}</code>
+                  <code >{responseCode}</code>
                 </pre>
               </div>
             </div>

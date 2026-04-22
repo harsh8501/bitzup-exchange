@@ -94,12 +94,12 @@ switchPositionMode();`,
       <div className="col-lg-9 col-md-12 api-content" ref={contentRef}>
         <div className="breadcrumb mb-4"><span className="kline-market">Position</span><span className="mx-2"><IoIosArrowForward className="kline-arrow" /></span><span className="pill">Switch Position Mode</span></div>
         <h1 className="api-title">Switch Position Mode</h1>
-        <p className="api-desc">It supports to switch the position mode for USDT perpetual and Inverse futures. If you are in one-way Mode, you can only open one position on Buy or Sell side. If you are in hedge mode, you can open both Buy and Sell side positions simultaneously.</p>
+        <p className="api-desc">It supports to switch the position mode for USDT perpetual and linear futures. If you are in one-way Mode, you can only open one position on Buy or Sell side. If you are in hedge mode, you can open both Buy and Sell side positions simultaneously.</p>
         <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Tip</span></div>
           <ul style={{ margin: 0, paddingLeft: "18px" }}>
             <li>Priority for configuration to take effect: symbol &gt; coin &gt; system default.</li>
             <li>System default: one-way mode.</li>
-            <li>If the request is by coin (<code>settleCoin</code>), then all symbols based on this settleCoin that do not have position and open order will be batch switched, and new listed symbol based on this settleCoin will be the same mode you set.</li>
+            <li>If the request is by coin (<span className="pill">settleCoin</span>), then all symbols based on this settleCoin that do not have position and open order will be batch switched, and new listed symbol based on this settleCoin will be the same mode you set.</li>
           </ul>
         </div>
         <div className="api-cover">Requires Authentication</div>
@@ -109,10 +109,10 @@ switchPositionMode();`,
         <div className="api-table-box"><table className="table table-striped api-table mb-0">
           <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
           <tbody>
-            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code></td></tr>
-            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <code>BTCUSDT</code>, uppercase only. Either <code>symbol</code> or <code>coin</code> is required. <code>symbol</code> has a higher priority</td></tr>
+            <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
+            <tr><td>symbol</td><td>false</td><td>string</td><td>Symbol name, like <span className="pill">BTCUSDT</span>, uppercase only. Either <span className="pill">symbol</span> or <span className="pill">coin</span> is required. <span className="pill">symbol</span> has a higher priority</td></tr>
             <tr><td>coin</td><td>false</td><td>string</td><td>Coin, uppercase only</td></tr>
-            <tr><td>mode</td><td><strong>true</strong></td><td>integer</td><td>Position mode. <code>0</code>: Merged Single. <code>3</code>: Both Sides</td></tr>
+            <tr><td>mode</td><td><strong>true</strong></td><td>integer</td><td>Position mode. <span className="pill">0</span>: Merged Single. <span className="pill">3</span>: Both Sides</td></tr>
           </tbody>
         </table></div>
         <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -124,9 +124,9 @@ switchPositionMode();`,
         </table></div>
         <h3 className="top-req-text" id="request-example">Request Example</h3>
         <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
         <h3 className="top-req-text" id="response-example">Response Example</h3>
-        <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+        <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
       </div>
       <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
         <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

@@ -142,7 +142,7 @@ batchAmendOrder();`,
                 <h1 className="api-title">Batch Amend Order</h1>
                 <p className="api-desc">This endpoint allows you to amend more than one open order in a single request. Supports up to 10 orders per request. You can only modify unfilled or partially filled orders.</p>
                 <div className="api-info-box"><div className="api-info-header"><span className="api-info-title">Info</span></div>
-                    <p>Each batch amend order undergoes its own validation and risk check. If some orders fail, check <code>retExtInfo</code> for individual order error codes.</p>
+                    <p>Each batch amend order undergoes its own validation and risk check. If some orders fail, check <span className="pill">retExtInfo</span> for individual order error codes.</p>
                 </div>
                 <div className="api-cover">Requires Authentication</div>
                 <h3 className="top-req-text" id="http">HTTP Request</h3>
@@ -151,20 +151,19 @@ batchAmendOrder();`,
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Required</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type: <code>linear</code>, <code>inverse</code>, <code>spot</code>, <code>option</code></td></tr>
+                        <tr><td>category</td><td><strong>true</strong></td><td>string</td><td>Product type. <span className="pill">linear</span></td></tr>
                         <tr><td>request</td><td><strong>true</strong></td><td>array</td><td>List of amend order objects (max 10)</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; symbol</td><td><strong>true</strong></td><td>string</td><td>Symbol name</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>false</td><td>string</td><td>Order ID. Either <code>orderId</code> or <code>orderLinkId</code> is required</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderId</td><td>false</td><td>string</td><td>Order ID. Either <span className="pill">orderId</span> or <span className="pill">orderLinkId</span> is required</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; orderLinkId</td><td>false</td><td>string</td><td>User customised order ID</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; orderIv</td><td>false</td><td>string</td><td>Implied volatility (option only)</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerPrice</td><td>false</td><td>string</td><td>Trigger price for conditional orders</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; qty</td><td>false</td><td>string</td><td>Modified order quantity</td></tr>
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; price</td><td>false</td><td>string</td><td>Modified order price</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>false</td><td>string</td><td>Take profit price. Pass <code>"0"</code> to cancel</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; stopLoss</td><td>false</td><td>string</td><td>Stop loss price. Pass <code>"0"</code> to cancel</td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpTriggerBy</td><td>false</td><td>string</td><td><code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; slTriggerBy</td><td>false</td><td>string</td><td><code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
-                        <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerBy</td><td>false</td><td>string</td><td><code>LastPrice</code>, <code>IndexPrice</code>, <code>MarkPrice</code></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; takeProfit</td><td>false</td><td>string</td><td>Take profit price. Pass <span className="pill">"0"</span> to cancel</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; stopLoss</td><td>false</td><td>string</td><td>Stop loss price. Pass <span className="pill">"0"</span> to cancel</td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; tpTriggerBy</td><td>false</td><td>string</td><td><span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; slTriggerBy</td><td>false</td><td>string</td><td><span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
+                        <tr><td style={{ paddingLeft: "28px" }}>&gt; triggerBy</td><td>false</td><td>string</td><td><span className="pill">LastPrice</span>, <span className="pill">IndexPrice</span>, <span className="pill">MarkPrice</span></td></tr>
                     </tbody>
                 </table></div>
                 <h3 className="top-req-text" id="response-params">Response Parameters</h3>
@@ -188,9 +187,9 @@ batchAmendOrder();`,
                 </table></div>
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre><code>{codeMap[lang]}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
                 <h3 className="top-req-text" id="response-example">Response Example</h3>
-                <div className="api-code-box position-relative"><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{responseCode}</code></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{responseCode}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "http" ? "active" : ""} onClick={() => scrollToSection("http")}>HTTP Request</li>

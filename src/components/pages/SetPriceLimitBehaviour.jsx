@@ -88,7 +88,7 @@ Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
 {
-  "category": "spot",
+  "category": "linear",
   "modifyEnable": true
 }`,
 
@@ -96,7 +96,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
 url = "https://api.bitzup.com/v5/account/set-limit-px-action"
 payload = {
-    "category": "spot",
+    "category": "linear",
     "modifyEnable": True
 }
 headers = {
@@ -122,7 +122,7 @@ import (
 
 func main() {
     url := "https://api.bitzup.com/v5/account/set-limit-px-action"
-    payload := []byte(` + "`" + `{"category": "spot", "modifyEnable": true}` + "`" + `)
+    payload := []byte(` + "`" + `{"category": "linear", "modifyEnable": true}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
     if err != nil {
@@ -174,7 +174,7 @@ async function setPriceLimitBehaviour() {
         const response = await axios.post(
             'https://api.bitzup.com/v5/account/set-limit-px-action',
             {
-                category: 'spot',
+                category: "linear",
                 modifyEnable: true
             },
             {
@@ -242,7 +242,7 @@ setPriceLimitBehaviour();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <code>linear</code>, <code>inverse</code>, <code>spot</code></td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>modifyEnable</td>
@@ -250,8 +250,8 @@ setPriceLimitBehaviour();`,
                       <td>boolean</td>
                       <td>
                         <ul>
-                          <li><code>true</code>: For spot price limit, system adjusts limit. For Perp it rejects it.</li>
-                          <li><code>false</code>: For spot price limit, system rejects. For Perp it adjusts limit.</li>
+                          <li><span className="pill">true</span>: For price limit, system adjusts limit. For Perp it rejects it.</li>
+                          <li><span className="pill">false</span>: For price limit, system rejects. For Perp it adjusts limit.</li>
                         </ul>
                       </td>
                     </tr>
@@ -281,14 +281,14 @@ setPriceLimitBehaviour();`,
                 ))}
               </div>
 
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 {/* COPY ICON */}
                 <button className="copy-btn" onClick={handleCopy}>
                   {copied ? <FiCheck /> : <FiCopy />}
                 </button>
 
                 <pre>
-                  <code>{codeMap[lang]}</code>
+                  {codeMap[lang]}
                 </pre>
               </div>
 
@@ -296,12 +296,12 @@ setPriceLimitBehaviour();`,
               <h3 className="top-req-text" id="response-example">
                 Response Example
               </h3>
-              <div className="api-code-box position-relative">
+              <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}>
                 <button className="copy-btn" onClick={handleCopyRes}>
                   {copiedRes ? <FiCheck /> : <FiCopy />}
                 </button>
                 <pre>
-                  <code>{responseCode}</code>
+                  {responseCode}
                 </pre>
               </div>
             </div>
