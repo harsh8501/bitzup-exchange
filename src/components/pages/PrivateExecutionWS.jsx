@@ -93,7 +93,7 @@ while True:
 
                 <h3 className="top-req-text" id="topic">Topic</h3>
                 <p className="api-desc"><strong>All-In-One Topic:</strong> <span className="pill">execution</span></p>
-                <p className="api-desc"><strong>Categorised Topic:</strong> <span className="pill"></span>, <span className="pill">execution.linear</span>, <span className="pill"></span>, <span className="pill"></span></p>
+                <p className="api-desc"><strong>Categorised Topic:</strong> <span className="pill">execution.linear</span></p>
                 <ul className="text-white mb-3">
                     <li>All-In-One topic and Categorised topic cannot be in the same subscription request</li>
                     <li>All-In-One topic: Allow you to listen to all categories (linear) websocket updates</li>
@@ -139,7 +139,7 @@ while True:
                 <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
 
                 <h3 className="top-req-text" id="stream-example">Stream Example</h3>
-                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><span className="pill">{streamExample}</span></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code >{streamExample}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "topic" ? "active" : ""} onClick={() => scrollToSection("topic")}>Topic</li>

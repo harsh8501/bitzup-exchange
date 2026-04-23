@@ -97,8 +97,8 @@ while True:
 
                 <h3 className="top-req-text" id="topic">Topic</h3>
                 <p className="api-desc"><strong>All-In-One Topic:</strong> <span className="pill">position</span></p>
-                <p className="api-desc"><strong>Categorised Topic:</strong> <span className="pill">position.linear</span>, <span className="pill">position.inverse</span>, <span className="pill">position.option</span></p>
-                <ul className="text-white mb-3">
+                <p className="api-desc"><strong>Categorised Topic:</strong> <span className="pill">position.linear</span></p>
+                <ul className="text-mutne mb-3">
                     <li>All-In-One topic and Categorised topic cannot be in the same subscription request</li>
                     <li>All-In-One topic: Allow you to listen to all categories (linear) websocket updates</li>
                     <li>Categorised Topic: Allow you to listen only to specific category websocket updates</li>
@@ -109,7 +109,7 @@ while True:
                 <div className="api-table-box"><table className="table table-striped api-table mb-0">
                     <thead><tr><th>Parameter</th><th>Type</th><th>Comments</th></tr></thead>
                     <tbody>
-                      <td>Product type. <span className="pill">linear</span></td>
+                     <tr><td>Product type. <span className="pill">linear</span></td><td></td><td></td></tr>
                         <tr><td>symbol</td><td>string</td><td>Symbol name</td></tr>
                         <tr><td>side</td><td>string</td><td><span className="pill">Buy</span>, <span className="pill">Sell</span>, <span className="pill">""</span> (empty when zero qty)</td></tr>
                         <tr><td>size</td><td>string</td><td>Position size</td></tr>
@@ -154,7 +154,7 @@ while True:
                 <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>
 
                 <h3 className="top-req-text" id="stream-example">Stream Example</h3>
-                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><span className="pill">{streamExample}</span></pre></div>
+                <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopyRes}>{copiedRes ? <FiCheck /> : <FiCopy />}</button><pre><code>{streamExample}</code></pre></div>
             </div>
             <div className="col-lg-3 col-md-4 d-none d-md-block"><div className="api-sidebar"><ul>
                 <li className={activeSection === "topic" ? "active" : ""} onClick={() => scrollToSection("topic")}>Topic</li>

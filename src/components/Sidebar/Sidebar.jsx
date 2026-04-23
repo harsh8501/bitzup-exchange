@@ -212,6 +212,7 @@ const Sidebar = () => {
                 <NavLink to="/docs/v5/websocket/public/trade" className="sidebar-link">Trade</NavLink>
                 <NavLink to="/docs/v5/websocket/public/ticker" className="sidebar-link">Ticker</NavLink>
                 <NavLink to="/docs/v5/websocket/public/kline" className="sidebar-link">Kline</NavLink>
+                <NavLink to="/docs/v5/websocket/public/all-liquidation" className="sidebar-link">All Liquidation</NavLink>
               </div>
             )}
             <div className="sidebar-section collapsible sidebar-link sub-header" onClick={(e) => toggleSubSection(e, "ws_private")}>
@@ -222,6 +223,7 @@ const Sidebar = () => {
                 <NavLink to="/docs/v5/websocket/private/order" className="sidebar-link">Order</NavLink>
                 <NavLink to="/docs/v5/websocket/private/position" className="sidebar-link">Position</NavLink>
                 <NavLink to="/docs/v5/websocket/private/execution" className="sidebar-link">Execution</NavLink>
+                <NavLink to="/docs/v5/websocket/private/fast-execution" className="sidebar-link">Fast Execution</NavLink>
                 <NavLink to="/docs/v5/websocket/private/wallet" className="sidebar-link">Wallet</NavLink>
 
               </div>

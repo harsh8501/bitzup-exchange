@@ -113,9 +113,11 @@ import { PublicOrderbookWS } from "./components/pages/PublicOrderbookWS";
 import { PublicTradeWS } from "./components/pages/PublicTradeWS";
 import { PublicTickerWS } from "./components/pages/PublicTickerWS";
 import { PublicKlineWS } from "./components/pages/PublicKlineWS";
+import { PublicAllLiquidationWS } from "./components/pages/PublicAllLiquidationWS";
 import { PrivateOrderWS } from "./components/pages/PrivateOrderWS";
 import { PrivatePositionWS } from "./components/pages/PrivatePositionWS";
 import { PrivateExecutionWS } from "./components/pages/PrivateExecutionWS";
+import { PrivateFastExecutionWS } from "./components/pages/PrivateFastExecutionWS";
 import { PrivateWalletWS } from "./components/pages/PrivateWalletWS";
 
 
@@ -238,9 +240,11 @@ function App() {
             <Route path="/docs/v5/websocket/public/trade" element={<PublicTradeWS />} />
             <Route path="/docs/v5/websocket/public/ticker" element={<PublicTickerWS />} />
             <Route path="/docs/v5/websocket/public/kline" element={<PublicKlineWS />} />
+            <Route path="/docs/v5/websocket/public/all-liquidation" element={<PublicAllLiquidationWS />} />
             <Route path="/docs/v5/websocket/private/order" element={<PrivateOrderWS />} />
             <Route path="/docs/v5/websocket/private/position" element={<PrivatePositionWS />} />
             <Route path="/docs/v5/websocket/private/execution" element={<PrivateExecutionWS />} />
+            <Route path="/docs/v5/websocket/private/fast-execution" element={<PrivateFastExecutionWS />} />
             <Route path="/docs/v5/websocket/private/wallet" element={<PrivateWalletWS />} />
 
           </Routes>
