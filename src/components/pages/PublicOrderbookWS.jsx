@@ -205,14 +205,8 @@ ws.on('close', function close() {
                       <td>linear: Level 1, 50, 200, 1000</td>
                       <td>10ms, 20ms, 100ms, 200ms respectively</td>
                     </tr>
-                    <tr>
-                      <td>Spot: Level 1, 50, 200, 1000</td>
-                      <td>10ms, 20ms, 200ms, 200ms respectively</td>
-                    </tr>
-                    <tr>
-                      <td>Option: Level 25, 100</td>
-                      <td>20ms, 100ms respectively</td>
-                    </tr>
+                    
+                   
                   </tbody>
                 </table>
               </div>

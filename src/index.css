@@ -51,15 +51,21 @@
   font-family: "Inter", "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
+/* src/index.css */
 
-body {
-  min-height: 100vh !important;
-  background-color: var(--bg-primary);
+html, body { /* Apply to both html and body */
+  min-height: 100vh;
+  background-color: var(--bg-primary); 
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Optional: To completely disable the "bounce" effect on Mac/Mobile */
+/* html {
+  overscroll-behavior: none; 
+} */
 
 /* Custom Scrollbar for a premium look */
 ::-webkit-scrollbar {
