@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetWalletBalance = () => {
     const contentRef = useRef(null);
@@ -265,6 +266,10 @@ getWalletBalance();`,
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div>
+                                <Link to={"/docs/v5/account/wallet-balance-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
                             </div>
 
                             <h3 className="top-req-text" id="request-example">Request Example</h3>

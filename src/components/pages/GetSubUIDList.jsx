@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetSubUIDList = () => {
     const contentRef = useRef(null);
@@ -99,6 +100,10 @@ client
                         <tr><td style={{ paddingLeft: "28px" }}>&gt; accountMode</td><td>integer</td><td><span className="pill">1</span>: Classic Account, <span className="pill">3</span>: UTA1.0, <span className="pill">4</span>: UTA1.0 Pro, <span className="pill">5</span>: UTA2.0, <span className="pill">6</span>: UTA2.0 Pro</td></tr>
                     </tbody>
                 </table></div>
+                <div>
+                    <Link to={"/docs/v5/user/query-sub-members-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
+                </div>
+
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
                 <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>

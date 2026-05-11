@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const SetTradingStop = () => {
     const contentRef = useRef(null);
@@ -164,6 +165,10 @@ setTradingStop();`,
                         <tr><td colSpan={3} style={{ textAlign: "center", fontStyle: "italic", color: "#888" }}>None</td></tr>
                     </tbody>
                 </table></div>
+                <div>
+                  <Link to={"/docs/v5/position/trading-stop-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
+                </div>
+
                 <h3 className="top-req-text" id="request-example">Request Example</h3>
                 <div className="lang-tabs">{["HTTP", "Python", "Go", "Java", "Node"].map((t) => (<button key={t} className={lang === t ? "active" : ""} onClick={() => setLang(t)}>{t}</button>))}</div>
                 <div className="api-code-box position-relative" style={{ marginBottom: "40px" }}><button className="copy-btn" onClick={handleCopy}>{copied ? <FiCheck /> : <FiCopy />}</button><pre style={{ margin: 0 }}><code >{codeMap[lang]}</code></pre></div>

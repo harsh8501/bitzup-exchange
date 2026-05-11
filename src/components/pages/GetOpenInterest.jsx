@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetOpenInterest = () => {
     const contentRef = useRef(null);
@@ -332,6 +333,10 @@ getOpenInterest();`,
                     </tr>
                   </tbody>
                 </table>
+              </div>
+
+              <div>
+                <Link to={"/docs/v5/market/open-interest-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
               </div>
 
               {/* REQUEST EXAMPLE */}

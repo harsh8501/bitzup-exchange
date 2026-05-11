@@ -6,7 +6,6 @@ import IntegrationGuidance from "./components/pages/IntegrationGuidance";
 
 // --- EXISTING COMPONENTS ---
 import { Kline } from "./components/pages/Kline";
-import { OrderKook } from "./components/pages/OrderBook";
 import { Tickers } from "./components/pages/Tickers";
 import { RecentPublicTrades } from "./components/pages/RecentPublicTrades";
 import { Connect } from "./components/pages/Connect";
@@ -123,6 +122,50 @@ import { PrivateWalletWS } from "./components/pages/PrivateWalletWS";
 
 // --- PLACEHOLDER ---
 import { Placeholder } from "./components/pages/Placeholder";
+import { PlaceOrderApi } from "./components/pages/placeholderApi";
+import { AmendOrderApi } from "./components/pages/AmendOrderApi";
+import { CancelOrderApi } from "./components/pages/CancelOrderApi";
+import { GetOpenClosedOrdersApi } from "./components/pages/GetOpenClosedOrdersApi";
+import { CancelAllOrdersApi } from "./components/pages/CancelAllOrdersApi";
+import { GetOrderHistoryApi } from "./components/pages/GetOrderHistoryApi";
+import { BatchPlaceOrderApi } from "./components/pages/BatchPlaceOrderApi";
+import { BatchAmendOrderApi } from "./components/pages/BatchAmendOrderApi";
+import { BatchCancelOrderApi } from "./components/pages/BatchCancelOrderApi";
+import { GetPositionInfoApi } from "./components/pages/GetPositionInfoApi";
+import { SetLeverageApi } from "./components/pages/SetLeverageApi";
+import { SwitchPositionModeApi } from "./components/pages/SwitchPositionModeApi";
+import { SetTradingStopApi } from "./components/pages/SetTradingStopApi";
+import { SetAutoAddMarginApi } from "./components/pages/SetAutoAddMarginApi";
+import { AddReduceMarginApi } from "./components/pages/AddReduceMarginApi";
+import { GetClosedPnlApi } from "./components/pages/GetClosedPnlApi";
+import { GetTradeHistoryApi } from "./components/pages/GetTradeHistoryApi";
+import { GetWalletBalanceApi } from "./components/pages/GetWalletBalanceApi";
+import { GetBorrowHistoryApi } from "./components/pages/GetBorrowHistoryApi";
+import { SetMarginModeApi } from "./components/pages/SetMarginModeApi";
+import { SetCollateralCoinApi } from "./components/pages/SetCollateralCoinApi";
+import { GetCollateralInfoApi } from "./components/pages/GetCollateralInfoApi";
+import { GetFeeRateApi } from "./components/pages/GetFeeRateApi";
+import { GetAccountInfoApi } from "./components/pages/GetAccountInfoApi";
+import { GetCoinInfoApi } from "./components/pages/GetCoinInfoApi";
+import { GetSubUIDApi } from "./components/pages/GetSubUIDApi";
+import { GetAllCoinsBalanceApi } from "./components/pages/GetAllCoinsBalanceApi";
+import { CreateInternalTransferApi } from "./components/pages/CreateInternalTransferApi";
+import { GetDepositRecordsApi } from "./components/pages/GetDepositRecordsApi";
+import { GetApiKeyInfoApi } from "./components/pages/GetApiKeyInfoApi";
+import { GetSubAccountAllApiKeysApi } from "./components/pages/GetSubAccountAllApiKeysApi";
+import { GetUIDWalletTypeApi } from "./components/pages/GetUIDWalletTypeApi";
+import { GetServerTimeApi } from "./components/pages/GetServerTimeApi";
+import { GetKlineApi } from "./components/pages/GetKlineApi";
+import { GetMarkPriceKlineApi } from "./components/pages/GetMarkPriceKlineApi";
+import { GetIndexPriceKlineApi } from "./components/pages/GetIndexPriceKlineApi";
+import { GetPremiumIndexPriceKlineApi } from "./components/pages/GetPremiumIndexPriceKlineApi";
+import { GetInstrumentsInfoApi } from "./components/pages/GetInstrumentsInfoApi";
+import { GetOrderbookApi } from "./components/pages/GetOrderbookApi";
+import { GetTickersApi } from "./components/pages/GetTickersApi";
+import { GetFundingRateHistoryApi } from "./components/pages/GetFundingRateHistoryApi";
+import { GetRecentPublicTradesApi } from "./components/pages/GetRecentPublicTradesApi";
+import { GetOpenInterestApi } from "./components/pages/GetOpenInterestApi";
+import { GetLongShortRatioApi } from "./components/pages/GetLongShortRatioApi";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -150,41 +193,71 @@ function App() {
 
             {/* Market */}
             <Route path="/docs/v5/market/time" element={<GetServerTime />} />
+            <Route path="/docs/v5/market/time-api" element={<GetServerTimeApi />} />
             <Route path="/docs/v5/market/kline" element={<Kline />} />
+            <Route path="/docs/v5/market/kline-api" element={<GetKlineApi />} />
             <Route path="/docs/v5/market/mark-price-kline" element={<GetMarkPriceKline />} />
+            <Route path="/docs/v5/market/mark-price-kline-api" element={<GetMarkPriceKlineApi />} />
             <Route path="/docs/v5/market/index-price-kline" element={<GetIndexPriceKline />} />
+            <Route path="/docs/v5/market/index-price-kline-api" element={<GetIndexPriceKlineApi />} />
             <Route path="/docs/v5/market/premium-index-price-kline" element={<GetPremiumIndexPriceKline />} />
+            <Route path="/docs/v5/market/premium-index-price-kline-api" element={<GetPremiumIndexPriceKlineApi />} />
             <Route path="/docs/v5/market/instruments-info" element={<GetInstrumentsInfo />} />
+            <Route path="/docs/v5/market/instruments-info-api" element={<GetInstrumentsInfoApi />} />
             <Route path="/docs/v5/market/orderbook" element={<GetOrderbook />} />
+            <Route path="/docs/v5/market/orderbook-api" element={<GetOrderbookApi />} />
 
             <Route path="/docs/v5/market/tickers" element={<Tickers />} />
+            <Route path="/docs/v5/market/tickers-api" element={<GetTickersApi />} />
             <Route path="/docs/v5/market/funding-rate-history" element={<GetFundingRateHistory />} />
+            <Route path="/docs/v5/market/funding-rate-history-api" element={<GetFundingRateHistoryApi />} />
             <Route path="/docs/v5/market/recent-public-trades" element={<RecentPublicTrades />} />
+            <Route path="/docs/v5/market/recent-trade-api" element={<GetRecentPublicTradesApi />} />
             <Route path="/docs/v5/market/open-interest" element={<GetOpenInterest />} />
+            <Route path="/docs/v5/market/open-interest-api" element={<GetOpenInterestApi />} />
             <Route path="/docs/v5/market/long-short-ratio" element={<GetLongShortRatio />} />
+            <Route path="/docs/v5/market/long-short-ratio-api" element={<GetLongShortRatioApi />} />
             <Route path="/docs/v5/market/index-components" element={<GetIndexPriceComponents />} />
             <Route path="/docs/v5/market/order-price-limit" element={<GetOrderPriceLimit />} />
 
             {/* Trade */}
+            <Route path="/docs/v5/order/create-order-api" element={<PlaceOrderApi />} />
+            <Route path="/docs/v5/order/amend-order-api" element={<AmendOrderApi />} />
+            <Route path="/docs/v5/order/cancel-order-api" element={<CancelOrderApi />} />
             <Route path="/docs/v5/order/create-order" element={<PlaceOrder />} />
             <Route path="/docs/v5/order/amend-order" element={<AmendOrder />} />
             <Route path="/docs/v5/order/cancel-order" element={<CancelOrder />} />
+
             <Route path="/docs/v5/order/open-order" element={<GetOpenClosedOrders />} />
+            <Route path="/docs/v5/order/open-order-api" element={<GetOpenClosedOrdersApi />} />
             <Route path="/docs/v5/order/cancel-all" element={<CancelAllOrders />} />
+            <Route path="/docs/v5/order/cancel-all-api" element={<CancelAllOrdersApi />} />
             <Route path="/docs/v5/order/history" element={<GetOrderHistory />} />
+            <Route path="/docs/v5/order/history-api" element={<GetOrderHistoryApi />} />
             <Route path="/docs/v5/execution/list" element={<GetTradeHistory />} />
+            <Route path="/docs/v5/execution/list-api" element={<GetTradeHistoryApi />} />
             <Route path="/docs/v5/order/batch-place" element={<BatchPlaceOrder />} />
+            <Route path="/docs/v5/order/batch-place-api" element={<BatchPlaceOrderApi />} />
             <Route path="/docs/v5/order/batch-amend" element={<BatchAmendOrder />} />
+            <Route path="/docs/v5/order/batch-amend-api" element={<BatchAmendOrderApi />} />
             <Route path="/docs/v5/order/batch-cancel" element={<BatchCancelOrder />} />
+            <Route path="/docs/v5/order/batch-cancel-api" element={<BatchCancelOrderApi />} />
 
             {/* Position */}
             <Route path="/docs/v5/position/info" element={<GetPositions />} />
+            <Route path="/docs/v5/position/info-api" element={<GetPositionInfoApi />} />
             <Route path="/docs/v5/position/leverage" element={<SetLeverage />} />
+            <Route path="/docs/v5/position/leverage-api" element={<SetLeverageApi />} />
             <Route path="/docs/v5/position/switch-mode" element={<SwitchMarginMode />} />
+            <Route path="/docs/v5/position/switch-mode-api" element={<SwitchPositionModeApi />} />
             <Route path="/docs/v5/position/trading-stop" element={<SetTradingStop />} />
+            <Route path="/docs/v5/position/trading-stop-api" element={<SetTradingStopApi />} />
             <Route path="/docs/v5/position/set-auto-add-margin" element={<AutoIsolatedMargin />} />
+            <Route path="/docs/v5/position/auto-add-margin-api" element={<SetAutoAddMarginApi />} />
             <Route path="/docs/v5/position/add-margin" element={<AddIsolatedMargin />} />
+            <Route path="/docs/v5/position/add-margin-api" element={<AddReduceMarginApi />} />
             <Route path="/docs/v5/position/closed-pnl" element={<GetClosedPnl />} />
+            <Route path="/docs/v5/position/closed-pnl-api" element={<GetClosedPnlApi />} />
 
             <Route path="/docs/v5/position/move-position" element={<MovePosition />} />
             <Route path="/docs/v5/position/move-position-history" element={<GetMovePositionHistory />} />
@@ -192,29 +265,41 @@ function App() {
 
             {/* Account */}
             <Route path="/docs/v5/account/wallet-balance" element={<GetWalletBalance />} />
+            <Route path="/docs/v5/account/wallet-balance-api" element={<GetWalletBalanceApi />} />
             <Route path="/docs/v5/account/transferable-amount" element={<GetTransferableAmount />} />
             <Route path="/docs/v5/account/transaction-log" element={<GetTransactionLog />} />
             <Route path="/docs/v5/account/info" element={<GetAccountInfo />} />
+            <Route path="/docs/v5/account/account-info-api" element={<GetAccountInfoApi />} />
             <Route path="/docs/v5/account/instruments-info" element={<GetAccountInstrumentsInfo />} />
             <Route path="/docs/v5/account/manual-borrow" element={<ManualBorrow />} />
             <Route path="/docs/v5/account/manual-repay-without-conversion" element={<ManualRepayWithoutAssetConversion />} />
             <Route path="/docs/v5/account/manual-repay" element={<ManualRepay />} />
             <Route path="/docs/v5/account/borrow-history" element={<GetBorrowHistory />} />
+            <Route path="/docs/v5/account/borrow-history-api" element={<GetBorrowHistoryApi />} />
             <Route path="/docs/v5/account/fee-rate" element={<GetFeeRate />} />
+            <Route path="/docs/v5/account/fee-rate-api" element={<GetFeeRateApi />} />
             <Route path="/docs/v5/account/collateral-info" element={<GetCollateralInfo />} />
+            <Route path="/docs/v5/account/collateral-info-api" element={<GetCollateralInfoApi />} />
             <Route path="/docs/v5/account/dcp-info" element={<GetDCPInfo />} />
             <Route path="/docs/v5/account/set-collateral-coin" element={<SetCollateralCoin />} />
+            <Route path="/docs/v5/account/set-collateral-coin-api" element={<SetCollateralCoinApi />} />
             <Route path="/docs/v5/account/batch-set-collateral-coin" element={<BatchSetCollateralCoin />} />
             <Route path="/docs/v5/account/set-margin-mode" element={<SetMarginMode />} />
+            <Route path="/docs/v5/account/set-margin-mode-api" element={<SetMarginModeApi />} />
             <Route path="/docs/v5/account/user-setting-config" element={<GetTradeBehaviourConfig />} />
             <Route path="/docs/v5/account/set-price-limit" element={<SetPriceLimitBehaviour />} />
 
             {/* Asset */}
             <Route path="/docs/v5/asset/coin-info" element={<GetCoinInfo />} />
+            <Route path="/docs/v5/asset/coin-info-api" element={<GetCoinInfoApi />} />
             <Route path="/docs/v5/asset/sub-uid" element={<GetSubUID />} />
+            <Route path="/docs/v5/asset/sub-uid-api" element={<GetSubUIDApi />} />
             <Route path="/docs/v5/asset/balances/all" element={<GetAllBalances />} />
+            <Route path="/docs/v5/asset/balances-all-api" element={<GetAllCoinsBalanceApi />} />
             <Route path="/docs/v5/asset/transfer/internal" element={<CreateInternalTransfer />} />
+            <Route path="/docs/v5/asset/transfer-internal-api" element={<CreateInternalTransferApi />} />
             <Route path="/docs/v5/asset/deposit/records" element={<GetDepositRecords />} />
+            <Route path="/docs/v5/asset/deposit-record-api" element={<GetDepositRecordsApi />} />
             <Route path="/docs/v5/asset/withdraw/create" element={<SubmitWithdrawal />} />
 
 
@@ -226,8 +311,11 @@ function App() {
             <Route path="/docs/v5/user/fund-subuid-list" element={<GetFundCustodialSubAcct />} />
             <Route path="/docs/v5/user/froze-subuid" element={<FreezeSubUID />} />
             <Route path="/docs/v5/user/apikey-info" element={<GetAPIKeyInfo />} />
+            <Route path="/docs/v5/user/apikey-info-api" element={<GetApiKeyInfoApi />} />
             <Route path="/docs/v5/user/list-sub-apikeys" element={<GetSubAccountAllAPIKeys />} />
+            <Route path="/docs/v5/user/list-sub-apikeys-api" element={<GetSubAccountAllApiKeysApi />} />
             <Route path="/docs/v5/user/wallet-type" element={<GetUIDWalletType />} />
+            <Route path="/docs/v5/user/wallet-type-api" element={<GetUIDWalletTypeApi />} />
             <Route path="/docs/v5/user/modify-master-apikey" element={<ModifyMasterAPIKey />} />
             <Route path="/docs/v5/user/modify-sub-apikey" element={<ModifySubAPIKey />} />
             <Route path="/docs/v5/user/rm-subuid" element={<DeleteSubUID />} />

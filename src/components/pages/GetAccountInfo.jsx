@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetAccountInfo = () => {
     const contentRef = useRef(null);
@@ -286,6 +287,10 @@ getAccountInfo();`,
                     </tr>
                   </tbody>
                 </table>
+              </div>
+
+              <div>
+                <Link to={"/docs/v5/account/account-info-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
               </div>
 
               {/* REQUEST EXAMPLE */}

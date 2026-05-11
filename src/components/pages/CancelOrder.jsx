@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const CancelOrder = () => {
   const contentRef = useRef(null);
@@ -179,6 +180,7 @@ cancelOrder();`,
                 </li>
               </ul>
             </div>
+
             <div className="api-cover">Requires Authentication</div>
             <h3 className="top-req-text" id="http">
               HTTP Request
@@ -302,6 +304,10 @@ cancelOrder();`,
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <div>
+              <Link to={"/docs/v5/order/cancel-order-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
             </div>
             <h3 className="top-req-text" id="request-example">
               Request Example

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const SetCollateralCoin = () => {
     const contentRef = useRef(null);
@@ -286,7 +287,9 @@ setCollateralCoin();`,
                   {codeMap[lang]}
                 </pre>
               </div>
-
+                <div>
+                               <Link to={"/docs/v5/account/set-collateral-coin-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
+                             </div>
               {/* RESPONSE EXAMPLE */}
               <h3 className="top-req-text" id="response-example">
                 Response Example

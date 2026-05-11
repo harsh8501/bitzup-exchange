@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
-export const PlaceOrder = () => {
+export const    PlaceOrder = () => {
     const contentRef = useRef(null);
     const [lang, setLang] = useState("HTTP");
     const [copied, setCopied] = useState(false);
@@ -218,7 +219,10 @@ placeOrder();`,
                                 </tbody>
                             </table>
                         </div>
-
+                        <div>
+                            <Link to={"/docs/v5/order/create-order-api"}
+                                className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
+                        </div>      
                         <h3 className="top-req-text" id="request-example">Request Example</h3>
                         <div className="lang-tabs">
                             {["HTTP", "Python", "Go", "Java", "Node"].map((t) => (

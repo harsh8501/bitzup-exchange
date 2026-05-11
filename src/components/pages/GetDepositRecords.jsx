@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetDepositRecords = () => {
     const contentRef = useRef(null);
@@ -384,7 +385,9 @@ getDepositRecords();`,
                   </tbody>
                 </table>
               </div>
-
+                <div>
+                    <Link to={"/docs/v5/asset/deposit-record-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
+                </div>
               {/* REQUEST EXAMPLE */}
               <h3 className="top-req-text" id="request-example">
                 Request Example

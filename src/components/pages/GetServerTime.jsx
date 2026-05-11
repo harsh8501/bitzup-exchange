@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetServerTime = () => {
     const contentRef = useRef(null);
@@ -242,7 +243,7 @@ getServerTime();`,
                   </tbody>
                 </table>
               </div>
-
+<div><Link to={"/docs/v5/market/time-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link></div>
               {/* REQUEST EXAMPLE */}
               <h3 className="top-req-text" id="request-example">
                 Request Example

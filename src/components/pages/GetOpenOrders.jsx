@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const GetOpenOrders = () => {
     const contentRef = useRef(null);
@@ -405,6 +406,10 @@ getOpenOrders();`,
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div>
+                                <Link to={"/docs/v5/order/open-orders-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
                             </div>
 
                             {/* REQUEST EXAMPLE */}
