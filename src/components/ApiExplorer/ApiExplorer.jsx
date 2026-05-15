@@ -1,14 +1,29 @@
-import React, { useState } from "react";
-import { FiCopy, FiCheck } from "react-icons/fi";
+import React, { useState, useEffect } from "react";
+import { FiCopy, FiCheck, FiLock, FiKey } from "react-icons/fi";
 import { SiPython, SiGo, SiNodedotjs, SiRuby, SiPhp } from "react-icons/si";
 import { FaLinux } from "react-icons/fa";
 
-const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https://api-testnet.bitzup.com" }) => {
+const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https://test.bitzup.com/futures-api" }) => {
   const [requestBody, setRequestBody] = useState(initialBody);
   const [lang, setLang] = useState("Node");
   const [copied, setCopied] = useState(false);
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  
+  // API Credentials State
+  const [apiKey, setApiKey] = useState(localStorage.getItem("bitzup_api_key") || "");
+  const [apiSecret, setApiSecret] = useState(localStorage.getItem("bitzup_api_secret") || "");
+  const [saveKeys, setSaveKeys] = useState(true);
+
+  useEffect(() => {
+    if (saveKeys) {
+      localStorage.setItem("bitzup_api_key", apiKey);
+      localStorage.setItem("bitzup_api_secret", apiSecret);
+    } else {
+      localStorage.removeItem("bitzup_api_key");
+      localStorage.removeItem("bitzup_api_secret");
+    }
+  }, [apiKey, apiSecret, saveKeys]);
 
   const handleInputChange = (path, value) => {
     setRequestBody(prev => {
@@ -75,32 +90,30 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const handleSendRequest = () => {
+  const handleSendRequest = async () => {
     setLoading(true);
-    setTimeout(() => {
-      const isError = Math.random() > 0.5;
-      if (isError) {
-        setResponse({
-          retCode: 33004,
-          retMsg: "Your api key has expired.",
-          result: {},
-          retExtInfo: {},
-          time: Date.now()
-        });
-      } else {
-        setResponse({
-          retCode: 0,
-          retMsg: "OK",
-          result: { 
-            list: Array.isArray(requestBody.request) 
-              ? requestBody.request.map(r => ({ ...r, orderId: "res-" + Math.random().toString(36).substr(2, 9) }))
-              : [ { ...requestBody, id: "res-" + Math.random().toString(36).substr(2, 9) } ]
-          },
-          time: Date.now()
-        });
-      }
+    try {
+      const res = await fetch(`${baseUrl}/v1/execute`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-BAPI-API-KEY": apiKey,
+          "X-BAPI-API-SECRET": apiSecret,
+        },
+        body: JSON.stringify({
+          method,
+          endpoint,
+          params: method === "GET" ? requestBody : {},
+          body: method === "POST" ? requestBody : {}
+        })
+      });
+      const data = await res.json();
+      setResponse(data);
+    } catch (error) {
+      setResponse({ error: error.message });
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   const bodyStr = JSON.stringify(requestBody, null, 2);
@@ -108,6 +121,7 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
   const codeMap = {
     cURL: `curl -L -X ${method} '${baseUrl}${endpoint}' \\
 -H 'Content-Type: application/json' \\
+-H 'X-BAPI-API-KEY: ${apiKey || 'YOUR_API_KEY'}' \\
 --data-raw '${bodyStr}'`,
     Node: `const axios = require('axios');
 let data = JSON.stringify(${bodyStr});
@@ -115,7 +129,10 @@ let data = JSON.stringify(${bodyStr});
 axios({
   method: '${method.toLowerCase()}',
   url: '${baseUrl}${endpoint}',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 
+    'Content-Type': 'application/json',
+    'X-BAPI-API-KEY': '${apiKey || 'YOUR_API_KEY'}'
+  },
   data : data
 }).then(res => console.log(res.data));`,
     Python: `import requests
@@ -123,7 +140,10 @@ import json
 
 url = "${baseUrl}${endpoint}"
 payload = ${bodyStr}
-headers = { 'Content-Type': 'application/json' }
+headers = { 
+  'Content-Type': 'application/json',
+  'X-BAPI-API-KEY': '${apiKey || 'YOUR_API_KEY'}'
+}
 response = requests.post(url, json=payload, headers=headers)
 print(response.json())`,
     Go: `package main
@@ -141,6 +161,7 @@ func main() {
   client := &http.Client {}
   req, _ := http.NewRequest(method, url, payload)
   req.Header.Add("Content-Type", "application/json")
+  req.Header.Add("X-BAPI-API-KEY", "${apiKey || 'YOUR_API_KEY'}")
   res, _ := client.Do(req)
   defer res.Body.Close()
   body, _ := ioutil.ReadAll(res.Body)
@@ -156,6 +177,7 @@ https.use_ssl = true
 
 request = Net::HTTP::${method === 'POST' ? 'Post' : 'Get'}.new(url)
 request["Content-Type"] = "application/json"
+request["X-BAPI-API-KEY"] = "${apiKey || 'YOUR_API_KEY'}"
 request.body = JSON.dump(${bodyStr})
 
 response = https.request(request)
@@ -167,7 +189,10 @@ curl_setopt_array($curl, array(
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_CUSTOMREQUEST => '${method}',
   CURLOPT_POSTFIELDS =>'${bodyStr}',
-  CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json',
+    'X-BAPI-API-KEY: ${apiKey || 'YOUR_API_KEY'}'
+  ),
 ));
 $response = curl_exec($curl);
 curl_close($curl);
@@ -188,6 +213,15 @@ echo $response;`
       <style>{`
         .explorer-panel { width: 480px; background: #0b0e14; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; border-left: 1px solid #222; }
         @media (max-width: 1024px) { .explorer-panel { width: 100%; padding: 40px 20px; height: auto; border-left: none; border-top: 1px solid #222; } }
+        
+        .credentials-section { background: #171d26; border-radius: 8px; padding: 16px; margin-bottom: 24px; border: 1px solid #333; }
+        .credential-input-group { margin-bottom: 12px; }
+        .credential-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; margin-bottom: 6px; display: block; }
+        .credential-input-wrapper { position: relative; display: flex; align-items: center; }
+        .credential-icon { position: absolute; left: 10px; color: #555; font-size: 14px; }
+        .credential-input { background: #0b0e14; border: 1px solid #333; border-radius: 4px; padding: 8px 12px 8px 32px; color: #fff; font-family: monospace; font-size: 13px; width: 100%; outline: none; }
+        .credential-input:focus { border-color: #2edbad; }
+        
         .endpoint-header { display: flex; align-items: center; gap: 12px; background: #171d26; padding: 14px 18px; border-radius: 8px; margin-bottom: 32px; }
         .badge-post { background: #1fb184; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; }
         .endpoint-path { font-size: 14px; font-weight: 600; color: #eee; font-family: monospace; }
@@ -214,6 +248,44 @@ echo $response;`
         .copy-btn { position: absolute; top: 12px; right: 12px; color: #888; cursor: pointer; transition: color 0.2s; z-index: 10; }
         .copy-btn:hover { color: #fff; }
       `}</style>
+
+      <div className="credentials-section">
+        <div className="credential-input-group">
+          <label className="credential-label">API Key</label>
+          <div className="credential-input-wrapper">
+            <FiKey className="credential-icon" />
+            <input 
+              className="credential-input" 
+              type="text" 
+              placeholder="Enter your API Key" 
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="credential-input-group">
+          <label className="credential-label">API Secret</label>
+          <div className="credential-input-wrapper">
+            <FiLock className="credential-icon" />
+            <input 
+              className="credential-input" 
+              type="password" 
+              placeholder="Enter your API Secret" 
+              value={apiSecret}
+              onChange={(e) => setApiSecret(e.target.value)}
+            />
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
+          <input 
+            type="checkbox" 
+            checked={saveKeys} 
+            onChange={(e) => setSaveKeys(e.target.checked)}
+            id="saveKeys"
+          />
+          <label htmlFor="saveKeys" style={{ fontSize: '12px', color: '#888', cursor: 'pointer' }}>Save keys in browser</label>
+        </div>
+      </div>
 
       <div className="endpoint-header">
         <span className="badge-post">{method}</span>
@@ -246,7 +318,7 @@ echo $response;`
             <h4 style={{margin: 0}}>Response</h4>
             <button className="btn-clear" onClick={() => setResponse(null)}>Clear</button>
           </div>
-          <div className="code-container" style={{ borderColor: '#1fb184' }}>
+          <div className="code-container" style={{ borderColor: response.error ? '#ff4d4f' : '#1fb184' }}>
             <pre className="code-content">{JSON.stringify(response, null, 2)}</pre>
           </div>
         </div>
@@ -271,3 +343,4 @@ echo $response;`
 };
 
 export default ApiExplorer;
+
