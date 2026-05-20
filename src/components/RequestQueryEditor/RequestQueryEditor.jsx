@@ -103,9 +103,9 @@ export const RequestQueryEditor = ({ requestBody, setRequestBody, requiredFields
                         onClick={() => handleValueChange(key, val)}
                         className={`pill-btn ${value.toString() === val ? "active" : ""}`}
                         style={{
-                          background: value.toString() === val ? "rgba(46, 219, 173, 0.15)" : "#0f141c",
-                          color: value.toString() === val ? "#2edbad" : "#8b949e",
-                          border: `1px solid ${value.toString() === val ? "#2edbad" : "#3d4653"}`,
+                          background: value.toString() === val ? "var(--accent-neon-dim, rgba(46, 219, 173, 0.15))" : "var(--bg-secondary, #0f141c)",
+                          color: value.toString() === val ? "var(--accent-neon, #2edbad)" : "var(--text-secondary, #8b949e)",
+                          border: `1px solid ${value.toString() === val ? "var(--accent-neon, #2edbad)" : "var(--border-color, #3d4653)"}`,
                           padding: "6px 14px",
                           borderRadius: "20px",
                           fontSize: "13px",
@@ -126,9 +126,9 @@ export const RequestQueryEditor = ({ requestBody, setRequestBody, requiredFields
                       className="form-input"
                       placeholder={`Enter ${key}...`}
                       style={{
-                        background: "#0f141c",
-                        border: "1px solid #3d4653",
-                        color: "#fff",
+                        background: "var(--bg-primary, #0f141c)",
+                        border: "1px solid var(--border-color, #3d4653)",
+                        color: "var(--text-primary, #fff)",
                         padding: "8px 32px 8px 12px",
                         borderRadius: "6px",
                         fontSize: "14px",

@@ -163,6 +163,24 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  // Global event delegation for collapsible parameter sections (.api-box)
+  useEffect(() => {
+    const handleHeaderClick = (e) => {
+      const header = e.target.closest('.api-box-header');
+      if (!header) return;
+      
+      const box = header.closest('.api-box');
+      if (!box) return;
+      
+      box.classList.toggle('collapsed');
+    };
+
+    document.addEventListener('click', handleHeaderClick);
+    return () => {
+      document.removeEventListener('click', handleHeaderClick);
+    };
+  }, []);
+
   return (
     <>
       <Header theme={theme} setTheme={setTheme} />

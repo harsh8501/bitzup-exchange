@@ -184,17 +184,17 @@ const ApiExplorer = ({
         __html: jsonString
           .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
           .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g, function (match) {
-            let style = 'color: #d19a66;'; // orange for numbers
+            let style = 'color: var(--json-number, #d19a66);'; // orange for numbers
             if (/^"/.test(match)) {
               if (/:$/.test(match)) {
-                style = 'color: #e06c75; font-weight: 600;'; // rose/red for keys
+                style = 'color: var(--json-key, #e06c75); font-weight: 600;'; // rose/red for keys
               } else {
-                style = 'color: #98c379;'; // green for string values
+                style = 'color: var(--json-string, #98c379);'; // green for string values
               }
             } else if (/true|false/.test(match)) {
-              style = 'color: #56b6c2;'; // cyan for booleans
+              style = 'color: var(--json-boolean, #56b6c2);'; // cyan for booleans
             } else if (/null/.test(match)) {
-              style = 'color: #56b6c2;';
+              style = 'color: var(--json-boolean, #56b6c2);';
             }
             return '<span style="' + style + '">' + match + '</span>';
           })
@@ -507,7 +507,22 @@ echo $response;`
   return (
     <div className="explorer-panel">
       <style>{`
-        .explorer-panel { width: 480px; background: #0b0e14; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; border-left: 1px solid #222; }
+        .explorer-panel {
+          width: 480px;
+          background: #0b0e14;
+          overflow-y: auto;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          border-left: 1px solid #222;
+          color: var(--text-primary);
+          
+          /* Syntax highlighting variables for static JSON renderer */
+          --json-number: #d19a66;
+          --json-key: #e06c75;
+          --json-string: #98c379;
+          --json-boolean: #56b6c2;
+        }
         @media (max-width: 1024px) { .explorer-panel { width: 100%; padding: 40px 20px; height: auto; border-left: none; border-top: 1px solid #222; } }
         
         .credentials-section { background: #171d26; border-radius: 8px; padding: 16px; margin-bottom: 24px; border: 1px solid #333; }
@@ -543,6 +558,113 @@ echo $response;`
         .lang-tab.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: #1fb184; }
         .copy-btn { position: absolute; top: 12px; right: 12px; color: #888; cursor: pointer; transition: color 0.2s; z-index: 10; }
         .copy-btn:hover { color: #fff; }
+
+        /* Premium Light Mode Colors Overrides (data-theme="light") */
+        [data-theme="light"] .explorer-panel {
+          background: #ffffff !important;
+          border-left-color: var(--border-color);
+          --json-number: #d97706;
+          --json-key: #7c3aed;
+          --json-string: #059669;
+          --json-boolean: #2563eb;
+        }
+        @media (max-width: 1024px) {
+          [data-theme="light"] .explorer-panel {
+            border-top: 1px solid var(--border-color);
+          }
+        }
+        
+        [data-theme="light"] .credentials-section {
+          background: var(--bg-card);
+          border-color: var(--border-color);
+        }
+        [data-theme="light"] .credential-label {
+          color: var(--text-secondary);
+        }
+        [data-theme="light"] .credential-icon {
+          color: #94a3b8;
+        }
+        [data-theme="light"] .credential-input {
+          background: var(--bg-secondary);
+          border-color: var(--border-color);
+          color: var(--text-primary);
+        }
+        [data-theme="light"] .credential-input:focus {
+          border-color: var(--accent-neon);
+        }
+        
+        [data-theme="light"] .endpoint-header {
+          background: var(--bg-card);
+          border: 1px solid var(--border-color);
+        }
+        [data-theme="light"] .endpoint-path {
+          color: var(--text-primary);
+        }
+        
+        [data-theme="light"] .btn-primary {
+          background: #000;
+          color: #fff;
+        }
+        
+        [data-theme="light"] .sub-label {
+          background: var(--accent-neon-dim);
+          color: var(--accent-neon);
+        }
+        [data-theme="light"] .val-text {
+          color: var(--accent-neon);
+        }
+        
+        [data-theme="light"] .code-container {
+          background: var(--bg-code);
+          border-color: var(--border-color);
+        }
+        [data-theme="light"] .code-content {
+          color: var(--text-primary);
+        }
+        [data-theme="light"] .syntax-key {
+          color: var(--json-key);
+          font-weight: 600;
+        }
+        [data-theme="light"] .syntax-input {
+          color: var(--json-string);
+          border-bottom-color: var(--border-color);
+        }
+        [data-theme="light"] .syntax-input:focus {
+          border-bottom-color: var(--accent-neon);
+          color: var(--text-primary);
+        }
+        
+        [data-theme="light"] .btn-clear {
+          background: var(--bg-card);
+          color: var(--text-primary);
+          border: 1px solid var(--border-color);
+        }
+        [data-theme="light"] .btn-clear:hover {
+          background: var(--bg-secondary);
+        }
+        
+        [data-theme="light"] .lang-bar {
+          border-bottom-color: var(--border-color);
+        }
+        [data-theme="light"] .lang-tab {
+          color: var(--text-muted);
+        }
+        [data-theme="light"] .lang-tab:hover {
+          color: var(--text-primary);
+        }
+        [data-theme="light"] .lang-tab.active {
+          color: var(--accent-neon);
+        }
+        [data-theme="light"] .lang-tab.active::after {
+          background: var(--accent-neon);
+        }
+        
+        [data-theme="light"] .copy-btn {
+          color: var(--text-muted);
+        }
+        [data-theme="light"] .copy-btn:hover {
+          color: var(--text-primary);
+        }
       `}</style>
 
       <div className="credentials-section">
