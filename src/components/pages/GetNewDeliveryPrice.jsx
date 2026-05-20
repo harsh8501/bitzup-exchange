@@ -95,11 +95,11 @@ export const GetNewDeliveryPrice = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/new-delivery-price?category=linear&baseCoin=BTC HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/new-delivery-price"
+url = "https://test.bitzup.com/v5/market/new-delivery-price"
 params = {
     "category": "linear",
     "baseCoin": "BTC"
@@ -121,7 +121,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/new-delivery-price?category=linear&baseCoin=BTC"
+    url := "https://test.bitzup.com/v5/market/new-delivery-price?category=linear&baseCoin=BTC"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -148,7 +148,7 @@ import java.net.http.HttpResponse;
 
 public class GetNewDeliveryPriceDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/new-delivery-price?category=linear&baseCoin=BTC";
+        String url = "https://test.bitzup.com/v5/market/new-delivery-price?category=linear&baseCoin=BTC";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -166,7 +166,7 @@ public class GetNewDeliveryPriceDemo {
 async function getNewDeliveryPrice() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/new-delivery-price',
+            'https://test.bitzup.com/v5/market/new-delivery-price',
             {
                 params: {
                     category: "linear",

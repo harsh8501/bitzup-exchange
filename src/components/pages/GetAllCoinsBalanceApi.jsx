@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetAllCoinsBalanceApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     memberId: "",
     accountType: "UNIFIED",
     coin: "USDT",
     withBonus: 0
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -75,7 +76,7 @@ export const GetAllCoinsBalanceApi = () => {
           <div className="tree-view">
             {[
               { name: "memberId", type: "string", desc: "Sub UID (required if querying sub user balance)" },
-              { name: "accountType", type: "string", req: true, desc: "Account type", values: ["SPOT", "CONTRACT", "UNIFIED", "OPTION", "INVESTMENT", "FUND"] },
+              { name: "accountType", type: "string", req: true, desc: "Account type", values: ["UNIFIED"] },
               { name: "coin", type: "string", desc: "Coin name" },
               { name: "withBonus", type: "integer", desc: "Whether to query bonus", values: ["0", "1"] },
             ].map(p => (
@@ -89,6 +90,8 @@ export const GetAllCoinsBalanceApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["accountType"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -109,10 +112,11 @@ export const GetAllCoinsBalanceApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["accountType"]} 
         method="GET" 
         endpoint="/v5/asset/transfer/query-account-coins-balance" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
       </div>
   );

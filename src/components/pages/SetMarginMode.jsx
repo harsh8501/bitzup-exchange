@@ -84,7 +84,7 @@ export const SetMarginMode = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/set-margin-mode HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -94,7 +94,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/set-margin-mode"
+url = "https://test.bitzup.com/v5/account/set-margin-mode"
 payload = {
     "setMarginMode": "PORTFOLIO_MARGIN"
 }
@@ -120,7 +120,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/set-margin-mode"
+    url := "https://test.bitzup.com/v5/account/set-margin-mode"
     payload := []byte(` + "`" + `{"setMarginMode": "PORTFOLIO_MARGIN"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -150,7 +150,7 @@ import java.net.http.HttpResponse;
 
 public class SetMarginModeDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/set-margin-mode";
+        String url = "https://test.bitzup.com/v5/account/set-margin-mode";
         String payload = "{\\"setMarginMode\\": \\"PORTFOLIO_MARGIN\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -171,7 +171,7 @@ public class SetMarginModeDemo {
 async function setMarginMode() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/set-margin-mode',
+            'https://test.bitzup.com/v5/account/set-margin-mode',
             {
                 setMarginMode: 'PORTFOLIO_MARGIN'
             },

@@ -46,7 +46,7 @@ export const BatchCancelOrder = () => {
 
     const codeMap = {
         HTTP: `POST /v5/order/cancel-batch HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672222400000
@@ -67,7 +67,7 @@ Content-Type: application/json
     ]
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/v5/order/cancel-batch"
+url = "https://test.bitzup.com/v5/order/cancel-batch"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672222400000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "request": [
@@ -82,7 +82,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/order/cancel-batch"
+    url := "https://test.bitzup.com/v5/order/cancel-batch"
     payload := map[string]interface{}{
         "category": "linear",
         "request": []map[string]interface{}{
@@ -110,7 +110,7 @@ public class BatchCancelOrderExample {
             ]}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/order/cancel-batch"))
+            .uri(URI.create("https://test.bitzup.com/v5/order/cancel-batch"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -120,7 +120,7 @@ public class BatchCancelOrderExample {
         Node: `const axios = require("axios");
 async function batchCancelOrder() {
   try {
-    const response = await axios.post("https://api.bitzup.com/v5/order/cancel-batch",
+    const response = await axios.post("https://test.bitzup.com/v5/order/cancel-batch",
       { category: "linear", request: [
         { symbol: "ETHUSDT", orderId: "c6f055d9-7f21-4079-913d-e6523a9cfffa" },
         { symbol: "BTCUSDT", orderId: "b6f055d9-7f21-4079-913d-e6523a9cfffb" }

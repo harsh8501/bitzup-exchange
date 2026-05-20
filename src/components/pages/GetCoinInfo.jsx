@@ -122,12 +122,12 @@ export const GetCoinInfo = () => {
 
     const codeMap = {
         HTTP: `GET /v5/asset/coin/query-info?coin=MNT HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/coin/query-info?coin=MNT"
+url = "https://test.bitzup.com/v5/asset/coin/query-info?coin=MNT"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -148,7 +148,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/coin/query-info?coin=MNT"
+    url := "https://test.bitzup.com/v5/asset/coin/query-info?coin=MNT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -176,7 +176,7 @@ import java.net.http.HttpResponse;
 
 public class GetCoinInfoDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/coin/query-info?coin=MNT";
+        String url = "https://test.bitzup.com/v5/asset/coin/query-info?coin=MNT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -195,7 +195,7 @@ public class GetCoinInfoDemo {
 async function getCoinInfo() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/asset/coin/query-info',
+            'https://test.bitzup.com/v5/asset/coin/query-info',
             {
                 params: {
                     coin: 'MNT'

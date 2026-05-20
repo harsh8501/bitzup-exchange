@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const SwitchPositionModeApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "ETHUSDT",
     coin: "USDT",
     mode: 0
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -74,7 +75,7 @@ export const SwitchPositionModeApi = () => {
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", desc: "Symbol name" },
               { name: "coin", type: "string", desc: "Coin name" },
               { name: "mode", type: "integer", req: true, desc: "Position mode. 0: Merged single, 3: Both sides", values: ["0", "3"] },
@@ -89,6 +90,8 @@ export const SwitchPositionModeApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "mode"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -109,10 +112,11 @@ export const SwitchPositionModeApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "mode"]} 
         method="POST" 
         endpoint="/v5/position/switch-mode" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

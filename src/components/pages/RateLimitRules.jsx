@@ -81,7 +81,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
               {/* HTTP IP limit */}
               <h3 className="top-req-text" id="http-ip-limit">HTTP IP limit</h3>
               <div className="text-mutne">
-                You are allowed to send 600 requests within a 5-second window per IP by default. This limit applies to all traffic directed to <span className="pill">api.bitzup.com</span>. If you encounter the error "403, access too frequent", it indicates that your IP has exceeded the allowed request frequency. In this case, you should terminate all HTTP sessions and wait for at least 10 minutes. The ban will be lifted automatically. For Bitzup Futures, these limits are optimized for high-frequency trading.
+                You are allowed to send 600 requests within a 5-second window per IP by default. This limit applies to all traffic directed to <span className="pill">test.bitzup.com</span>. If you encounter the error "403, access too frequent", it indicates that your IP has exceeded the allowed request frequency. In this case, you should terminate all HTTP sessions and wait for at least 10 minutes. The ban will be lifted automatically. For Bitzup Futures, these limits are optimized for high-frequency trading.
               </div>
               <div className="text-mutne">
                 We do not recommend running your application at the very edge of these limits in case abnormal network activity results in an unexpected violation.
@@ -91,7 +91,7 @@ X-Bapi-Limit-Reset-Timestamp: 1672738134824`;
               <h3 className="text-mutne" id="websocket-ip-limit">Websocket IP limit</h3>
               <ul className="text-mutne">
                 <li>
-                  Do not establish more than 500 connections within a 5-minute window. This limit applies to all connections directed to <span className="pill">socket.bitzup.com</span> as well as local site hostnames such as <span className="pill">stream.bitzup.com</span>.
+                  Do not establish more than 500 connections within a 5-minute window. This limit applies to all connections directed to <span className="pill">socket.bitzup.com</span> as well as local site hostnames such as <span className="pill">stream-testnet.bitzup.com</span>.
                 </li>
                 <li>Do not frequently connect and disconnect the connection</li>
                 <li>

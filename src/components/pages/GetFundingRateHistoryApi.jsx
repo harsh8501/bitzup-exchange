@@ -1,17 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetFundingRateHistoryApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     startTime: "",
     endTime: "",
     limit: 200
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -58,7 +59,7 @@ export const GetFundingRateHistoryApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "startTime", type: "integer", desc: "The start timestamp (ms)" },
               { name: "endTime", type: "integer", desc: "The end timestamp (ms)" },
@@ -75,6 +76,8 @@ export const GetFundingRateHistoryApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol"]} />
+
         <div style={ {marginTop: "64px"} }>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
@@ -84,12 +87,14 @@ export const GetFundingRateHistoryApi = () => {
             </div>
         </div>
 
-      <ApiExplorer 
+      </div>
+
+      <ApiExplorer
+        requiredFields={["category", "symbol"]} 
         method="GET" 
         endpoint="/v5/market/funding/history" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
-    </div>
     </div>
   );
 };

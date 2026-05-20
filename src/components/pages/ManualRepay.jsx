@@ -85,7 +85,7 @@ export const ManualRepay = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/repay HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -96,7 +96,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/repay"
+url = "https://test.bitzup.com/v5/account/repay"
 payload = {
     "coin": "BTC",
     "amount": "0.01"
@@ -123,7 +123,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/repay"
+    url := "https://test.bitzup.com/v5/account/repay"
     payload := []byte(` + "`" + `{"coin":"BTC","amount":"0.01"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -153,7 +153,7 @@ import java.net.http.HttpResponse;
 
 public class ManualRepayDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/repay";
+        String url = "https://test.bitzup.com/v5/account/repay";
         String payload = "{\\"coin\\":\\"BTC\\",\\"amount\\":\\"0.01\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -174,7 +174,7 @@ public class ManualRepayDemo {
 async function manualRepay() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/repay',
+            'https://test.bitzup.com/v5/account/repay',
             {
                 coin: 'BTC',
                 amount: '0.01'

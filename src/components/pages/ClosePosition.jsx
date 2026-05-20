@@ -24,7 +24,7 @@ export const ClosePosition = () => {
 }`;
     const codeMap = {
         HTTP: `POST /futures/api/v1/close-position HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <your_token>
 
@@ -35,7 +35,7 @@ Authorization: Bearer <your_token>
   "qty": 0.05
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/futures/api/v1/close-position"
+url = "https://test.bitzup.com/futures/api/v1/close-position"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {"symbol": "BTCUSDT", "side": "Sell", "type": "Market", "qty": 0.05}
 try:
@@ -47,7 +47,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/close-position"
+	url := "https://test.bitzup.com/futures/api/v1/close-position"
 	body, _ := json.Marshal(map[string]interface{}{
 		"symbol": "BTCUSDT", "side": "Sell", "type": "Market", "qty": 0.05,
 	})
@@ -69,7 +69,7 @@ public class ClosePositionExample {
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/close-position"))
+            .uri(URI.create("https://test.bitzup.com/futures/api/v1/close-position"))
             .header("Content-Type", "application/json").header("Authorization", "Bearer <your_token>")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -79,7 +79,7 @@ public class ClosePositionExample {
         Node: `const axios = require("axios");
 async function closePosition() {
   try {
-    const response = await axios.post("https://api.bitzup.com/futures/api/v1/close-position",
+    const response = await axios.post("https://test.bitzup.com/futures/api/v1/close-position",
       { symbol: "BTCUSDT", side: "Sell", type: "Market", qty: 0.05 },
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } });
     console.log(response.data);

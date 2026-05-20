@@ -141,7 +141,7 @@ def on_open(ws):
 
 if __name__ == "__main__":
     websocket.enableTrace(False)
-    url = "wss://stream.bitzup.com/v5/private"
+    url = "wss://stream-testnet.bitzup.com/v5/private"
     ws = websocket.WebSocketApp(url,
                               on_open=on_open,
                               on_message=on_message,
@@ -159,7 +159,7 @@ const signature = crypto.createHmac("sha256", apiSecret)
     .update("GET/realtime" + expires)
     .digest("hex");
 
-const url = 'wss://stream.bitzup.com/v5/private';
+const url = 'wss://stream-testnet.bitzup.com/v5/private';
 const ws = new WebSocket(url);
 
 ws.on('open', function open() {
@@ -244,7 +244,7 @@ ws.on('close', function close() {
                   <code
                     style={{ color: "var(--text-accent)", wordBreak: "break-all" }}
                   >
-                    wss://stream.bitzup.com/v5/public/linear
+                    wss://stream-testnet.bitzup.com/v5/public/linear
                   </code>
                 </div>
               </div>
@@ -281,7 +281,7 @@ ws.on('close', function close() {
                   <code
                     style={{ color: "var(--text-accent)", wordBreak: "break-all" }}
                   >
-                    wss://stream.bitzup.com/v5/private
+                    wss://stream-testnet.bitzup.com/v5/private
                   </code>
                 </div>
                 <div

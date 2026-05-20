@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const CancelAllOrdersApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     baseCoin: "",
     settleCoin: ""
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -74,7 +75,7 @@ export const CancelAllOrdersApi = () => {
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "option", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", desc: "Symbol name. Required if not passing baseCoin or settleCoin" },
               { name: "baseCoin", type: "string", desc: "Cancel by base coin. Required if not passing symbol or settleCoin" },
               { name: "settleCoin", type: "string", desc: "Cancel by settle coin. Does not support spot. Required if not passing symbol or baseCoin" },
@@ -89,6 +90,8 @@ export const CancelAllOrdersApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -109,10 +112,11 @@ export const CancelAllOrdersApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category"]} 
         method="POST" 
         endpoint="/v5/order/cancel-all" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

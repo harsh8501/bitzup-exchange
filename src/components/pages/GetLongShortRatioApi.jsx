@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetLongShortRatioApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     period: "1h",
     limit: 50
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -57,7 +58,7 @@ export const GetLongShortRatioApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "period", type: "string", req: true, desc: "Data period", values: ["5min", "15min", "30min", "1h", "4h", "1d"] },
               { name: "limit", type: "integer", desc: "Limit per page. Default 50, max 500" },
@@ -72,6 +73,8 @@ export const GetLongShortRatioApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "period"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -92,10 +95,11 @@ export const GetLongShortRatioApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "period"]} 
         method="GET" 
         endpoint="/v5/market/account-ratio" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

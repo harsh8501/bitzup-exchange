@@ -95,12 +95,12 @@ export const GetAllBalances = () => {
 
     const codeMap = {
         HTTP: `GET /v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC"
+url = "https://test.bitzup.com/v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -121,7 +121,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC"
+    url := "https://test.bitzup.com/v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -149,7 +149,7 @@ import java.net.http.HttpResponse;
 
 public class GetAllBalancesDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC";
+        String url = "https://test.bitzup.com/v5/asset/transfer/query-account-coins-balance?accountType=FUND&coin=USDC";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -168,7 +168,7 @@ public class GetAllBalancesDemo {
 async function getAllBalances() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/asset/transfer/query-account-coins-balance',
+            'https://test.bitzup.com/v5/asset/transfer/query-account-coins-balance',
             {
                 params: {
                     accountType: 'FUND',

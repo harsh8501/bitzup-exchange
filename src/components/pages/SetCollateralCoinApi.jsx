@@ -1,14 +1,15 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const SetCollateralCoinApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     coin: "BTC",
     collateralSwitch: "ON"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -68,6 +69,8 @@ export const SetCollateralCoinApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["coin", "collateralSwitch"]} />
+
         <div className="api-box">
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
@@ -105,10 +108,11 @@ export const SetCollateralCoinApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["coin", "collateralSwitch"]} 
         method="POST" 
         endpoint="/v5/account/set-collateral-switch" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

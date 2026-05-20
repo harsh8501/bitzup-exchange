@@ -102,11 +102,11 @@ export const GetPremiumIndexPriceKline = () => {
 
   const codeMap = {
     HTTP: `GET /v5/market/premium-index-price-kline?category=linear&symbol=BTCUSDT&interval=D&start=1652112000000&end=1652544000000 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/premium-index-price-kline"
+url = "https://test.bitzup.com/v5/market/premium-index-price-kline"
 params = {
     "category": "linear",
     "symbol": "BTCUSDT",
@@ -131,7 +131,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/premium-index-price-kline?category=linear&symbol=BTCUSDT&interval=D&start=1652112000000&end=1652544000000"
+    url := "https://test.bitzup.com/v5/market/premium-index-price-kline?category=linear&symbol=BTCUSDT&interval=D&start=1652112000000&end=1652544000000"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -158,7 +158,7 @@ import java.net.http.HttpResponse;
 
 public class GetPremiumIndexPriceKlineDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/premium-index-price-kline?category=linear&symbol=BTCUSDT&interval=D&start=1652112000000&end=1652544000000";
+        String url = "https://test.bitzup.com/v5/market/premium-index-price-kline?category=linear&symbol=BTCUSDT&interval=D&start=1652112000000&end=1652544000000";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -176,7 +176,7 @@ public class GetPremiumIndexPriceKlineDemo {
 async function getPremiumIndexPriceKline() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/premium-index-price-kline',
+            'https://test.bitzup.com/v5/market/premium-index-price-kline',
             {
                 params: {
                     category: 'linear',

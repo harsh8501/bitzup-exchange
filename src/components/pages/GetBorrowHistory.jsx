@@ -99,12 +99,12 @@ export const GetBorrowHistory = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/borrow-history?currency=BTC&limit=1 HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/borrow-history"
+url = "https://test.bitzup.com/v5/account/borrow-history"
 params = {
     "currency": "BTC",
     "limit": 1
@@ -129,7 +129,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/borrow-history?currency=BTC&limit=1"
+    url := "https://test.bitzup.com/v5/account/borrow-history?currency=BTC&limit=1"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -157,7 +157,7 @@ import java.net.http.HttpResponse;
 
 public class GetBorrowHistoryDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/borrow-history?currency=BTC&limit=1";
+        String url = "https://test.bitzup.com/v5/account/borrow-history?currency=BTC&limit=1";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -176,7 +176,7 @@ public class GetBorrowHistoryDemo {
 async function getBorrowHistory() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/borrow-history',
+            'https://test.bitzup.com/v5/account/borrow-history',
             {
                 params: {
                     currency: 'BTC',

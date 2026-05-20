@@ -98,11 +98,11 @@ export const GetRiskLimit = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/risk-limit?category=linear&symbol=BTCUSD HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/risk-limit"
+url = "https://test.bitzup.com/v5/market/risk-limit"
 params = {
     "category": "linear",
     "symbol": "BTCUSD"
@@ -124,7 +124,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/risk-limit?category=linear&symbol=BTCUSD"
+    url := "https://test.bitzup.com/v5/market/risk-limit?category=linear&symbol=BTCUSD"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -151,7 +151,7 @@ import java.net.http.HttpResponse;
 
 public class GetRiskLimitDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/risk-limit?category=linear&symbol=BTCUSD";
+        String url = "https://test.bitzup.com/v5/market/risk-limit?category=linear&symbol=BTCUSD";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -169,7 +169,7 @@ public class GetRiskLimitDemo {
 async function getRiskLimit() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/risk-limit',
+            'https://test.bitzup.com/v5/market/risk-limit',
             {
                 params: {
                     category: "linear",

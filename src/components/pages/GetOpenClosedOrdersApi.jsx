@@ -1,11 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetOpenClosedOrdersApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "ETHUSDT",
     baseCoin: "",
@@ -16,7 +17,7 @@ export const GetOpenClosedOrdersApi = () => {
     openOnly: 0,
     limit: 20,
     cursor: ""
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -61,12 +62,12 @@ export const GetOpenClosedOrdersApi = () => {
 
         <div className="api-box">
           <div className="api-box-header">Header Parameters</div>
+          <div className="tree-view">        <div className="api-box">
+          <div className="api-box-header">Header Parameters</div>
           <div className="tree-view">
             {[
               { name: "apiKey", type: "string", req: true, desc: "Your API key" },
               { name: "secret", type: "string", req: true, desc: "Your API secret" },
-              { name: "timestamp", type: "string", req: true, desc: "Current timestamp in milliseconds" },
-              { name: "sign", type: "string", req: true, desc: "Request signature" },
             ].map(p => (
               <div className="tree-item" key={p.name}>
                 <span className="p-name">{p.name}</span>
@@ -76,13 +77,14 @@ export const GetOpenClosedOrdersApi = () => {
               </div>
             ))}
           </div>
+        </div></div>
         </div>
 
         <div className="api-box">
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "option", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", desc: "Symbol name" },
               { name: "baseCoin", type: "string", desc: "Base coin" },
               { name: "settleCoin", type: "string", desc: "Settle coin. Spot is not available." },
@@ -104,6 +106,8 @@ export const GetOpenClosedOrdersApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category"]} />
+
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
@@ -123,10 +127,11 @@ export const GetOpenClosedOrdersApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category"]} 
         method="GET" 
         endpoint="/v5/order/realtime" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const AmendOrderApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "ETHUSDT",
     orderId: "",
     orderLinkId: "test-xx1",
-    orderFilter: "Order",
+    orderFilter: "",
     qty: "2",
     price: "1100",
     triggerPrice: "",
@@ -21,7 +22,7 @@ export const AmendOrderApi = () => {
     triggerBy: "",
     tpLimitPrice: "",
     slLimitPrice: ""
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -64,11 +65,28 @@ export const AmendOrderApi = () => {
         <h1 className="api-title">Amend Order</h1>
         <p style={{ color: "#888", marginBottom: "40px" }}>Modify an existing order. You can amend qty, price, triggerPrice, tp/sl etc.</p>
 
+                <div className="api-box">
+          <div className="api-box-header">Header Parameters</div>
+          <div className="tree-view">
+            {[
+              { name: "apiKey", type: "string", req: true, desc: "Your API key" },
+              { name: "secret", type: "string", req: true, desc: "Your API secret" },
+            ].map(p => (
+              <div className="tree-item" key={p.name}>
+                <span className="p-name">{p.name}</span>
+                <span className="p-type">{p.type}</span>
+                {p.req && <span className="req-tag">required</span>}
+                <p className="p-desc">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="api-box">
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "option", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "orderId", type: "string", desc: "Order ID. Either orderId or orderLinkId is required" },
               { name: "orderLinkId", type: "string", desc: "User customized order ID" },
@@ -89,6 +107,8 @@ export const AmendOrderApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol"]} />
+
         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
@@ -99,10 +119,11 @@ export const AmendOrderApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol"]} 
         method="POST" 
         endpoint="/v5/order/amend" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

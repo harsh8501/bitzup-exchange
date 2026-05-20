@@ -102,7 +102,7 @@ export const BatchSetCollateralCoin = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/set-collateral-switch-batch HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -129,7 +129,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/set-collateral-switch-batch"
+url = "https://test.bitzup.com/v5/account/set-collateral-switch-batch"
 payload = {
     "request": [
         {"coin": "MATIC", "collateralSwitch": "OFF"},
@@ -160,7 +160,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/set-collateral-switch-batch"
+    url := "https://test.bitzup.com/v5/account/set-collateral-switch-batch"
     payload := []byte(` + "`" + `{"request": [{"coin": "MATIC", "collateralSwitch": "OFF"}, {"coin": "BTC", "collateralSwitch": "OFF"}, {"coin": "ETH", "collateralSwitch": "OFF"}, {"coin": "SOL", "collateralSwitch": "OFF"}]}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -190,7 +190,7 @@ import java.net.http.HttpResponse;
 
 public class BatchSetCollateralDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/set-collateral-switch-batch";
+        String url = "https://test.bitzup.com/v5/account/set-collateral-switch-batch";
         String payload = "{\\"request\\": [{\\"coin\\": \\"MATIC\\", \\"collateralSwitch\\": \\"OFF\\"}, {\\"coin\\": \\"BTC\\", \\"collateralSwitch\\": \\"OFF\\"}, {\\"coin\\": \\"ETH\\", \\"collateralSwitch\\": \\"OFF\\"}, {\\"coin\\": \\"SOL\\", \\"collateralSwitch\\": \\"OFF\\"}]}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -211,7 +211,7 @@ public class BatchSetCollateralDemo {
 async function batchSetCollateralCoin() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/set-collateral-switch-batch',
+            'https://test.bitzup.com/v5/account/set-collateral-switch-batch',
             {
                 request: [
                     { coin: 'MATIC', collateralSwitch: 'OFF' },

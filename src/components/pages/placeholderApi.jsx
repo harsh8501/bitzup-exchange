@@ -1,39 +1,40 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const PlaceOrderApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "ETHUSDT",
-    isLeverage: 0,
+    isLeverage: "",
     side: "Buy",
     orderType: "Limit",
     qty: "1",
     price: "1000",
     triggerPrice: "",
-    triggerDirection: 0,
+    triggerDirection: "",
     triggerBy: "",
-    orderFilter: "Order",
+    orderFilter: "",
     timeInForce: "GTC",
-    positionIdx: 0,
+    positionIdx: "",
     orderLinkId: "test-xx1",
     takeProfit: "",
     stopLoss: "",
     tpTriggerBy: "",
     slTriggerBy: "",
-    reduceOnly: false,
-    closeOnTrigger: false,
-    smpType: "None",
-    mmp: false,
-    tpslMode: "Full",
+    reduceOnly: "",
+    closeOnTrigger: "",
+    smpType: "",
+    mmp: "",
+    tpslMode: "",
     tpLimitPrice: "",
     slLimitPrice: "",
-    tpOrderType: "Market",
-    slOrderType: "Market"
-  };
+    tpOrderType: "",
+    slOrderType: ""
+  });
 
   return (
     <div className="api-doc-container">
@@ -76,11 +77,28 @@ export const PlaceOrderApi = () => {
         <h1 className="api-title">Place Order</h1>
         <p style={{ color: "#888", marginBottom: "40px" }}>Create a new order for any product category.</p>
 
+                <div className="api-box">
+          <div className="api-box-header">Header Parameters</div>
+          <div className="tree-view">
+            {[
+              { name: "apiKey", type: "string", req: true, desc: "Your API key" },
+              { name: "secret", type: "string", req: true, desc: "Your API secret" },
+            ].map(p => (
+              <div className="tree-item" key={p.name}>
+                <span className="p-name">{p.name}</span>
+                <span className="p-type">{p.type}</span>
+                {p.req && <span className="req-tag">required</span>}
+                <p className="p-desc">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="api-box">
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "option", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "side", type: "string", req: true, desc: "Order side", values: ["Buy", "Sell"] },
               { name: "orderType", type: "string", req: true, desc: "Order type", values: ["Market", "Limit"] },
@@ -100,6 +118,8 @@ export const PlaceOrderApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "side", "orderType", "qty"]} />
+
         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
@@ -110,10 +130,11 @@ export const PlaceOrderApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "side", "orderType", "qty"]} 
         method="POST" 
         endpoint="/v5/order/create" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

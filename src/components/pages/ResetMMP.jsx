@@ -80,7 +80,7 @@ export const ResetMMP = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/mmp-reset HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -90,7 +90,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/mmp-reset"
+url = "https://test.bitzup.com/v5/account/mmp-reset"
 payload = {
     "baseCoin": "ETH"
 }
@@ -116,7 +116,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/mmp-reset"
+    url := "https://test.bitzup.com/v5/account/mmp-reset"
     payload := []byte(` + "`" + `{"baseCoin": "ETH"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -146,7 +146,7 @@ import java.net.http.HttpResponse;
 
 public class ResetMMPDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/mmp-reset";
+        String url = "https://test.bitzup.com/v5/account/mmp-reset";
         String payload = "{\\"baseCoin\\": \\"ETH\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -167,7 +167,7 @@ public class ResetMMPDemo {
 async function resetMmp() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/mmp-reset',
+            'https://test.bitzup.com/v5/account/mmp-reset',
             {
                 baseCoin: 'ETH'
             },

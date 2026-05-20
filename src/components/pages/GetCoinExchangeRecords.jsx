@@ -96,12 +96,12 @@ export const GetCoinExchangeRecords = () => {
 
     const codeMap = {
         HTTP: `GET /v5/asset/exchange/order-record?limit=10 HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/exchange/order-record?limit=10"
+url = "https://test.bitzup.com/v5/asset/exchange/order-record?limit=10"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/exchange/order-record?limit=10"
+    url := "https://test.bitzup.com/v5/asset/exchange/order-record?limit=10"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -150,7 +150,7 @@ import java.net.http.HttpResponse;
 
 public class GetCoinExchangeRecordsDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/exchange/order-record?limit=10";
+        String url = "https://test.bitzup.com/v5/asset/exchange/order-record?limit=10";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -169,7 +169,7 @@ public class GetCoinExchangeRecordsDemo {
 async function getCoinExchangeRecords() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/asset/exchange/order-record',
+            'https://test.bitzup.com/v5/asset/exchange/order-record',
             {
                 params: {
                     limit: 10

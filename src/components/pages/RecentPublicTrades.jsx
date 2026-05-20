@@ -99,11 +99,11 @@ export const RecentPublicTrades = () => {
 
   const codeMap = {
     HTTP: `GET /v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/recent-trade"
+url = "https://test.bitzup.com/v5/market/recent-trade"
 params = {
     "category": "linear",
     "symbol": "BTCUSDT",
@@ -126,7 +126,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1"
+    url := "https://test.bitzup.com/v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -153,7 +153,7 @@ import java.net.http.HttpResponse;
 
 public class GetRecentTradesDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1";
+        String url = "https://test.bitzup.com/v5/market/recent-trade?category=linear&symbol=BTCUSDT&limit=1";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -171,7 +171,7 @@ public class GetRecentTradesDemo {
 async function getRecentTrades() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/recent-trade',
+            'https://test.bitzup.com/v5/market/recent-trade',
             {
                 params: {
                     category: "linear",

@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const SetLeverageApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     buyLeverage: "10",
     sellLeverage: "10"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -74,7 +75,7 @@ export const SetLeverageApi = () => {
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "buyLeverage", type: "string", req: true, desc: "Buy side leverage" },
               { name: "sellLeverage", type: "string", req: true, desc: "Sell side leverage" },
@@ -89,6 +90,8 @@ export const SetLeverageApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "buyLeverage", "sellLeverage"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -109,10 +112,11 @@ export const SetLeverageApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "buyLeverage", "sellLeverage"]} 
         method="POST" 
         endpoint="/v5/position/set-leverage" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

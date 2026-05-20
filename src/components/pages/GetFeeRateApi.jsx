@@ -1,15 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetFeeRateApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
-    category: "linear",
-    symbol: "BTCUSDT",
+  const [requestBody, setRequestBody] = useState({
+    category: "inverse",
+    symbol: "BTCUSD",
     baseCoin: ""
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -73,7 +74,7 @@ export const GetFeeRateApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["spot", "linear", "inverse", "option"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["inverse"] },
               { name: "symbol", type: "string", desc: "Symbol name. Valid for linear, inverse and spot" },
               { name: "baseCoin", type: "string", desc: "Base coin. Valid for option", values: ["SOL", "BTC", "ETH"] },
             ].map(p => (
@@ -87,6 +88,8 @@ export const GetFeeRateApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -107,10 +110,11 @@ export const GetFeeRateApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category"]} 
         method="GET" 
         endpoint="/v5/account/fee-rate" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

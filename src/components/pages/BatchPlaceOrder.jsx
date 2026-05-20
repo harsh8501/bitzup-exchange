@@ -48,7 +48,7 @@ export const BatchPlaceOrder = () => {
 
     const codeMap = {
         HTTP: `POST /v5/order/create-batch HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1713434102000
@@ -79,7 +79,7 @@ Content-Type: application/json
     ]
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/v5/order/create-batch"
+url = "https://test.bitzup.com/v5/order/create-batch"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1713434102000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {
@@ -99,7 +99,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/order/create-batch"
+    url := "https://test.bitzup.com/v5/order/create-batch"
     payload := map[string]interface{}{
         "category": "linear",
         "request": []map[string]interface{}{
@@ -130,7 +130,7 @@ public class BatchPlaceOrderExample {
             ]}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/order/create-batch"))
+            .uri(URI.create("https://test.bitzup.com/v5/order/create-batch"))
             .header("Content-Type", "application/json")
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
@@ -141,7 +141,7 @@ public class BatchPlaceOrderExample {
         Node: `const axios = require("axios");
 async function batchPlaceOrder() {
   try {
-    const response = await axios.post("https://api.bitzup.com/v5/order/create-batch",
+    const response = await axios.post("https://test.bitzup.com/v5/order/create-batch",
       { category: "linear", request: [
         { symbol: "BTCUSDT", side: "Buy", orderType: "Limit", qty: "0.1", price: "30000", timeInForce: "GTC", orderLinkId: "spot-btc-03" },
         { symbol: "ATOMUSDT", side: "Sell", orderType: "Limit", qty: "2", price: "12", timeInForce: "GTC", orderLinkId: "spot-atom-03" }

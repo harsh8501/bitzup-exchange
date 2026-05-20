@@ -96,12 +96,12 @@ export const GetMMPState = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/mmp-state?baseCoin=ETH HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/mmp-state?baseCoin=ETH"
+url = "https://test.bitzup.com/v5/account/mmp-state?baseCoin=ETH"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/mmp-state?baseCoin=ETH"
+    url := "https://test.bitzup.com/v5/account/mmp-state?baseCoin=ETH"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -150,7 +150,7 @@ import java.net.http.HttpResponse;
 
 public class GetMMPStateDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/mmp-state?baseCoin=ETH";
+        String url = "https://test.bitzup.com/v5/account/mmp-state?baseCoin=ETH";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -169,7 +169,7 @@ public class GetMMPStateDemo {
 async function getMmpState() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/mmp-state',
+            'https://test.bitzup.com/v5/account/mmp-state',
             {
                 params: {
                     baseCoin: 'ETH'

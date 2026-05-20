@@ -90,7 +90,7 @@ export const CreateSubMember = () => {
 
     const codeMap = {
         HTTP: `POST /v5/user/create-sub-member HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>
 Content-Type: application/json
 
@@ -103,7 +103,7 @@ Content-Type: application/json
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/user/create-sub-member"
+url = "https://test.bitzup.com/v5/user/create-sub-member"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>",
     "Content-Type": "application/json"
@@ -132,7 +132,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/user/create-sub-member"
+    url := "https://test.bitzup.com/v5/user/create-sub-member"
     payload := []byte(` + "`" + `{"username":"xxxxx","memberType":1,"switch":1,"note":"test"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -162,7 +162,7 @@ import java.net.http.HttpResponse;
 
 public class CreateSubMemberDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/user/create-sub-member";
+        String url = "https://test.bitzup.com/v5/user/create-sub-member";
         String payload = "{\\"username\\":\\"xxxxx\\",\\"memberType\\":1,\\"switch\\":1,\\"note\\":\\"test\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -183,7 +183,7 @@ public class CreateSubMemberDemo {
 async function createSubMember() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/user/create-sub-member',
+            'https://test.bitzup.com/v5/user/create-sub-member',
             {
                 username: 'xxxxx',
                 memberType: 1,

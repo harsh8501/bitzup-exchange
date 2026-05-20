@@ -83,7 +83,7 @@ export const SetPriceLimitBehaviour = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/set-limit-px-action HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -94,7 +94,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/set-limit-px-action"
+url = "https://test.bitzup.com/v5/account/set-limit-px-action"
 payload = {
     "category": "linear",
     "modifyEnable": True
@@ -121,7 +121,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/set-limit-px-action"
+    url := "https://test.bitzup.com/v5/account/set-limit-px-action"
     payload := []byte(` + "`" + `{"category": "linear", "modifyEnable": true}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -151,7 +151,7 @@ import java.net.http.HttpResponse;
 
 public class SetPriceLimitBehaviourDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/set-limit-px-action";
+        String url = "https://test.bitzup.com/v5/account/set-limit-px-action";
         String payload = "{\\"category\\": \\"spot\\", \\"modifyEnable\\": true}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -172,7 +172,7 @@ public class SetPriceLimitBehaviourDemo {
 async function setPriceLimitBehaviour() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/set-limit-px-action',
+            'https://test.bitzup.com/v5/account/set-limit-px-action',
             {
                 category: "linear",
                 modifyEnable: true

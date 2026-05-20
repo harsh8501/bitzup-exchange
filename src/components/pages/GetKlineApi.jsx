@@ -1,18 +1,19 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetKlineApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     interval: "15",
     start: "",
     end: "",
     limit: 200
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -33,6 +34,10 @@ export const GetKlineApi = () => {
           .api-box-header { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #fff; }
           .api-box-header::before { content: '▼'; font-size: 10px; color: #888; }
           
+          .api-box-header.collapsible::before { content: none !important; }
+          .api-box-header.collapsible .chevron { font-size: 16px; color: #888; transition: transform 0.2s ease; margin-left: auto; }
+          .api-box-header.collapsible .chevron.open { transform: rotate(180deg); color: #2edbad; }
+
           .tree-view { border-left: 1px solid #3d4653; padding-left: 20px; margin-left: 8px; position: relative; }
           .tree-item { margin-bottom: 20px; position: relative; }
           .tree-item::before { content: ''; position: absolute; left: -20px; top: 10px; width: 12px; height: 1px; background: #3d4653; }
@@ -46,6 +51,14 @@ export const GetKlineApi = () => {
           .res-badge { display: flex; align-items: center; gap: 8px; background: rgba(31, 177, 132, 0.1); color: #1fb184; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; border: 1px solid rgba(31, 177, 132, 0.4); }
           .dot { width: 6px; height: 6px; background: #1fb184; border-radius: 50%; }
           .panel-section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+          /* Interactive Edit Form Badges & Styles */
+          .badge-tag { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 8px; }
+          .badge-tag.mandatory { background: rgba(255, 77, 79, 0.15); color: #ff4d4f; border: 1px solid rgba(255, 77, 79, 0.3); }
+          .badge-tag.optional { background: rgba(88, 166, 255, 0.15); color: #58a6ff; border: 1px solid rgba(88, 166, 255, 0.3); }
+          
+          .form-input:focus, .form-select:focus { border-color: #2edbad !important; box-shadow: 0 0 0 2px rgba(46, 219, 173, 0.1); }
+          .pill-btn:hover { border-color: #2edbad !important; color: #fff !important; }
       `}</style>
 
       <div className="docs-panel" ref={contentRef}>
@@ -59,7 +72,7 @@ export const GetKlineApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name (e.g., BTCUSDT)" },
               { name: "interval", type: "string", req: true, desc: "Kline interval", values: ["1", "3", "5", "15", "30", "60", "120", "240", "360", "720", "D", "M", "W"] },
               { name: "start", type: "integer", desc: "Start timestamp (ms)" },
@@ -77,7 +90,9 @@ export const GetKlineApi = () => {
           </div>
         </div>
 
-                        <div style={{ marginTop: "64px" }}>
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "interval"]} />
+
+        <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
             <div className="res-badge">
@@ -96,10 +111,14 @@ export const GetKlineApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "interval"]} 
         method="GET" 
         endpoint="/v5/market/kline" 
-        initialBody={initialBody} 
+        initialBody={requestBody} 
+        editable={false}
+        externalBody={requestBody}
+        setExternalBody={setRequestBody}
       />
     </div>
   );

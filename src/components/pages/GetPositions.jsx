@@ -65,13 +65,13 @@ export const GetPositions = () => {
 
   const codeMap = {
     HTTP: `GET /v5/position/list?category=linear&symbol=BTCUSD HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672280218882
 X-BAPI-RECV-WINDOW: 5000`,
     Python: `import requests
-url = "https://api.bitzup.com/v5/position/list"
+url = "https://test.bitzup.com/v5/position/list"
 headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
     "X-BAPI-TIMESTAMP": "1672280218882", "X-BAPI-RECV-WINDOW": "5000"}
 params = {"category": "linear", "symbol": "BTCUSD"}
@@ -83,7 +83,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/position/list?category=linear&symbol=BTCUSD"
+    url := "https://test.bitzup.com/v5/position/list?category=linear&symbol=BTCUSD"
     req, _ := http.NewRequest("GET", url, nil)
     req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
     req.Header.Set("X-BAPI-SIGN", "XXXXX")
@@ -99,7 +99,7 @@ public class GetPositionInfoExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/position/list?category=linear&symbol=BTCUSD"))
+            .uri(URI.create("https://test.bitzup.com/v5/position/list?category=linear&symbol=BTCUSD"))
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
             .GET().build();
@@ -110,7 +110,7 @@ public class GetPositionInfoExample {
     Node: `const axios = require("axios");
 async function getPositionInfo() {
   try {
-    const response = await axios.get("https://api.bitzup.com/v5/position/list",
+    const response = await axios.get("https://test.bitzup.com/v5/position/list",
       { params: { category: "linear", symbol: "BTCUSD" },
         headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

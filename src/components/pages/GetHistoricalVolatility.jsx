@@ -88,11 +88,11 @@ export const GetHistoricalVolatility = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/historical-volatility"
+url = "https://test.bitzup.com/v5/market/historical-volatility"
 params = {
     "category": "linear",
     "baseCoin": "ETH",
@@ -115,7 +115,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30"
+    url := "https://test.bitzup.com/v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -142,7 +142,7 @@ import java.net.http.HttpResponse;
 
 public class GetHistoricalVolatilityDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30";
+        String url = "https://test.bitzup.com/v5/market/historical-volatility?category=linear&baseCoin=ETH&period=30";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -160,7 +160,7 @@ public class GetHistoricalVolatilityDemo {
 async function getHistoricalVolatility() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/historical-volatility',
+            'https://test.bitzup.com/v5/market/historical-volatility',
             {
                 params: {
                     category: "linear",

@@ -93,11 +93,11 @@ export const GetFundingRateHistory = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/funding/history?category=linear&symbol=ETHPERP&limit=1 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/funding/history"
+url = "https://test.bitzup.com/v5/market/funding/history"
 params = {
     "category": "linear",
     "symbol": "ETHPERP",
@@ -120,7 +120,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/funding/history?category=linear&symbol=ETHPERP&limit=1"
+    url := "https://test.bitzup.com/v5/market/funding/history?category=linear&symbol=ETHPERP&limit=1"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -147,7 +147,7 @@ import java.net.http.HttpResponse;
 
 public class GetFundingRateHistoryDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/funding/history?category=linear&symbol=ETHPERP&limit=1";
+        String url = "https://test.bitzup.com/v5/market/funding/history?category=linear&symbol=ETHPERP&limit=1";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -165,7 +165,7 @@ public class GetFundingRateHistoryDemo {
 async function getFundingRateHistory() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/funding/history',
+            'https://test.bitzup.com/v5/market/funding/history',
             {
                 params: {
                     category: 'linear',

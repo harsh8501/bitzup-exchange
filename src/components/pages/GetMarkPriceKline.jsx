@@ -96,11 +96,11 @@ export const GetMarkPriceKline = () => {
 
   const codeMap = {
     HTTP: `GET /v5/market/mark-price-kline?category=linear&symbol=BTCUSDT&interval=15&start=1670601600000&end=1670608800000&limit=1 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/mark-price-kline"
+url = "https://test.bitzup.com/v5/market/mark-price-kline"
 params = {
     "category": "linear",
     "symbol": "BTCUSDT",
@@ -126,7 +126,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/mark-price-kline?category=linear&symbol=BTCUSDT&interval=15&start=1670601600000&end=1670608800000&limit=1"
+    url := "https://test.bitzup.com/v5/market/mark-price-kline?category=linear&symbol=BTCUSDT&interval=15&start=1670601600000&end=1670608800000&limit=1"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -153,7 +153,7 @@ import java.net.http.HttpResponse;
 
 public class GetMarkPriceKlineDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/mark-price-kline?category=linear&symbol=BTCUSDT&interval=15&start=1670601600000&end=1670608800000&limit=1";
+        String url = "https://test.bitzup.com/v5/market/mark-price-kline?category=linear&symbol=BTCUSDT&interval=15&start=1670601600000&end=1670608800000&limit=1";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -171,7 +171,7 @@ public class GetMarkPriceKlineDemo {
 async function getMarkPriceKline() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/mark-price-kline',
+            'https://test.bitzup.com/v5/market/mark-price-kline',
             {
                 params: {
                     category: 'linear',
@@ -240,7 +240,7 @@ getMarkPriceKline();`,
                       <td>category</td>
                       <td>true</td>
                       <td>string</td>
-                      <td>Product type. <span className="pill">linear</span>, <span className="pill">inverse</span>. When category is not passed, use linear by default</td>
+                      <td>Product type. <span className="pill">linear</span></td>
                     </tr>
                     <tr>
                       <td>symbol</td>

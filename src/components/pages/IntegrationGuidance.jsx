@@ -55,13 +55,13 @@ jsonBodyString = {"category": "linear", "symbol": "BTCUSDT", "side": "Buy", "ord
 
   const codeMapHttp = {
     GET: `GET /v5/order/realtime?category=linear&symbol=BTCUSDT HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 -H 'X-BAPI-SIGN: XXXXXXXXXX' \\
 -H 'X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx' \\
 -H 'X-BAPI-TIMESTAMP: 1658384431891' \\
 -H 'X-BAPI-RECV-WINDOW: 5000'`,
     POST: `POST /v5/order/create HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 -H 'X-Referer: XXXXXXXXXX' \\ [the header for broker users only]
 -H 'X-BAPI-SIGN: XXXXXXXXXX' \\
 -H 'X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx' \\
@@ -116,7 +116,7 @@ Host: api.bitzup.com
               <div>
                 <span style={{ display: "block", marginBottom: "8px" }}>Mainnet:</span>
                 <ul style={{ listStyle: "none", paddingLeft: "20px" }}>
-                  <li>- <code style={{ background: "var(--bg-card)", padding: "4px 8px", borderRadius: "4px" }}>https://api.bitzup.com</code></li>
+                  <li>- <code style={{ background: "var(--bg-card)", padding: "4px 8px", borderRadius: "4px" }}>https://test.bitzup.com</code></li>
                 </ul>
               </div>
             </li>

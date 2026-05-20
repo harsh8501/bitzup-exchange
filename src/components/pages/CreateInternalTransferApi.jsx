@@ -1,17 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const CreateInternalTransferApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     transferId: "42c0ab0-6bca-c242-bc76-4e6df6cbab16",
     coin: "USDT",
     amount: "10",
     fromAccountType: "UNIFIED",
     toAccountType: "SPOT"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -71,6 +72,8 @@ export const CreateInternalTransferApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["transferId", "coin", "amount", "fromAccountType", "toAccountType"]} />
+
         <div className="api-box">
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
@@ -111,10 +114,11 @@ export const CreateInternalTransferApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["transferId", "coin", "amount", "fromAccountType", "toAccountType"]} 
         method="POST" 
         endpoint="/v5/asset/transfer/inter-transfer" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

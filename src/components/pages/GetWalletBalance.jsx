@@ -67,7 +67,7 @@ export const GetWalletBalance = () => {
 
     const codeMap = {
         HTTP: `POST /futures/api/v1/get-balance HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <your_token>
 
@@ -77,7 +77,7 @@ Authorization: Bearer <your_token>
 
         Python: `import requests
 
-url = "https://api.bitzup.com/futures/api/v1/get-balance"
+url = "https://test.bitzup.com/futures/api/v1/get-balance"
 
 headers = {
     "Content-Type": "application/json",
@@ -110,7 +110,7 @@ import (
 )
 
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/get-balance"
+	url := "https://test.bitzup.com/futures/api/v1/get-balance"
 
 	body, _ := json.Marshal(map[string]string{
 		"coin":    "USDT",
@@ -139,7 +139,7 @@ import java.time.Duration;
 
 public class GetWalletBalanceExample {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/futures/api/v1/get-balance";
+        String url = "https://test.bitzup.com/futures/api/v1/get-balance";
 
         String json = """
             {
@@ -170,7 +170,7 @@ public class GetWalletBalanceExample {
 async function getWalletBalance() {
   try {
     const response = await axios.post(
-      "https://api.bitzup.com/futures/api/v1/get-balance",
+      "https://test.bitzup.com/futures/api/v1/get-balance",
       {
         coin: "USDT",
       },

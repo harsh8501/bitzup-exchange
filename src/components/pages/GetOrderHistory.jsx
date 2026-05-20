@@ -74,13 +74,13 @@ export const GetOrderHistory = () => {
 
   const codeMap = {
     HTTP: `GET /v5/order/history?category=linear&limit=1 HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672221263407
 X-BAPI-RECV-WINDOW: 5000`,
     Python: `import requests
-url = "https://api.bitzup.com/v5/order/history"
+url = "https://test.bitzup.com/v5/order/history"
 headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
     "X-BAPI-TIMESTAMP": "1672221263407", "X-BAPI-RECV-WINDOW": "5000"}
 params = {"category": "linear", "limit": 1}
@@ -92,7 +92,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/order/history?category=linear&limit=1"
+    url := "https://test.bitzup.com/v5/order/history?category=linear&limit=1"
     req, _ := http.NewRequest("GET", url, nil)
     req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
     req.Header.Set("X-BAPI-SIGN", "XXXXX")
@@ -108,7 +108,7 @@ public class GetOrderHistoryExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/order/history?category=linear&limit=1"))
+            .uri(URI.create("https://test.bitzup.com/v5/order/history?category=linear&limit=1"))
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
             .GET().build();
@@ -119,7 +119,7 @@ public class GetOrderHistoryExample {
     Node: `const axios = require("axios");
 async function getOrderHistory() {
   try {
-    const response = await axios.get("https://api.bitzup.com/v5/order/history",
+    const response = await axios.get("https://test.bitzup.com/v5/order/history",
       { params: { category: "linear", limit: 1 },
         headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

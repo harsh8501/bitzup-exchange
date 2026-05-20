@@ -1,19 +1,20 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 import { Link } from "react-router-dom";
 
 export const GetPremiumIndexPriceKlineApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     interval: "15",
     start: "",
     end: "",
     limit: 200
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -77,6 +78,8 @@ export const GetPremiumIndexPriceKlineApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "interval"]} />
 <div><Link to={"/docs/v5/market/premium-index-price-kline-api"} className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link></div>
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -97,10 +100,11 @@ export const GetPremiumIndexPriceKlineApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "interval"]} 
         method="GET" 
         endpoint="/v5/market/premium-index-price-kline" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

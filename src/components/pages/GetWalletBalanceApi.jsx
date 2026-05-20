@@ -1,14 +1,15 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetWalletBalanceApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     accountType: "UNIFIED",
     coin: "USDT,USDC"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -72,7 +73,7 @@ export const GetWalletBalanceApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "accountType", type: "string", req: true, desc: "Account type", values: ["UNIFIED", "CONTRACT", "SPOT"] },
+              { name: "accountType", type: "string", req: true, desc: "Account type", values: ["UNIFIED"] },
               { name: "coin", type: "string", desc: "Coin name. You can pass multiple coins like USDT,USDC" },
             ].map(p => (
               <div className="tree-item" key={p.name}>
@@ -85,6 +86,8 @@ export const GetWalletBalanceApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["accountType"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -105,10 +108,11 @@ export const GetWalletBalanceApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["accountType"]} 
         method="GET" 
         endpoint="/v5/account/wallet-balance" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

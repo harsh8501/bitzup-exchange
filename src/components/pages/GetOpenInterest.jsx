@@ -98,11 +98,11 @@ export const GetOpenInterest = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/open-interest"
+url = "https://test.bitzup.com/v5/market/open-interest"
 params = {
     "category": "linear",
     "symbol": "BTCUSD",
@@ -127,7 +127,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000"
+    url := "https://test.bitzup.com/v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -154,7 +154,7 @@ import java.net.http.HttpResponse;
 
 public class GetOpenInterestDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000";
+        String url = "https://test.bitzup.com/v5/market/open-interest?category=linear&symbol=BTCUSD&intervalTime=5min&startTime=1669571100000&endTime=1669571400000";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -172,7 +172,7 @@ public class GetOpenInterestDemo {
 async function getOpenInterest() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/open-interest',
+            'https://test.bitzup.com/v5/market/open-interest',
             {
                 params: {
                     category: "linear",

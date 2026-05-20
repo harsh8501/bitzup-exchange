@@ -86,7 +86,7 @@ export const ModifyOrder = () => {
 
   const codeMap = {
     HTTP: `POST /v5/order/amend HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -103,7 +103,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/order/amend"
+url = "https://test.bitzup.com/v5/order/amend"
 headers = {
     "Content-Type": "application/json",
     "Authorization": "Bearer <YOUR_API_KEY>"
@@ -137,7 +137,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/order/amend"
+    url := "https://test.bitzup.com/v5/order/amend"
     payload := map[string]interface{}{
         "category":     "linear",
         "symbol":       "ETHPERP",
@@ -173,7 +173,7 @@ import java.net.http.HttpResponse;
 
 public class AmendOrderDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/order/amend";
+        String url = "https://test.bitzup.com/v5/order/amend";
         String payload = """
             {
                 "category": "linear",
@@ -205,7 +205,7 @@ public class AmendOrderDemo {
 async function amendOrder() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/order/amend',
+            'https://test.bitzup.com/v5/order/amend',
             {
                 category: 'linear',
                 symbol: 'ETHPERP',

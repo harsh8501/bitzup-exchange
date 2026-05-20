@@ -115,7 +115,7 @@ def on_open(ws):
 
 if __name__ == "__main__":
     websocket.enableTrace(False)
-    url = "wss://stream.bitzup.com/v5/public/linear"
+    url = "wss://stream-testnet.bitzup.com/v5/public/linear"
     ws = websocket.WebSocketApp(url,
                               on_open=on_open,
                               on_message=on_message,
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 `,
     Node: `const WebSocket = require('ws');
 
-const url = 'wss://stream.bitzup.com/v5/public/linear';
+const url = 'wss://stream-testnet.bitzup.com/v5/public/linear';
 const ws = new WebSocket(url);
 
 ws.on('open', function open() {

@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const SetAutoAddMarginApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "ETHUSDT",
     autoAddMargin: 0,
     positionIdx: 0
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -74,7 +75,7 @@ export const SetAutoAddMarginApi = () => {
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "autoAddMargin", type: "integer", req: true, desc: "0: turn off, 1: turn on", values: ["0", "1"] },
               { name: "positionIdx", type: "integer", req: true, desc: "Position index. 0: One-Way, 1: Buy side, 2: Sell side", values: ["0", "1", "2"] },
@@ -89,6 +90,8 @@ export const SetAutoAddMarginApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "autoAddMargin", "positionIdx"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -109,10 +112,11 @@ export const SetAutoAddMarginApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "autoAddMargin", "positionIdx"]} 
         method="POST" 
         endpoint="/v5/position/set-auto-add-margin" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
       </div>
   );

@@ -87,11 +87,11 @@ export const GetServerTime = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/time HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/time"
+url = "https://test.bitzup.com/v5/market/time"
 
 try:
     response = requests.get(url)
@@ -109,7 +109,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/time"
+    url := "https://test.bitzup.com/v5/market/time"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -136,7 +136,7 @@ import java.net.http.HttpResponse;
 
 public class GetServerTimeDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/time";
+        String url = "https://test.bitzup.com/v5/market/time";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -153,7 +153,7 @@ public class GetServerTimeDemo {
 
 async function getServerTime() {
     try {
-        const response = await axios.get('https://api.bitzup.com/v5/market/time');
+        const response = await axios.get('https://test.bitzup.com/v5/market/time');
         console.log(response.data);
     } catch (error) {
         console.error(error.message);

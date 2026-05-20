@@ -100,11 +100,11 @@ export const GetLongShortRatio = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/account-ratio?category=linear&symbol=BTCUSDT&period=1h&limit=2 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/account-ratio"
+url = "https://test.bitzup.com/v5/market/account-ratio"
 params = {
     "category": "linear",
     "symbol": "BTCUSDT",
@@ -128,7 +128,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/account-ratio?category=linear&symbol=BTCUSDT&period=1h&limit=2"
+    url := "https://test.bitzup.com/v5/market/account-ratio?category=linear&symbol=BTCUSDT&period=1h&limit=2"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -155,7 +155,7 @@ import java.net.http.HttpResponse;
 
 public class GetLongShortRatioDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/account-ratio?category=linear&symbol=BTCUSDT&period=1h&limit=2";
+        String url = "https://test.bitzup.com/v5/market/account-ratio?category=linear&symbol=BTCUSDT&period=1h&limit=2";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -173,7 +173,7 @@ public class GetLongShortRatioDemo {
 async function getLongShortRatio() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/account-ratio',
+            'https://test.bitzup.com/v5/market/account-ratio',
             {
                 params: {
                     category: 'linear',

@@ -84,7 +84,7 @@ export const SetCollateralCoin = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/set-collateral-switch HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -95,7 +95,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/set-collateral-switch"
+url = "https://test.bitzup.com/v5/account/set-collateral-switch"
 payload = {
     "coin": "BTC",
     "collateralSwitch": "ON"
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/set-collateral-switch"
+    url := "https://test.bitzup.com/v5/account/set-collateral-switch"
     payload := []byte(` + "`" + `{"coin": "BTC", "collateralSwitch": "ON"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -152,7 +152,7 @@ import java.net.http.HttpResponse;
 
 public class SetCollateralDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/set-collateral-switch";
+        String url = "https://test.bitzup.com/v5/account/set-collateral-switch";
         String payload = "{\\"coin\\": \\"BTC\\", \\"collateralSwitch\\": \\"ON\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -173,7 +173,7 @@ public class SetCollateralDemo {
 async function setCollateralCoin() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/set-collateral-switch',
+            'https://test.bitzup.com/v5/account/set-collateral-switch',
             {
                 coin: 'BTC',
                 collateralSwitch: 'ON'

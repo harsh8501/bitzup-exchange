@@ -22,10 +22,10 @@ export const CloseAllPositions = () => {
 }`;
     const codeMap = {
         HTTP: `GET /futures/api/v1/close-all-position HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <your_token>`,
         Python: `import requests
-url = "https://api.bitzup.com/futures/api/v1/close-all-position"
+url = "https://test.bitzup.com/futures/api/v1/close-all-position"
 headers = {"Authorization": "Bearer <your_token>"}
 try:
     resp = requests.get(url, headers=headers, timeout=10)
@@ -36,7 +36,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/close-all-position"
+	url := "https://test.bitzup.com/futures/api/v1/close-all-position"
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("Authorization", "Bearer <your_token>")
 	client := &http.Client{Timeout: 10 * time.Second}
@@ -51,7 +51,7 @@ public class CloseAllPositionsExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/close-all-position"))
+            .uri(URI.create("https://test.bitzup.com/futures/api/v1/close-all-position"))
             .header("Authorization", "Bearer <your_token>")
             .GET().build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -61,7 +61,7 @@ public class CloseAllPositionsExample {
         Node: `const axios = require("axios");
 async function closeAllPositions() {
   try {
-    const response = await axios.get("https://api.bitzup.com/futures/api/v1/close-all-position",
+    const response = await axios.get("https://test.bitzup.com/futures/api/v1/close-all-position",
       { headers: { Authorization: "Bearer <your_token>" } });
     console.log(response.data);
   } catch (error) { console.error("Error:", error.response?.data || error.message); }

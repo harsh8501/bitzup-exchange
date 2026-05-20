@@ -104,7 +104,7 @@ export const CreateSubUIDAPIKey = () => {
 
     const codeMap = {
         HTTP: `POST /v5/user/create-sub-api HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>
 Content-Type: application/json
 
@@ -121,7 +121,7 @@ Content-Type: application/json
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/user/create-sub-api"
+url = "https://test.bitzup.com/v5/user/create-sub-api"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>",
     "Content-Type": "application/json"
@@ -154,7 +154,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/user/create-sub-api"
+    url := "https://test.bitzup.com/v5/user/create-sub-api"
     payload := []byte(` + "`" + `{"subuid":53888000,"note":"testxxx","readOnly":0,"permissions":{"Wallet":["AccountTransfer"]}}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -184,7 +184,7 @@ import java.net.http.HttpResponse;
 
 public class CreateSubUIDAPIKeyDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/user/create-sub-api";
+        String url = "https://test.bitzup.com/v5/user/create-sub-api";
         String payload = "{\\"subuid\\":53888000,\\"note\\":\\"testxxx\\",\\"readOnly\\":0,\\"permissions\\":{\\"Wallet\\":[\\"AccountTransfer\\"]}}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -205,7 +205,7 @@ public class CreateSubUIDAPIKeyDemo {
 async function createSubUIDAPIKey() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/user/create-sub-api',
+            'https://test.bitzup.com/v5/user/create-sub-api',
             {
                 subuid: 53888000,
                 note: 'testxxx',

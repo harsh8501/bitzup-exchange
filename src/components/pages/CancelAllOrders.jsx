@@ -38,7 +38,7 @@ export const CancelAllOrders = () => {
 
     const codeMap = {
         HTTP: `POST /v5/order/cancel-all HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672219779140
@@ -51,7 +51,7 @@ Content-Type: application/json
     "settleCoin": "USDT"
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/v5/order/cancel-all"
+url = "https://test.bitzup.com/v5/order/cancel-all"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672219779140", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "settleCoin": "USDT"}
@@ -63,7 +63,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/order/cancel-all"
+    url := "https://test.bitzup.com/v5/order/cancel-all"
     body, _ := json.Marshal(map[string]interface{}{"category": "linear", "settleCoin": "USDT"})
     req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
     req.Header.Set("Content-Type", "application/json")
@@ -82,7 +82,7 @@ public class CancelAllOrdersExample {
         String json = """{"category":"linear","settleCoin":"USDT"}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/order/cancel-all"))
+            .uri(URI.create("https://test.bitzup.com/v5/order/cancel-all"))
             .header("Content-Type", "application/json")
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
@@ -94,7 +94,7 @@ public class CancelAllOrdersExample {
         Node: `const axios = require("axios");
 async function cancelAllOrders() {
   try {
-    const response = await axios.post("https://api.bitzup.com/v5/order/cancel-all",
+    const response = await axios.post("https://test.bitzup.com/v5/order/cancel-all",
       { category: "linear", settleCoin: "USDT" },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

@@ -91,13 +91,13 @@ export const GetTransferableAmount = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/withdrawal?coinName=BTC,SOL,ETH,XRP HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/withdrawal"
+url = "https://test.bitzup.com/v5/account/withdrawal"
 params = {
     "coinName": "BTC,SOL,ETH,XRP"
 }
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/withdrawal?coinName=BTC,SOL,ETH,XRP"
+    url := "https://test.bitzup.com/v5/account/withdrawal?coinName=BTC,SOL,ETH,XRP"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -151,7 +151,7 @@ import java.net.http.HttpResponse;
 
 public class GetTransferableAmountDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/withdrawal?coinName=BTC,SOL,ETH,XRP";
+        String url = "https://test.bitzup.com/v5/account/withdrawal?coinName=BTC,SOL,ETH,XRP";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -171,7 +171,7 @@ public class GetTransferableAmountDemo {
 async function getTransferableAmount() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/withdrawal',
+            'https://test.bitzup.com/v5/account/withdrawal',
             {
                 params: {
                     coinName: 'BTC,SOL,ETH,XRP'

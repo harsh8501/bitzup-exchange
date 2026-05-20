@@ -91,12 +91,12 @@ export const GetAccountInfo = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/info HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/info"
+url = "https://test.bitzup.com/v5/account/info"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -117,7 +117,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/info"
+    url := "https://test.bitzup.com/v5/account/info"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -145,7 +145,7 @@ import java.net.http.HttpResponse;
 
 public class GetAccountInfoDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/info";
+        String url = "https://test.bitzup.com/v5/account/info";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -164,7 +164,7 @@ public class GetAccountInfoDemo {
 async function getAccountInfo() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/info',
+            'https://test.bitzup.com/v5/account/info',
             {
                 headers: {
                     'Authorization': 'Bearer <YOUR_API_KEY>'

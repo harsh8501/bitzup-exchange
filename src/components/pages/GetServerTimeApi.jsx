@@ -1,11 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetServerTimeApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {};
+  const [requestBody, setRequestBody] = useState({});
 
   return (
     <div className="api-doc-container">
@@ -67,10 +68,11 @@ export const GetServerTimeApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={[]} 
         method="GET" 
         endpoint="/v5/market/time" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

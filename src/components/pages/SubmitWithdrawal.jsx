@@ -85,7 +85,7 @@ export const SubmitWithdrawal = () => {
 
     const codeMap = {
         HTTP: `POST /v5/asset/withdraw/create HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>
 Content-Type: application/json
 
@@ -101,7 +101,7 @@ Content-Type: application/json
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/withdraw/create"
+url = "https://test.bitzup.com/v5/asset/withdraw/create"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>",
     "Content-Type": "application/json"
@@ -133,7 +133,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/withdraw/create"
+    url := "https://test.bitzup.com/v5/asset/withdraw/create"
     payload := []byte(` + "`" + `{"coin":"USDT","chain":"ETH","address":"0x99ced129603abc771c0dabe935c326ff6c86645d","amount":"24","timestamp":1672196561407,"forceChain":0,"accountType":"FUND"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -163,7 +163,7 @@ import java.net.http.HttpResponse;
 
 public class SubmitWithdrawalDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/withdraw/create";
+        String url = "https://test.bitzup.com/v5/asset/withdraw/create";
         String payload = "{\\"coin\\":\\"USDT\\",\\"chain\\":\\"ETH\\",\\"address\\":\\"0x99ced129603abc771c0dabe935c326ff6c86645d\\",\\"amount\\":\\"24\\",\\"timestamp\\":1672196561407,\\"forceChain\\":0,\\"accountType\\":\\"FUND\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -184,7 +184,7 @@ public class SubmitWithdrawalDemo {
 async function submitWithdrawal() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/asset/withdraw/create',
+            'https://test.bitzup.com/v5/asset/withdraw/create',
             {
                 coin: 'USDT',
                 chain: 'ETH',

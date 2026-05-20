@@ -92,12 +92,12 @@ export const GetFeeRate = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/fee-rate?symbol=ETHUSDT HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/fee-rate"
+url = "https://test.bitzup.com/v5/account/fee-rate"
 params = {
     "symbol": "ETHUSDT"
 }
@@ -121,7 +121,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/fee-rate?symbol=ETHUSDT"
+    url := "https://test.bitzup.com/v5/account/fee-rate?symbol=ETHUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -149,7 +149,7 @@ import java.net.http.HttpResponse;
 
 public class GetFeeRateDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/fee-rate?symbol=ETHUSDT";
+        String url = "https://test.bitzup.com/v5/account/fee-rate?symbol=ETHUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -168,7 +168,7 @@ public class GetFeeRateDemo {
 async function getFeeRate() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/fee-rate',
+            'https://test.bitzup.com/v5/account/fee-rate',
             {
                 params: {
                     symbol: 'ETHUSDT'

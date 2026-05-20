@@ -26,7 +26,7 @@ export const SetLeverage = () => {
 
   const codeMap = {
     HTTP: `POST /v5/position/set-leverage HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672281605082
@@ -40,7 +40,7 @@ Content-Type: application/json
     "sellLeverage": "6"
 }`,
     Python: `import requests
-url = "https://api.bitzup.com/v5/position/set-leverage"
+url = "https://test.bitzup.com/v5/position/set-leverage"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672281605082", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {"category": "linear", "symbol": "BTCUSDT", "buyLeverage": "6", "sellLeverage": "6"}
@@ -52,7 +52,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/position/set-leverage"
+    url := "https://test.bitzup.com/v5/position/set-leverage"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "linear", "symbol": "BTCUSDT",
         "buyLeverage": "6", "sellLeverage": "6",
@@ -73,7 +73,7 @@ public class SetLeverageExample {
         String json = """{"category":"linear","symbol":"BTCUSDT","buyLeverage":"6","sellLeverage":"6"}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/position/set-leverage"))
+            .uri(URI.create("https://test.bitzup.com/v5/position/set-leverage"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -83,7 +83,7 @@ public class SetLeverageExample {
     Node: `const axios = require("axios");
 async function setLeverage() {
   try {
-    const response = await axios.post("https://api.bitzup.com/v5/position/set-leverage",
+    const response = await axios.post("https://test.bitzup.com/v5/position/set-leverage",
       { category: "linear", symbol: "BTCUSDT", buyLeverage: "6", sellLeverage: "6" },
       { headers: { "Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

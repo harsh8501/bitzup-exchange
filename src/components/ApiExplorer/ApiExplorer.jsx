@@ -3,8 +3,20 @@ import { FiCopy, FiCheck, FiLock, FiKey } from "react-icons/fi";
 import { SiPython, SiGo, SiNodedotjs, SiRuby, SiPhp } from "react-icons/si";
 import { FaLinux } from "react-icons/fa";
 
-const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https://test.bitzup.com/futures-api" }) => {
-  const [requestBody, setRequestBody] = useState(initialBody);
+const ApiExplorer = ({ 
+  method = "POST", 
+  endpoint, 
+  initialBody, 
+  baseUrl = "https://test.bitzup.com/futures-api",
+  editable = true,
+  externalBody,
+  setExternalBody,
+  requiredFields = []
+}) => {
+  const [internalBody, setInternalBody] = useState(initialBody);
+
+  const requestBody = externalBody !== undefined ? externalBody : internalBody;
+  const setRequestBody = setExternalBody !== undefined ? setExternalBody : setInternalBody;
   const [lang, setLang] = useState("Node");
   const [copied, setCopied] = useState(false);
   const [response, setResponse] = useState(null);
@@ -15,6 +27,25 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
   const [apiSecret, setApiSecret] = useState(localStorage.getItem("bitzup_api_secret") || "");
   const [saveKeys, setSaveKeys] = useState(true);
 
+  // Helper to deep clean body (completely pruning optional empty fields)
+  const getCleanedBody = (body) => {
+    if (!body) return {};
+    const cleaned = {};
+    Object.entries(body).forEach(([key, val]) => {
+      const isRequired = requiredFields && requiredFields.some(rf => rf.toLowerCase() === key.toLowerCase());
+      if (isRequired) {
+        cleaned[key] = val;
+      } else {
+        if (val !== "" && val !== null && val !== undefined) {
+          cleaned[key] = val;
+        }
+      }
+    });
+    return cleaned;
+  };
+
+  const cleanedBody = getCleanedBody(requestBody);
+
   useEffect(() => {
     if (saveKeys) {
       localStorage.setItem("bitzup_api_key", apiKey);
@@ -24,6 +55,68 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
       localStorage.removeItem("bitzup_api_secret");
     }
   }, [apiKey, apiSecret, saveKeys]);
+
+  const [signature, setSignature] = useState("008416ddff72ac7b6fb75cf4d9dde211e14afb347b");
+  const [timestamp, setTimestamp] = useState(Date.now().toString());
+  const [recvWindow, setRecvWindow] = useState("20000");
+
+  const generateSignature = async (secret, message) => {
+    try {
+      const encoder = new TextEncoder();
+      const keyData = encoder.encode(secret);
+      const messageData = encoder.encode(message);
+      const cryptoKey = await window.crypto.subtle.importKey(
+        "raw",
+        keyData,
+        { name: "HMAC", hash: "SHA-256" },
+        false,
+        ["sign"]
+      );
+      const signatureBuffer = await window.crypto.subtle.sign(
+        "HMAC",
+        cryptoKey,
+        messageData
+      );
+      const hashArray = Array.from(new Uint8Array(signatureBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch (err) {
+      console.error(err);
+      return "008416ddff72ac7b6fb75cf4d9dde211e14afb347b";
+    }
+  };
+
+  useEffect(() => {
+    const updateAuthHeaders = async () => {
+      const ts = Date.now().toString();
+      const rw = "20000";
+      setTimestamp(ts);
+      setRecvWindow(rw);
+
+      if (!apiKey || !apiSecret) {
+        setSignature("008416ddff72ac7b6fb75cf4d9dde211e14afb347b");
+        return;
+      }
+
+      try {
+        let payload = "";
+        if (method === "GET") {
+          const sortedKeys = Object.keys(cleanedBody).sort();
+          payload = sortedKeys
+            .map(k => `${k}=${cleanedBody[k]}`)
+            .join("&");
+        } else {
+          payload = JSON.stringify(cleanedBody);
+        }
+        const message = ts + apiKey + rw + payload;
+        const sign = await generateSignature(apiSecret, message);
+        setSignature(sign);
+      } catch (err) {
+        console.error("Signature calculation error:", err);
+      }
+    };
+
+    updateAuthHeaders();
+  }, [apiKey, apiSecret, requestBody, method, JSON.stringify(cleanedBody)]);
 
   const handleInputChange = (path, value) => {
     setRequestBody(prev => {
@@ -84,6 +177,31 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
     return String(obj);
   };
 
+  const renderStaticJson = (obj) => {
+    const jsonString = JSON.stringify(obj, null, 2);
+    return (
+      <span dangerouslySetInnerHTML={{
+        __html: jsonString
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g, function (match) {
+            let style = 'color: #d19a66;'; // orange for numbers
+            if (/^"/.test(match)) {
+              if (/:$/.test(match)) {
+                style = 'color: #e06c75; font-weight: 600;'; // rose/red for keys
+              } else {
+                style = 'color: #98c379;'; // green for string values
+              }
+            } else if (/true|false/.test(match)) {
+              style = 'color: #56b6c2;'; // cyan for booleans
+            } else if (/null/.test(match)) {
+              style = 'color: #56b6c2;';
+            }
+            return '<span style="' + style + '">' + match + '</span>';
+          })
+      }} />
+    );
+  };
+
   const handleCopy = async (text) => {
     await navigator.clipboard.writeText(text);
     setCopied(true);
@@ -91,6 +209,163 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
   };
 
   const handleSendRequest = async () => {
+    setResponse(null);
+
+    const validationErrors = [];
+
+    // 1. Validate API Key & Secret (unless it is a public /market/ endpoint)
+    const isMarketEndpoint = endpoint && endpoint.includes('/market/');
+    if (!isMarketEndpoint) {
+      if (!apiKey) {
+        validationErrors.push("API Key is required for private endpoints.");
+      }
+      if (!apiSecret) {
+        validationErrors.push("API Secret is required for private endpoints.");
+      }
+    }
+
+    // 2. Validate Required Fields (presence check)
+    if (requiredFields && Array.isArray(requiredFields)) {
+      requiredFields.forEach(field => {
+        const val = requestBody[field];
+        if (val === undefined || val === null || (typeof val === "string" && val.trim() === "")) {
+          validationErrors.push(`Required field "${field}" is missing or empty.`);
+        }
+      });
+    }
+
+    // 3. Type/Value specific validations across all standard Bybit V5 API fields
+    Object.entries(requestBody).forEach(([key, val]) => {
+      // Only validate non-empty fields
+      if (val === "" || val === null || val === undefined) return;
+
+      const keyLower = key.toLowerCase();
+
+      // Standard Bybit Numeric Decimal Strings
+      const numericStringKeys = [
+        "qty", "price", "triggerprice", "takeprofit", "stoploss", 
+        "tplimitprice", "sllimitprice", "amount", "buyval", "sellval", 
+        "baseprice", "risklimitvalue", "margin", "trailingstop", "activeprice"
+      ];
+      if (numericStringKeys.some(nk => keyLower === nk)) {
+        const numVal = parseFloat(val);
+        if (isNaN(numVal) || numVal <= 0) {
+          validationErrors.push(`"${key}" must be a valid positive numeric string (e.g. "0.01", "2000"). Got: "${val}"`);
+        }
+      }
+
+      // Standard Bybit Integers
+      const integerKeys = [
+        "positionidx", "triggerdirection", "isleverage", "leverage", 
+        "riskid", "buyleverage", "sellleverage", "mode", "trademode", 
+        "autoaddmargin", "limit"
+      ];
+      if (integerKeys.some(ik => keyLower === ik)) {
+        const intVal = parseInt(val, 10);
+        if (isNaN(intVal) || intVal.toString() !== val.toString()) {
+          validationErrors.push(`"${key}" must be a valid integer. Got: "${val}"`);
+        } else {
+          if (keyLower === "positionidx" && ![0, 1, 2].includes(intVal)) {
+            validationErrors.push(`"positionIdx" must be 0 (One-way), 1 (Buy Hedged), or 2 (Sell Hedged).`);
+          }
+          if (keyLower === "triggerdirection" && ![1, 2].includes(intVal)) {
+            validationErrors.push(`"triggerDirection" must be 1 (Rise) or 2 (Fall).`);
+          }
+          if (keyLower === "isleverage" && ![0, 1].includes(intVal)) {
+            validationErrors.push(`"isLeverage" must be 0 (No) or 1 (Yes).`);
+          }
+          if ((keyLower === "leverage" || keyLower === "buyleverage" || keyLower === "sellleverage") && (intVal < 1 || intVal > 125)) {
+            validationErrors.push(`"${key}" must be an integer between 1 and 125.`);
+          }
+          if (keyLower === "mode" && ![0, 3].includes(intVal)) {
+            validationErrors.push(`"mode" must be 0 (One-way) or 3 (Hedge Mode).`);
+          }
+          if (keyLower === "trademode" && ![0, 1].includes(intVal)) {
+            validationErrors.push(`"tradeMode" must be 0 (Cross Margin) or 1 (Isolated Margin).`);
+          }
+          if (keyLower === "autoaddmargin" && ![0, 1].includes(intVal)) {
+            validationErrors.push(`"autoAddMargin" must be 0 (No) or 1 (Yes).`);
+          }
+          if (keyLower === "limit" && intVal < 1) {
+            validationErrors.push(`"limit" must be a positive integer.`);
+          }
+        }
+      }
+
+      // Standard Bybit Booleans
+      const booleanKeys = ["reduceonly", "closeontrigger", "mmp"];
+      if (booleanKeys.some(bk => keyLower === bk)) {
+        if (val !== true && val !== false && val !== "true" && val !== "false") {
+          validationErrors.push(`"${key}" must be a boolean (true/false). Got: "${val}"`);
+        }
+      }
+
+      // Standard Bybit Uppercase Currency/Symbol checks
+      if (keyLower === "symbol") {
+        if (typeof val === "string" && !/^[A-Z0-9]+$/.test(val)) {
+          validationErrors.push(`"symbol" must be an uppercase alphanumeric string (e.g. "ETHUSDT"). Got: "${val}"`);
+        }
+      }
+      if (keyLower === "coin" || keyLower === "settlecoin") {
+        if (typeof val === "string" && !/^[A-Z0-9]+$/.test(val)) {
+          validationErrors.push(`"${key}" must be an uppercase currency string (e.g. "USDT"). Got: "${val}"`);
+        }
+      }
+
+      // UUID format validation for transfers
+      if (keyLower === "transferid") {
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        if (typeof val === "string" && !uuidRegex.test(val)) {
+          validationErrors.push(`"transferId" must be a valid UUID v4 string. Got: "${val}"`);
+        }
+      }
+
+      // Enum checks
+      if (keyLower === "side") {
+        if (val !== "Buy" && val !== "Sell") {
+          validationErrors.push(`"side" must be either "Buy" or "Sell". Got: "${val}"`);
+        }
+      }
+      if (keyLower === "ordertype") {
+        if (val !== "Limit" && val !== "Market") {
+          validationErrors.push(`"orderType" must be either "Limit" or "Market". Got: "${val}"`);
+        }
+      }
+      if (keyLower === "accounttype" || keyLower === "fromaccounttype" || keyLower === "toaccounttype") {
+        const accTypes = ["CONTRACT", "UNIFIED", "SPOT", "INVESTMENT"];
+        if (typeof val === "string" && !accTypes.includes(val.toUpperCase())) {
+          validationErrors.push(`"${key}" must be one of CONTRACT, UNIFIED, SPOT, INVESTMENT. Got: "${val}"`);
+        }
+      }
+      if (keyLower === "interval") {
+        const tifs = ["1", "3", "5", "15", "30", "60", "120", "240", "360", "720", "D", "M", "W"];
+        if (!tifs.includes(val.toString())) {
+          validationErrors.push(`"interval" must be one of: 1, 3, 5, 15, 30, 60, 120, 240, 360, 720, D, M, W. Got: "${val}"`);
+        }
+      }
+      if (keyLower === "timeinforce") {
+        const tifs = ["GTC", "IOC", "FOK", "PostOnly"];
+        if (!tifs.includes(val)) {
+          validationErrors.push(`"timeInForce" must be one of GTC, IOC, FOK, PostOnly. Got: "${val}"`);
+        }
+      }
+      if (keyLower === "marginmode") {
+        const modes = ["ISOLATED", "CROSS"];
+        if (!modes.includes(val.toString().toUpperCase())) {
+          validationErrors.push(`"marginMode" must be either "ISOLATED" or "CROSS". Got: "${val}"`);
+        }
+      }
+    });
+
+    if (validationErrors.length > 0) {
+      setResponse({
+        error: "Client-side Validation Failed",
+        message: "Please fix the following validation errors before sending the request:",
+        errors: validationErrors
+      });
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch(`${baseUrl}/v1/execute`, {
@@ -99,12 +374,15 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
           "Content-Type": "application/json",
           "X-BAPI-API-KEY": apiKey,
           "X-BAPI-API-SECRET": apiSecret,
+          "X-BAPI-TIMESTAMP": timestamp,
+          "X-BAPI-RECV-WINDOW": recvWindow,
+          "X-BAPI-SIGN": signature,
         },
         body: JSON.stringify({
           method,
           endpoint,
-          params: method === "GET" ? requestBody : {},
-          body: method === "POST" ? requestBody : {}
+          params: method === "GET" ? cleanedBody : {},
+          body: method === "POST" ? cleanedBody : {}
         })
       });
       const data = await res.json();
@@ -116,12 +394,15 @@ const ApiExplorer = ({ method = "POST", endpoint, initialBody, baseUrl = "https:
     }
   };
 
-  const bodyStr = JSON.stringify(requestBody, null, 2);
+  const bodyStr = JSON.stringify(cleanedBody, null, 2);
 
   const codeMap = {
     cURL: `curl -L -X ${method} '${baseUrl}${endpoint}' \\
 -H 'Content-Type: application/json' \\
 -H 'X-BAPI-API-KEY: ${apiKey || 'YOUR_API_KEY'}' \\
+-H 'X-BAPI-TIMESTAMP: ${timestamp}' \\
+-H 'X-BAPI-RECV-WINDOW: ${recvWindow}' \\
+-H 'X-BAPI-SIGN: ${signature}' \\
 --data-raw '${bodyStr}'`,
     Node: `const axios = require('axios');
 let data = JSON.stringify(${bodyStr});
@@ -131,7 +412,10 @@ axios({
   url: '${baseUrl}${endpoint}',
   headers: { 
     'Content-Type': 'application/json',
-    'X-BAPI-API-KEY': '${apiKey || 'YOUR_API_KEY'}'
+    'X-BAPI-API-KEY': '${apiKey || 'YOUR_API_KEY'}',
+    'X-BAPI-TIMESTAMP': '${timestamp}',
+    'X-BAPI-RECV-WINDOW': '${recvWindow}',
+    'X-BAPI-SIGN': '${signature}'
   },
   data : data
 }).then(res => console.log(res.data));`,
@@ -142,7 +426,10 @@ url = "${baseUrl}${endpoint}"
 payload = ${bodyStr}
 headers = { 
   'Content-Type': 'application/json',
-  'X-BAPI-API-KEY': '${apiKey || 'YOUR_API_KEY'}'
+  'X-BAPI-API-KEY': '${apiKey || 'YOUR_API_KEY'}',
+  'X-BAPI-TIMESTAMP': '${timestamp}',
+  'X-BAPI-RECV-WINDOW': '${recvWindow}',
+  'X-BAPI-SIGN': '${signature}'
 }
 response = requests.post(url, json=payload, headers=headers)
 print(response.json())`,
@@ -162,6 +449,9 @@ func main() {
   req, _ := http.NewRequest(method, url, payload)
   req.Header.Add("Content-Type", "application/json")
   req.Header.Add("X-BAPI-API-KEY", "${apiKey || 'YOUR_API_KEY'}")
+  req.Header.Add("X-BAPI-TIMESTAMP", "${timestamp}")
+  req.Header.Add("X-BAPI-RECV-WINDOW", "${recvWindow}")
+  req.Header.Add("X-BAPI-SIGN", "${signature}")
   res, _ := client.Do(req)
   defer res.Body.Close()
   body, _ := ioutil.ReadAll(res.Body)
@@ -178,6 +468,9 @@ https.use_ssl = true
 request = Net::HTTP::${method === 'POST' ? 'Post' : 'Get'}.new(url)
 request["Content-Type"] = "application/json"
 request["X-BAPI-API-KEY"] = "${apiKey || 'YOUR_API_KEY'}"
+request["X-BAPI-TIMESTAMP"] = "${timestamp}"
+request["X-BAPI-RECV-WINDOW"] = "${recvWindow}"
+request["X-BAPI-SIGN"] = "${signature}"
 request.body = JSON.dump(${bodyStr})
 
 response = https.request(request)
@@ -191,7 +484,10 @@ curl_setopt_array($curl, array(
   CURLOPT_POSTFIELDS =>'${bodyStr}',
   CURLOPT_HTTPHEADER => array(
     'Content-Type: application/json',
-    'X-BAPI-API-KEY: ${apiKey || 'YOUR_API_KEY'}'
+    'X-BAPI-API-KEY: ${apiKey || 'YOUR_API_KEY'}',
+    'X-BAPI-TIMESTAMP: ${timestamp}',
+    'X-BAPI-RECV-WINDOW: ${recvWindow}',
+    'X-BAPI-SIGN: ${signature}'
   ),
 ));
 $response = curl_exec($curl);
@@ -269,22 +565,14 @@ echo $response;`
             <FiLock className="credential-icon" />
             <input 
               className="credential-input" 
-              type="password" 
+              type="text" 
               placeholder="Enter your API Secret" 
               value={apiSecret}
               onChange={(e) => setApiSecret(e.target.value)}
             />
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
-          <input 
-            type="checkbox" 
-            checked={saveKeys} 
-            onChange={(e) => setSaveKeys(e.target.checked)}
-            id="saveKeys"
-          />
-          <label htmlFor="saveKeys" style={{ fontSize: '12px', color: '#888', cursor: 'pointer' }}>Save keys in browser</label>
-        </div>
+
       </div>
 
       <div className="endpoint-header">
@@ -308,7 +596,7 @@ echo $response;`
           {copied ? <FiCheck color="#1fb184" /> : <FiCopy />}
         </div>
         <pre className="code-content">
-          {renderEditableJson(requestBody)}
+          {editable ? renderEditableJson(requestBody) : renderStaticJson(requestBody)}
         </pre>
       </div>
 

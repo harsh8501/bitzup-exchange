@@ -1,11 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const SetTradingStopApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "ETHUSDT",
     takeProfit: "2500",
@@ -21,7 +22,7 @@ export const SetTradingStopApi = () => {
     slLimitPrice: "",
     tpOrderType: "Market",
     slOrderType: "Market"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -85,7 +86,7 @@ export const SetTradingStopApi = () => {
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name" },
               { name: "takeProfit", type: "string", desc: "Take profit price" },
               { name: "stopLoss", type: "string", desc: "Stop loss price" },
@@ -107,6 +108,8 @@ export const SetTradingStopApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "positionIdx"]} />
+
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
@@ -126,10 +129,11 @@ export const SetTradingStopApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "positionIdx"]} 
         method="POST" 
         endpoint="/v5/position/trading-stop" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

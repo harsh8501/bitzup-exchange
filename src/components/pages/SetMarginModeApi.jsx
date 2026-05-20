@@ -1,13 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const SetMarginModeApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     setMarginMode: "REGULAR_MARGIN"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -67,6 +68,8 @@ export const SetMarginModeApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["setMarginMode"]} />
+
         <div className="api-box">
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
@@ -103,10 +106,11 @@ export const SetMarginModeApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["setMarginMode"]} 
         method="POST" 
         endpoint="/v5/account/set-margin-mode" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

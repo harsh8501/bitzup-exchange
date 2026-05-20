@@ -87,7 +87,7 @@ export const CreateInternalTransfer = () => {
 
     const codeMap = {
         HTTP: `POST /v5/asset/transfer/inter-transfer HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>
 Content-Type: application/json
 
@@ -101,7 +101,7 @@ Content-Type: application/json
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/transfer/inter-transfer"
+url = "https://test.bitzup.com/v5/asset/transfer/inter-transfer"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>",
     "Content-Type": "application/json"
@@ -131,7 +131,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/transfer/inter-transfer"
+    url := "https://test.bitzup.com/v5/asset/transfer/inter-transfer"
     payload := []byte(` + "`" + `{"transferId":"42c0cfb0 - 6bca - c242 - bc76 - 4e6df6cbcb16","coin":"BTC","amount":"0.05","fromAccountType":"UNIFIED","toAccountType":"CONTRACT"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -161,7 +161,7 @@ import java.net.http.HttpResponse;
 
 public class CreateInternalTransferDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/transfer/inter-transfer";
+        String url = "https://test.bitzup.com/v5/asset/transfer/inter-transfer";
         String payload = "{\\"transferId\\":\\"42c0cfb0-6bca-c242-bc76-4e6df6cbcb16\\",\\"coin\\":\\"BTC\\",\\"amount\\":\\"0.05\\",\\"fromAccountType\\":\\"UNIFIED\\",\\"toAccountType\\":\\"CONTRACT\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -182,7 +182,7 @@ public class CreateInternalTransferDemo {
 async function createInternalTransfer() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/asset/transfer/inter-transfer',
+            'https://test.bitzup.com/v5/asset/transfer/inter-transfer',
             {
                 transferId: '42c0cfb0-6bca-c242-bc76-4e6df6cbcb16',
                 coin: 'BTC',

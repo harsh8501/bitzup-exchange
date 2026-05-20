@@ -25,7 +25,7 @@ export const DepositToSubAcc = () => {
 }`;
     const codeMap = {
         HTTP: `POST /futures/api/v1/deposit-to-sub-acc HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <your_token>
 
@@ -34,7 +34,7 @@ Authorization: Bearer <your_token>
   "amount": "100"
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/futures/api/v1/deposit-to-sub-acc"
+url = "https://test.bitzup.com/futures/api/v1/deposit-to-sub-acc"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 payload = {"coin": "USDT", "amount": "100"}
 try:
@@ -46,7 +46,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/deposit-to-sub-acc"
+	url := "https://test.bitzup.com/futures/api/v1/deposit-to-sub-acc"
 	body, _ := json.Marshal(map[string]string{"coin": "USDT", "amount": "100"})
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
 	req.Header.Set("Content-Type", "application/json")
@@ -66,7 +66,7 @@ public class DepositToSubAccExample {
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/deposit-to-sub-acc"))
+            .uri(URI.create("https://test.bitzup.com/futures/api/v1/deposit-to-sub-acc"))
             .header("Content-Type", "application/json").header("Authorization", "Bearer <your_token>")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -76,7 +76,7 @@ public class DepositToSubAccExample {
         Node: `const axios = require("axios");
 async function depositToSubAcc() {
   try {
-    const response = await axios.post("https://api.bitzup.com/futures/api/v1/deposit-to-sub-acc",
+    const response = await axios.post("https://test.bitzup.com/futures/api/v1/deposit-to-sub-acc",
       { coin: "USDT", amount: "100" },
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } });
     console.log(response.data);

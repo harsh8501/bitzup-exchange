@@ -1,12 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 import { Link } from "react-router-dom";
 
 export const GetOrderHistoryApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     baseCoin: "",
@@ -18,7 +19,7 @@ export const GetOrderHistoryApi = () => {
     orderFilter: "Order",
     limit: 20,
     cursor: ""
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -35,6 +36,10 @@ export const GetOrderHistoryApi = () => {
           .breadcrumb .pill { color: #2edbad; font-weight: 500; }
           .api-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
           
+          .api-box { background: #171d26; border-radius: 4px; padding: 16px; margin-bottom: 16px; }
+          .api-box-header { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #fff; }
+          .api-box-header::before { content: '▼'; font-size: 10px; color: #888; }
+          
           .tree-view { border-left: 1px solid #3d4653; padding-left: 20px; margin-left: 8px; position: relative; }
           .tree-item { margin-bottom: 20px; position: relative; }
           .tree-item::before { content: ''; position: absolute; left: -20px; top: 10px; width: 12px; height: 1px; background: #3d4653; }
@@ -48,7 +53,7 @@ export const GetOrderHistoryApi = () => {
           .res-badge { display: flex; align-items: center; gap: 8px; background: rgba(31, 177, 132, 0.1); color: #1fb184; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; border: 1px solid rgba(31, 177, 132, 0.4); }
           .dot { width: 6px; height: 6px; background: #1fb184; border-radius: 50%; }
           .panel-section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-      `}</style>
+`}</style>
 
       <div className="docs-panel" ref={contentRef}>
         <div className="breadcrumb">
@@ -78,7 +83,7 @@ export const GetOrderHistoryApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "option", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", desc: "Symbol name" },
               { name: "baseCoin", type: "string", desc: "Base coin" },
               { name: "orderId", type: "string", desc: "Order ID" },
@@ -101,10 +106,9 @@ export const GetOrderHistoryApi = () => {
           </div>
         </div>
 
-        <div style={{ marginTop: "20px" }}>
-          <Link to={"/docs/v5/order/history-api"}
-          className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
-        </div>
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category"]} />
+
+        
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -125,10 +129,11 @@ export const GetOrderHistoryApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category"]} 
         method="GET" 
         endpoint="/v5/order/history" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

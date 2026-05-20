@@ -111,11 +111,11 @@ export const GetInsurancePool = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/insurance?coin=USDT HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/insurance"
+url = "https://test.bitzup.com/v5/market/insurance"
 params = {
     "coin": "USDT"
 }
@@ -136,7 +136,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/insurance?coin=USDT"
+    url := "https://test.bitzup.com/v5/market/insurance?coin=USDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -163,7 +163,7 @@ import java.net.http.HttpResponse;
 
 public class GetInsuranceDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/insurance?coin=USDT";
+        String url = "https://test.bitzup.com/v5/market/insurance?coin=USDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -181,7 +181,7 @@ public class GetInsuranceDemo {
 async function getInsurance() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/insurance',
+            'https://test.bitzup.com/v5/market/insurance',
             {
                 params: {
                     coin: 'USDT'

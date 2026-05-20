@@ -102,11 +102,11 @@ export const GetOrderbook = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/orderbook?category=linear&symbol=BTCUSDT HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/orderbook"
+url = "https://test.bitzup.com/v5/market/orderbook"
 params = {
     "category": "linear",
     "symbol": "BTCUSDT"
@@ -128,7 +128,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/orderbook?category=linear&symbol=BTCUSDT"
+    url := "https://test.bitzup.com/v5/market/orderbook?category=linear&symbol=BTCUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -155,7 +155,7 @@ import java.net.http.HttpResponse;
 
 public class GetOrderbookDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/orderbook?category=linear&symbol=BTCUSDT";
+        String url = "https://test.bitzup.com/v5/market/orderbook?category=linear&symbol=BTCUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -173,7 +173,7 @@ public class GetOrderbookDemo {
 async function getOrderbook() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/orderbook',
+            'https://test.bitzup.com/v5/market/orderbook',
             {
                 params: {
                     category: "linear",

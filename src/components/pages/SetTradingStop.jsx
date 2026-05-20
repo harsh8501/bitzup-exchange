@@ -26,7 +26,7 @@ export const SetTradingStop = () => {
 
     const codeMap = {
         HTTP: `POST /v5/position/trading-stop HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672283125000
@@ -50,7 +50,7 @@ Content-Type: application/json
     "positionIdx": 0
 }`,
         Python: `import requests
-url = "https://api.bitzup.com/v5/position/trading-stop"
+url = "https://test.bitzup.com/v5/position/trading-stop"
 headers = {"Content-Type": "application/json", "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
     "X-BAPI-SIGN": "XXXXX", "X-BAPI-TIMESTAMP": "1672283125000", "X-BAPI-RECV-WINDOW": "5000"}
 payload = {
@@ -69,7 +69,7 @@ except requests.exceptions.RequestException as e:
         Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/position/trading-stop"
+    url := "https://test.bitzup.com/v5/position/trading-stop"
     payload := map[string]interface{}{
         "category": "linear", "symbol": "XRPUSDT",
         "takeProfit": "0.6", "stopLoss": "0.2",
@@ -97,7 +97,7 @@ public class SetTradingStopExample {
             "tpLimitPrice":"0.57","slLimitPrice":"0.21","positionIdx":0}""";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/position/trading-stop"))
+            .uri(URI.create("https://test.bitzup.com/v5/position/trading-stop"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -107,7 +107,7 @@ public class SetTradingStopExample {
         Node: `const axios = require("axios");
 async function setTradingStop() {
   try {
-    const response = await axios.post("https://api.bitzup.com/v5/position/trading-stop",
+    const response = await axios.post("https://test.bitzup.com/v5/position/trading-stop",
       { category: "linear", symbol: "XRPUSDT", takeProfit: "0.6", stopLoss: "0.2",
         tpTriggerBy: "MarkPrice", slTriggerBy: "IndexPrice", tpslMode: "Partial",
         tpOrderType: "Limit", slOrderType: "Limit", tpSize: "50", slSize: "50",

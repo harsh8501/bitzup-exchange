@@ -70,7 +70,7 @@ export const AmendOrder = () => {
 
   const codeMap = {
     HTTP: `POST /v5/order/amend HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1672217108106
@@ -89,7 +89,7 @@ Content-Type: application/json
 }`,
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/order/amend"
+url = "https://test.bitzup.com/v5/order/amend"
 headers = {
     "Content-Type": "application/json",
     "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx",
@@ -116,7 +116,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("bytes"; "encoding/json"; "fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/order/amend"
+    url := "https://test.bitzup.com/v5/order/amend"
     body, _ := json.Marshal(map[string]interface{}{
         "category": "linear", "symbol": "ETHPERP",
         "orderLinkId": "linear-004", "triggerPrice": "1145",
@@ -146,7 +146,7 @@ public class AmendOrderExample {
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/order/amend"))
+            .uri(URI.create("https://test.bitzup.com/v5/order/amend"))
             .header("Content-Type", "application/json")
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .header("X-BAPI-SIGN", "XXXXX")
@@ -160,7 +160,7 @@ public class AmendOrderExample {
     Node: `const axios = require("axios");
 async function amendOrder() {
   try {
-    const response = await axios.post("https://api.bitzup.com/v5/order/amend",
+    const response = await axios.post("https://test.bitzup.com/v5/order/amend",
       { category: "linear", symbol: "ETHPERP", orderLinkId: "linear-004",
         triggerPrice: "1145", qty: "0.15", price: "1050",
         takeProfit: "0", stopLoss: "0" },

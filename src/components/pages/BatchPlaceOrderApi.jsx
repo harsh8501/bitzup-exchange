@@ -1,11 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const BatchPlaceOrderApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     request: [
       {
@@ -27,7 +28,7 @@ export const BatchPlaceOrderApi = () => {
         orderLinkId: "test-batch-02"
       }
     ]
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -91,7 +92,7 @@ export const BatchPlaceOrderApi = () => {
           <div className="api-box-header">Request Body</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "option"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "request", type: "object[]", req: true, desc: "List of orders to place" },
             ].map(p => (
               <div className="tree-item" key={p.name}>
@@ -104,6 +105,8 @@ export const BatchPlaceOrderApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "request"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -124,10 +127,11 @@ export const BatchPlaceOrderApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "request"]} 
         method="POST" 
         endpoint="/v5/order/create-batch" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
     </div>
   );

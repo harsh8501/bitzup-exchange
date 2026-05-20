@@ -93,11 +93,11 @@ export const GetDeliveryPrice = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/delivery-price?category=linear&symbol=ETH-26DEC22-1400-C HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/delivery-price"
+url = "https://test.bitzup.com/v5/market/delivery-price"
 params = {
     "category": "linear",
     "symbol": "ETH-26DEC22-1400-C"
@@ -119,7 +119,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/delivery-price?category=linear&symbol=ETH-26DEC22-1400-C"
+    url := "https://test.bitzup.com/v5/market/delivery-price?category=linear&symbol=ETH-26DEC22-1400-C"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -146,7 +146,7 @@ import java.net.http.HttpResponse;
 
 public class GetDeliveryPriceDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/delivery-price?category=linear&symbol=ETH-26DEC22-1400-C";
+        String url = "https://test.bitzup.com/v5/market/delivery-price?category=linear&symbol=ETH-26DEC22-1400-C";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -164,7 +164,7 @@ public class GetDeliveryPriceDemo {
 async function getDeliveryPrice() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/delivery-price',
+            'https://test.bitzup.com/v5/market/delivery-price',
             {
                 params: {
                     category: "linear",

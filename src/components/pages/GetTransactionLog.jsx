@@ -111,12 +111,12 @@ export const GetTransactionLog = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/transaction-log?accountType=UNIFIED&category=linear&currency=USDT HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/transaction-log"
+url = "https://test.bitzup.com/v5/account/transaction-log"
 params = {
     "accountType": "UNIFIED",
     "category": "linear",
@@ -142,7 +142,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/transaction-log?accountType=UNIFIED&category=linear&currency=USDT"
+    url := "https://test.bitzup.com/v5/account/transaction-log?accountType=UNIFIED&category=linear&currency=USDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -170,7 +170,7 @@ import java.net.http.HttpResponse;
 
 public class GetTransactionLogDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/transaction-log?accountType=UNIFIED&category=linear&currency=USDT";
+        String url = "https://test.bitzup.com/v5/account/transaction-log?accountType=UNIFIED&category=linear&currency=USDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -189,7 +189,7 @@ public class GetTransactionLogDemo {
 async function getTransactionLog() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/transaction-log',
+            'https://test.bitzup.com/v5/account/transaction-log',
             {
                 params: {
                     accountType: 'UNIFIED',

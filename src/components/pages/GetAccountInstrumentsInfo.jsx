@@ -133,11 +133,11 @@ export const GetAccountInstrumentsInfo = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/instruments-info?category=linear&symbol=1000000BABYDOGEUSDT HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/instruments-info"
+url = "https://test.bitzup.com/v5/account/instruments-info"
 params = {
     "category": "linear",
     "symbol": "1000000BABYDOGEUSDT"
@@ -159,7 +159,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/instruments-info?category=linear&symbol=1000000BABYDOGEUSDT"
+    url := "https://test.bitzup.com/v5/account/instruments-info?category=linear&symbol=1000000BABYDOGEUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -186,7 +186,7 @@ import java.net.http.HttpResponse;
 
 public class GetAccountInstrumentsInfoDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/instruments-info?category=linear&symbol=1000000BABYDOGEUSDT";
+        String url = "https://test.bitzup.com/v5/account/instruments-info?category=linear&symbol=1000000BABYDOGEUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -204,7 +204,7 @@ public class GetAccountInstrumentsInfoDemo {
 async function getAccountInstrumentsInfo() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/instruments-info',
+            'https://test.bitzup.com/v5/account/instruments-info',
             {
                 params: {
                     category: 'linear',

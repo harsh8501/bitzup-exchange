@@ -86,12 +86,12 @@ export const GetTradeBehaviourConfig = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/user-setting-config HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/user-setting-config"
+url = "https://test.bitzup.com/v5/account/user-setting-config"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -112,7 +112,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/user-setting-config"
+    url := "https://test.bitzup.com/v5/account/user-setting-config"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -140,7 +140,7 @@ import java.net.http.HttpResponse;
 
 public class GetTradeBehaviourConfigDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/user-setting-config";
+        String url = "https://test.bitzup.com/v5/account/user-setting-config";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -159,7 +159,7 @@ public class GetTradeBehaviourConfigDemo {
 async function getTradeBehaviourConfig() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/user-setting-config',
+            'https://test.bitzup.com/v5/account/user-setting-config',
             {
                 headers: {
                     'Authorization': 'Bearer <YOUR_API_KEY>'

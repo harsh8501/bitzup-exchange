@@ -1,13 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetCollateralInfoApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     currency: "USDT"
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -83,6 +84,8 @@ export const GetCollateralInfoApi = () => {
           </div>
         </div>
 
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={[]} />
+
         <div style={ {marginTop: "64px" }}>
           <div className="panel-section-title">
             <h3 style={{ fontSize: "22px", fontWeight: "700", margin: 0 }}>Responses</h3>
@@ -92,12 +95,14 @@ export const GetCollateralInfoApi = () => {
             </div>
         </div>
 
-      <ApiExplorer 
+      </div>
+
+      <ApiExplorer
+        requiredFields={[]} 
         method="GET" 
         endpoint="/v5/account/collateral-info" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
-    </div>
     </div>
   );
 };

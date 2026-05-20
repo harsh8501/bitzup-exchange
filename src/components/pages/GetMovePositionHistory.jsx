@@ -85,13 +85,13 @@ export const GetMovePositionHistory = () => {
 
   const codeMap = {
     HTTP: `GET /v5/position/move-history?category=linear&limit=1 HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-SIGN: XXXXX
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1697684980000
 X-BAPI-RECV-WINDOW: 5000`,
     Python: `import requests
-url = "https://api.bitzup.com/v5/position/move-history"
+url = "https://test.bitzup.com/v5/position/move-history"
 headers = {"X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX",
     "X-BAPI-TIMESTAMP": "1697684980000", "X-BAPI-RECV-WINDOW": "5000"}
 params = {"category": "linear", "limit": 1}
@@ -103,7 +103,7 @@ except requests.exceptions.RequestException as e:
     Go: `package main
 import ("fmt"; "io"; "net/http"; "time")
 func main() {
-    url := "https://api.bitzup.com/v5/position/move-history?category=linear&limit=1"
+    url := "https://test.bitzup.com/v5/position/move-history?category=linear&limit=1"
     req, _ := http.NewRequest("GET", url, nil)
     req.Header.Set("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
     client := &http.Client{Timeout: 10 * time.Second}
@@ -118,7 +118,7 @@ public class GetMovePositionHistoryExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/v5/position/move-history?category=linear&limit=1"))
+            .uri(URI.create("https://test.bitzup.com/v5/position/move-history?category=linear&limit=1"))
             .header("X-BAPI-API-KEY", "xxxxxxxxxxxxxxxxxx")
             .GET().build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -128,7 +128,7 @@ public class GetMovePositionHistoryExample {
     Node: `const axios = require("axios");
 async function getMovePositionHistory() {
   try {
-    const response = await axios.get("https://api.bitzup.com/v5/position/move-history",
+    const response = await axios.get("https://test.bitzup.com/v5/position/move-history",
       { params: { category: "linear", limit: 1 },
         headers: { "X-BAPI-API-KEY": "xxxxxxxxxxxxxxxxxx", "X-BAPI-SIGN": "XXXXX" } });
     console.log(response.data);

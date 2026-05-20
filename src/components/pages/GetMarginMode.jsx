@@ -31,12 +31,12 @@ export const GetMarginMode = () => {
 
     const codeMap = {
         HTTP: `POST /futures/api/v1/get-margin-mode HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <your_token>`,
         Python: `import requests
 
-url = "https://api.bitzup.com/futures/api/v1/get-margin-mode"
+url = "https://test.bitzup.com/futures/api/v1/get-margin-mode"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 
 try:
@@ -55,7 +55,7 @@ import (
 )
 
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/get-margin-mode"
+	url := "https://test.bitzup.com/futures/api/v1/get-margin-mode"
 	req, _ := http.NewRequest("POST", url, nil)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer <your_token>")
@@ -74,7 +74,7 @@ public class GetMarginModeExample {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/get-margin-mode"))
+            .uri(URI.create("https://test.bitzup.com/futures/api/v1/get-margin-mode"))
             .header("Content-Type", "application/json")
             .header("Authorization", "Bearer <your_token>")
             .POST(HttpRequest.BodyPublishers.noBody()).build();
@@ -87,7 +87,7 @@ public class GetMarginModeExample {
 async function getMarginMode() {
   try {
     const response = await axios.post(
-      "https://api.bitzup.com/futures/api/v1/get-margin-mode",
+      "https://test.bitzup.com/futures/api/v1/get-margin-mode",
       {},
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );

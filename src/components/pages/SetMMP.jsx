@@ -80,7 +80,7 @@ export const SetMMP = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/mmp-modify HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -94,7 +94,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/mmp-modify"
+url = "https://test.bitzup.com/v5/account/mmp-modify"
 payload = {
     "baseCoin": "ETH",
     "window": "5000",
@@ -124,7 +124,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/mmp-modify"
+    url := "https://test.bitzup.com/v5/account/mmp-modify"
     payload := []byte(` + "`" + `{"baseCoin": "ETH", "window": "5000", "frozenPeriod": "100000", "qtyLimit": "50", "deltaLimit": "20"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -154,7 +154,7 @@ import java.net.http.HttpResponse;
 
 public class SetMMPDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/mmp-modify";
+        String url = "https://test.bitzup.com/v5/account/mmp-modify";
         String payload = "{\\"baseCoin\\": \\"ETH\\", \\"window\\": \\"5000\\", \\"frozenPeriod\\": \\"100000\\", \\"qtyLimit\\": \\"50\\", \\"deltaLimit\\": \\"20\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -175,7 +175,7 @@ public class SetMMPDemo {
 async function setMmp() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/mmp-modify',
+            'https://test.bitzup.com/v5/account/mmp-modify',
             {
                 baseCoin: 'ETH',
                 window: '5000',

@@ -179,19 +179,7 @@ const Sidebar = () => {
         </div>
         {openSection === "user" && (
           <div className="sidebar-sub">
-            <NavLink to="/docs/v5/user/create-sub-member" className="sidebar-link">Create Sub UID</NavLink>
-            <NavLink to="/docs/v5/user/create-sub-api" className="sidebar-link">Create Sub UID API Key</NavLink>
-            <NavLink to="/docs/v5/user/subuid-list" className="sidebar-link">Get Sub UID List (Limited)</NavLink>
-            <NavLink to="/docs/v5/user/page-subuid" className="sidebar-link">Get Sub UID List (Unlimited)</NavLink>
-            <NavLink to="/docs/v5/user/fund-subuid-list" className="sidebar-link">Get Fund Custodial Sub Acct</NavLink>
-            <NavLink to="/docs/v5/user/froze-subuid" className="sidebar-link">Freeze Sub UID</NavLink>
             <NavLink to="/docs/v5/user/apikey-info" className="sidebar-link">Get API Key Information</NavLink>
-            <NavLink to="/docs/v5/user/list-sub-apikeys" className="sidebar-link">Get Sub Account All API Keys</NavLink>
-            <NavLink to="/docs/v5/user/wallet-type" className="sidebar-link">Get UID Wallet Type</NavLink>
-            <NavLink to="/docs/v5/user/modify-master-apikey" className="sidebar-link">Modify Master API Key</NavLink>
-            <NavLink to="/docs/v5/user/modify-sub-apikey" className="sidebar-link">Modify Sub API Key</NavLink>
-            <NavLink to="/docs/v5/user/rm-subuid" className="sidebar-link">Delete Sub UID</NavLink>
-            <NavLink to="/docs/v5/user/rm-master-apikey" className="sidebar-link">Delete Master API Key</NavLink>
             <NavLink to="/docs/v5/user/rm-sub-apikey" className="sidebar-link">Delete Sub API Key</NavLink>
           </div>
         )}

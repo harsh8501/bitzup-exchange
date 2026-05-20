@@ -94,19 +94,7 @@ import { GetAllBalances } from "./components/pages/GetAllBalances";
 import { GetDepositRecords } from "./components/pages/GetDepositRecords";
 import { CreateInternalTransfer } from "./components/pages/CreateInternalTransfer";
 import { SubmitWithdrawal } from "./components/pages/SubmitWithdrawal";
-import { CreateSubMember } from "./components/pages/CreateSubMember";
-import { CreateSubUIDAPIKey } from "./components/pages/CreateSubUIDAPIKey";
-import { GetSubUIDList } from "./components/pages/GetSubUIDList";
-import { GetSubUIDListUnlimited } from "./components/pages/GetSubUIDListUnlimited";
-import { GetFundCustodialSubAcct } from "./components/pages/GetFundCustodialSubAcct";
-import { FreezeSubUID } from "./components/pages/FreezeSubUID";
 import { GetAPIKeyInfo } from "./components/pages/GetAPIKeyInfo";
-import { GetSubAccountAllAPIKeys } from "./components/pages/GetSubAccountAllAPIKeys";
-import { GetUIDWalletType } from "./components/pages/GetUIDWalletType";
-import { ModifyMasterAPIKey } from "./components/pages/ModifyMasterAPIKey";
-import { ModifySubAPIKey } from "./components/pages/ModifySubAPIKey";
-import { DeleteSubUID } from "./components/pages/DeleteSubUID";
-import { DeleteMasterAPIKey } from "./components/pages/DeleteMasterAPIKey";
 import { DeleteSubAPIKey } from "./components/pages/DeleteSubAPIKey";
 import { PublicOrderbookWS } from "./components/pages/PublicOrderbookWS";
 import { PublicTradeWS } from "./components/pages/PublicTradeWS";
@@ -152,8 +140,6 @@ import { GetAllCoinsBalanceApi } from "./components/pages/GetAllCoinsBalanceApi"
 import { CreateInternalTransferApi } from "./components/pages/CreateInternalTransferApi";
 import { GetDepositRecordsApi } from "./components/pages/GetDepositRecordsApi";
 import { GetApiKeyInfoApi } from "./components/pages/GetApiKeyInfoApi";
-import { GetSubAccountAllApiKeysApi } from "./components/pages/GetSubAccountAllApiKeysApi";
-import { GetUIDWalletTypeApi } from "./components/pages/GetUIDWalletTypeApi";
 import { GetServerTimeApi } from "./components/pages/GetServerTimeApi";
 import { GetKlineApi } from "./components/pages/GetKlineApi";
 import { GetMarkPriceKlineApi } from "./components/pages/GetMarkPriceKlineApi";
@@ -304,22 +290,8 @@ function App() {
 
 
             {/* User */}
-            <Route path="/docs/v5/user/create-sub-member" element={<CreateSubMember />} />
-            <Route path="/docs/v5/user/create-sub-api" element={<CreateSubUIDAPIKey />} />
-            <Route path="/docs/v5/user/subuid-list" element={<GetSubUIDList />} />
-            <Route path="/docs/v5/user/page-subuid" element={<GetSubUIDListUnlimited />} />
-            <Route path="/docs/v5/user/fund-subuid-list" element={<GetFundCustodialSubAcct />} />
-            <Route path="/docs/v5/user/froze-subuid" element={<FreezeSubUID />} />
             <Route path="/docs/v5/user/apikey-info" element={<GetAPIKeyInfo />} />
             <Route path="/docs/v5/user/apikey-info-api" element={<GetApiKeyInfoApi />} />
-            <Route path="/docs/v5/user/list-sub-apikeys" element={<GetSubAccountAllAPIKeys />} />
-            <Route path="/docs/v5/user/list-sub-apikeys-api" element={<GetSubAccountAllApiKeysApi />} />
-            <Route path="/docs/v5/user/wallet-type" element={<GetUIDWalletType />} />
-            <Route path="/docs/v5/user/wallet-type-api" element={<GetUIDWalletTypeApi />} />
-            <Route path="/docs/v5/user/modify-master-apikey" element={<ModifyMasterAPIKey />} />
-            <Route path="/docs/v5/user/modify-sub-apikey" element={<ModifySubAPIKey />} />
-            <Route path="/docs/v5/user/rm-subuid" element={<DeleteSubUID />} />
-            <Route path="/docs/v5/user/rm-master-apikey" element={<DeleteMasterAPIKey />} />
             <Route path="/docs/v5/user/rm-sub-apikey" element={<DeleteSubAPIKey />} />
 
             {/* Websocket Stream */}

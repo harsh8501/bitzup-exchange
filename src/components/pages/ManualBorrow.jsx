@@ -86,7 +86,7 @@ export const ManualBorrow = () => {
 
     const codeMap = {
         HTTP: `POST /v5/account/borrow HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <YOUR_API_KEY>
 
@@ -97,7 +97,7 @@ Authorization: Bearer <YOUR_API_KEY>
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/borrow"
+url = "https://test.bitzup.com/v5/account/borrow"
 payload = {
     "coin": "BTC",
     "amount": "0.01"
@@ -124,7 +124,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/borrow"
+    url := "https://test.bitzup.com/v5/account/borrow"
     payload := []byte(` + "`" + `{"coin":"BTC","amount":"0.01"}` + "`" + `)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
@@ -154,7 +154,7 @@ import java.net.http.HttpResponse;
 
 public class ManualBorrowDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/borrow";
+        String url = "https://test.bitzup.com/v5/account/borrow";
         String payload = "{\\"coin\\":\\"BTC\\",\\"amount\\":\\"0.01\\"}";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -175,7 +175,7 @@ public class ManualBorrowDemo {
 async function manualBorrow() {
     try {
         const response = await axios.post(
-            'https://api.bitzup.com/v5/account/borrow',
+            'https://test.bitzup.com/v5/account/borrow',
             {
                 coin: 'BTC',
                 amount: '0.01'

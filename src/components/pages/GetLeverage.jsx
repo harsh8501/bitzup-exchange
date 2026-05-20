@@ -32,7 +32,7 @@ export const GetLeverage = () => {
 
     const codeMap = {
         HTTP: `POST /futures/api/v1/get-leverage HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Content-Type: application/json
 Authorization: Bearer <your_token>
 
@@ -41,7 +41,7 @@ Authorization: Bearer <your_token>
 }`,
         Python: `import requests
 
-url = "https://api.bitzup.com/futures/api/v1/get-leverage"
+url = "https://test.bitzup.com/futures/api/v1/get-leverage"
 headers = {"Content-Type": "application/json", "Authorization": "Bearer <your_token>"}
 
 try:
@@ -62,7 +62,7 @@ import (
 )
 
 func main() {
-	url := "https://api.bitzup.com/futures/api/v1/get-leverage"
+	url := "https://test.bitzup.com/futures/api/v1/get-leverage"
 	body, _ := json.Marshal(map[string]string{
 		"symbol":  "BTCUSDT",
 	})
@@ -86,7 +86,7 @@ public class GetLeverageExample {
             """;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.bitzup.com/futures/api/v1/get-leverage"))
+            .uri(URI.create("https://test.bitzup.com/futures/api/v1/get-leverage"))
             .header("Content-Type", "application/json")
             .header("Authorization", "Bearer <your_token>")
             .POST(HttpRequest.BodyPublishers.ofString(json)).build();
@@ -99,7 +99,7 @@ public class GetLeverageExample {
 async function getLeverage() {
   try {
     const response = await axios.post(
-      "https://api.bitzup.com/futures/api/v1/get-leverage",
+      "https://test.bitzup.com/futures/api/v1/get-leverage",
       { headers: { "Content-Type": "application/json", Authorization: "Bearer <your_token>" } }
     );
     console.log(response.data);

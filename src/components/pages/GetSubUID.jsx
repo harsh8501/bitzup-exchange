@@ -97,12 +97,12 @@ export const GetSubUID = () => {
 
     const codeMap = {
         HTTP: `GET /v5/asset/transfer/query-sub-member-list HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/transfer/query-sub-member-list"
+url = "https://test.bitzup.com/v5/asset/transfer/query-sub-member-list"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -123,7 +123,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/transfer/query-sub-member-list"
+    url := "https://test.bitzup.com/v5/asset/transfer/query-sub-member-list"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -151,7 +151,7 @@ import java.net.http.HttpResponse;
 
 public class GetSubUIDDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/transfer/query-sub-member-list";
+        String url = "https://test.bitzup.com/v5/asset/transfer/query-sub-member-list";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -170,7 +170,7 @@ public class GetSubUIDDemo {
 async function getSubUID() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/asset/transfer/query-sub-member-list',
+            'https://test.bitzup.com/v5/asset/transfer/query-sub-member-list',
             {
                 headers: {
                     'Authorization': 'Bearer <YOUR_API_KEY>'

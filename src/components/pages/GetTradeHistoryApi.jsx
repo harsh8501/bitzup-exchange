@@ -1,12 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 import { Link } from "react-router-dom";
 
 export const GetTradeHistoryApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     baseCoin: "",
@@ -17,7 +18,7 @@ export const GetTradeHistoryApi = () => {
     execType: "Trade",
     limit: 50,
     cursor: ""
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -81,7 +82,7 @@ export const GetTradeHistoryApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "spot", "option"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", desc: "Symbol name" },
               { name: "baseCoin", type: "string", desc: "Base coin" },
               { name: "orderId", type: "string", desc: "Order ID" },
@@ -102,10 +103,9 @@ export const GetTradeHistoryApi = () => {
             ))}
           </div>
         </div>
-        <div>
-              <Link to={"/docs/v5/execution/list-api"}
-              className="run-btn" style={{ marginBottom: "20px" }}>RUN &gt;&gt;</Link>
-            </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category"]} />
+        
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -126,10 +126,11 @@ export const GetTradeHistoryApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category"]} 
         method="GET" 
         endpoint="/v5/execution/list" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
       </div>
   );

@@ -1,18 +1,19 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ApiExplorer from "../ApiExplorer/ApiExplorer";
+import { RequestQueryEditor } from "../RequestQueryEditor/RequestQueryEditor";
 
 export const GetMarkPriceKlineApi = () => {
   const contentRef = useRef(null);
 
-  const initialBody = {
+  const [requestBody, setRequestBody] = useState({
     category: "linear",
     symbol: "BTCUSDT",
     interval: "15",
     start: "",
     end: "",
     limit: 200
-  };
+  });
 
   return (
     <div className="api-doc-container">
@@ -59,7 +60,7 @@ export const GetMarkPriceKlineApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear", "inverse", "spot"] },
+              { name: "category", type: "string", req: true, desc: "Product type", values: ["linear"] },
               { name: "symbol", type: "string", req: true, desc: "Symbol name (e.g., BTCUSDT)" },
               { name: "interval", type: "string", req: true, desc: "Kline interval", values: ["1", "3", "5", "15", "30", "60", "120", "240", "360", "720", "D", "M", "W"] },
               { name: "start", type: "integer", desc: "Start timestamp (ms)" },
@@ -76,6 +77,8 @@ export const GetMarkPriceKlineApi = () => {
             ))}
           </div>
         </div>
+
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["category", "symbol", "interval"]} />
 
                         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -96,10 +99,11 @@ export const GetMarkPriceKlineApi = () => {
         </div>
       </div>
 
-      <ApiExplorer 
+      <ApiExplorer
+        requiredFields={["category", "symbol", "interval"]} 
         method="GET" 
         endpoint="/v5/market/mark-price-kline" 
-        initialBody={initialBody} 
+        initialBody={requestBody} editable={false} externalBody={requestBody} setExternalBody={setRequestBody} 
       />
  </div>
   );

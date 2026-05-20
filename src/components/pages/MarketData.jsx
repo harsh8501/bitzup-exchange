@@ -130,10 +130,10 @@ export const MarketData = () => {
 
   const codeMap = {
     HTTP: `GET /v5/market/instruments-info?category=linear&symbol=BTCUSDT HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
-url = "https://api.bitzup.com/v5/market/instruments-info?category=linear&symbol=BTCUSDT"
+url = "https://test.bitzup.com/v5/market/instruments-info?category=linear&symbol=BTCUSDT"
 
 try:
     response = requests.get(url, timeout=10)
@@ -152,7 +152,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/instruments-info?category=linear&symbol=BTCUSDT"
+    url := "https://test.bitzup.com/v5/market/instruments-info?category=linear&symbol=BTCUSDT"
     client := &http.Client{Timeout: 10 * time.Second}
 
     req, err := http.NewRequest("GET", url, nil)
@@ -174,7 +174,7 @@ import java.time.Duration;
 
 public class InstrumentsInfoExample {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/instruments-info?category=linear&symbol=BTCUSDT";
+        String url = "https://test.bitzup.com/v5/market/instruments-info?category=linear&symbol=BTCUSDT";
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url))
@@ -190,7 +190,7 @@ public class InstrumentsInfoExample {
 
 async function getInstrumentsInfo() {
   try {
-    const response = await axios.get("https://api.bitzup.com/v5/market/instruments-info", {
+    const response = await axios.get("https://test.bitzup.com/v5/market/instruments-info", {
       params: { category: "linear", symbol: "BTCUSDT" },
       timeout: 10000,
     });

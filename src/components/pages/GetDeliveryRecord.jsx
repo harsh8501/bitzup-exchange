@@ -98,12 +98,12 @@ export const GetDeliveryRecord = () => {
 
     const codeMap = {
         HTTP: `GET /v5/asset/delivery-record?expDate=29DEC22&category=linear HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear"
+url = "https://test.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear"
 headers = {
     "Authorization": "Bearer <YOUR_API_KEY>"
 }
@@ -124,7 +124,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear"
+    url := "https://test.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -152,7 +152,7 @@ import java.net.http.HttpResponse;
 
 public class GetDeliveryRecordDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear";
+        String url = "https://test.bitzup.com/v5/asset/delivery-record?expDate=29DEC22&category=linear";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -171,7 +171,7 @@ public class GetDeliveryRecordDemo {
 async function getDeliveryRecord() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/asset/delivery-record',
+            'https://test.bitzup.com/v5/asset/delivery-record',
             {
                 params: {
                     category: "linear",

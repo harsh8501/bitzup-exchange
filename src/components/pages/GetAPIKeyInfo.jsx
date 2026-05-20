@@ -60,7 +60,7 @@ export const GetAPIKeyInfo = () => {
 
     const codeMap = {
         HTTP: `GET /v5/user/query-api HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 X-BAPI-API-KEY: xxxxxxxxxxxxxxxxxx
 X-BAPI-TIMESTAMP: 1676430842094
 X-BAPI-RECV-WINDOW: 5000

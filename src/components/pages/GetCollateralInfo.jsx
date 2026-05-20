@@ -103,12 +103,12 @@ export const GetCollateralInfo = () => {
 
     const codeMap = {
         HTTP: `GET /v5/account/collateral-info?currency=BTC HTTP/1.1
-Host: api.bitzup.com
+Host: test.bitzup.com
 Authorization: Bearer <YOUR_API_KEY>`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/account/collateral-info"
+url = "https://test.bitzup.com/v5/account/collateral-info"
 params = {
     "currency": "BTC"
 }
@@ -132,7 +132,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/account/collateral-info?currency=BTC"
+    url := "https://test.bitzup.com/v5/account/collateral-info?currency=BTC"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -160,7 +160,7 @@ import java.net.http.HttpResponse;
 
 public class GetCollateralInfoDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/account/collateral-info?currency=BTC";
+        String url = "https://test.bitzup.com/v5/account/collateral-info?currency=BTC";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -179,7 +179,7 @@ public class GetCollateralInfoDemo {
 async function getCollateralInfo() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/account/collateral-info',
+            'https://test.bitzup.com/v5/account/collateral-info',
             {
                 params: {
                     currency: 'BTC'

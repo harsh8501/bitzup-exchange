@@ -137,11 +137,11 @@ export const GetIndexPriceComponents = () => {
 
     const codeMap = {
         HTTP: `GET /v5/market/index-price-components?indexName=1000BTTUSDT HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/index-price-components"
+url = "https://test.bitzup.com/v5/market/index-price-components"
 params = {
     "indexName": "1000BTTUSDT"
 }
@@ -162,7 +162,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/index-price-components?indexName=1000BTTUSDT"
+    url := "https://test.bitzup.com/v5/market/index-price-components?indexName=1000BTTUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -189,7 +189,7 @@ import java.net.http.HttpResponse;
 
 public class GetIndexPriceComponentsDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/index-price-components?indexName=1000BTTUSDT";
+        String url = "https://test.bitzup.com/v5/market/index-price-components?indexName=1000BTTUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -207,7 +207,7 @@ public class GetIndexPriceComponentsDemo {
 async function getIndexPriceComponents() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/index-price-components',
+            'https://test.bitzup.com/v5/market/index-price-components',
             {
                 params: {
                     indexName: '1000BTTUSDT'

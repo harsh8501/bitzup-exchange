@@ -104,11 +104,11 @@ const contentRef = useRef(null);
 
   const codeMap = {
     HTTP: `GET /v1/get-order-book?symbol=BTCUSDT&limit=2 HTTP/1.1
-Host: https://api.bitzup.com/futures/api`,
+Host: https://test.bitzup.com/futures/api`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/futures/api/v1/get-order-book"
+url = "https://test.bitzup.com/futures/api/v1/get-order-book"
 
 params = {
     "symbol": "BTCUSDT",
@@ -135,7 +135,7 @@ import (
 )
 
 func main() {
-	baseURL := "https://api.bitzup.com/futures/api/v1/get-order-book"
+	baseURL := "https://test.bitzup.com/futures/api/v1/get-order-book"
 
 	params := url.Values{}
 	params.Add("symbol", "BTCUSDT")
@@ -179,7 +179,7 @@ import java.time.Duration;
 public class OrderBookExample {
 
     public static void main(String[] args) throws Exception {
-        String baseUrl = "https://api.bitzup.com/futures/api/v1/get-order-book";
+        String baseUrl = "https://test.bitzup.com/futures/api/v1/get-order-book";
 
         String query = String.format(
             "symbol=%s&limit=%s",
@@ -218,7 +218,7 @@ public class OrderBookExample {
 async function getOrderBook() {
   try {
     const response = await axios.get(
-      "https://api.bitzup.com/futures/api/v1/get-order-book",
+      "https://test.bitzup.com/futures/api/v1/get-order-book",
       {
         params: {
           symbol: "BTCUSDT",

@@ -117,11 +117,11 @@ export const Kline = () => {
 
   const codeMap = {
     HTTP: `GET /v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3 HTTP/1.1
-Host: api.bitzup.com`,
+Host: test.bitzup.com`,
 
     Python: `import requests
 
-url = "https://api.bitzup.com/v5/market/kline"
+url = "https://test.bitzup.com/v5/market/kline"
 params = {
     "category": "linear",
     "symbol": "BTCUSDT",
@@ -147,7 +147,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitzup.com/v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3"
+    url := "https://test.bitzup.com/v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -174,7 +174,7 @@ import java.net.http.HttpResponse;
 
 public class GetKlineDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitzup.com/v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3";
+        String url = "https://test.bitzup.com/v5/market/kline?category=linear&symbol=BTCUSDT&interval=60&start=1670601600000&end=1670608800000&limit=3";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -192,7 +192,7 @@ public class GetKlineDemo {
 async function getKline() {
     try {
         const response = await axios.get(
-            'https://api.bitzup.com/v5/market/kline',
+            'https://test.bitzup.com/v5/market/kline',
             {
                 params: {
                     category: 'linear',
