@@ -23,9 +23,8 @@ const ApiExplorer = ({
   const [loading, setLoading] = useState(false);
   
   // API Credentials State
-  const [apiKey, setApiKey] = useState(localStorage.getItem("bitzup_api_key") || "");
-  const [apiSecret, setApiSecret] = useState(localStorage.getItem("bitzup_api_secret") || "");
-  const [saveKeys, setSaveKeys] = useState(true);
+  const [apiKey, setApiKey] = useState("");
+  const [apiSecret, setApiSecret] = useState("");
 
   // Helper to deep clean body (completely pruning optional empty fields)
   const getCleanedBody = (body) => {
@@ -45,16 +44,6 @@ const ApiExplorer = ({
   };
 
   const cleanedBody = getCleanedBody(requestBody);
-
-  useEffect(() => {
-    if (saveKeys) {
-      localStorage.setItem("bitzup_api_key", apiKey);
-      localStorage.setItem("bitzup_api_secret", apiSecret);
-    } else {
-      localStorage.removeItem("bitzup_api_key");
-      localStorage.removeItem("bitzup_api_secret");
-    }
-  }, [apiKey, apiSecret, saveKeys]);
 
   const [signature, setSignature] = useState("008416ddff72ac7b6fb75cf4d9dde211e14afb347b");
   const [timestamp, setTimestamp] = useState(Date.now().toString());
