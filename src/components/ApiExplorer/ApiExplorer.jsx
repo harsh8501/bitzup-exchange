@@ -26,6 +26,18 @@ const ApiExplorer = ({
   const [apiKey, setApiKey] = useState("");
   const [apiSecret, setApiSecret] = useState("");
 
+  // Clear legacy localStorage/sessionStorage keys on mount to ensure credentials do not persist on reload
+  useEffect(() => {
+    try {
+      localStorage.removeItem("bitzup_api_key");
+      localStorage.removeItem("bitzup_api_secret");
+      sessionStorage.removeItem("bitzup_api_key");
+      sessionStorage.removeItem("bitzup_api_secret");
+    } catch (e) {
+      console.error("Error clearing legacy keys:", e);
+    }
+  }, []);
+
   // Helper to deep clean body (completely pruning optional empty fields)
   const getCleanedBody = (body) => {
     if (!body) return {};
@@ -664,9 +676,11 @@ echo $response;`
             <input 
               className="credential-input" 
               type="text" 
+              name="bitzup_api_key_input"
               placeholder="Enter your API Key" 
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
+              autoComplete="off"
             />
           </div>
         </div>
@@ -677,9 +691,11 @@ echo $response;`
             <input 
               className="credential-input" 
               type="text" 
+              name="bitzup_api_secret_input"
               placeholder="Enter your API Secret" 
               value={apiSecret}
               onChange={(e) => setApiSecret(e.target.value)}
+              autoComplete="new-password"
             />
           </div>
         </div>
