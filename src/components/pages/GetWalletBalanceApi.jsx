@@ -8,7 +8,7 @@ export const GetWalletBalanceApi = () => {
 
   const [requestBody, setRequestBody] = useState({
     accountType: "UNIFIED",
-    coin: "USDT,USDC"
+    coin: "USDT"
   });
 
   return (
