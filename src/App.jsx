@@ -46,6 +46,27 @@ import { GetSystemStatus } from "./components/pages/GetSystemStatus";
 import { ErrorCodes } from "./components/pages/ErrorCodes";
 import { AbandonedEndpoints } from "./components/pages/AbandonedEndpoints";
 import { UserEndpoints } from "./components/pages/UserEndpoints";
+import SpotOverview from "./components/pages/spot/SpotOverview";
+import GetSpotCoinInfo from "./components/pages/spot/public/GetSpotCoinInfo";
+import GetSpotCoinInfoApi from "./components/pages/spot/public/GetSpotCoinInfoApi";
+import GetSpotTickerInfo from "./components/pages/spot/public/GetSpotTickerInfo";
+import GetSpotTickerInfoApi from "./components/pages/spot/public/GetSpotTickerInfoApi";
+import GetSpotRecentTrades from "./components/pages/spot/public/GetSpotRecentTrades";
+import GetSpotRecentTradesApi from "./components/pages/spot/public/GetSpotRecentTradesApi";
+import GetSpotOrderbookDepth from "./components/pages/spot/public/GetSpotOrderbookDepth";
+import GetSpotOrderbookDepthApi from "./components/pages/spot/public/GetSpotOrderbookDepthApi";
+import GetSpotCandlestickData from "./components/pages/spot/public/GetSpotCandlestickData";
+import GetSpotCandlestickDataApi from "./components/pages/spot/public/GetSpotCandlestickDataApi";
+import GetSpotVipFeeRate from "./components/pages/spot/public/GetSpotVipFeeRate";
+import GetSpotVipFeeRateApi from "./components/pages/spot/public/GetSpotVipFeeRateApi";
+import GetSpotInstruments from "./components/pages/spot/public/GetSpotInstruments";
+import GetSpotInstrumentsApi from "./components/pages/spot/public/GetSpotInstrumentsApi";
+import GetSpotQuotedPrice from "./components/pages/spot/convert/GetSpotQuotedPrice";
+import GetSpotQuotedPriceApi from "./components/pages/spot/convert/GetSpotQuotedPriceApi";
+import GetSpotMarketChannel from "./components/pages/spot/websocket/GetSpotMarketChannel";
+import GetSpotCandlestickChannel from "./components/pages/spot/websocket/GetSpotCandlestickChannel";
+import GetSpotTradingChannel from "./components/pages/spot/websocket/GetSpotTradingChannel";
+import GetSpotDepthChannel from "./components/pages/spot/websocket/GetSpotDepthChannel";
 
 import { GetServerTime } from "./components/pages/GetServerTime";
 import { GetMarkPriceKline } from "./components/pages/GetMarkPriceKline";
@@ -188,7 +209,32 @@ function App() {
         <Sidebar />
         <div className="flex-grow-1 page-content" style={{ width: "100%" }}>
           <Routes>
-            {/* Guide & Status */}
+            {/* Spot Routes */}
+            <Route path="/docs/spot" element={<IntegrationGuidance />} />
+            <Route path="/docs/spot/system-status" element={<GetSystemStatus />} />
+            <Route path="/docs/spot/rate-limit" element={<RateLimitRules />} />
+            <Route path="/docs/spot/enum" element={<EnumsDefinitions />} />
+            <Route path="/docs/spot/error" element={<ErrorCodes />} />
+            <Route path="/docs/spot/market/instruments" element={<GetSpotInstruments />} />
+            <Route path="/docs/spot/market/instruments-api" element={<GetSpotInstrumentsApi />} />
+            <Route path="/docs/spot/market/coin-info" element={<GetSpotCoinInfo />} />
+            <Route path="/docs/spot/market/coin-info-api" element={<GetSpotCoinInfoApi />} />
+            <Route path="/docs/spot/market/tickers" element={<GetSpotTickerInfo />} />
+            <Route path="/docs/spot/market/tickers-api" element={<GetSpotTickerInfoApi />} />
+            <Route path="/docs/spot/market/recent-trades" element={<GetSpotRecentTrades />} />
+            <Route path="/docs/spot/market/recent-trades-api" element={<GetSpotRecentTradesApi />} />
+            <Route path="/docs/spot/market/orderbook" element={<GetSpotOrderbookDepth />} />
+            <Route path="/docs/spot/market/orderbook-api" element={<GetSpotOrderbookDepthApi />} />
+            <Route path="/docs/spot/market/candles" element={<GetSpotCandlestickData />} />
+            <Route path="/docs/spot/market/candles-api" element={<GetSpotCandlestickDataApi />} />
+            <Route path="/docs/spot/market/vip-fee-rate" element={<GetSpotVipFeeRate />} />
+            <Route path="/docs/spot/market/vip-fee-rate-api" element={<GetSpotVipFeeRateApi />} />
+            <Route path="/docs/spot/convert/quoted-price" element={<GetSpotQuotedPrice />} />
+            <Route path="/docs/spot/convert/quoted-price-api" element={<GetSpotQuotedPriceApi />} />
+            <Route path="/docs/spot/websocket/public/market-channel" element={<GetSpotMarketChannel />} />
+            <Route path="/docs/spot/websocket/public/candlestick-channel" element={<GetSpotCandlestickChannel />} />
+            <Route path="/docs/spot/websocket/public/trading-channel" element={<GetSpotTradingChannel />} />
+            <Route path="/docs/spot/websocket/public/depth-channel" element={<GetSpotDepthChannel />} />
             <Route path="/" element={<IntegrationGuidance />} />
             <Route path="/docs/v5/system-status" element={<GetSystemStatus />} />
             <Route path="/docs/v5/rate-limit" element={<RateLimitRules />} />

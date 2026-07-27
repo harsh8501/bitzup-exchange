@@ -109,10 +109,8 @@ const Header = ({ theme, setTheme }) => {
                             </Link>
 
                             <nav className="nav-links d-none d-md-flex">
-                                <NavLink to="/" style={{marginLeft: '16px'}}>Futures API</NavLink>
-                                {/* <NavLink to="/p2p">P2P Trading</NavLink>
-                                <NavLink to="/bitzup-pay">Bitzup Pay</NavLink>
-                                <NavLink to="/tax-api">Tax API V3</NavLink> */}
+                                <NavLink to="/" className={() => (!location.pathname.startsWith("/docs/spot") ? "active" : "")} style={{marginLeft: '16px'}}>Futures API</NavLink>
+                                <NavLink to="/docs/spot" className={() => (location.pathname.startsWith("/docs/spot") ? "active" : "")} style={{marginLeft: '16px'}}>Spot API</NavLink>
                             </nav>
                         </div>
 
@@ -213,13 +211,19 @@ const Header = ({ theme, setTheme }) => {
                 }`}
               >
                     <div>
-                        <NavLink
-                            to="/"
-                            className={({ isActive }) =>
-                                `drawer-main-item ${isActive ? "active" : ""}`
-                            }
-                            >
-                            Futures API
+                            <NavLink
+                                to="/"
+                                className={`drawer-main-item ${!location.pathname.startsWith("/docs/spot") ? "active" : ""}`}
+                                onClick={() => setMobileOpen(false)}
+                                >
+                                Futures API
+                            </NavLink>
+                            <NavLink
+                                to="/docs/spot"
+                                className={`drawer-main-item ${location.pathname.startsWith("/docs/spot") ? "active" : ""}`}
+                                onClick={() => setMobileOpen(false)}
+                                >
+                                Spot API
                             </NavLink>
                             {/* <NavLink
                             to="/p2p"

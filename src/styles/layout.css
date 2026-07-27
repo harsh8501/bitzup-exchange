@@ -14,21 +14,25 @@
   background: #fff;
 }
 .nav-links a {
-  color: var(--text-accent);
+  color: var(--text-secondary);
   opacity: 0.8;
   font-size: 16px;
   margin-right: 18px;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 [data-theme="light"] .nav-links a {
-  color: var(--text-accent);
-  opacity: 1;
+  color: var(--text-secondary);
+  opacity: 0.9;
 }
 
 .nav-links a.active,
 .nav-links a:hover {
   color: var(--text-accent);
+  opacity: 1;
+  font-weight: 600;
 }
 
 .icon-btn {

@@ -7,7 +7,7 @@ const ApiExplorer = ({
   method = "POST", 
   endpoint, 
   initialBody, 
-  baseUrl = "https://api.bitzup.com/futures-api",
+  baseUrl = "https://test.bitzup.com/futures-api",
   editable = true,
   externalBody,
   setExternalBody,
