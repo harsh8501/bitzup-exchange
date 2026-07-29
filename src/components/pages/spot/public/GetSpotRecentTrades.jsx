@@ -15,13 +15,12 @@ export const GetSpotRecentTrades = () => {
   const HEADER_OFFSET = 120;
 
   const codeMap = {
-    HTTP: `curl "https://api.bitget.com/api/v2/spot/market/fills?symbol=BFTUSDT&limit=100"`,
+    HTTP: `curl -s 'https://api.bitzup.com/market/trades?symbol=BTCUSDT'`,
     Python: `import requests
 
-url = "https://api.bitget.com/api/v2/spot/market/fills"
+url = "https://api.bitzup.com/market/trades"
 params = {
-    "symbol": "BFTUSDT",
-    "limit": 100
+    "symbol": "BTCUSDT"
 }
 
 response = requests.get(url, params=params)
@@ -35,7 +34,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitget.com/api/v2/spot/market/fills?symbol=BFTUSDT&limit=100"
+    url := "https://api.bitzup.com/market/trades?symbol=BTCUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -61,7 +60,7 @@ import java.net.http.HttpResponse;
 
 public class GetSpotRecentTradesDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitget.com/api/v2/spot/market/fills?symbol=BFTUSDT&limit=100";
+        String url = "https://api.bitzup.com/market/trades?symbol=BTCUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -77,8 +76,8 @@ public class GetSpotRecentTradesDemo {
 
 async function getSpotRecentTrades() {
     try {
-        const response = await axios.get('https://api.bitget.com/api/v2/spot/market/fills', {
-            params: { symbol: 'BFTUSDT', limit: 100 }
+        const response = await axios.get('https://api.bitzup.com/market/trades', {
+            params: { symbol: 'BTCUSDT' }
         });
         console.log(response.data);
     } catch (error) {
@@ -207,7 +206,7 @@ getSpotRecentTrades();`,
             </h3>
             <div className="http-path mb-4">
               <span className="method get">GET</span>
-              <span className="path">/api/v2/spot/market/fills</span>
+              <span className="path">/market/trades</span>
             </div>
 
             {/* REQUEST PARAMETERS */}

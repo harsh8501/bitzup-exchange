@@ -14,45 +14,31 @@ export const GetSpotCandlestickChannel = () => {
   const HEADER_OFFSET = 120;
 
   const reqExample = `{
-  "op": "subscribe",
-  "args": [
-    {
-      "instType": "SPOT",
-      "channel": "candle1m",
-      "instId": "ETHUSDT"
-    }
-  ]
+  "action": "subscribe",
+  "type": "klines",
+  "symbol": "BTCUSDT",
+  "interval": "5m"
 }`;
 
   const resExample = `{
   "event": "subscribe",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "candle1m",
-    "instId": "ETHUSDT"
-  }
+  "type": "klines",
+  "symbol": "BTCUSDT",
+  "status": "success"
 }`;
 
   const pushExample = `{
-  "action": "snapshot",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "candle1m",
-    "instId": "ETHUSDT"
-  },
-  "data": [
-    [
-      "1695672780000",
-      "2200.1",
-      "2200.1",
-      "2200.1",
-      "2200.1",
-      "0",
-      "0",
-      "0"
-    ]
-  ],
-  "ts": 1695702747821
+  "type": "kline",
+  "symbol": "BTCUSDT",
+  "interval": "5m",
+  "openTime": 1785305100000,
+  "open": "64063.75",
+  "high": "64089.96",
+  "low": "64059.52",
+  "close": "64079.99",
+  "volume": "5.449008",
+  "quoteVolume": "349160.42215021",
+  "closed": false
 }`;
 
   const handleCopyReq = async () => {
@@ -154,6 +140,15 @@ export const GetSpotCandlestickChannel = () => {
               When there are no transactions, data is pushed once at the specified time granularity.
             </p>
 
+            {/* WEBSOCKET ENDPOINT */}
+            <div className="mb-4">
+              <h4 style={{ fontSize: "16px", fontWeight: "600", color: "#fff", marginBottom: "8px" }}>WebSocket Endpoint</h4>
+              <div className="http-path">
+                <span className="method post">WSS</span>
+                <span className="path">wss://socket.bitzup.com/spot/public/ws</span>
+              </div>
+            </div>
+
             {/* REQUEST PARAMETERS */}
             <h3 className="top-req-text" id="request-params">
               Request Parameters
@@ -170,38 +165,28 @@ export const GetSpotCandlestickChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>op</td>
+                    <td>action</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Operation, <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
+                    <td>Operation action: <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
                   </tr>
                   <tr>
-                    <td>args</td>
-                    <td>List&lt;Object&gt;</td>
-                    <td>Yes</td>
-                    <td>List of channels to request subscription</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Product line type (e.g. <span className="pill">SPOT</span>)</td>
+                    <td>Channel type: <span className="pill">klines</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>
-                      Channel name:<br/>
-                      <span className="pill">candle1m</span> 1 minute, <span className="pill">candle5m</span> 5 minutes, <span className="pill">candle15m</span> 15 minutes, <span className="pill">candle30m</span> 30 minutes, <span className="pill">candle1H</span> 1 hour, <span className="pill">candle4H</span> 4 hours, <span className="pill">candle6H</span> 6 hours, <span className="pill">candle12H</span> 12 hours, <span className="pill">candle1D</span> 1 day, <span className="pill">candle3D</span> 3 days, <span className="pill">candle1W</span> 1 week, <span className="pill">candle1M</span> 1 month<br/>
-                      UTC granularity: <span className="pill">candle6Hutc</span>, <span className="pill">candle12Hutc</span>, <span className="pill">candle1Dutc</span>, <span className="pill">candle3Dutc</span>, <span className="pill">candle1Wutc</span>, <span className="pill">candle1Mutc</span>
-                    </td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
+                    <td>interval</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Product ID, e.g. <span className="pill">ETHUSDT</span></td>
+                    <td>Time interval e.g., <span className="pill">1m</span>, <span className="pill">5m</span>, <span className="pill">15m</span>, <span className="pill">30m</span>, <span className="pill">1h</span>, <span className="pill">4h</span>, <span className="pill">1d</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -227,34 +212,19 @@ export const GetSpotCandlestickChannel = () => {
                     <td>Event type (e.g., <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span> / <span className="pill">error</span>)</td>
                   </tr>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Subscribed channels</td>
+                    <td>type</td>
+                    <td>String</td>
+                    <td>Channel type: <span className="pill">klines</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instType</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Product type</td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>status</td>
                     <td>String</td>
-                    <td>Channel name</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
-                  </tr>
-                  <tr>
-                    <td>code</td>
-                    <td>String</td>
-                    <td>Error code, returned only on error</td>
-                  </tr>
-                  <tr>
-                    <td>msg</td>
-                    <td>String</td>
-                    <td>Error message</td>
+                    <td>Subscription status (<span className="pill">success</span>)</td>
                   </tr>
                 </tbody>
               </table>
@@ -275,74 +245,59 @@ export const GetSpotCandlestickChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>action</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>Push data action, <span className="pill">snapshot</span> or <span className="pill">update</span></td>
+                    <td>Push channel name (<span className="pill">kline</span>)</td>
                   </tr>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Subscribed channels</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name</td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instType</td>
+                    <td>interval</td>
                     <td>String</td>
-                    <td>Product type</td>
+                    <td>Time interval e.g., <span className="pill">5m</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
+                    <td>openTime</td>
+                    <td>Number</td>
+                    <td>Candle start time in Unix timestamp milliseconds</td>
                   </tr>
                   <tr>
-                    <td>data</td>
-                    <td>List&lt;String&gt;</td>
-                    <td>Subscription candlestick data array</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; index[0]</td>
-                    <td>String</td>
-                    <td>Start time, milliseconds format of Unix timestamp, e.g. 1597026383085</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; index[1]</td>
+                    <td>open</td>
                     <td>String</td>
                     <td>Opening price</td>
                   </tr>
                   <tr>
-                    <td>&gt; index[2]</td>
+                    <td>high</td>
                     <td>String</td>
                     <td>Highest price</td>
                   </tr>
                   <tr>
-                    <td>&gt; index[3]</td>
+                    <td>low</td>
                     <td>String</td>
                     <td>Lowest price</td>
                   </tr>
                   <tr>
-                    <td>&gt; index[4]</td>
+                    <td>close</td>
                     <td>String</td>
                     <td>Closing price</td>
                   </tr>
                   <tr>
-                    <td>&gt; index[5]</td>
+                    <td>volume</td>
                     <td>String</td>
-                    <td>Trading volume of the coin</td>
+                    <td>Base asset trading volume</td>
                   </tr>
                   <tr>
-                    <td>&gt; index[6]</td>
+                    <td>quoteVolume</td>
                     <td>String</td>
-                    <td>Trading volume of quote currency</td>
+                    <td>Quote asset trading volume</td>
                   </tr>
                   <tr>
-                    <td>&gt; index[7]</td>
-                    <td>String</td>
-                    <td>Trading volume (USDT)</td>
+                    <td>closed</td>
+                    <td>Boolean</td>
+                    <td>Whether the candlestick is closed/finalized (<span className="pill">true</span> / <span className="pill">false</span>)</td>
                   </tr>
                 </tbody>
               </table>

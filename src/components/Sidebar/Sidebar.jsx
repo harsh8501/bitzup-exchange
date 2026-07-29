@@ -60,9 +60,9 @@ const Sidebar = () => {
             </div>
             {openSection === "spot_market" && (
               <div className="sidebar-sub">
-                <NavLink to="/docs/spot/market/instruments" className="sidebar-link">Get Instruments</NavLink>
+                {/* <NavLink to="/docs/spot/market/instruments" className="sidebar-link">Get Instruments</NavLink> */}
                 <NavLink to="/docs/spot/market/coin-info" className="sidebar-link">Get Coin Info</NavLink>
-                <NavLink to="/docs/spot/market/vip-fee-rate" className="sidebar-link">Get VIP Fee Rate</NavLink>
+                {/* <NavLink to="/docs/spot/market/vip-fee-rate" className="sidebar-link">Get VIP Fee Rate</NavLink> */}
                 <NavLink to="/docs/spot/market/tickers" className="sidebar-link">Get Ticker Information</NavLink>
                 <NavLink to="/docs/spot/market/recent-trades" className="sidebar-link">Get Recent Trades</NavLink>
                 <NavLink to="/docs/spot/market/orderbook" className="sidebar-link">Get OrderBook Depth</NavLink>
@@ -71,14 +71,14 @@ const Sidebar = () => {
             )}
 
             {/* Spot Convert */}
-            <div className="sidebar-section collapsible sidebar-link" onClick={() => toggleSection("spot_convert")}>
+            {/* <div className="sidebar-section collapsible sidebar-link" onClick={() => toggleSection("spot_convert")}>
               <span>Convert</span><IoIosArrowForward className={openSection === "spot_convert" ? "rotate" : ""} />
             </div>
             {openSection === "spot_convert" && (
               <div className="sidebar-sub">
                 <NavLink to="/docs/spot/convert/quoted-price" className="sidebar-link">Get Quoted Price</NavLink>
               </div>
-            )}
+            )} */}
 
             {/* Spot Websocket */}
             <div className="sidebar-section collapsible sidebar-link" onClick={() => toggleSection("spot_ws")}>

@@ -14,52 +14,38 @@ export const GetSpotMarketChannel = () => {
   const HEADER_OFFSET = 120;
 
   const reqExample = `{
-  "op": "subscribe",
-  "args": [
-    {
-      "instType": "SPOT",
-      "channel": "ticker",
-      "instId": "ETHUSDT"
-    }
-  ]
+  "action": "subscribe",
+  "type": "ticker",
+  "symbol": "BTCUSDT"
 }`;
 
   const resExample = `{
   "event": "subscribe",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "ticker",
-    "instId": "ETHUSDT"
-  }
+  "type": "ticker",
+  "symbol": "BTCUSDT",
+  "status": "success"
 }`;
 
   const pushExample = `{
-  "action": "snapshot",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "ticker",
-    "instId": "ETHUSDT"
-  },
-  "data": [
-    {
-      "instId": "ETHUSDT",
-      "lastPr": "2200.10",
-      "open24h": "0.00",
-      "high24h": "0.00",
-      "low24h": "0.00",
-      "change24h": "0.00",
-      "bidPr": "1792",
-      "askPr": "2200.1",
-      "bidSz": "0.0084",
-      "askSz": "19740.8811",
-      "baseVolume": "0.0000",
-      "quoteVolume": "0.0000",
-      "openUtc": "0.00",
-      "changeUtc24h": "0",
-      "ts": "1695702438018"
-    }
-  ],
-  "ts": 1695702438029
+    "type": "ticker",
+    "symbol": "BTCUSDT",
+    "lastPrice": "64073.21",
+    "volume24h": "5273.789076",
+    "high24h": "64198.77",
+    "low24h": "62726.67",
+    "priceChangePercent": "0.01042",
+    "bidPrice": "64077.26",
+    "bidQty": "0.441931",
+    "askPrice": "64077.27",
+    "askQty": "0.63577",
+    "askPr": "64077.27",
+    "askSz": "0.63577",
+    "bidPr": "64077.26",
+    "bidSz": "0.441931",
+    "baseVolume": "5273.789076",
+    "quoteVolume": "335673974.655112",
+    "change24h": "0.01042",
+    "ts": 1785305528468
 }`;
 
   const handleCopyReq = async () => {
@@ -161,6 +147,15 @@ export const GetSpotMarketChannel = () => {
               Get the product's latest price, bid price, ask price and 24h trading volume information via WebSocket.
             </p>
 
+            {/* WEBSOCKET ENDPOINT */}
+            <div className="mb-4">
+              <h4 style={{ fontSize: "16px", fontWeight: "600", color: "#fff", marginBottom: "8px" }}>WebSocket Endpoint</h4>
+              <div className="http-path">
+                <span className="method post">WSS</span>
+                <span className="path">wss://socket.bitzup.com/spot/public/ws</span>
+              </div>
+            </div>
+
             {/* REQUEST PARAMETERS */}
             <h3 className="top-req-text" id="request-params">
               Request Parameters
@@ -177,34 +172,22 @@ export const GetSpotMarketChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>op</td>
+                    <td>action</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Operation: <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
+                    <td>Operation action: <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
                   </tr>
                   <tr>
-                    <td>args</td>
-                    <td>Array</td>
-                    <td>Yes</td>
-                    <td>List&lt;Object&gt; - List of channels to request subscription</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Product line type (e.g. <span className="pill">SPOT</span>)</td>
+                    <td>Channel type: <span className="pill">ticker</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Channel name (e.g. <span className="pill">ticker</span>)</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Yes</td>
-                    <td>Product ID, e.g. <span className="pill">ETHUSDT</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -227,37 +210,22 @@ export const GetSpotMarketChannel = () => {
                   <tr>
                     <td>event</td>
                     <td>String</td>
-                    <td>Event type (e.g., <span className="pill">subscribe</span>)</td>
+                    <td>Event type (e.g., <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span>)</td>
                   </tr>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Subscribed channels info</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>Product type</td>
+                    <td>Channel type: <span className="pill">ticker</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name</td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
+                    <td>status</td>
                     <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
-                  </tr>
-                  <tr>
-                    <td>code</td>
-                    <td>String</td>
-                    <td>Error code, returned only on error</td>
-                  </tr>
-                  <tr>
-                    <td>msg</td>
-                    <td>String</td>
-                    <td>Error message</td>
+                    <td>Subscription status (<span className="pill">success</span>)</td>
                   </tr>
                 </tbody>
               </table>
@@ -278,109 +246,99 @@ export const GetSpotMarketChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Channels with successful subscription</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>Product type</td>
+                    <td>Push channel name (<span className="pill">ticker</span>)</td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name</td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
+                    <td>lastPrice</td>
                     <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
+                    <td>Latest traded price</td>
                   </tr>
                   <tr>
-                    <td>action</td>
+                    <td>volume24h</td>
                     <td>String</td>
-                    <td>Push data action: <span className="pill">snapshot</span></td>
+                    <td>24-hour trading volume</td>
                   </tr>
                   <tr>
-                    <td>data</td>
-                    <td>Array</td>
-                    <td>List&lt;Object&gt; - Subscription data</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instId</td>
+                    <td>high24h</td>
                     <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
+                    <td>Highest price in the last 24 hours</td>
                   </tr>
                   <tr>
-                    <td>&gt; lastPr</td>
+                    <td>low24h</td>
                     <td>String</td>
-                    <td>Latest price</td>
+                    <td>Lowest price in the last 24 hours</td>
                   </tr>
                   <tr>
-                    <td>&gt; open24h</td>
+                    <td>priceChangePercent</td>
                     <td>String</td>
-                    <td>Entry price of the last 24 hours</td>
+                    <td>24-hour price change percentage (e.g., <span className="pill">0.01042</span>)</td>
                   </tr>
                   <tr>
-                    <td>&gt; high24h</td>
+                    <td>bidPrice</td>
                     <td>String</td>
-                    <td>24h high</td>
+                    <td>Best bid price</td>
                   </tr>
                   <tr>
-                    <td>&gt; low24h</td>
+                    <td>bidQty</td>
                     <td>String</td>
-                    <td>24h low</td>
+                    <td>Best bid quantity</td>
                   </tr>
                   <tr>
-                    <td>&gt; change24h</td>
+                    <td>askPrice</td>
                     <td>String</td>
-                    <td>24-hour change, 0.01 means 1%.</td>
+                    <td>Best ask price</td>
                   </tr>
                   <tr>
-                    <td>&gt; bidPr</td>
+                    <td>askQty</td>
                     <td>String</td>
-                    <td>Bid price</td>
+                    <td>Best ask quantity</td>
                   </tr>
                   <tr>
-                    <td>&gt; askPr</td>
+                    <td>askPr</td>
                     <td>String</td>
-                    <td>Ask price</td>
+                    <td>Ask price alias</td>
                   </tr>
                   <tr>
-                    <td>&gt; bidSz</td>
+                    <td>askSz</td>
                     <td>String</td>
-                    <td>Buying amount</td>
+                    <td>Ask quantity alias</td>
                   </tr>
                   <tr>
-                    <td>&gt; askSz</td>
+                    <td>bidPr</td>
                     <td>String</td>
-                    <td>Selling amount</td>
+                    <td>Bid price alias</td>
                   </tr>
                   <tr>
-                    <td>&gt; baseVolume</td>
+                    <td>bidSz</td>
                     <td>String</td>
-                    <td>24h trading volume in left coin</td>
+                    <td>Bid quantity alias</td>
                   </tr>
                   <tr>
-                    <td>&gt; quoteVolume</td>
+                    <td>baseVolume</td>
                     <td>String</td>
-                    <td>24h trading volume in right coin</td>
+                    <td>24h base asset trading volume</td>
                   </tr>
                   <tr>
-                    <td>&gt; openUtc</td>
+                    <td>quoteVolume</td>
                     <td>String</td>
-                    <td>UTC±00:00 Entry price</td>
+                    <td>24h quote asset trading volume</td>
                   </tr>
                   <tr>
-                    <td>&gt; changeUtc24h</td>
+                    <td>change24h</td>
                     <td>String</td>
-                    <td>Change at UTC+0, 0.01 means 1%.</td>
+                    <td>24-hour price change value</td>
                   </tr>
                   <tr>
-                    <td>&gt; ts</td>
-                    <td>String</td>
-                    <td>Milliseconds format of data generation time Unix timestamp, e.g. 1597026383085</td>
+                    <td>ts</td>
+                    <td>Number</td>
+                    <td>Push data timestamp in Unix milliseconds</td>
                   </tr>
                 </tbody>
               </table>

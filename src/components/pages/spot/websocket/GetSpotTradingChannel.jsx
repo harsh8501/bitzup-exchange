@@ -14,42 +14,26 @@ export const GetSpotTradingChannel = () => {
   const HEADER_OFFSET = 120;
 
   const reqExample = `{
-  "op": "subscribe",
-  "args": [
-    {
-      "instType": "SPOT",
-      "channel": "trade",
-      "instId": "BTCUSDT"
-    }
-  ]
+  "action": "subscribe",
+  "type": "trades",
+  "symbol": "BTCUSDT"
 }`;
 
   const resExample = `{
   "event": "subscribe",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "trade",
-    "instId": "BTCUSDT"
-  }
+  "type": "trades",
+  "symbol": "BTCUSDT",
+  "status": "success"
 }`;
 
   const pushExample = `{
-  "action": "snapshot",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "trade",
-    "instId": "BTCUSDT"
-  },
-  "data": [
-    {
-      "ts": "1695709835822",
-      "price": "26293.4",
-      "size": "0.0013",
-      "side": "buy",
-      "tradeId": "1000000000"
-    }
-  ],
-  "ts": 1695711090682
+    "type": "trade",
+    "symbol": "BTCUSDT",
+    "tradeId": "1466244470502309894",
+    "price": "64103.59",
+    "qty": "0.14215",
+    "side": "buy",
+    "timestamp": 1785305843949
 }`;
 
   const handleCopyReq = async () => {
@@ -149,6 +133,15 @@ export const GetSpotTradingChannel = () => {
               After first subscription, it will push the recent snapshot data and then push the update data in real-time.
             </p>
 
+            {/* WEBSOCKET ENDPOINT */}
+            <div className="mb-4">
+              <h4 style={{ fontSize: "16px", fontWeight: "600", color: "#fff", marginBottom: "8px" }}>WebSocket Endpoint</h4>
+              <div className="http-path">
+                <span className="method post">WSS</span>
+                <span className="path">wss://socket.bitzup.com/spot/public/ws</span>
+              </div>
+            </div>
+
             {/* REQUEST PARAMETERS */}
             <h3 className="top-req-text" id="request-params">
               Request Parameters
@@ -165,34 +158,22 @@ export const GetSpotTradingChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>op</td>
+                    <td>action</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Operation, <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
+                    <td>Operation action: <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
                   </tr>
                   <tr>
-                    <td>args</td>
-                    <td>List&lt;Object&gt;</td>
-                    <td>Yes</td>
-                    <td>List of channels to subscribe to</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Product Line Type, <span className="pill">SPOT</span></td>
+                    <td>Channel type: <span className="pill">trades</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Channel name, <span className="pill">trade</span></td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Yes</td>
-                    <td>Product id For example: <span className="pill">BTCUSDT</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -215,37 +196,22 @@ export const GetSpotTradingChannel = () => {
                   <tr>
                     <td>event</td>
                     <td>String</td>
-                    <td>Event, <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span> / <span className="pill">error</span></td>
+                    <td>Event type (<span className="pill">subscribe</span> / <span className="pill">unsubscribe</span>)</td>
                   </tr>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>The channel subscribe to</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>product type, <span className="pill">SPOT</span></td>
+                    <td>Channel type: <span className="pill">trades</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name, <span className="pill">trade</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
+                    <td>status</td>
                     <td>String</td>
-                    <td>Product id. For example: BTCUSDT</td>
-                  </tr>
-                  <tr>
-                    <td>code</td>
-                    <td>String</td>
-                    <td>Error code, returned only on error</td>
-                  </tr>
-                  <tr>
-                    <td>msg</td>
-                    <td>String</td>
-                    <td>Error message</td>
+                    <td>Subscription status (<span className="pill">success</span>)</td>
                   </tr>
                 </tbody>
               </table>
@@ -266,59 +232,39 @@ export const GetSpotTradingChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Successfully subscribed channel</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>Product Type, <span className="pill">SPOT</span></td>
+                    <td>Push channel name (<span className="pill">trade</span>)</td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name, <span className="pill">trade</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
+                    <td>tradeId</td>
                     <td>String</td>
-                    <td>Product id For example: BTCUSDT</td>
+                    <td>Unique transaction / trade ID</td>
                   </tr>
                   <tr>
-                    <td>action</td>
+                    <td>price</td>
                     <td>String</td>
-                    <td>Push data action, <span className="pill">snapshot</span> or <span className="pill">update</span></td>
+                    <td>Executed trade price</td>
                   </tr>
                   <tr>
-                    <td>data</td>
-                    <td>List&lt;Object&gt;</td>
-                    <td>Subscribed data list</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; tradeId</td>
+                    <td>qty</td>
                     <td>String</td>
-                    <td>Transaction ID</td>
+                    <td>Executed trade quantity</td>
                   </tr>
                   <tr>
-                    <td>&gt; ts</td>
-                    <td>String</td>
-                    <td>Transaction time, millisecond format of Unix timestamp, such as 1597026383085</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; price</td>
-                    <td>String</td>
-                    <td>Transaction price</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; size</td>
-                    <td>String</td>
-                    <td>Transaction quantity</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; side</td>
+                    <td>side</td>
                     <td>String</td>
                     <td>Transaction direction (<span className="pill">buy</span> / <span className="pill">sell</span>)</td>
+                  </tr>
+                  <tr>
+                    <td>timestamp</td>
+                    <td>Number</td>
+                    <td>Transaction timestamp in Unix milliseconds</td>
                   </tr>
                 </tbody>
               </table>

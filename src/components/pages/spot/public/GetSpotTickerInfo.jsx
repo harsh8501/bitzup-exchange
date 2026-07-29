@@ -15,10 +15,10 @@ export const GetSpotTickerInfo = () => {
   const HEADER_OFFSET = 120;
 
   const codeMap = {
-    HTTP: `curl "https://api.bitget.com/api/v2/spot/market/tickers"`,
+    HTTP: `curl -s 'https://api.bitzup.com/market/ticker?symbol=BTCUSDT'`,
     Python: `import requests
 
-url = "https://api.bitget.com/api/v2/spot/market/tickers"
+url = "https://api.bitzup.com/market/ticker"
 params = {
     "symbol": "BTCUSDT"
 }
@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitget.com/api/v2/spot/market/tickers?symbol=BTCUSDT"
+    url := "https://api.bitzup.com/market/ticker?symbol=BTCUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -60,7 +60,7 @@ import java.net.http.HttpResponse;
 
 public class GetSpotTickerInfoDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitget.com/api/v2/spot/market/tickers?symbol=BTCUSDT";
+        String url = "https://api.bitzup.com/market/ticker?symbol=BTCUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -76,7 +76,7 @@ public class GetSpotTickerInfoDemo {
 
 async function getSpotTickerInfo() {
     try {
-        const response = await axios.get('https://api.bitget.com/api/v2/spot/market/tickers', {
+        const response = await axios.get('https://api.bitzup.com/market/ticker', {
             params: { symbol: 'BTCUSDT' }
         });
         console.log(response.data);
@@ -208,7 +208,7 @@ getSpotTickerInfo();`,
             </h3>
             <div className="http-path mb-4">
               <span className="method get">GET</span>
-              <span className="path">/api/v2/spot/market/tickers</span>
+              <span className="path">/market/ticker</span>
             </div>
 
             {/* REQUEST PARAMETERS */}
@@ -229,8 +229,8 @@ getSpotTickerInfo();`,
                   <tr>
                     <td>symbol</td>
                     <td>String</td>
-                    <td>No</td>
-                    <td>trading pair name, e.g. BTCUSDT. If the field is left blank, all trading pair information will be returned by default.</td>
+                    <td>Yes</td>
+                    <td>trading pair name, e.g. BTCUSDT.</td>
                   </tr>
                 </tbody>
               </table>

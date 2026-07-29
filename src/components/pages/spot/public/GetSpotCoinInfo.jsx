@@ -15,12 +15,13 @@ export const GetSpotCoinInfo = () => {
   const HEADER_OFFSET = 120;
 
   const codeMap = {
-    HTTP: `curl "https://api.bitget.com/api/v2/spot/public/coins"`,
+    HTTP: `curl -s 'https://api.bitzup.com/market/exchangeinfoall?symbol=BTCUSDT&limit=1'`,
     Python: `import requests
 
-url = "https://api.bitget.com/api/v2/spot/public/coins"
+url = "https://api.bitzup.com/market/exchangeinfoall"
 params = {
-    "coin": "BTC"
+    "symbol": "BTCUSDT",
+    "limit": "1"
 }
 
 response = requests.get(url, params=params)
@@ -34,7 +35,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitget.com/api/v2/spot/public/coins?coin=BTC"
+    url := "https://api.bitzup.com/market/exchangeinfoall?symbol=BTCUSDT&limit=1"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -60,7 +61,7 @@ import java.net.http.HttpResponse;
 
 public class GetCoinInfoDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitget.com/api/v2/spot/public/coins?coin=BTC";
+        String url = "https://api.bitzup.com/market/exchangeinfoall?symbol=BTCUSDT&limit=1";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -76,8 +77,8 @@ public class GetCoinInfoDemo {
 
 async function getSpotCoinInfo() {
     try {
-        const response = await axios.get('https://api.bitget.com/api/v2/spot/public/coins', {
-            params: { coin: 'BTC' }
+        const response = await axios.get('https://api.bitzup.com/market/exchangeinfoall', {
+            params: { symbol: 'BTCUSDT', limit: '1' }
         });
         console.log(response.data);
     } catch (error) {
@@ -89,33 +90,54 @@ getSpotCoinInfo();`,
   };
 
   const responseCode = `{
-  "code": "00000",
-  "msg": "success",
-  "requestTime": 1695799900330,
+  "offset": 0,
+  "limit": 10,
+  "total": 2259,
+  "hasMore": true,
   "data": [
     {
-      "coinId": "1",
-      "coin": "BTC",
-      "transfer": "true",
-      "chains": [
-        {
-          "chain": "BTC",
-          "needTag": "false",
-          "withdrawable": "true",
-          "rechargeable": "true",
-          "withdrawFee": "0.005",
-          "extraWithdrawFee": "0",
-          "depositConfirm": "1",
-          "withdrawConfirm": "1",
-          "minDepositAmount": "0.001",
-          "minWithdrawAmount": "0.001",
-          "browserUrl": "https://blockchain.info/tx/",
-          "contractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-          "withdrawStep": "0",
-          "withdrawMinScale": "8",
-          "congestion": "normal"
-        }
-      ]
+      "pair_id": 5,
+      "base_asset_id": "BTC7B97123",
+      "quantity_decimal": 5,
+      "price_decimal": 2,
+      "quote_asset_id": "USDT7B6D0D",
+      "pair_symbol": "BTCUSDT",
+      "current_price": 64022.13,
+      "popular": 1,
+      "change_in_price": "0.9",
+      "volume": "866136237.2",
+      "turnover": 866136237.2,
+      "api_id": "binance",
+      "tag": "Public Chain,PoW",
+      "quote_tag": "USDT",
+      "base_asset_symbol": "BTC",
+      "coin_icon": "https://bitzupicons.blr1.cdn.digitaloceanspaces.com/btc.png",
+      "coin_name": "BTC",
+      "quote_asset_symbol": "USDT",
+      "icon_url": null,
+      "coin_id": null
+    },
+    {
+      "pair_id": 2,
+      "base_asset_id": "ETH4AC702F",
+      "quantity_decimal": 4,
+      "price_decimal": 2,
+      "quote_asset_id": "USDT7B6D0D",
+      "pair_symbol": "ETHUSDT",
+      "current_price": 1912.5,
+      "popular": 0,
+      "change_in_price": "0.02",
+      "volume": "93628984.87",
+      "turnover": 93628984.87,
+      "api_id": "bitget",
+      "tag": "Public Chain,PoS",
+      "quote_tag": "USDT",
+      "base_asset_symbol": "ETH",
+      "coin_icon": "https://bitzupicons.blr1.cdn.digitaloceanspaces.com/eth.png",
+      "coin_name": "ETH",
+      "quote_asset_symbol": "USDT",
+      "icon_url": null,
+      "coin_id": null
     }
   ]
 }`;
@@ -214,7 +236,7 @@ getSpotCoinInfo();`,
             </h3>
             <div className="http-path mb-4">
               <span className="method get">GET</span>
-              <span className="path">/api/v2/spot/public/coins</span>
+              <span className="path">/market/exchangeinfoall</span>
             </div>
 
             {/* REQUEST PARAMETERS */}
@@ -233,10 +255,16 @@ getSpotCoinInfo();`,
                 </thead>
                 <tbody>
                   <tr>
-                    <td>coin</td>
+                    <td>symbol</td>
                     <td>String</td>
                     <td>No</td>
-                    <td>Coin name. If the field is left blank, all coin information will be returned by default.</td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span>. If left blank, it will not be sent in the URL and all coins will be returned.</td>
+                  </tr>
+                  <tr>
+                    <td>limit</td>
+                    <td>String / Number</td>
+                    <td>No</td>
+                    <td>Number of results to return. Default: <span className="pill">50</span> (or <span className="pill">1</span> when symbol is specified)</td>
                   </tr>
                 </tbody>
               </table>
@@ -257,119 +285,84 @@ getSpotCoinInfo();`,
                 </thead>
                 <tbody>
                   <tr>
-                    <td>code</td>
-                    <td>String</td>
-                    <td>Response code (e.g., <span className="pill">00000</span> for success)</td>
-                  </tr>
-                  <tr>
-                    <td>msg</td>
-                    <td>String</td>
-                    <td>Response message (e.g., <span className="pill">success</span>)</td>
-                  </tr>
-                  <tr>
-                    <td>requestTime</td>
+                    <td>offset</td>
                     <td>Number</td>
-                    <td>Request timestamp in milliseconds</td>
+                    <td>Offset pagination index</td>
+                  </tr>
+                  <tr>
+                    <td>limit</td>
+                    <td>Number</td>
+                    <td>Number of records per page</td>
+                  </tr>
+                  <tr>
+                    <td>total</td>
+                    <td>Number</td>
+                    <td>Total number of records</td>
+                  </tr>
+                  <tr>
+                    <td>hasMore</td>
+                    <td>Boolean</td>
+                    <td>Whether more records exist (<span className="pill">true</span> / <span className="pill">false</span>)</td>
                   </tr>
                   <tr>
                     <td>data</td>
                     <td>Array</td>
-                    <td>Coin info list</td>
+                    <td>Coin & Exchange trading pairs list</td>
                   </tr>
                   <tr>
-                    <td>&gt; coinId</td>
+                    <td>&gt; pair_id</td>
+                    <td>Number</td>
+                    <td>Trading pair ID</td>
+                  </tr>
+                  <tr>
+                    <td>&gt; pair_symbol</td>
                     <td>String</td>
-                    <td>Currency ID</td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; coin</td>
+                    <td>&gt; base_asset_symbol</td>
                     <td>String</td>
-                    <td>Token name</td>
+                    <td>Base asset symbol e.g., <span className="pill">BTC</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; transfer</td>
+                    <td>&gt; quote_asset_symbol</td>
                     <td>String</td>
-                    <td>Transferability (<span className="pill">true</span> / <span className="pill">false</span>)</td>
+                    <td>Quote asset symbol e.g., <span className="pill">USDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; chains</td>
-                    <td>Array</td>
-                    <td>Support chain list</td>
+                    <td>&gt; current_price</td>
+                    <td>Number</td>
+                    <td>Current market price</td>
                   </tr>
                   <tr>
-                    <td>&gt;&gt; chain</td>
+                    <td>&gt; change_in_price</td>
                     <td>String</td>
-                    <td>Chain name</td>
+                    <td>24h price change percentage</td>
                   </tr>
                   <tr>
-                    <td>&gt;&gt; needTag</td>
+                    <td>&gt; volume</td>
                     <td>String</td>
-                    <td>Need tag (<span className="pill">true</span> / <span className="pill">false</span>)</td>
+                    <td>24h trading volume</td>
                   </tr>
                   <tr>
-                    <td>&gt;&gt; withdrawable</td>
-                    <td>String</td>
-                    <td>Withdrawal supported (<span className="pill">true</span> / <span className="pill">false</span>)</td>
+                    <td>&gt; turnover</td>
+                    <td>Number</td>
+                    <td>24h trading turnover</td>
                   </tr>
                   <tr>
-                    <td>&gt;&gt; rechargeable</td>
+                    <td>&gt; tag</td>
                     <td>String</td>
-                    <td>Deposit supported (<span className="pill">true</span> / <span className="pill">false</span>)</td>
+                    <td>Tags associated with asset (e.g. Public Chain, PoW)</td>
                   </tr>
                   <tr>
-                    <td>&gt;&gt; withdrawFee</td>
+                    <td>&gt; coin_icon</td>
                     <td>String</td>
-                    <td>Withdrawal transaction fee</td>
+                    <td>Asset icon URL</td>
                   </tr>
                   <tr>
-                    <td>&gt;&gt; extraWithdrawFee</td>
+                    <td>&gt; coin_name</td>
                     <td>String</td>
-                    <td>Extra charge. On chain destruction: 0.1 means 10%</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; depositConfirm</td>
-                    <td>String</td>
-                    <td>Deposit confirmation blocks</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; withdrawConfirm</td>
-                    <td>String</td>
-                    <td>Withdrawal confirmation blocks</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; minDepositAmount</td>
-                    <td>String</td>
-                    <td>Minimum deposit amount</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; minWithdrawAmount</td>
-                    <td>String</td>
-                    <td>Minimum withdrawal amount</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; browserUrl</td>
-                    <td>String</td>
-                    <td>Blockchain explorer address</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; contractAddress</td>
-                    <td>String</td>
-                    <td>Coin contract address</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; withdrawStep</td>
-                    <td>String</td>
-                    <td>Withdrawal count step. If the value is not 0, it indicates that the withdrawal size should be multiple of the value. If it's 0, that means there is no limit above.</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; withdrawMinScale</td>
-                    <td>String</td>
-                    <td>Decimal places of withdrawal amount</td>
-                  </tr>
-                  <tr>
-                    <td>&gt;&gt; congestion</td>
-                    <td>String</td>
-                    <td>Chain network status (<span className="pill">normal</span>: normal, <span className="pill">congested</span>: congested)</td>
+                    <td>Full coin name</td>
                   </tr>
                 </tbody>
               </table>

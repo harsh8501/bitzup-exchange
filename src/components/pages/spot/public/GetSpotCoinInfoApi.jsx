@@ -7,7 +7,8 @@ export const GetSpotCoinInfoApi = () => {
   const contentRef = useRef(null);
 
   const [requestBody, setRequestBody] = useState({
-    coin: ""
+    symbol: "BTCUSDT",
+    limit: "1"
   });
 
   return (
@@ -49,13 +50,14 @@ export const GetSpotCoinInfoApi = () => {
           <span>Spot Market</span> <IoIosArrowForward size={12} /> <span className="pill">Get Coin Info</span>
         </div>
         <h1 className="api-title">Get Coin Info</h1>
-        <p style={{ color: "#888", marginBottom: "40px" }}>Get spot coin information, supporting both individual and full queries.</p>
+        <p style={{ color: "#888", marginBottom: "40px" }}>Get spot coin and exchange information, supporting symbol and limit parameters.</p>
 
         <div className="api-box">
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "coin", type: "string", req: false, desc: "Coin name. If left blank, all coin info will be returned by default." },
+              { name: "symbol", type: "string", req: false, desc: "Trading pair symbol e.g. BTCUSDT. If left empty, it is not included in the URL and all pairs are returned." },
+              { name: "limit", type: "string", req: false, desc: "Number of records to return per query. Default: 50 for all pairs, 1 when symbol is specified." },
             ].map(p => (
               <div className="tree-item" key={p.name}>
                 <span className="p-name">{p.name}</span>
@@ -87,8 +89,8 @@ export const GetSpotCoinInfoApi = () => {
       <ApiExplorer
         requiredFields={[]} 
         method="GET" 
-        endpoint="/api/v2/spot/public/coins" 
-        baseUrl="https://api.bitget.com"
+        endpoint="/market/exchangeinfoall" 
+        baseUrl="https://api.bitzup.com"
         initialBody={requestBody} 
         editable={true} 
         externalBody={requestBody} 

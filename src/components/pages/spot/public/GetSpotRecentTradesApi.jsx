@@ -89,8 +89,8 @@ export const GetSpotRecentTradesApi = () => {
       <ApiExplorer
         requiredFields={["symbol"]} 
         method="GET" 
-        endpoint="/api/v2/spot/market/fills" 
-        baseUrl="https://api.bitget.com"
+        endpoint="/market/trades" 
+        baseUrl="https://api.bitzup.com"
         initialBody={requestBody} 
         editable={true} 
         externalBody={requestBody} 

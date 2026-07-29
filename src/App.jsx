@@ -9,10 +9,7 @@ import { Kline } from "./components/pages/Kline";
 import { Tickers } from "./components/pages/Tickers";
 import { RecentPublicTrades } from "./components/pages/RecentPublicTrades";
 import { Connect } from "./components/pages/Connect";
-import { WsOrderBook } from "./components/pages/WsOrderBook";
-import { WsTrade } from "./components/pages/WsTrade";
-import { WsTicker } from "./components/pages/WsTicker";
-import { WsKline } from "./components/pages/WsKline";
+                                                                                                                                                                                                                                                                                                                                                                                                    
 import { RateLimitRules } from "./components/pages/RateLimitRules";
 import { MarketData } from "./components/pages/MarketData";
 import { EnumsDefinitions } from "./components/pages/EnumsDefinitions";

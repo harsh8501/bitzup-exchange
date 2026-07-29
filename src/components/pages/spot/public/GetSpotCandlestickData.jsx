@@ -15,14 +15,16 @@ export const GetSpotCandlestickData = () => {
   const HEADER_OFFSET = 120;
 
   const codeMap = {
-    HTTP: `curl "https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=15min&limit=100"`,
+    HTTP: `curl -s 'https://api.bitzup.com/chart/klines?symbol=BTCUSDT&granularity=15min&limit=500&startTime=1785035013000&endTime=1785305013000'`,
     Python: `import requests
 
-url = "https://api.bitget.com/api/v2/spot/market/candles"
+url = "https://api.bitzup.com/chart/klines"
 params = {
     "symbol": "BTCUSDT",
     "granularity": "15min",
-    "limit": "100"
+    "limit": "500",
+    "startTime": "1785035013000",
+    "endTime": "1785305013000"
 }
 
 response = requests.get(url, params=params)
@@ -36,7 +38,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=15min&limit=100"
+    url := "https://api.bitzup.com/chart/klines?symbol=BTCUSDT&granularity=15min&limit=500&startTime=1785035013000&endTime=1785305013000"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -62,7 +64,7 @@ import java.net.http.HttpResponse;
 
 public class GetSpotCandlestickDataDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=15min&limit=100";
+        String url = "https://api.bitzup.com/chart/klines?symbol=BTCUSDT&granularity=15min&limit=500&startTime=1785035013000&endTime=1785305013000";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -78,8 +80,8 @@ public class GetSpotCandlestickDataDemo {
 
 async function getSpotCandlestickData() {
     try {
-        const response = await axios.get('https://api.bitget.com/api/v2/spot/market/candles', {
-            params: { symbol: 'BTCUSDT', granularity: '15min', limit: '100' }
+        const response = await axios.get('https://api.bitzup.com/chart/klines', {
+            params: { symbol: 'BTCUSDT', granularity: '15min', limit: '500', startTime: '1785035013000', endTime: '1785305013000' }
         });
         console.log(response.data);
     } catch (error) {
@@ -212,7 +214,7 @@ getSpotCandlestickData();`,
             </h3>
             <div className="http-path mb-4">
               <span className="method get">GET</span>
-              <span className="path">/api/v2/spot/market/candles</span>
+              <span className="path">/chart/klines</span>
             </div>
 
             {/* REQUEST PARAMETERS */}

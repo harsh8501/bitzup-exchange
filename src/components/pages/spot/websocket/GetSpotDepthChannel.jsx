@@ -14,59 +14,68 @@ export const GetSpotDepthChannel = () => {
   const HEADER_OFFSET = 120;
 
   const reqExample = `{
-  "op": "subscribe",
-  "args": [
-    {
-      "instType": "SPOT",
-      "channel": "books5",
-      "instId": "BTCUSDT"
-    }
-  ]
+  "action": "subscribe",
+  "type": "orderbook",
+  "symbol": "BTCUSDT",
+  "depthSize": 5
 }`;
 
   const resExample = `{
   "event": "subscribe",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "books5",
-    "instId": "BTCUSDT"
-  }
+  "type": "orderbook",
+  "symbol": "BTCUSDT",
+  "status": "success"
 }`;
 
   const pushExample = `{
-  "action": "snapshot",
-  "arg": {
-    "instType": "SPOT",
-    "channel": "books5",
-    "instId": "BTCUSDT"
-  },
-  "data": [
-    {
-      "asks": [
+    "type": "orderbook",
+    "symbol": "BTCUSDT",
+    "u": 1785305742201,
+    "bids": [
         [
-          "26274.9",
-          "0.0009"
+            64097.83,
+            0.151743
         ],
         [
-          "26275.0",
-          "0.0500"
-        ]
-      ],
-      "bids": [
-        [
-          "26274.8",
-          "0.0009"
+            64097.36,
+            0.00156
         ],
         [
-          "26274.7",
-          "0.0027"
+            64097,
+            0.000036
+        ],
+        [
+            64096.49,
+            0.011891
+        ],
+        [
+            64096.48,
+            0.031236
         ]
-      ],
-      "seq": 123,
-      "ts": "1695710946294"
-    }
-  ],
-  "ts": 1695710946294
+    ],
+    "asks": [
+        [
+            64097.84,
+            1.836904
+        ],
+        [
+            64098.02,
+            0.015793
+        ],
+        [
+            64098.35,
+            0.001284
+        ],
+        [
+            64100.27,
+            0.2
+        ],
+        [
+            64100.28,
+            0.004871
+        ]
+    ],
+    "ts": 1785305742201
 }`;
 
   const handleCopyReq = async () => {
@@ -167,6 +176,15 @@ export const GetSpotDepthChannel = () => {
               Default data push frequency for <span className="pill">books1</span> is <strong>10ms</strong>.
             </p>
 
+            {/* WEBSOCKET ENDPOINT */}
+            <div className="mb-4">
+              <h4 style={{ fontSize: "16px", fontWeight: "600", color: "#fff", marginBottom: "8px" }}>WebSocket Endpoint</h4>
+              <div className="http-path">
+                <span className="method post">WSS</span>
+                <span className="path">wss://socket.bitzup.com/spot/public/ws</span>
+              </div>
+            </div>
+
             <ul style={{ color: "#8b949e", fontSize: "14px", marginBottom: "24px", lineHeight: "1.8" }}>
               <li><span className="pill">books</span> : All levels of depth. First update pushed is full data: <span className="pill">snapshot</span>, and then push the update data: <span className="pill">update</span>.</li>
               <li><span className="pill">books1</span> : 1st level of depth. Push <span className="pill">snapshot</span> each time.</li>
@@ -195,34 +213,28 @@ export const GetSpotDepthChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>op</td>
+                    <td>action</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Operation, <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
+                    <td>Operation action: <span className="pill">subscribe</span> / <span className="pill">unsubscribe</span></td>
                   </tr>
                   <tr>
-                    <td>args</td>
-                    <td>List&lt;Object&gt;</td>
-                    <td>Yes</td>
-                    <td>List of channels to request subscription</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Product line type (<span className="pill">SPOT</span>)</td>
+                    <td>Channel type: <span className="pill">orderbook</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
                     <td>Yes</td>
-                    <td>Channel name: <span className="pill">books</span> / <span className="pill">books1</span> / <span className="pill">books5</span> / <span className="pill">books15</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Yes</td>
-                    <td>Product ID, e.g. <span className="pill">ETHUSDT</span></td>
+                    <td>depthSize</td>
+                    <td>Number</td>
+                    <td>No</td>
+                    <td>Depth level size e.g. <span className="pill">5</span>, <span className="pill">15</span>, <span className="pill">50</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -245,37 +257,22 @@ export const GetSpotDepthChannel = () => {
                   <tr>
                     <td>event</td>
                     <td>String</td>
-                    <td>Event type (<span className="pill">subscribe</span> / <span className="pill">unsubscribe</span> / <span className="pill">error</span>)</td>
+                    <td>Event type (<span className="pill">subscribe</span> / <span className="pill">unsubscribe</span>)</td>
                   </tr>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Subscribed channels</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>Product type</td>
+                    <td>Channel type: <span className="pill">orderbook</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name: <span className="pill">books</span> / <span className="pill">books1</span> / <span className="pill">books5</span> / <span className="pill">books15</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
+                    <td>status</td>
                     <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
-                  </tr>
-                  <tr>
-                    <td>code</td>
-                    <td>String</td>
-                    <td>Error code, returned only on error</td>
-                  </tr>
-                  <tr>
-                    <td>msg</td>
-                    <td>String</td>
-                    <td>Error message</td>
+                    <td>Subscription status (<span className="pill">success</span>)</td>
                   </tr>
                 </tbody>
               </table>
@@ -296,59 +293,34 @@ export const GetSpotDepthChannel = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>arg</td>
-                    <td>Object</td>
-                    <td>Channels with successful subscription</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; instType</td>
+                    <td>type</td>
                     <td>String</td>
-                    <td>Product type</td>
+                    <td>Push channel name (<span className="pill">orderbook</span>)</td>
                   </tr>
                   <tr>
-                    <td>&gt; channel</td>
+                    <td>symbol</td>
                     <td>String</td>
-                    <td>Channel name: <span className="pill">books</span> / <span className="pill">books1</span> / <span className="pill">books5</span> / <span className="pill">books15</span></td>
+                    <td>Trading pair symbol e.g., <span className="pill">BTCUSDT</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
+                    <td>u</td>
+                    <td>Number</td>
+                    <td>OrderBook sequence / update ID</td>
                   </tr>
                   <tr>
-                    <td>action</td>
-                    <td>String</td>
-                    <td>Push data action, <span className="pill">snapshot</span> or <span className="pill">update</span></td>
+                    <td>bids</td>
+                    <td>Array</td>
+                    <td>Buyer depth array <span className="pill">[price, quantity]</span></td>
                   </tr>
                   <tr>
-                    <td>data</td>
-                    <td>List&lt;Object&gt;</td>
-                    <td>Subscription data</td>
+                    <td>asks</td>
+                    <td>Array</td>
+                    <td>Seller depth array <span className="pill">[price, quantity]</span></td>
                   </tr>
                   <tr>
-                    <td>&gt; instId</td>
-                    <td>String</td>
-                    <td>Product ID, e.g. ETHUSDT</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; asks</td>
-                    <td>List&lt;String&gt;</td>
-                    <td>Seller depth array [<span className="pill">price</span>, <span className="pill">size</span>]</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; bids</td>
-                    <td>List&lt;String&gt;</td>
-                    <td>Buyer depth array [<span className="pill">price</span>, <span className="pill">size</span>]</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; ts</td>
-                    <td>String</td>
-                    <td>Matching engine timestamp(ms), e.g. 1597026383085</td>
-                  </tr>
-                  <tr>
-                    <td>&gt; seq</td>
-                    <td>Long</td>
-                    <td>Serial number. Increases when order book updates to determine out-of-order packets.</td>
+                    <td>ts</td>
+                    <td>Number</td>
+                    <td>Matching engine timestamp in Unix milliseconds</td>
                   </tr>
                 </tbody>
               </table>

@@ -11,7 +11,8 @@ const ApiExplorer = ({
   editable = true,
   externalBody,
   setExternalBody,
-  requiredFields = []
+  requiredFields = [],
+  isPublic = false
 }) => {
   const [internalBody, setInternalBody] = useState(initialBody);
 
@@ -214,9 +215,9 @@ const ApiExplorer = ({
 
     const validationErrors = [];
 
-    // 1. Validate API Key & Secret (unless it is a public /market/ endpoint)
-    const isMarketEndpoint = endpoint && endpoint.includes('/market/');
-    if (!isMarketEndpoint) {
+    // 1. Validate API Key & Secret (unless it is a public endpoint)
+    const isPublicEndpoint = isPublic || (endpoint && (endpoint.includes('/market/') || endpoint.includes('/chart/') || endpoint.includes('/public/')));
+    if (!isPublicEndpoint) {
       if (!apiKey) {
         validationErrors.push("API Key is required for private endpoints.");
       }
@@ -369,24 +370,68 @@ const ApiExplorer = ({
 
     setLoading(true);
     try {
-      const res = await fetch(`${baseUrl}/v1/execute`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-BAPI-API-KEY": apiKey,
-          "X-BAPI-API-SECRET": apiSecret,
-          "X-BAPI-TIMESTAMP": timestamp,
-          "X-BAPI-RECV-WINDOW": recvWindow,
-          "X-BAPI-SIGN": signature,
-        },
-        body: JSON.stringify({
-          method,
-          endpoint,
-          params: method === "GET" ? cleanedBody : {},
-          body: method === "POST" ? cleanedBody : {}
-        })
-      });
-      const data = await res.json();
+      let res;
+      // Spot APIs (on api.bitzup.com) fetch directly from baseUrl + endpoint.
+      // Futures APIs (on test.bitzup.com/futures-api) proxy through /v1/execute on test.bitzup.com.
+      const isDirectEndpoint = baseUrl === "https://api.bitzup.com" || (baseUrl === "https://test.bitzup.com" && !baseUrl.includes("futures-api"));
+
+      if (isDirectEndpoint) {
+        if (method === "GET") {
+          const queryParams = new URLSearchParams(cleanedBody).toString();
+          const fullUrl = queryParams ? `${baseUrl}${endpoint}?${queryParams}` : `${baseUrl}${endpoint}`;
+          res = await fetch(fullUrl, {
+            method: "GET",
+            headers: {
+              "Accept": "application/json",
+              ...(apiKey ? { "X-BAPI-API-KEY": apiKey } : {}),
+              ...(apiSecret ? { "X-BAPI-API-SECRET": apiSecret } : {}),
+            }
+          });
+        } else {
+          res = await fetch(`${baseUrl}${endpoint}`, {
+            method: method,
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              ...(apiKey ? { "X-BAPI-API-KEY": apiKey } : {}),
+              ...(apiSecret ? { "X-BAPI-API-SECRET": apiSecret } : {}),
+            },
+            body: JSON.stringify(cleanedBody)
+          });
+        }
+      } else {
+        // Futures API proxy server hosted on test.bitzup.com/futures-api/v1/execute
+        res = await fetch(`${baseUrl}/v1/execute`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-BAPI-API-KEY": apiKey,
+            "X-BAPI-API-SECRET": apiSecret,
+            "X-BAPI-TIMESTAMP": timestamp,
+            "X-BAPI-RECV-WINDOW": recvWindow,
+            "X-BAPI-SIGN": signature,
+          },
+          body: JSON.stringify({
+            method,
+            endpoint,
+            params: method === "GET" ? cleanedBody : {},
+            body: method === "POST" ? cleanedBody : {}
+          })
+        });
+      }
+
+      let text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseErr) {
+        data = {
+          status: res.status,
+          statusText: res.statusText,
+          error: "Non-JSON Response",
+          rawResponse: text
+        };
+      }
       setResponse(data);
     } catch (error) {
       setResponse({ error: error.message });

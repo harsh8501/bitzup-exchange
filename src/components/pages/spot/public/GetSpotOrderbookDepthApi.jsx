@@ -8,7 +8,6 @@ export const GetSpotOrderbookDepthApi = () => {
 
   const [requestBody, setRequestBody] = useState({
     symbol: "BTCUSDT",
-    type: "step0",
     limit: "150"
   });
 
@@ -58,7 +57,6 @@ export const GetSpotOrderbookDepthApi = () => {
           <div className="tree-view">
             {[
               { name: "symbol", type: "string", req: true, desc: "Trading pair, e.g. BTCUSDT" },
-              { name: "type", type: "string", req: false, desc: "Default: step0. The value enums: step0, step1, step2, step3, step4, step5" },
               { name: "limit", type: "string", req: false, desc: "Number of queries: Default: 150, maximum: 150" },
             ].map(p => (
               <div className="tree-item" key={p.name}>
@@ -91,8 +89,8 @@ export const GetSpotOrderbookDepthApi = () => {
       <ApiExplorer
         requiredFields={["symbol"]} 
         method="GET" 
-        endpoint="/api/v2/spot/market/orderbook" 
-        baseUrl="https://api.bitget.com"
+        endpoint="/market/order" 
+        baseUrl="https://api.bitzup.com"
         initialBody={requestBody} 
         editable={true} 
         externalBody={requestBody} 

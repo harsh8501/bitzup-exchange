@@ -9,9 +9,9 @@ export const GetSpotCandlestickDataApi = () => {
   const [requestBody, setRequestBody] = useState({
     symbol: "BTCUSDT",
     granularity: "15min",
-    startTime: "",
-    endTime: "",
-    limit: "100"
+    limit: "500",
+    startTime: "1785035013000",
+    endTime: "1785305013000"
   });
 
   return (
@@ -96,8 +96,8 @@ export const GetSpotCandlestickDataApi = () => {
       <ApiExplorer
         requiredFields={["symbol", "granularity"]} 
         method="GET" 
-        endpoint="/api/v2/spot/market/candles" 
-        baseUrl="https://api.bitget.com"
+        endpoint="/chart/klines" 
+        baseUrl="https://api.bitzup.com"
         initialBody={requestBody} 
         editable={true} 
         externalBody={requestBody} 

@@ -55,7 +55,7 @@ export const GetSpotTickerInfoApi = () => {
           <div className="api-box-header">Query Parameters</div>
           <div className="tree-view">
             {[
-              { name: "symbol", type: "string", req: false, desc: "trading pair name, e.g. BTCUSDT. If left blank, all trading pair info will be returned by default." },
+              { name: "symbol", type: "string", req: true, desc: "trading pair name, e.g. BTCUSDT." },
             ].map(p => (
               <div className="tree-item" key={p.name}>
                 <span className="p-name">{p.name}</span>
@@ -67,7 +67,7 @@ export const GetSpotTickerInfoApi = () => {
           </div>
         </div>
 
-        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={[]} />
+        <RequestQueryEditor requestBody={requestBody} setRequestBody={setRequestBody} requiredFields={["symbol"]} />
 
         <div style={{ marginTop: "64px" }}>
           <div className="panel-section-title">
@@ -85,10 +85,10 @@ export const GetSpotTickerInfoApi = () => {
       </div>
 
       <ApiExplorer
-        requiredFields={[]} 
+        requiredFields={["symbol"]} 
         method="GET" 
-        endpoint="/api/v2/spot/market/tickers" 
-        baseUrl="https://api.bitget.com"
+        endpoint="/market/ticker" 
+        baseUrl="https://api.bitzup.com"
         initialBody={requestBody} 
         editable={true} 
         externalBody={requestBody} 

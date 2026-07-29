@@ -15,14 +15,12 @@ export const GetSpotOrderbookDepth = () => {
   const HEADER_OFFSET = 120;
 
   const codeMap = {
-    HTTP: `curl "https://api.bitget.com/api/v2/spot/market/orderbook?symbol=BTCUSDT&type=step0&limit=150"`,
+    HTTP: `curl -s 'https://api.bitzup.com/market/order?symbol=BTCUSDT'`,
     Python: `import requests
 
-url = "https://api.bitget.com/api/v2/spot/market/orderbook"
+url = "https://api.bitzup.com/market/order"
 params = {
-    "symbol": "BTCUSDT",
-    "type": "step0",
-    "limit": "150"
+    "symbol": "BTCUSDT"
 }
 
 response = requests.get(url, params=params)
@@ -36,7 +34,7 @@ import (
 )
 
 func main() {
-    url := "https://api.bitget.com/api/v2/spot/market/orderbook?symbol=BTCUSDT&type=step0&limit=150"
+    url := "https://api.bitzup.com/market/order?symbol=BTCUSDT"
 
     req, err := http.NewRequest("GET", url, nil)
     if err != nil {
@@ -62,7 +60,7 @@ import java.net.http.HttpResponse;
 
 public class GetSpotOrderbookDepthDemo {
     public static void main(String[] args) throws Exception {
-        String url = "https://api.bitget.com/api/v2/spot/market/orderbook?symbol=BTCUSDT&type=step0&limit=150";
+        String url = "https://api.bitzup.com/market/order?symbol=BTCUSDT";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -78,8 +76,8 @@ public class GetSpotOrderbookDepthDemo {
 
 async function getSpotOrderbookDepth() {
     try {
-        const response = await axios.get('https://api.bitget.com/api/v2/spot/market/orderbook', {
-            params: { symbol: 'BTCUSDT', type: 'step0', limit: '150' }
+        const response = await axios.get('https://api.bitzup.com/market/order', {
+            params: { symbol: 'BTCUSDT' }
         });
         console.log(response.data);
     } catch (error) {
@@ -213,7 +211,7 @@ getSpotOrderbookDepth();`,
             </h3>
             <div className="http-path mb-4">
               <span className="method get">GET</span>
-              <span className="path">/api/v2/spot/market/orderbook</span>
+              <span className="path">/market/order</span>
             </div>
 
             {/* REQUEST PARAMETERS */}
@@ -236,12 +234,6 @@ getSpotOrderbookDepth();`,
                     <td>String</td>
                     <td>Yes</td>
                     <td>Trading pair, e.g. BTCUSDT</td>
-                  </tr>
-                  <tr>
-                    <td>type</td>
-                    <td>String</td>
-                    <td>No</td>
-                    <td>Default: <span className="pill">step0</span>. The value enums: <span className="pill">step0</span>, <span className="pill">step1</span>, <span className="pill">step2</span>, <span className="pill">step3</span>, <span className="pill">step4</span>, <span className="pill">step5</span></td>
                   </tr>
                   <tr>
                     <td>limit</td>
